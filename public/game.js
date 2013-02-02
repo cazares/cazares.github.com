@@ -74,6 +74,11 @@ $(document).ready(function(){
 		else if(d == "down") carPos.y+=10;
 	});
 
+	$("#canvas").click(function(e) {
+		carPos.x = Math.floor(e.pageX - 15);
+		carPos.y = Math.floor(e.pageY - 5);
+	});
+
 	var init = function() {
 		paint();
 		//every 60ms
