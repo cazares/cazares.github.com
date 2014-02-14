@@ -1,13 +1,8 @@
 var express = require('express');
 var app = express();
 
-app.use(express.static(__dirname));
+app.use(express.static(__dirname + '/public'));
 var args = process.argv.splice(2);
-
-if (!args[0]) {
-  args[0] = 'index';
-}
-
 var filename = args[0] + '.html';
 console.log('Serving ' + filename);
 
