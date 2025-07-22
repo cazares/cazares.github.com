@@ -1,0 +1,67 @@
+@font-face {
+  font-family: 'OpenSansLight';
+  src: url('fonts/OpenSans-Light-webfont.woff') format('woff'),
+       url('fonts/OpenSans-Light-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'OpenSansRegular';
+  src: url('fonts/OpenSans-Regular-webfont.woff') format('woff'),
+       url('fonts/OpenSans-Regular-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  font: 400 18px/1.5 "OpenSansRegular", Helvetica, Arial, sans-serif;
+  color: #f0e7d5;
+  background: linear-gradient(#2a2a29, #1c1c1c);
+}
+header, footer {
+  height: 60px;
+  background: #353535;
+  border-style: solid;
+  border-color: #434343;
+}
+header {
+  border-width: 0 0 4px;
+}
+footer {
+  border-width: 4px 0 0;
+}
+.wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#title {
+  text-align: center;
+}
+#title h1 {
+  font: 300 40px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
+  margin-bottom: 20px;
+}
+.links {
+  margin-bottom: 10px;
+}
+.links a,
+.email a {
+  color: #ffcc00;
+  text-decoration: none;
+  margin: 0 12px;
+}
+.email {
+  margin-top: 0;
+}
