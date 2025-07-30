@@ -53,15 +53,39 @@ footer {
   font: 300 40px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
   margin: 30px;
 }
-.links {
-  margin-bottom: 10px;
+
+.link-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
 }
-.links a,
+
+.link-list a {
+  display: block;
+  width: 100%;
+  max-width: 240px;
+  padding: 10px 20px;
+  margin: 0 10px;
+  text-align: center;
+  background: #2e2e2e;
+  border-radius: 6px;
+  color: #ffcc00;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.link-list a:hover {
+  background: #3a3a3a;
+}
+
+.email {
+  margin: 25px 0;
+  text-align: center;
+}
+
 .email a {
   color: #ffcc00;
   text-decoration: none;
-  margin: 25px;
-}
-.email {
-  margin: 25px;
 }
