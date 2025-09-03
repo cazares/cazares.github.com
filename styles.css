@@ -106,23 +106,22 @@ h1 {
 .resume-links a:hover { background: #3a3a3a; }
 
 .divider {
-  width: 100%;
-  max-width: 1100px;
-  margin: 30px auto;
+  width: 80%;              
+  max-width: 430px;        
+  margin: 1px auto 1px;  /* 40px above, 25px below */
   border-top: 1px solid #444;
 }
-
 .portfolio {
   width: 100%;
   max-width: 1100px;
-  margin: 20px auto 40px;
-  padding: 0 16px;
+  margin: 1px 1px;       /* add same spacing below divider */
+  padding: 0 1px;
 }
 .section-heading {
   font: 300 32px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
   color: #fff;
   text-align: center;
-  margin: 40px 0 20px;
+  margin: 30px 0 20px; /* reduced top margin */
 }
 .section-title {
   font: 300 28px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
