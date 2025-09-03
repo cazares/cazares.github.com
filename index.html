@@ -3,169 +3,159 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Miguel Cázares</title>
+  <title>Miguel Cazares</title>
   <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
   <header></header>
 
   <div class="wrapper">
-    <h1>Miguel Cázares</h1>
+    <h1>Miguel Cazares</h1>
+    <div class="hairline"></div>
 
     <!-- Connect -->
-    <div class="divider"></div>
     <h2 class="section-heading">Connect</h2>
-    <div class="cards">
-      <a class="card card-link" href="https://linkedin.com/in/cazaresm" target="_blank" rel="noopener">
-        <div class="card-title">LinkedIn</div>
-        <img class="social-icon" src="images/linkedin.png" alt="LinkedIn logo"/>
+    <div class="cards two-wide">
+      <a class="card link-card" href="https://www.linkedin.com/in/cazaresm" target="_blank" rel="noopener">
+        <div class="link-card-title">LinkedIn</div>
+        <img src="images/linkedin.png" alt="LinkedIn logo" class="link-logo"/>
       </a>
-      <a class="card card-link" href="https://github.com/cazares" target="_blank" rel="noopener">
-        <div class="card-title">GitHub</div>
-        <img class="social-icon" src="images/github-mark-white.png" alt="GitHub Octocat mark"/>
+      <a class="card link-card" href="https://github.com/cazares" target="_blank" rel="noopener">
+        <div class="link-card-title">GitHub</div>
+        <img src="images/github-mark-white.png" alt="GitHub mark" class="link-logo"/>
       </a>
     </div>
+
+    <div class="hairline"></div>
 
     <!-- Resumé -->
-    <div class="divider"></div>
     <h2 class="section-heading">Resumé</h2>
-    <div class="cards">
-      <a class="card card-link" href="https://drive.google.com/file/d/1Ndtgh_3tXw0I6aBqizJWBkDvW961dsrN/view" target="_blank" rel="noopener">
-        <div class="card-title">View PDF</div>
-        <span class="icon-circle">
-          <img src="images/pdf-view.png" alt="View PDF icon"/>
-        </span>
+    <div class="cards two-wide">
+      <a class="card resume-card" href="https://drive.google.com/file/d/1Ndtgh_3tXw0I6aBqizJWBkDvW961dsrN/view" target="_blank" rel="noopener">
+        <div class="resume-title">View PDF</div>
+        <div class="icon-disc">
+          <img src="images/pdf-view.png" alt="View PDF"/>
+        </div>
       </a>
-      <a class="card card-link" href="https://drive.google.com/uc?export=download&id=1Ndtgh_3tXw0I6aBqizJWBkDvW961dsrN">
-        <div class="card-title">Download PDF</div>
-        <span class="icon-circle">
-          <img src="images/pdf-download.png" alt="Download PDF icon"/>
-        </span>
+      <a class="card resume-card" href="https://drive.google.com/uc?export=download&id=1Ndtgh_3tXw0I6aBqizJWBkDvW961dsrN">
+        <div class="resume-title">Download PDF</div>
+        <div class="icon-disc">
+          <img src="images/pdf-download.png" alt="Download PDF"/>
+        </div>
       </a>
-      <a class="card card-link" href="https://docs.google.com/document/d/15kc1eJa78rhplQGx2GNXjU8IS50FnnRE/preview" target="_blank" rel="noopener">
-        <div class="card-title">View DOCX</div>
-        <span class="icon-circle">
-          <img src="images/docx-view.png" alt="View DOCX icon"/>
-        </span>
+      <a class="card resume-card" href="https://docs.google.com/document/d/15kc1eJa78rhplQGx2GNXjU8IS50FnnRE/preview" target="_blank" rel="noopener">
+        <div class="resume-title">View DOCX</div>
+        <div class="icon-disc">
+          <img src="images/docx-view.png" alt="View DOCX"/>
+        </div>
       </a>
-      <a class="card card-link" href="https://docs.google.com/document/d/15kc1eJa78rhplQGx2GNXjU8IS50FnnRE/export?format=docx">
-        <div class="card-title">Download DOCX</div>
-        <span class="icon-circle">
-          <img src="images/docx-download.png" alt="Download DOCX icon"/>
-        </span>
+      <a class="card resume-card" href="https://docs.google.com/document/d/15kc1eJa78rhplQGx2GNXjU8IS50FnnRE/export?format=docx">
+        <div class="resume-title">Download DOCX</div>
+        <div class="icon-disc">
+          <img src="images/docx-download.png" alt="Download DOCX"/>
+        </div>
       </a>
     </div>
 
+    <div class="hairline"></div>
+
     <!-- Live Apps -->
-    <div class="divider"></div>
     <section class="portfolio">
       <h2 class="section-heading">Live Apps</h2>
 
-      <div class="cards">
+      <div class="cards two-wide">
         <!-- ShipStation iOS -->
         <div class="card">
           <div class="card-title">ShipStation iOS</div>
-          <a href="https://apps.apple.com/us/app/shipstation-mobile/id972151811" target="_blank" rel="noopener">
-            <img class="store-badge" src="images/appstore-badge.svg" alt="Download on the App Store"/>
-          </a>
-          <!-- NEW: screenshots -->
-          <div class="app-shots">
-            <img src="images/ss-ios-1.png" alt="ShipStation iOS screenshot 1"/>
-            <img src="images/ss-ios-2.png" alt="ShipStation iOS screenshot 2"/>
+
+          <!-- Screenshots block (like gif-me grid) -->
+          <div class="media-grid two-up">
+            <img class="media" src="images/ss-ios-1.png" alt="ShipStation iOS screenshot 1"/>
+            <img class="media" src="images/ss-ios-2.png" alt="ShipStation iOS screenshot 2"/>
           </div>
+
+          <!-- Store badge BELOW screenshots -->
+          <a href="https://apps.apple.com/us/app/shipstation-mobile/id972151811" target="_blank" rel="noopener">
+            <img src="images/appstore-badge.svg" alt="Download on the App Store" class="store-badge"/>
+          </a>
         </div>
 
         <!-- ShipStation Android -->
         <div class="card">
           <div class="card-title">ShipStation Android</div>
-          <a href="https://play.google.com/store/apps/details?id=com.shipstation.app" target="_blank" rel="noopener">
-            <img class="store-badge" src="images/googleplay-badge.svg" alt="Get it on Google Play"/>
-          </a>
-          <!-- NEW: screenshots -->
-          <div class="app-shots">
-            <img src="images/ss-android-1.png" alt="ShipStation Android screenshot 1"/>
-            <img src="images/ss-android-2.png" alt="ShipStation Android screenshot 2"/>
+
+          <div class="media-grid two-up">
+            <img class="media" src="images/ss-android-1.png" alt="ShipStation Android screenshot 1"/>
+            <img class="media" src="images/ss-android-2.png" alt="ShipStation Android screenshot 2"/>
           </div>
+
+          <a href="https://play.google.com/store/apps/details?id=com.shipstation.app" target="_blank" rel="noopener">
+            <img src="images/googleplay-badge.svg" alt="Get it on Google Play" class="store-badge"/>
+          </a>
         </div>
 
         <!-- Stamps iOS -->
         <div class="card">
           <div class="card-title">Stamps.com iOS</div>
-          <a href="https://apps.apple.com/us/app/stamps-com-mobile-app/id1591959884" target="_blank" rel="noopener">
-            <img class="store-badge" src="images/appstore-badge.svg" alt="Download on the App Store"/>
-          </a>
-          <!-- NEW: screenshots -->
-          <div class="app-shots">
-            <img src="images/stamps-ios-1.png" alt="Stamps iOS screenshot 1"/>
-            <img src="images/stamps-ios-2.png" alt="Stamps iOS screenshot 2"/>
+
+          <div class="media-grid two-up">
+            <img class="media" src="images/stamps-ios-1.png" alt="Stamps iOS screenshot 1"/>
+            <img class="media" src="images/stamps-ios-2.png" alt="Stamps iOS screenshot 2"/>
           </div>
+
+          <a href="https://apps.apple.com/us/app/stamps-com-mobile-app/id1591959884" target="_blank" rel="noopener">
+            <img src="images/appstore-badge.svg" alt="Download on the App Store" class="store-badge"/>
+          </a>
         </div>
 
         <!-- Stamps Android -->
         <div class="card">
           <div class="card-title">Stamps.com Android</div>
-          <a href="https://play.google.com/store/apps/details?id=stamps.mobile.app" target="_blank" rel="noopener">
-            <img class="store-badge" src="images/googleplay-badge.svg" alt="Get it on Google Play"/>
-          </a>
-          <!-- NEW: screenshots -->
-          <div class="app-shots">
-            <img src="images/stamps-android-1.png" alt="Stamps Android screenshot 1"/>
-            <img src="images/stamps-android-2.png" alt="Stamps Android screenshot 2"/>
+
+          <div class="media-grid two-up">
+            <img class="media" src="images/stamps-android-1.png" alt="Stamps Android screenshot 1"/>
+            <img class="media" src="images/stamps-android-2.png" alt="Stamps Android screenshot 2"/>
           </div>
+
+          <a href="https://play.google.com/store/apps/details?id=stamps.mobile.app" target="_blank" rel="noopener">
+            <img src="images/googleplay-badge.svg" alt="Get it on Google Play" class="store-badge"/>
+          </a>
         </div>
       </div>
 
-      <!-- Projects -->
+      <!-- Projects (unchanged except our earlier GIF sizing/grid rules) -->
       <h2 class="section-heading">Projects</h2>
-      <div class="cards">
-        <!-- racer-js (stacked demos) -->
-        <div class="card project-card">
+      <div class="cards two-wide">
+        <div class="card">
           <div class="card-title">racer-js</div>
-          <figure>
-            <img src="images/racer-js-1.gif" alt="racer-js demo 1" class="project-gif">
-            <figcaption>Demo 1</figcaption>
-          </figure>
-          <figure>
-            <img src="images/racer-js-2.gif" alt="racer-js demo 2" class="project-gif">
-            <figcaption>Demo 2</figcaption>
-          </figure>
-        </div>
-
-        <!-- gif-me (NOW side-by-side) -->
-        <div class="card project-card gif-me">
-          <div class="card-title">gif-me</div>
-          <div class="gif-row">
-            <figure>
-              <img src="images/gif-me-1.gif" alt="gif-me demo 1" class="project-gif">
-              <figcaption>Demo 1</figcaption>
-            </figure>
-            <figure>
-              <img src="images/gif-me-2.gif" alt="gif-me demo 2" class="project-gif">
-              <figcaption>Demo 2</figcaption>
-            </figure>
+          <div class="media-grid">
+            <img class="media" src="images/racer-js-1.gif" alt="racer-js demo 1"/>
+            <img class="media" src="images/racer-js-2.gif" alt="racer-js demo 2"/>
           </div>
         </div>
 
-        <!-- precreated-historia (stacked) -->
-        <div class="card project-card">
-          <div class="card-title">precreated-historia</div>
-          <figure>
-            <img src="images/precreated-historia-1.gif" alt="precreated-historia demo 1" class="project-gif">
-            <figcaption>Demo 1</figcaption>
-          </figure>
-          <figure>
-            <img src="images/precreated-historia-2.gif" alt="precreated-historia demo 2" class="project-gif">
-            <figcaption>Demo 2</figcaption>
-          </figure>
+        <div class="card">
+          <div class="card-title">gif-me</div>
+          <!-- portrait GIFs side-by-side -->
+          <div class="media-grid two-up">
+            <img class="media" src="images/gif-me-1.gif" alt="gif-me demo 1"/>
+            <img class="media" src="images/gif-me-2.gif" alt="gif-me demo 2"/>
+          </div>
         </div>
 
-        <!-- solar-lending (single demo) -->
-        <div class="card project-card">
+        <div class="card">
+          <div class="card-title">precreated-historia</div>
+          <div class="media-grid">
+            <img class="media" src="images/precreated-historia-1.gif" alt="precreated-historia demo 1"/>
+            <img class="media" src="images/precreated-historia-2.gif" alt="precreated-historia demo 2"/>
+          </div>
+        </div>
+
+        <div class="card">
           <div class="card-title">solar-lending</div>
-          <figure>
-            <img src="images/solar-lending-gif.gif" alt="solar-lending demo" class="project-gif">
-            <figcaption>Demo</figcaption>
-          </figure>
+          <div class="media-grid">
+            <img class="media" src="images/solar-lending-gif.gif" alt="solar-lending demo"/>
+          </div>
         </div>
       </div>
     </section>
