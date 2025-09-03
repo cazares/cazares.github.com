@@ -12,6 +12,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html, body { height: 100%; }
 
+/* Background */
 html {
   background: linear-gradient(#2a2a29, #1c1c1c) no-repeat fixed;
   background-size: cover;
@@ -21,124 +22,112 @@ body {
   color: #f0e7d5;
 }
 
-header {
-  height: 50px;
-  background: #353535;
-  border-bottom: 4px solid #434343;
-}
-footer {
-  background: #353535;
-  border-top: 4px solid #434343;
-  padding: 20px 0;
-  height: auto;
-}
-.email { text-align: center; }
-.email a { color: #fff; text-decoration: underline; }
-.email a:hover { color: #ffcc00; }
+header { height: 50px; background:#353535; border-bottom:4px solid #434343; }
+footer { background:#353535; border-top:4px solid #434343; padding:20px 0; height:auto; }
 
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 40px;
+  display:flex; flex-direction:column; align-items:center;
+  padding-bottom:40px;
 }
 
-h1 {
-  font: 300 36px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
-  color: #fff;
-  margin: 20px 0 10px;
-}
+h1 { font: 600 40px/1 "OpenSansLight", Helvetica, Arial, sans-serif; color:#fff; margin:20px 0 6px; }
 
-/* headings used for section labels ("Find me on:", "Resumé", "Live Apps", "Projects") */
-.section-heading {
-  font: 300 32px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
-  color: #fff;
-  text-align: center;
-  margin: 18px 0 14px;
-}
-
-/* dividers */
+.section-divider,
 .divider {
   width: 80%;
   max-width: 430px;
-  margin: 18px auto;
+  margin: 12px auto 22px;
   border-top: 1px solid #444;
 }
-.divider-narrow { margin: 12px auto 6px; }
 
-/* grid (max two columns) */
-.grid-2 {
-  display: grid;
+.section-heading {
+  font: 300 32px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
+  color:#fff; text-align:center; margin: 12px 0 18px;
+}
+
+/* Grid (max two columns) */
+.cards {
+  display:grid;
   grid-template-columns: repeat(2, minmax(260px, 1fr));
-  gap: 12px;
-  width: 100%;
+  gap:12px;
   max-width: 540px;
-  margin: 0 auto 10px;
+  margin: 0 auto;
 }
-@media (max-width: 600px) {
-  .grid-2 { grid-template-columns: 1fr; }
+@media (max-width: 620px) {
+  .cards { grid-template-columns: 1fr; }
 }
 
+/* Generic card */
 .card {
-  background: #2e2e2e;
-  border: 1px solid #444;
-  border-radius: 8px;
-  padding: 14px;
-  text-align: center;
+  background:#2e2e2e;
+  border:1px solid #444;
+  border-radius:10px;
+  padding:14px;
+  text-align:center;
+  box-shadow:0 1px 0 rgba(0,0,0,0.18) inset, 0 2px 6px rgba(0,0,0,0.25);
 }
+
+/* Link cards (whole card clickable) */
 .link-card {
-  display: block;
-  color: inherit;
-  text-decoration: none;
-  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+  display:block;
+  text-decoration:none;
+  color:#f0e7d5;
+  transition: transform .06s ease, border-color .2s ease, box-shadow .2s ease;
 }
-.link-card:hover {
-  background: #333333;
-  border-color: #555;
-  transform: translateY(-1px);
-}
+.link-card:hover { transform: translateY(-1px); border-color:#555; box-shadow:0 3px 10px rgba(0,0,0,.35); }
 
-.card-title {
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 10px;
-}
+.link-title { font-weight:700; margin-bottom:8px; letter-spacing:.2px; }
+.social-logo { width:40px; height:40px; }
 
-/* Social logos under text */
-.social-logo {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  filter: drop-shadow(0 0 0 rgba(0,0,0,0)); /* keep brand color (LinkedIn) crisp */
-}
+/* Invert darker assets to a soft white */
+.invert-to-white { filter: invert(100%) brightness(90%); }
 
-/* Resumé icons under text */
-.resume-badge {
-  width: 44px;
-  height: 44px;
-  object-fit: contain;
-  opacity: .95;
-}
+/* Action cards (resumé) */
+.action-card { display:block; text-decoration:none; color:#f0e7d5; }
+.action-title { font-weight:600; margin-bottom:10px; }
 
-/* App store / Play badges */
-.store-badge {
-  width: 150px;
-  height: auto;
-  margin-top: 6px;
+/* White circle behind small black icons (PDF/DOCX) */
+.icon-circle {
+  width:50px; height:50px; border-radius:50%;
+  background:#fff; display:flex; align-items:center; justify-content:center;
+  margin: 0 auto;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.25) inset;
 }
+.icon-circle img { width:28px; height:28px; filter: grayscale(100%) brightness(0); }
 
-/* Projects */
-.portfolio {
-  width: 100%;
-  max-width: 1100px;
-  margin: 10px auto 20px;
-  padding: 0 16px;
-}
+/* Portfolio section */
+.portfolio { width:100%; max-width:1100px; margin:20px auto; padding:0 16px; }
+.card-title { font-weight:700; color:#fff; margin-bottom:10px; }
+
+/* Store badges */
+.store-badge { width:140px; height:auto; margin-top:8px; }
+
+/* --- Uniform GIF sizing --- */
+/* Keep width full, crop to a consistent aspect height, no distortion */
+.project-figure { margin:8px 0; }
 .project-gif {
   width: 100%;
-  height: auto;
-  border-radius: 6px;
-  margin-top: 8px;
+  aspect-ratio: 16 / 9;      /* consistent visual height */
+  object-fit: cover;          /* fill the box; crop if necessary */
+  border-radius: 8px;
+  display: block;
 }
-figure { margin: 8px 0; text-align: center; }
-figcaption { font-size: 14px; color: #bbb; margin-top: 4px; }
+figcaption { font-size:14px; color:#bbb; margin-top:6px; }
+
+/* Email */
+.email { text-align:center; }
+.email a { color:#fff; text-decoration:underline; }
+.email a:hover { color:#f7ce46; }
+
+/* Yellow accent touches */
+.section-heading,
+.link-title,
+.action-title { color:#fff; }
+.card:hover .link-title,
+.card:hover .action-title { color:#f7ce46; }
+
+.card { border-color:#3d3d3d; }
+.card:hover { border-color:#555; }
+
+/* Optional: subtle yellow line under main h1 */
+h1 + .section-divider { border-top-color:#5a4b18; }
