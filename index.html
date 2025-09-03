@@ -37,11 +37,12 @@
     footer { border-width: 4px 0 0; }
 
     .wrapper {
-      flex: 1;
+      flex: initial;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       flex-direction: column;
+      padding-bottom: 40px;
     }
 
     h1 {
@@ -71,7 +72,7 @@
       margin-top: 10px;
       margin-bottom: 15px;
       margin-right: 55px;
-      width: 300px; /* match top buttons */
+      width: 300px;
     }
 
     .resume-section h2 {
@@ -90,16 +91,8 @@
       gap: 10px;
     }
 
-    .resume-label {
-      text-align: right;
-      color: #ccc;
-    }
-
-    .resume-links {
-      flex: 2;
-      display: flex;
-      gap: 10px;
-    }
+    .resume-label { text-align: right; color: #ccc; }
+    .resume-links { flex: 2; display: flex; gap: 10px; }
 
     .resume-links a {
       flex: 1;
@@ -111,46 +104,76 @@
       text-align: center;
       text-decoration: none;
       font-weight: 500;
-      font-size: 16px; /* slightly smaller */
+      font-size: 16px;
       transition: all 0.25s ease;
     }
     .resume-links a:hover { background: #3a3a3a; }
 
+    .divider {
+      width: 100%;
+      max-width: 1100px;
+      margin: 30px auto;
+      border-top: 1px solid #444;
+    }
+
+    .portfolio {
+      width: 100%;
+      max-width: 1100px;
+      margin: 20px auto 40px;
+      padding: 0 16px;
+    }
+    .section-title {
+      font: 300 28px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .sub-title {
+      color: #ffcc00;
+      font-weight: 600;
+      margin: 16px 0 12px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: #2e2e2e;
+      border: 1px solid #444;
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .card-title { font-weight: 700; color: #fff; }
+    .card-subtitle { font-size: 14px; color: #bbb; margin-bottom: 10px; }
+    .btn-sm {
+      display: inline-block;
+      padding: 8px 12px;
+      background: #3a3a3a;
+      color: #ffcc00;
+      border: 1px solid #484848;
+      border-radius: 6px;
+      font-size: 14px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .btn-sm:hover { background: #454545; }
+
     .email {
-      margin-top: 0px;
+      height: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 50px;
+      border-top: 1px solid #3a3a3a;
       text-align: center;
     }
     .email a {
-      color: #fff; /* white for emphasis */
+      color: #fff;
       text-decoration: underline;
     }
     .email a:hover {
       color: #ffcc00;
     }
-
-    /* 📱 Mobile responsiveness */
-    @media (max-width: 400px) {
-  .resume-row {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
-    column-gap: 10px;
-    row-gap: 6px;
-  }
-
-  .resume-label {
-    grid-row: 1 / 3;
-    align-self: center;
-    text-align: right;
-    padding-right: 4px;
-  }
-
-  .resume-links {
-    display: flex;
-    gap: 10px;
-    grid-row: 1 / 3;
-  }
-}
   </style>
 </head>
 <body>
@@ -179,6 +202,60 @@
         </div>
       </div>
     </div>
+
+    <div class="divider"></div>
+
+    <section class="portfolio">
+      <h2 class="section-title">Live Apps + Notable Projects</h2>
+
+      <h3 class="sub-title">Live Apps</h3>
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">ShipStation Mobile — iOS</div>
+          <div class="card-subtitle">App Store</div>
+          <a class="btn-sm" href="https://apps.apple.com/us/app/shipstation-mobile/id972151811" target="_blank">App Store</a>
+        </div>
+        <div class="card">
+          <div class="card-title">ShipStation Mobile — Android</div>
+          <div class="card-subtitle">Google Play</div>
+          <a class="btn-sm" href="https://play.google.com/store/apps/details?id=com.shipstation.app" target="_blank">Google Play</a>
+        </div>
+        <div class="card">
+          <div class="card-title">Stamps Mobile — iOS</div>
+          <div class="card-subtitle">App Store</div>
+          <a class="btn-sm" href="https://apps.apple.com/us/app/stamps-com-mobile-app/id1591959884" target="_blank">App Store</a>
+        </div>
+        <div class="card">
+          <div class="card-title">Stamps Mobile — Android</div>
+          <div class="card-subtitle">Google Play</div>
+          <a class="btn-sm" href="https://play.google.com/store/apps/details?id=stamps.mobile.app" target="_blank">Google Play</a>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Notable Projects</h3>
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">racer-js</div>
+          <div class="card-subtitle">GitHub repository</div>
+          <a class="btn-sm" href="https://github.com/cazares/racer-js" target="_blank">GitHub</a>
+        </div>
+        <div class="card">
+          <div class="card-title">gif-me</div>
+          <div class="card-subtitle">GitHub repository</div>
+          <a class="btn-sm" href="https://github.com/cazares/gif-me" target="_blank">GitHub</a>
+        </div>
+        <div class="card">
+          <div class="card-title">precreated-historia</div>
+          <div class="card-subtitle">GitHub repository</div>
+          <a class="btn-sm" href="https://github.com/cazares/precreated-historia" target="_blank">GitHub</a>
+        </div>
+        <div class="card">
+          <div class="card-title">solar-lending</div>
+          <div class="card-subtitle">GitHub repository</div>
+          <a class="btn-sm" href="https://github.com/cazares/solar-lending" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </section>
 
     <div class="email">
       <a href="mailto:contact@miguelengineer.com">contact@miguelengineer.com</a>
