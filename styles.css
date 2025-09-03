@@ -2,90 +2,161 @@
   font-family: 'OpenSansLight';
   src: url('fonts/OpenSans-Light-webfont.woff') format('woff'),
        url('fonts/OpenSans-Light-webfont.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
 }
 @font-face {
   font-family: 'OpenSansRegular';
   src: url('fonts/OpenSans-Regular-webfont.woff') format('woff'),
        url('fonts/OpenSans-Regular-webfont.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-html, body {
-  height: 100%;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
+
+/* Background gradient fixed in place */
+html {
+  background: linear-gradient(#2a2a29, #1c1c1c) no-repeat fixed;
+  background-size: cover;
 }
 body {
-  display: flex;
-  flex-direction: column;
   font: 400 18px/1.5 "OpenSansRegular", Helvetica, Arial, sans-serif;
   color: #f0e7d5;
-  background: linear-gradient(#2a2a29, #1c1c1c);
 }
-header, footer {
-  height: 140px;
-  background: #353535;
-  border-style: solid;
-  border-color: #434343;
-}
+
 header {
-  border-width: 0 0 4px;
+  height: 50px;
+  background: #353535;
+  border-bottom: 4px solid #434343;
 }
+
 footer {
-  border-width: 4px 0 0;
+  background: #353535;
+  border-top: 4px solid #434343;
+  padding: 20px 0;
+  height: auto;
 }
+
 .wrapper {
-  flex: 1;
+  flex: initial;
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-#title {
-  text-align: center;
-}
-#title h1 {
-  font: 300 40px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
-  margin: 30px;
-}
-
-.link-list {
-  display: flex;
+  justify-content: flex-start;
   flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 25px;
+  padding-bottom: 40px;
 }
 
-.link-list a {
+h1 {
+  font: 300 36px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
+  color: #fff;
+  margin: 20px 0;
+}
+
+.btn {
   display: block;
-  width: 100%;
-  max-width: 240px;
-  padding: 10px 20px;
-  margin: 0 10px;
-  text-align: center;
+  width: 240px;
+  padding: 12px;
+  margin: 8px 0;
   background: #2e2e2e;
+  color: #ffcc00;
   border-radius: 6px;
-  color: #ffcc00;
-  text-decoration: none;
-  transition: background 0.2s;
-}
-
-.link-list a:hover {
-  background: #3a3a3a;
-}
-
-.email {
-  margin: 25px 0;
   text-align: center;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  border: 1px solid #333;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+.btn:hover { background: #3a3a3a; }
+
+.resume-section {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  margin-right: 55px;
+  width: 300px;
+}
+.resume-section h2 {
+  font: 300 32px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-left: 55px;
 }
 
-.email a {
-  color: #ffcc00;
-  text-decoration: none;
+.resume-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px 0;
+  gap: 10px;
 }
+.resume-label { text-align: right; color: #ccc; }
+.resume-links { flex: 2; display: flex; gap: 10px; }
+.resume-links a {
+  flex: 1;
+  padding: 12px 0;
+  background: #2e2e2e;
+  color: #ffcc00;
+  border: 1px solid #333;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  transition: all 0.25s ease;
+}
+.resume-links a:hover { background: #3a3a3a; }
+
+.divider {
+  width: 100%;
+  max-width: 1100px;
+  margin: 30px auto;
+  border-top: 1px solid #444;
+}
+
+.portfolio {
+  width: 100%;
+  max-width: 1100px;
+  margin: 20px auto 40px;
+  padding: 0 16px;
+}
+.section-title {
+  font: 300 28px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.sub-title {
+  color: #ffcc00;
+  font-weight: 600;
+  margin: 16px auto 12px;
+  max-width: 540px;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  max-width: 540px;
+  margin: 0 auto;
+  gap: 10px;
+}
+.card {
+  background: #2e2e2e;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 14px;
+}
+.card-title { font-weight: 700; color: #fff; }
+.card-subtitle { font-size: 14px; color: #bbb; margin-bottom: 10px; }
+.btn-sm {
+  display: inline-block;
+  padding: 8px 12px;
+  background: #3a3a3a;
+  color: #ffcc00;
+  border: 1px solid #484848;
+  border-radius: 6px;
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.btn-sm:hover { background: #454545; }
+
+.email { text-align: center; }
+.email a { color: #fff; text-decoration: underline; }
+.email a:hover { color: #ffcc00; }
