@@ -118,6 +118,12 @@ h1 {
   margin: 20px auto 40px;
   padding: 0 16px;
 }
+.section-heading {
+  font: 300 32px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
+  color: #fff;
+  text-align: center;
+  margin: 40px 0 20px;
+}
 .section-title {
   font: 300 28px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
   text-align: center;
