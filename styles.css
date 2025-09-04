@@ -1,25 +1,33 @@
-/* Fonts */
+/* Open Sans (one family, multiple weights) */
 @font-face {
   font-family: 'OpenSans';
-  src: url('fonts/OpenSans-Light-webfont.woff') format('woff'),
-       url('fonts/OpenSans-Light-webfont.ttf') format('truetype');
-  font-weight: 300;
+  src: url('./fonts/OpenSans-Light-webfont.woff') format('woff'),
+       url('./fonts/OpenSans-Light-webfont.ttf') format('truetype');
+  font-weight: 300;  /* Light */
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'OpenSans';
-  src: url('fonts/OpenSans-Regular-webfont.woff') format('woff'),
-       url('fonts/OpenSans-Regular-webfont.ttf') format('truetype');
-  font-weight: 400;
+  src: url('./fonts/OpenSans-Regular-webfont.woff') format('woff'),
+       url('./fonts/OpenSans-Regular-webfont.ttf') format('truetype');
+  font-weight: 400;  /* Regular */
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'OpenSans';
-  src: url('fonts/OpenSans-Bold-webfont.woff') format('woff'),
-       url('fonts/OpenSans-Bold-webfont.ttf') format('truetype');
-  font-weight: 700;
+  src: url('./fonts/OpenSans-Semibold-webfont.woff') format('woff'),
+       url('./fonts/OpenSans-Semibold-webfont.ttf') format('truetype');
+  font-weight: 600;  /* Semibold */
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'OpenSans';
+  src: url('./fonts/OpenSans-Bold-webfont.woff') format('woff'),
+       url('./fonts/OpenSans-Bold-webfont.ttf') format('truetype');
+  font-weight: 700;  /* Bold */
   font-style: normal;
   font-display: swap;
 }
@@ -31,7 +39,6 @@ html {
   background: linear-gradient(#2a2a29, #1c1c1c) no-repeat fixed;
   background-size: cover;
 }
-/* Global */
 body {
   font-family: "OpenSans", Helvetica, Arial, sans-serif;
   font-weight: 400;
@@ -62,13 +69,13 @@ footer {
   padding-bottom: 40px;
 }
 
-h1 {
-  font: 600 40px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
-  color: #fff;
-  margin-top: 15px;
-  margin-bottom: 5px;
-  text-align: center;
-  font-weight: 900;
+h1 { font-weight: 700; } /* was 900 */
+  .section-heading,
+  .bottom-sections-heading,
+  .card-title,
+  .resume-card-title,
+  .bottom-card-title {
+  font-weight: 400;       /* was 600 in several places */
 }
 
 .divider {
@@ -134,20 +141,17 @@ h1 {
   margin-top: 10px;
 }
 
-/* Resume cards */
 .resume-card-title {
-  /* don’t use the font: shorthand here */
   font-family: "OpenSans", Helvetica, Arial, sans-serif;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 15.5px;
   line-height: 1.5;
   color: #f7ce46;
   margin-top: 10px;
 }
 
-.resume-card-title .resume-word {
-  font-weight: 700;  /* will now render true bold */
-}
+/* bold only the word inside resume cards */
+.resume-card-title .resume-word { font-weight: 700; }
 
 .bottom-card-title {
   font-weight: 600;
@@ -329,3 +333,205 @@ h1 {
     height: auto;
   }
 }
+
+/* --- Keep at END: final typography overrides --- */
+.card-title,
+.resume-card-title,
+.bottom-card-title {
+  font-weight: 400 !important;   /* normalize */
+}
+
+.resume-card-title .resume-word {
+  font-weight: 700 !important;   /* bold only this word */
+}
+
+/* use unified family for headings too */
+.section-heading,
+.bottom-sections-heading {
+  font-family: "OpenSans", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1;
+}
+
+/* Resume title word styling */
+.resume-card-title { color: #f7ce46; }             /* existing gold stays default */
+
+.resume-card-title .verb {                         /* View / Download */
+  color: #f0e7d5;                                  /* white */
+  font-weight: 400;
+}
+
+.resume-card-title .format {                       /* PDF / DOCX */
+  font-style: italic;                              /* keep gold via inherit */
+}
+
+.resume-card-title .resume-keyword {               /* Resumé */
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Résumé 2×2 matrix */
+.resume-matrix {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr; /* row labels + 2 columns */
+  gap: 12px 16px;
+  max-width: 720px;
+  margin: 0 auto;
+  align-items: start;
+}
+.resume-matrix .corner { /* top-left empty cell */ }
+
+.resume-matrix .col-heading {
+  text-align: center;
+  color: #f7ce46;
+  font-weight: 600;
+}
+.resume-matrix .row-heading {
+  text-align: right;
+  padding-right: 8px;
+  color: #f0e7d5;
+  font-weight: 400;
+  align-self: center;
+}
+.resume-matrix .card { margin: 0; } /* use card styling you already have */
+
+/* Mobile: collapse to single column, hide headers */
+@media (max-width: 600px) {
+  .resume-matrix {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .resume-matrix .corner,
+  .resume-matrix .col-heading,
+  .resume-matrix .row-heading { display: none; }
+}
+
+/* at end of CSS */
+.card-title, .resume-card-title, .bottom-card-title { font-weight: 400; }
+.resume-card-title strong { font-weight: 700; }
+.resume-card-title .verb   { color: #f0e7d5; }
+.resume-card-title .format { font-style: italic; }
+.resume-card-title .resume-keyword { font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+
+/* Align the matrix with your other card grids */
+.resume-matrix {
+  max-width: 452px;                /* same width as .cards */
+  grid-template-columns: 84px 1fr 1fr;  /* tighter row-label column */
+  gap: 10px 14px;
+}
+
+/* Headings inside the matrix – quieter */
+.resume-matrix .col-heading {
+  text-align: center;
+  color: #f7ce46;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: .02em;
+}
+.resume-matrix .row-heading {
+  text-align: right;
+  color: #f0e7d5;
+  font-weight: 400;
+  font-size: 13px;
+  align-self: center;
+  padding-right: 6px;
+}
+
+/* Card subtitle (centered row with little chip) */
+.resume-card-title {
+  font-weight: 400;
+  color: #f7ce46;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+/* “View/Download” = white */
+.resume-card-title .verb { color: #f0e7d5; }
+
+/* “Resumé” = bold + underline */
+.resume-card-title .resume-keyword {
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Format pill (PDF/DOCX) */
+.resume-card-title .chip {
+  border: 1px solid #f7ce46;
+  color: #f7ce46;
+  border-radius: 9999px;
+  padding: 2px 8px;
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: .02em;
+}
+
+/* Matrix cards align flush with grid */
+.resume-matrix .card { margin: 0; }
+
+/* Optional: slightly smaller icons so everything breathes */
+.resume-matrix .icon-circle { width: 76px; height: 76px; }
+
+@media (max-width: 600px) {
+  .resume-matrix { grid-template-columns: 1fr; gap: 10px; }
+  .resume-matrix .corner,
+  .resume-matrix .col-heading,
+  .resume-matrix .row-heading { display: none; }
+}
+
+/* Final typography normalization for titles */
+.card-title,
+.resume-card-title,
+.bottom-card-title { font-weight: 400; }
+
+/* Make “Resumé” off-white and bold (no underline) */
+.resume-card-title .resume-keyword {
+  color: #f0e7d5;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* Calm, centered subtitle */
+.resume-card-title {
+  font-weight: 400;
+  color: #f7ce46;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+/* “Resumé” = off-white + bold, no underline */
+.resume-card-title .resume-keyword { 
+  color: #f0e7d5; 
+  font-weight: 700; 
+  text-decoration: none; 
+}
+
+/* Format chip */
+.resume-card-title .chip {
+  border: 1px solid #f7ce46;
+  background: rgb(247 206 70 / 0.10);
+  color: #f7ce46;
+  border-radius: 9999px;
+  padding: 2px 8px;
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: .02em;
+}
+
+/* Matrix alignment so it fits the same width as your other card grids */
+.resume-matrix { max-width: 452px; grid-template-columns: 84px 1fr 1fr; gap: 10px 14px; }
+.resume-matrix .col-heading { text-align:center; color:#f7ce46; font-weight:600; font-size:13px; }
+.resume-matrix .row-heading { text-align:right; color:#f0e7d5; font-weight:400; font-size:13px; align-self:center; padding-right:6px; }
+.resume-matrix .card { margin:0; }
