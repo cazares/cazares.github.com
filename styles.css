@@ -92,16 +92,21 @@ h1 {
   justify-content: flex-start;
 }
 
+.bottom-card {
+  padding: 7.5px;
+}
+
 .card-title {
   font-weight: 600;
   color: #f7ce46;
   margin-top: 10px;
-}#f0e7d5
+}
 
 .bottom-card-title {
   font-weight: 600;
   color: #f0e7d5;
-  margin-top: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 .icon-circle {
@@ -130,23 +135,33 @@ h1 {
 }
 
 .app-screenshot {
-  width: 45%;
-  height: auto;
+  width: auto;
+  max-width: 75px;
+  height: 150px;
   border-radius: 4px;
-  margin: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  /* max-height: 100px; */
   /* margin-top: 20px;
   margin-bottom: 20px; */
   /* padding: 10px; */
+  /* margin: 5px; */
 }
 
 .short-screenshot {
-  width: 45%;
+  /* width: 45%;
   height: 175px;
   border-radius: 4px;
   margin: 5px;
-  margin-top: 10px;
+  margin-top: 10px; */
   /* margin-top: 0px;
   margin-bottom: 0px; */
+  width: auto;
+  max-width: 75px;
+  height: 150px;
+  border-radius: 4px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .screenshot-row {
