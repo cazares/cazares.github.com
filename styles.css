@@ -22,7 +22,7 @@ body {
 }
 
 header {
-  height: 50px;
+  height: 5px;
   background: #353535;
   border-bottom: 4px solid #434343;
 }
@@ -46,17 +46,17 @@ footer {
 h1 {
   font: 600 40px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
   color: #fff;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin-top: 15px;
+  margin-bottom: 5px;
   text-align: center;
   font-weight: 900;
 }
 
 .divider {
-  width: 80%;
+  width: 45%;
   max-width: 430px;
   margin: 20px auto;
-  border-top: 2px solid #f7ce46;
+  border-top: 0.5px solid #f0e7d5;
 }
 
 .section-heading {
