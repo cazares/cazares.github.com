@@ -116,9 +116,22 @@ h1 {
 
 .app-screenshot {
   width: 45%;
-  height: 220px;
+  height: auto;
   border-radius: 4px;
   margin: 5px;
+  /* margin-top: 20px;
+  margin-bottom: 20px; */
+  /* padding: 10px; */
+}
+
+.short-screenshot {
+  width: 45%;
+  height: 175px;
+  border-radius: 4px;
+  margin: 5px;
+  margin-top: 10px;
+  /* margin-top: 0px;
+  margin-bottom: 0px; */
 }
 
 .screenshot-row {
@@ -185,12 +198,12 @@ h1 {
   margin-top: 10px;
 }
 .contact-inline a {
-  color: #fff;
+  color: #f7ce46;
   text-decoration: underline;
   font-weight: 500;
 }
 .contact-inline a:hover {
-  color: #f7ce46;
+  color: #fff;
 }
 
 .email {
