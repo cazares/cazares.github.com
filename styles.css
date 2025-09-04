@@ -479,3 +479,138 @@ h1 { font-weight: 700; } /* was 900 */
     grid-template-columns: 1fr;  /* single column on small phones */
   }
 }
+
+/* --- Projects: consistent media aspect ratios --- */
+
+/* Default: single media per card -> 16:9, cropped nicely */
+.projects-grid .project-gif {
+  width: 100%;
+  aspect-ratio: 16 / 9;      /* consistent frame */
+  height: auto;               /* fallback */
+  object-fit: cover;          /* fill frame, no distortion */
+  border-radius: 8px;
+}
+
+/* "gif-me" has two media; make them square thumbnails that sit side-by-side */
+.projects-grid .gif-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.projects-grid .gif-row .project-gif {
+  aspect-ratio: 1 / 1;        /* squares */
+  object-fit: cover;
+}
+
+/* Neutralize old size helpers so the rules above win */
+.project-gif.square-gif,
+.project-gif.gif-me-gif {
+  max-height: none !important;
+  height: auto !important;
+  width: 100% !important;
+}
+
+/* Optional: on very small screens, give a bit more height so details are visible */
+@media (max-width: 420px) {
+  .projects-grid .project-gif { aspect-ratio: 4 / 3; }
+}
+
+/* --- Projects: lock to max two columns --- */
+.projects-grid{
+  max-width: 980px;                 /* two comfy columns */
+  margin: 0 auto;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 16px;
+}
+@media (max-width: 700px){
+  .projects-grid{
+    max-width: 94%;
+    width: 94%;
+    grid-template-columns: 1fr;     /* single column on phones */
+  }
+}
+
+/* --- Projects: consistent media aspect ratios --- */
+.projects-grid .project-gif{
+  width: 100%;
+  aspect-ratio: 16 / 9;             /* uniform frame */
+  height: auto;
+  object-fit: cover;                 /* fill frame without distortion */
+  border-radius: 8px;
+}
+
+/* gif-me: make the two thumbnails fill the SAME 16:9 slot */
+.projects-grid .gif-row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+  aspect-ratio: 16 / 9;              /* ensures card height matches others */
+}
+.projects-grid .gif-row .project-gif{
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* neutralize any old helpers that fight the sizes above */
+.project-gif.square-gif,
+.project-gif.gif-me-gif{
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+/* ===== Unified section width =====
+   Set one content width and have ALL .cards (incl. Projects) use it */
+:root { --content-max: 940px; }           /* pick the width your other sections use */
+.cards { max-width: var(--content-max); }  /* Live Apps / Connect already use .cards */
+
+/* ===== Projects: lock to max 2 columns (same container width as others) ===== */
+.cards.projects-grid{
+  margin: 0 auto;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));  /* max 2 cols */
+  gap: 16px;
+}
+@media (max-width: 700px){
+  .cards.projects-grid{ grid-template-columns: 1fr; }    /* phones: 1 col */
+}
+
+/* ===== Projects media: consistent aspect ratios ===== */
+.cards.projects-grid .project-gif{
+  width: 100%;
+  aspect-ratio: 16 / 9;          /* uniform frame for single media */
+  height: auto;
+  object-fit: cover;             /* fill without distortion */
+  border-radius: 8px;
+}
+
+/* gif-me: two thumbs share the same 16:9 slot so card height matches others */
+.cards.projects-grid .gif-row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+  aspect-ratio: 16 / 9;          /* container defines the height */
+}
+.cards.projects-grid .gif-row .project-gif{
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Neutralize any old helpers that fight these sizes */
+.project-gif.square-gif,
+.project-gif.gif-me-gif{
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+}
