@@ -1,12 +1,35 @@
+/* Open Sans (one family, multiple weights) */
 @font-face {
-  font-family: 'OpenSansLight';
-  src: url('fonts/OpenSans-Light-webfont.woff') format('woff'),
-        url('fonts/OpenSans-Light-webfont.ttf') format('truetype');
+  font-family: 'OpenSans';
+  src: url('./fonts/OpenSans-Light-webfont.woff') format('woff'),
+       url('./fonts/OpenSans-Light-webfont.ttf') format('truetype');
+  font-weight: 300;  /* Light */
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
-  font-family: 'OpenSansRegular';
-  src: url('fonts/OpenSans-Regular-webfont.woff') format('woff'),
-        url('fonts/OpenSans-Regular-webfont.ttf') format('truetype');
+  font-family: 'OpenSans';
+  src: url('./fonts/OpenSans-Regular-webfont.woff') format('woff'),
+       url('./fonts/OpenSans-Regular-webfont.ttf') format('truetype');
+  font-weight: 400;  /* Regular */
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'OpenSans';
+  src: url('./fonts/OpenSans-Semibold-webfont.woff') format('woff'),
+       url('./fonts/OpenSans-Semibold-webfont.ttf') format('truetype');
+  font-weight: 600;  /* Semibold */
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'OpenSans';
+  src: url('./fonts/OpenSans-Bold-webfont.woff') format('woff'),
+       url('./fonts/OpenSans-Bold-webfont.ttf') format('truetype');
+  font-weight: 700;  /* Bold */
+  font-style: normal;
+  font-display: swap;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -17,7 +40,10 @@ html {
   background-size: cover;
 }
 body {
-  font: 400 18px/1.5 "OpenSansRegular", Helvetica, Arial, sans-serif;
+  font-family: "OpenSans", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
   color: #f0e7d5;
 }
 
@@ -43,34 +69,32 @@ footer {
   padding-bottom: 40px;
 }
 
-h1 {
-  font: 600 40px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
-  color: #fff;
-  margin-top: 15px;
-  margin-bottom: 5px;
-  text-align: center;
-  font-weight: 900;
+h1 { font-weight: 700; } /* was 900 */
+  .section-heading,
+  .bottom-sections-heading,
+  .card-title,
+  .resume-card-title,
+  .bottom-card-title {
+  font-weight: 400;       /* was 600 in several places */
 }
 
 .divider {
   width: 45%;
   max-width: 430px;
-  margin: 20px auto;
-  border-top: 0.5px solid #f0e7d5;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-top: 0.5px solid #f0e7d5b3;
 }
 
-.section-heading {
-  font: 400 28px/1 "OpenSansRegular", Helvetica, Arial, sans-serif;
-  color: #f7ce46;
-  text-align: center;
-  margin: 20px 0;
-}
-
+.section-heading,
 .bottom-sections-heading {
-  font: 400 28px/1 "OpenSansRegular", Helvetica, Arial, sans-serif;
+  font-family: "OpenSans", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1;
   color: #f7ce46;
   text-align: center;
-  margin: 20px 0;
+  margin: 0;
 }
 
 .cards {
@@ -101,7 +125,9 @@ h1 {
 }
 
 .bottom-card {
-  padding: 7.5px;
+  padding: 0px;
+  padding-bottom: 7.5px;
+  padding-top: 7.5px;
 }
 
 .card-title {
@@ -110,11 +136,23 @@ h1 {
   margin-top: 10px;
 }
 
+.resume-card-title {
+  font-family: "OpenSans", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: #f7ce46;
+  margin-top: 10px;
+}
+
+/* bold only the word inside resume cards */
+.resume-card-title .resume-word { font-weight: 700; }
+
 .bottom-card-title {
   font-weight: 600;
   color: #f0e7d5;
-  margin-top: 5px;
-  margin-bottom: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .icon-circle {
@@ -185,11 +223,12 @@ h1 {
 .screenshot-row {
   display: flex;
   justify-content: space-between;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
 .store-badge {
-  margin-top: auto;
+  margin-top: 5px;
   align-self: center;
   width: 120px;
   height: auto;
@@ -288,4 +327,290 @@ h1 {
     max-width: 45%;
     height: auto;
   }
+}
+
+/* ===== FINAL CLEAN PASS (paste once at END) ===== */
+
+/* Card title weights normalized */
+.card-title,
+.resume-card-title,
+.bottom-card-title { font-weight: 400; }
+
+/* Hover + keyboard focus polish */
+.card {
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-2px);
+  border-color: #f7ce46;
+  box-shadow: 0 4px 16px rgba(247,206,70,.12);
+  outline: none;
+}
+
+/* Résumé 2×2 matrix aligned with your other card grids */
+.resume-matrix {
+  max-width: 452px;                 /* same width as .cards */
+  display: grid;
+  grid-template-columns: 84px 1fr 1fr;  /* row label + 2 columns */
+  gap: 10px 14px;
+  align-items: start;
+}
+.resume-matrix .card { margin: 0; }  /* flush inside grid */
+
+.resume-matrix .col-heading {
+  text-align: center;
+  color: #f7ce46;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: .02em;
+}
+.resume-matrix .row-heading {
+  text-align: right;
+  color: #f0e7d5;
+  font-weight: 400;
+  font-size: 13px;
+  align-self: center;
+  padding-right: 6px;
+}
+
+/* Calm, compact subtitles: “Resumé  [PDF]” */
+.resume-card-title {
+  color: #f7ce46;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+/* “Resumé” = off-white + bold (no underline) */
+.resume-card-title .resume-keyword {
+  color: #f0e7d5;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* Format chip */
+.resume-card-title .chip {
+  border: 1px solid #f7ce46;
+  background: rgb(247 206 70 / .10);
+  color: #f7ce46;
+  border-radius: 9999px;
+  padding: 2px 8px;
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: .02em;
+}
+
+/* Slightly smaller icons in this section so it breathes */
+.resume-matrix .icon-circle { width: 76px; height: 76px; }
+
+/* Mobile: collapse headers, keep cards */
+@media (max-width: 600px) {
+  .resume-matrix { grid-template-columns: 1fr; gap: 10px; }
+  .resume-matrix .corner,
+  .resume-matrix .col-heading,
+  .resume-matrix .row-heading { display: none; }
+  .resume-card-title { font-size: 14px; gap: 6px; }
+  .resume-card-title .chip { font-size: 11px; padding: 2px 7px; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+}
+
+/* micro-polish: quieter row labels & a hair tighter layout */
+.resume-matrix { grid-template-columns: 80px 1fr 1fr; } /* was 84px */
+.resume-matrix .row-heading { color: rgb(240 231 213 / .7); }
+
+/* micro-polish: reduce subtitle & chip just a bit for balance */
+.resume-card-title { font-size: 14.5px; gap: 6px; }
+.resume-card-title .chip { font-size: 11.5px; padding: 1px 7px; }
+
+/* --- Resume matrix: desktop + mobile --- */
+.resume-matrix{
+  display:grid;
+  grid-template-columns: 90px 1fr 1fr; /* row label + two columns */
+  gap:12px 14px;
+  max-width:452px;      /* matches your other card grids */
+  margin:0 auto;
+  align-items:start;
+}
+.resume-matrix .card{ margin:0; }
+
+/* Phones: hide headers; show clean 2x2 */
+@media (max-width: 640px){
+  .resume-matrix{
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    max-width:94%;
+    width:94%;
+    gap:10px;
+  }
+  .resume-matrix .corner,
+  .resume-matrix .col-heading,
+  .resume-matrix .row-heading{ display:none; }
+
+  .resume-matrix .icon-circle{ width:72px; height:72px; }
+  .resume-card-title{ font-size:14.5px; gap:6px; }
+  .resume-card-title .chip{ font-size:11.5px; padding:1px 7px; }
+}
+
+/* Ultra-narrow screens: stack to 1 column */
+@media (max-width: 360px){
+  .resume-matrix{ grid-template-columns: 1fr; }
+}
+
+/* Projects grid: wider than the Connect/Apps grids */
+.projects-grid{
+  max-width: 980px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap:16px;
+}
+
+/* Mobile behavior for projects */
+@media (max-width: 640px){
+  .projects-grid{
+    max-width:94%;
+    width:94%;
+    grid-template-columns: 1fr;  /* single column on small phones */
+  }
+}
+
+/* --- Projects: consistent media aspect ratios --- */
+
+/* Default: single media per card -> 16:9, cropped nicely */
+.projects-grid .project-gif {
+  width: 100%;
+  aspect-ratio: 16 / 9;      /* consistent frame */
+  height: auto;               /* fallback */
+  object-fit: cover;          /* fill frame, no distortion */
+  border-radius: 8px;
+}
+
+/* "gif-me" has two media; make them square thumbnails that sit side-by-side */
+.projects-grid .gif-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.projects-grid .gif-row .project-gif {
+  aspect-ratio: 1 / 1;        /* squares */
+  object-fit: cover;
+}
+
+/* Neutralize old size helpers so the rules above win */
+.project-gif.square-gif,
+.project-gif.gif-me-gif {
+  max-height: none !important;
+  height: auto !important;
+  width: 100% !important;
+}
+
+/* Optional: on very small screens, give a bit more height so details are visible */
+@media (max-width: 420px) {
+  .projects-grid .project-gif { aspect-ratio: 4 / 3; }
+}
+
+/* --- Projects: lock to max two columns --- */
+.projects-grid{
+  max-width: 980px;                 /* two comfy columns */
+  margin: 0 auto;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 16px;
+}
+@media (max-width: 700px){
+  .projects-grid{
+    max-width: 94%;
+    width: 94%;
+    grid-template-columns: 1fr;     /* single column on phones */
+  }
+}
+
+/* --- Projects: consistent media aspect ratios --- */
+.projects-grid .project-gif{
+  width: 100%;
+  aspect-ratio: 16 / 9;             /* uniform frame */
+  height: auto;
+  object-fit: cover;                 /* fill frame without distortion */
+  border-radius: 8px;
+}
+
+/* gif-me: make the two thumbnails fill the SAME 16:9 slot */
+.projects-grid .gif-row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+  aspect-ratio: 16 / 9;              /* ensures card height matches others */
+}
+.projects-grid .gif-row .project-gif{
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* neutralize any old helpers that fight the sizes above */
+.project-gif.square-gif,
+.project-gif.gif-me-gif{
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+/* ===== Unified section width =====
+   Set one content width and have ALL .cards (incl. Projects) use it */
+:root { --content-max: 940px; }           /* pick the width your other sections use */
+.cards { max-width: var(--content-max); }  /* Live Apps / Connect already use .cards */
+
+/* ===== Projects: lock to max 2 columns (same container width as others) ===== */
+.cards.projects-grid{
+  margin: 0 auto;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));  /* max 2 cols */
+  gap: 16px;
+}
+@media (max-width: 700px){
+  .cards.projects-grid{ grid-template-columns: 1fr; }    /* phones: 1 col */
+}
+
+/* ===== Projects media: consistent aspect ratios ===== */
+.cards.projects-grid .project-gif{
+  width: 100%;
+  aspect-ratio: 16 / 9;          /* uniform frame for single media */
+  height: auto;
+  object-fit: cover;             /* fill without distortion */
+  border-radius: 8px;
+}
+
+/* gif-me: two thumbs share the same 16:9 slot so card height matches others */
+.cards.projects-grid .gif-row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+  aspect-ratio: 16 / 9;          /* container defines the height */
+}
+.cards.projects-grid .gif-row .project-gif{
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Neutralize any old helpers that fight these sizes */
+.project-gif.square-gif,
+.project-gif.gif-me-gif{
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
 }
