@@ -55,22 +55,25 @@ h1 {
 .divider {
   width: 45%;
   max-width: 430px;
-  margin: 20px auto;
-  border-top: 0.5px solid #f0e7d5;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-top: 0.5px solid #f0e7d5b3;
 }
 
 .section-heading {
   font: 400 28px/1 "OpenSansRegular", Helvetica, Arial, sans-serif;
   color: #f7ce46;
   text-align: center;
-  margin: 20px 0;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .bottom-sections-heading {
   font: 400 28px/1 "OpenSansRegular", Helvetica, Arial, sans-serif;
   color: #f7ce46;
   text-align: center;
-  margin: 20px 0;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .cards {
@@ -101,7 +104,9 @@ h1 {
 }
 
 .bottom-card {
-  padding: 7.5px;
+  padding: 0px;
+  padding-bottom: 7.5px;
+  padding-top: 7.5px;
 }
 
 .card-title {
@@ -110,11 +115,20 @@ h1 {
   margin-top: 10px;
 }
 
+.resume-card-title {
+  font-weight: 600;
+  color: #f7ce46;
+  margin-top: 10px;
+  font: 400 16px/1.5 "OpenSansRegular", Helvetica, Arial, sans-serif;
+}
+
+.resume-word { font-weight: 700; }   /* or 600 */
+
 .bottom-card-title {
   font-weight: 600;
   color: #f0e7d5;
-  margin-top: 5px;
-  margin-bottom: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .icon-circle {
@@ -185,11 +199,12 @@ h1 {
 .screenshot-row {
   display: flex;
   justify-content: space-between;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
 .store-badge {
-  margin-top: auto;
+  margin-top: 5px;
   align-self: center;
   width: 120px;
   height: auto;
