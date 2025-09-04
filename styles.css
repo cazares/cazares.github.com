@@ -614,3 +614,112 @@ h1 { font-weight: 700; } /* was 900 */
   max-width: none !important;
   max-height: none !important;
 }
+
+/* ===== Unified section width =====
+   Set one content width and have ALL .cards (incl. Projects) use it */
+:root { --content-max: 940px; }           /* pick the width your other sections use */
+.cards { max-width: var(--content-max); }  /* Live Apps / Connect already use .cards */
+
+/* ===== Projects: lock to max 2 columns (same container width as others) ===== */
+.cards.projects-grid{
+  margin: 0 auto;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));  /* max 2 cols */
+  gap: 16px;
+}
+@media (max-width: 700px){
+  .cards.projects-grid{ grid-template-columns: 1fr; }    /* phones: 1 col */
+}
+
+/* ===== Projects media: consistent aspect ratios ===== */
+.cards.projects-grid .project-gif{
+  width: 100%;
+  aspect-ratio: 16 / 9;          /* uniform frame for single media */
+  height: auto;
+  object-fit: cover;             /* fill without distortion */
+  border-radius: 8px;
+}
+
+/* gif-me: two thumbs share the same 16:9 slot so card height matches others */
+.cards.projects-grid .gif-row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+  aspect-ratio: 16 / 9;          /* container defines the height */
+}
+.cards.projects-grid .gif-row .project-gif{
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Neutralize any old helpers that fight these sizes */
+.project-gif.square-gif,
+.project-gif.gif-me-gif{
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+/* === Projects: same max width as other sections + max 2 columns === */
+.cards.projects-grid{
+  /* your .cards container is 452px wide, match it here */
+  max-width: 452px;
+  margin: 0 auto;
+  grid-template-columns: 1fr 1fr;  /* lock to two columns on desktop */
+  gap: 12px;
+}
+@media (max-width: 600px){
+  .cards.projects-grid{ grid-template-columns: 1fr; } /* phones: 1 col */
+}
+
+/* === Projects media: clean, uniform aspect ratios === */
+.cards.projects-grid .project-gif{
+  width: 100%;
+  aspect-ratio: 16 / 9;   /* consistent preview frame */
+  height: auto;           /* fallback */
+  object-fit: cover;      /* fill without distortion */
+  border-radius: 6px;
+  margin-top: 8px;
+}
+
+/* gif-me: two thumbs should fill the SAME 16:9 slot */
+.cards.projects-grid .gif-row{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+  aspect-ratio: 16 / 9;   /* sets the card height */
+}
+.cards.projects-grid .gif-row .project-gif{
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* Neutralize older helpers inside Projects so ratios hold */
+.cards.projects-grid .gif-me-gif,
+.cards.projects-grid .square-gif{
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+/* Live Apps: match the narrow sections and cap at 2 columns */
+.cards.apps-grid{
+  max-width: 452px;              /* same as your narrow sections */
+  margin: 0 auto;
+  grid-template-columns: 1fr 1fr; /* 2 columns on desktop */
+  gap: 12px;
+}
+@media (max-width: 600px){
+  .cards.apps-grid{ grid-template-columns: 1fr; } /* 1 col on phones */
+}
