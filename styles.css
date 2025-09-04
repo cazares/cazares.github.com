@@ -422,3 +422,11 @@ h1 { font-weight: 700; } /* was 900 */
 @media (prefers-reduced-motion: reduce) {
   .card { transition: none; }
 }
+
+/* micro-polish: quieter row labels & a hair tighter layout */
+.resume-matrix { grid-template-columns: 80px 1fr 1fr; } /* was 84px */
+.resume-matrix .row-heading { color: rgb(240 231 213 / .7); }
+
+/* micro-polish: reduce subtitle & chip just a bit for balance */
+.resume-card-title { font-size: 14.5px; gap: 6px; }
+.resume-card-title .chip { font-size: 11.5px; padding: 1px 7px; }
