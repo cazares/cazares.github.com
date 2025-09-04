@@ -80,7 +80,7 @@ h1 {
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .card-title {
@@ -101,23 +101,24 @@ h1 {
 }
 
 .social-logo {
-  width: 40px;
+  width: 42px;
   height: auto;
 }
 
 .linkedin-logo {
-  width: 32px; /* 20% smaller inside the circle */
+  width: 42px; /* 20% smaller inside the circle */
 }
 
 .resume-icon {
-  width: 32px;
-  height: 32px;
+  width: 42px;
+  height: 42px;
 }
 
 .app-screenshot {
-  width: 48%;
-  height: auto;
+  width: 45%;
+  height: 220px;
   border-radius: 4px;
+  margin: 5px;
 }
 
 .screenshot-row {
@@ -127,15 +128,19 @@ h1 {
 }
 
 .store-badge {
-  width: 140px;
+  margin-top: auto; /* pushes it down */
+  align-self: center; /* keep centered */
+  width: 120px;
   height: auto;
-  margin-top: auto;
-  align-self: center;
 }
 
 .project-gif {
   width: 100%;
+  /* /* width: auto; */
+  /* width: 110px; */
   height: auto;
+  /* display: flex; */
+  /* justify-content: space-between; */
   border-radius: 6px;
   margin-top: 8px;
 }
@@ -144,6 +149,12 @@ h1 {
   display: flex;
   gap: 8px;
   justify-content: center;
+  width: 100%;
+}
+
+.gif-me-gif {
+  width: 115px;
+  height: auto;
 }
 
 .source-link {
@@ -155,8 +166,8 @@ h1 {
 }
 
 .octocat-icon {
-  width: 20px;
-  height: 20px;
+  width: 22.5px;
+  height: 22.5px;
 }
 
 .source-link a {
