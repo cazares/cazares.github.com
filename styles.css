@@ -31,20 +31,23 @@ footer {
   background: #353535;
   border-top: 4px solid #434343;
   padding: 10px 0;
-  text-align: center;
+  height: auto;
 }
 
 .wrapper {
+  flex: initial;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   flex-direction: column;
   padding-bottom: 40px;
 }
 
 h1 {
-  font: 600 40px/1 "OpenSansRegular", Helvetica, Arial, sans-serif;
+  font: 600 40px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
   color: #f7ce46;
   margin: 20px 0;
+  text-align: center;
 }
 
 .divider {
@@ -55,7 +58,7 @@ h1 {
 }
 
 .section-heading {
-  font: 400 28px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
+  font: 400 28px/1 "OpenSansRegular", Helvetica, Arial, sans-serif;
   color: #f7ce46;
   text-align: center;
   margin: 20px 0;
@@ -63,7 +66,7 @@ h1 {
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   max-width: 540px;
   margin: 0 auto;
   gap: 12px;
@@ -77,29 +80,33 @@ h1 {
   text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
 }
 
 .card-title {
   font-weight: 600;
   color: #fff;
-  margin-top: 8px;
-}
-
-.social-logo {
-  width: 72px;
-  height: 72px;
-  object-fit: contain;
+  margin-top: 10px;
 }
 
 .icon-circle {
   background: #fff;
   border-radius: 50%;
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 10px auto;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.social-logo {
+  width: 40px;
+  height: auto;
+}
+
+.linkedin-logo {
+  width: 32px; /* 20% smaller inside the circle */
 }
 
 .resume-icon {
@@ -110,7 +117,6 @@ h1 {
 .app-screenshot {
   width: 48%;
   height: auto;
-  object-fit: contain;
   border-radius: 4px;
 }
 
@@ -132,14 +138,6 @@ h1 {
   height: auto;
   border-radius: 6px;
   margin-top: 8px;
-}
-
-.project-gif.contained {
-  max-height: 250px;
-  object-fit: contain;
-  padding: 4px;
-  background: #1c1c1c;
-  border-radius: 6px;
 }
 
 .gif-row {
@@ -174,14 +172,20 @@ h1 {
 .contact-inline a {
   color: #fff;
   text-decoration: underline;
+  font-weight: 500;
 }
 .contact-inline a:hover {
   color: #f7ce46;
 }
 
+.email {
+  text-align: center;
+  margin-top: 10px;
+}
 .email a {
   color: #fff;
   text-decoration: underline;
+  font-weight: 500;
 }
 .email a:hover {
   color: #f7ce46;
