@@ -149,6 +149,7 @@ h1 {
 
 .project-gif {
   width: 100%;
+  /* max-width: 160px; */
   /* /* width: auto; */
   /* width: 110px; */
   height: auto;
@@ -156,6 +157,11 @@ h1 {
   /* justify-content: space-between; */
   border-radius: 6px;
   margin-top: 8px;
+}
+
+.square-gif {
+  height: 80%;
+  max-height: 140px;
 }
 
 .gif-row {
@@ -166,12 +172,18 @@ h1 {
 }
 
 .gif-me-gif {
-  width: 115px;
-  height: auto;
+  width: 40%;
+  height: 85%;
+  max-width: 100px;
+  max-height: 150px;
 }
 
 .spacer {
   flex-grow: 1;  /* fills available vertical space */
+}
+
+.hide {
+  display: none !important;
 }
 
 .source-link {
