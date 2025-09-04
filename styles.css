@@ -1,153 +1,125 @@
-@font-face {
-  font-family: 'OpenSansLight';
-  src: url('fonts/OpenSans-Light-webfont.woff') format('woff'),
-       url('fonts/OpenSans-Light-webfont.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'OpenSansRegular';
-  src: url('fonts/OpenSans-Regular-webfont.woff') format('woff'),
-       url('fonts/OpenSans-Regular-webfont.ttf') format('truetype');
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html, body { height: 100%; }
-
-html {
-  background: linear-gradient(#2a2a29, #1c1c1c) no-repeat fixed;
-  background-size: cover;
-}
 body {
-  font: 400 18px/1.5 "OpenSansRegular", Helvetica, Arial, sans-serif;
-  color: #f0e7d5;
-}
-
-header {
-  height: 50px;
-  background: #353535;
-  border-bottom: 4px solid #434343;
-}
-
-footer {
-  background: #353535;
-  border-top: 4px solid #434343;
-  padding: 20px 0;
-  height: auto;
-}
-
-.wrapper {
-  flex: initial;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-direction: column;
-  padding-bottom: 40px;
+  font-family: Arial, sans-serif;
+  background: #1e1e1e;
+  color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
 
 h1 {
-  font: 600 40px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
-  color: #fff;
-  margin: 20px 0;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-top: 20px;
 }
 
-.divider {
+h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 40px 0 20px;
+  position: relative;
+}
+
+h2::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: #f7ce46;
+  margin: 8px auto 0;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: #444;
+  margin: 30px auto;
   width: 80%;
-  max-width: 430px;
-  margin: 20px auto;
-  border-top: 1px solid #444;
 }
 
-.section-heading {
-  font: 300 32px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
-  color: #fff;
-  text-align: center;
-  margin: 20px 0;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  max-width: 540px;
+.container {
+  max-width: 1200px;
   margin: 0 auto;
-  gap: 10px;
+  padding: 0 15px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  margin: 20px 0;
 }
 
 .card {
-  background: #2e2e2e;
-  border: 1px solid #444;
+  background: #2b2b2b;
   border-radius: 8px;
-  padding: 14px;
-  text-align: center;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
 }
 
-.card-title { font-weight: 700; color: #fff; margin-bottom: 10px; }
-
-.social-logo {
-  width: 60px;
+.card img {
+  max-width: 100%;
   height: auto;
-  margin: 0 auto;
 }
 
-.resume-icon {
-  width: 40px;
-  height: 40px;
+.card span {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.contact a {
+  color: #f7ce46;
+  text-decoration: underline;
 }
 
 .icon-circle {
   background: #fff;
   border-radius: 50%;
-  width: 70px;
-  height: 70px;
-  margin: 10px auto;
+  padding: 15px;
+  display: inline-block;
+}
+
+.screenshots {
   display: flex;
-  align-items: center;
+  gap: 10px;
   justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
 }
 
-.app-screenshot {
-  width: 48%;
-  height: 300px;
-  object-fit: contain;
-  border-radius: 4px;
+.screenshots img {
+  max-width: 45%;
+  height: auto;
+  border-radius: 6px;
 }
 
-.screenshot-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
+.screenshots.side-by-side img {
+  max-width: 48%;
 }
 
 .store-badge {
-  width: 140px;
-  height: auto;
   margin-top: auto;
-  align-self: center;
+  padding-top: 10px;
 }
 
-.project-gif {
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-  margin-top: 8px;
-}
-
-.gif-row {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
+.store-badge img {
+  height: 40px;
 }
 
 .source-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 10px;
-  gap: 6px;
+  gap: 8px;
+  margin-top: auto;
 }
 
-.octocat-icon {
+.source-link img {
   width: 20px;
   height: 20px;
 }
@@ -155,21 +127,14 @@ h1 {
 .source-link a {
   color: #f7ce46;
   text-decoration: underline;
-  font-weight: 500;
 }
 
-.contact-inline {
-  text-align: center;
-  margin-top: 10px;
+footer {
+  margin: 40px 0;
+  font-size: 0.9rem;
 }
-.contact-inline a {
-  color: #fff;
+
+footer a {
+  color: #f7ce46;
   text-decoration: underline;
 }
-.contact-inline a:hover {
-  color: #f7ce46;
-}
-
-.email { text-align: center; margin-top: 20px; }
-.email a { color: #fff; text-decoration: underline; }
-.email a:hover { color: #f7ce46; }
