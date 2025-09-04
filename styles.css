@@ -67,7 +67,7 @@ h1 {
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  max-width: 540px;
+  max-width: 452px;
   margin: 0 auto;
   gap: 12px;
 }
@@ -155,6 +155,10 @@ h1 {
 .gif-me-gif {
   width: 115px;
   height: auto;
+}
+
+.spacer {
+  flex-grow: 1;  /* fills available vertical space */
 }
 
 .source-link {
