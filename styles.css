@@ -1,4 +1,3 @@
-/* Fonts */
 @font-face {
   font-family: 'OpenSansLight';
   src: url('fonts/OpenSans-Light-webfont.woff') format('woff'),
@@ -10,96 +9,180 @@
        url('fonts/OpenSans-Regular-webfont.ttf') format('truetype');
 }
 
-body {
-  font: 400 18px/1.5 "OpenSansRegular", Helvetica, Arial, sans-serif;
-  color: #fff;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
+
+html {
   background: linear-gradient(#2a2a29, #1c1c1c) no-repeat fixed;
   background-size: cover;
 }
+body {
+  font: 400 18px/1.5 "OpenSansRegular", Helvetica, Arial, sans-serif;
+  color: #f0e7d5;
+}
 
-/* Main title */
-.main-title {
-  font: 600 40px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
-  color: #f7ce46;
-  margin: 20px 0;
+header {
+  height: 50px;
+  background: #353535;
+  border-bottom: 4px solid #434343;
+}
+
+footer {
+  background: #353535;
+  border-top: 4px solid #434343;
+  padding: 10px 0;
   text-align: center;
 }
 
-/* Headings */
-.section-heading {
-  font: 300 28px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
-  text-align: center;
-  margin: 20px 0;
-}
-.section-heading.yellow {
-  color: #f7ce46;
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 40px;
 }
 
-/* Divider */
-.divider.yellow {
+h1 {
+  font: 600 40px/1 "OpenSansRegular", Helvetica, Arial, sans-serif;
+  color: #f7ce46;
+  margin: 20px 0;
+}
+
+.divider {
+  width: 80%;
+  max-width: 430px;
+  margin: 20px auto;
   border-top: 2px solid #f7ce46;
 }
 
-/* Cards */
-.cards.fixed-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 260px));
-  justify-content: center;
-  gap: 16px;
-  margin: 0 auto;
+.section-heading {
+  font: 400 28px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
+  color: #f7ce46;
+  text-align: center;
+  margin: 20px 0;
 }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  max-width: 540px;
+  margin: 0 auto;
+  gap: 12px;
+}
+
 .card {
   background: #2e2e2e;
   border: 1px solid #444;
   border-radius: 8px;
   padding: 14px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Icon circles */
+.card-title {
+  font-weight: 600;
+  color: #fff;
+  margin-top: 8px;
+}
+
+.social-logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+}
+
 .icon-circle {
-  border-radius: 50%;
   background: #fff;
-  margin: 10px auto;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.icon-circle.large {
-  width: 90px;
-  height: 90px;
-}
-.icon-circle.small {
-  width: 56px;
-  height: 56px;
-}
 
-/* Logos */
-.social-logo {
-  width: 60%;
-  height: auto;
-}
 .resume-icon {
-  width: 80%;
-  height: auto;
+  width: 32px;
+  height: 32px;
 }
 
-/* Email links */
-.email-link {
-  color: #fff;
-  text-decoration: underline;
-  font-size: 16px;
+.app-screenshot {
+  width: 48%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
 }
-.email-link:hover {
+
+.screenshot-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.store-badge {
+  width: 140px;
+  height: auto;
+  margin-top: auto;
+  align-self: center;
+}
+
+.project-gif {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-top: 8px;
+}
+
+.project-gif.contained {
+  max-height: 250px;
+  object-fit: contain;
+  padding: 4px;
+  background: #1c1c1c;
+  border-radius: 6px;
+}
+
+.gif-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.source-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 6px;
+}
+
+.octocat-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.source-link a {
   color: #f7ce46;
+  text-decoration: underline;
+  font-weight: 500;
 }
+
 .contact-inline {
   text-align: center;
-  margin: 10px 0;
+  margin-top: 10px;
 }
-.email-footer {
-  text-align: center;
-  margin: 10px auto;
-  padding: 10px 0;
-  max-width: 40%;
+.contact-inline a {
+  color: #fff;
+  text-decoration: underline;
+}
+.contact-inline a:hover {
+  color: #f7ce46;
+}
+
+.email a {
+  color: #fff;
+  text-decoration: underline;
+}
+.email a:hover {
+  color: #f7ce46;
 }
