@@ -1,155 +1,105 @@
-.cards {
+/* Fonts */
+@font-face {
+  font-family: 'OpenSansLight';
+  src: url('fonts/OpenSans-Light-webfont.woff') format('woff'),
+       url('fonts/OpenSans-Light-webfont.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'OpenSansRegular';
+  src: url('fonts/OpenSans-Regular-webfont.woff') format('woff'),
+       url('fonts/OpenSans-Regular-webfont.ttf') format('truetype');
+}
+
+body {
+  font: 400 18px/1.5 "OpenSansRegular", Helvetica, Arial, sans-serif;
+  color: #fff;
+  background: linear-gradient(#2a2a29, #1c1c1c) no-repeat fixed;
+  background-size: cover;
+}
+
+/* Main title */
+.main-title {
+  font: 600 40px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
+  color: #f7ce46;
+  margin: 20px 0;
+  text-align: center;
+}
+
+/* Headings */
+.section-heading {
+  font: 300 28px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
+  text-align: center;
+  margin: 20px 0;
+}
+.section-heading.yellow {
+  color: #f7ce46;
+}
+
+/* Divider */
+.divider.yellow {
+  border-top: 2px solid #f7ce46;
+}
+
+/* Cards */
+.cards.fixed-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  max-width: 540px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 260px));
+  justify-content: center;
+  gap: 16px;
   margin: 0 auto;
-  gap: 10px;
 }
-
-.cards.uniform-cards {
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  max-width: 540px;
-}
-
 .card {
   background: #2e2e2e;
   border: 1px solid #444;
   border-radius: 8px;
   padding: 14px;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
-.card-title { font-weight: 700; color: #fff; margin-bottom: 10px; }
-
-.social-logo {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  margin: 0 auto;
-}
-
-.resume-icon {
-  width: 40px;
-  height: 40px;
-}
-.resume-icon.small {
-  width: 32px;
-  height: 32px;
-}
-
+/* Icon circles */
 .icon-circle {
-  background: #fff;
   border-radius: 50%;
-  width: 70px;
-  height: 70px;
+  background: #fff;
   margin: 10px auto;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
-.app-screenshot {
-  width: 48%;
-  height: 300px;
-  object-fit: contain;
-  border-radius: 4px;
+.icon-circle.large {
+  width: 90px;
+  height: 90px;
+}
+.icon-circle.small {
+  width: 56px;
+  height: 56px;
 }
 
-.screenshot-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.store-badge {
-  width: 140px;
+/* Logos */
+.social-logo {
+  width: 60%;
   height: auto;
-  margin-top: auto;
-  align-self: center;
 }
-
-.project-gif {
-  width: 100%;
+.resume-icon {
+  width: 80%;
   height: auto;
-  border-radius: 6px;
-  margin-top: 8px;
 }
 
-.project-gif.contained {
-  max-width: 48%;
-  max-height: 240px;
-  object-fit: contain;
-  border-radius: 6px;
-  margin: 6px;
-}
-
-.gif-row {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-
-.source-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-  gap: 6px;
-}
-
-.octocat-icon {
-  width: 18px;
-  height: 18px;
-  filter: invert(1); /* stays white */
-}
-
-.source-link a {
-  color: #f7ce46;
-  text-decoration: underline;
-  font-weight: 500;
-}
-
-.contact-inline {
-  text-align: center;
-  margin-top: 10px;
-}
-.contact-inline a {
+/* Email links */
+.email-link {
   color: #fff;
   text-decoration: underline;
+  font-size: 16px;
 }
-.contact-inline a:hover {
+.email-link:hover {
   color: #f7ce46;
 }
-
-.email { text-align: center; margin-top: 20px; }
-.email a { color: #fff; text-decoration: underline; }
-.email a:hover { color: #f7ce46; }
-
-.divider {
-  width: 80%;
-  max-width: 430px;
-  margin: 20px auto;
-  border-top: 2px solid #f7ce46;
-}
-
-.section-heading {
-  font: 300 32px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
-  color: #f7ce46;
+.contact-inline {
   text-align: center;
-  margin: 20px 0;
+  margin: 10px 0;
 }
-
-html {
-  background: linear-gradient(#2a2a29, #1c1c1c) no-repeat fixed;
-  background-size: cover;
-}
-
-h1 {
-  font: 600 40px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
-  color: #f7ce46; /* Yellow */
+.email-footer {
   text-align: center;
-  margin: 20px 0;
+  margin: 10px auto;
+  padding: 10px 0;
+  max-width: 40%;
 }
