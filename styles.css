@@ -45,9 +45,11 @@ footer {
 
 h1 {
   font: 600 40px/1 "OpenSansLight", Helvetica, Arial, sans-serif;
-  color: #f7ce46;
-  margin: 20px 0;
+  color: #fff;
+  margin-top: 20px;
+  margin-bottom: 10px;
   text-align: center;
+  font-weight: 900;
 }
 
 .divider {
@@ -58,6 +60,13 @@ h1 {
 }
 
 .section-heading {
+  font: 400 28px/1 "OpenSansRegular", Helvetica, Arial, sans-serif;
+  color: #f7ce46;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.bottom-sections-heading {
   font: 400 28px/1 "OpenSansRegular", Helvetica, Arial, sans-serif;
   color: #f7ce46;
   text-align: center;
@@ -85,7 +94,13 @@ h1 {
 
 .card-title {
   font-weight: 600;
-  color: #fff;
+  color: #f7ce46;
+  margin-top: 10px;
+}#f0e7d5
+
+.bottom-card-title {
+  font-weight: 600;
+  color: #f0e7d5;
   margin-top: 10px;
 }
 
@@ -200,7 +215,7 @@ h1 {
 }
 
 .source-link a {
-  color: #f7ce46;
+  color: #f0e7d5;
   text-decoration: underline;
   font-weight: 500;
 }
@@ -210,20 +225,20 @@ h1 {
   margin-top: 10px;
 }
 .contact-inline a {
-  color: #f7ce46;
+  color: #f0e7d5;
   text-decoration: underline;
   font-weight: 500;
 }
 .contact-inline a:hover {
-  color: #fff;
+  color: #f7ce46;
 }
 
 .email {
   text-align: center;
-  margin-top: 10px;
+  margin: 10px;
 }
 .email a {
-  color: #fff;
+  color: #f0e7d5;
   text-decoration: underline;
   font-weight: 500;
 }
