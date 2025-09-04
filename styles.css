@@ -133,25 +133,35 @@ h1 {
   height: auto;
 }
 
-.linkedin-logo {
-  width: 60%;   /* also scales, slightly smaller inside */
+.github-logo {
+  width: 95%;
   height: auto;
 }
 
-.resume-icon {
-  width: 55px;   /* increase size */
-  height: 55px;  /* keep square aspect */
+.linkedin-logo {
+  width: 70%;   /* also scales, slightly smaller inside */
+  height: auto;
 }
 
-.small-resume-icon {
-  width: 65px;
-  height: 65px;
-  margin-top: 5px;
+.pdf-view {
+  width: 60%;   /* increase size */
+  height: auto;  /* keep square aspect */
 }
 
-.large-resume-icon {
-  width: 45px;
-  height: 45px;
+.pdf-download {
+  width: 60%;
+  height: auto;
+  /* margin-top: 5px; */
+}
+
+.docx-view {
+  width: 60%;
+  height: auto;
+}
+
+.docx-download {
+  width: 60%;
+  height: auto;
 }
 
 .app-screenshot {
