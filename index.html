@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+\<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,144 +7,164 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
+  <header></header>
+
+  <div class="wrapper">
     <h1>Miguel Cazares</h1>
-    <hr>
+    <div class="divider"></div>
 
     <!-- Connect Section -->
-    <h2>Connect</h2>
-    <div class="grid">
-      <a href="https://www.linkedin.com/in/cazaresm" class="card">
-        <span>LinkedIn</span>
-        <img src="images/linkedin.png" alt="LinkedIn logo">
+    <h2 class="section-heading">Connect</h2>
+    <div class="cards">
+      <a href="http://linkedin.com/in/cazaresm" target="_blank" class="card">
+        <div class="card-title">LinkedIn</div>
+        <img src="images/linkedin.png" alt="LinkedIn" class="social-logo linkedin-logo">
       </a>
-      <a href="https://github.com/cazares" class="card">
-        <span>GitHub</span>
-        <img src="images/github-mark-white.png" alt="GitHub logo">
+      <a href="https://github.com/cazares" target="_blank" class="card">
+        <div class="card-title">GitHub</div>
+        <img src="images/github-logo.png" alt="GitHub" class="social-logo octocat-logo">
       </a>
     </div>
-    <p class="contact"><a href="mailto:contact@miguelengineer.com">contact@miguelengineer.com</a></p>
-    <hr>
+    <div class="contact-inline">
+      <a href="mailto:contact@miguelengineer.com">contact@miguelengineer.com</a>
+    </div>
+
+    <div class="divider"></div>
 
     <!-- Resume Section -->
-    <h2>Resumé</h2>
-    <div class="grid">
-      <a href="resume.pdf" class="card">
-        <span>View PDF</span>
-        <div class="icon-circle"><img src="images/pdf-view.png" alt="View PDF"></div>
+    <h2 class="section-heading">Resumé</h2>
+    <div class="cards">
+      <a href="https://drive.google.com/file/d/1Ndtgh_3tXw0I6aBqizJWBkDvW961dsrN/view" target="_blank" class="card">
+        <div class="card-title">View PDF</div>
+        <div class="icon-circle">
+          <img src="images/pdf-view.png" alt="View PDF" class="resume-icon">
+        </div>
       </a>
-      <a href="resume-download.pdf" class="card">
-        <span>Download PDF</span>
-        <div class="icon-circle"><img src="images/pdf-download.png" alt="Download PDF"></div>
+      <a href="https://drive.google.com/uc?export=download&id=1Ndtgh_3tXw0I6aBqizJWBkDvW961dsrN" class="card">
+        <div class="card-title">Download PDF</div>
+        <div class="icon-circle">
+          <img src="images/pdf-download.png" alt="Download PDF" class="resume-icon">
+        </div>
       </a>
-      <a href="resume.docx" class="card">
-        <span>View DOCX</span>
-        <div class="icon-circle"><img src="images/docx-view.png" alt="View DOCX"></div>
+      <a href="https://docs.google.com/document/d/15kc1eJa78rhplQGx2GNXjU8IS50FnnRE/preview" target="_blank" class="card">
+        <div class="card-title">View DOCX</div>
+        <div class="icon-circle">
+          <img src="images/docx-view.png" alt="View DOCX" class="resume-icon">
+        </div>
       </a>
-      <a href="resume-download.docx" class="card">
-        <span>Download DOCX</span>
-        <div class="icon-circle"><img src="images/docx-download.png" alt="Download DOCX"></div>
+      <a href="https://docs.google.com/document/d/15kc1eJa78rhplQGx2GNXjU8IS50FnnRE/export?format=docx" class="card">
+        <div class="card-title">Download DOCX</div>
+        <div class="icon-circle">
+          <img src="images/docx-download.png" alt="Download DOCX" class="resume-icon">
+        </div>
       </a>
     </div>
-    <hr>
+
+    <div class="divider"></div>
 
     <!-- Live Apps Section -->
-    <h2>Live Apps</h2>
-    <div class="grid">
-      <div class="card">
-        <span>ShipStation iOS</span>
-        <div class="screenshots">
-          <img src="images/ss-ios-1.png" alt="ShipStation iOS Screenshot 1">
-          <img src="images/ss-ios-2.png" alt="ShipStation iOS Screenshot 2">
+    <section class="portfolio">
+      <h2 class="section-heading">Live Apps</h2>
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">ShipStation iOS</div>
+          <div class="screenshot-row">
+            <img src="images/ss-ios-1.png" alt="ShipStation iOS screenshot 1" class="app-screenshot">
+            <img src="images/ss-ios-2.png" alt="ShipStation iOS screenshot 2" class="app-screenshot">
+          </div>
+          <a href="https://apps.apple.com/us/app/shipstation-mobile/id972151811" target="_blank">
+            <img src="images/appstore-badge.svg" alt="App Store" class="store-badge">
+          </a>
         </div>
-        <div class="store-badge">
-          <img src="images/appstore-badge.svg" alt="Download on the App Store">
+        <div class="card">
+          <div class="card-title">ShipStation Android</div>
+          <div class="screenshot-row">
+            <img src="images/ss-android-1.png" alt="ShipStation Android screenshot 1" class="app-screenshot">
+            <img src="images/ss-android-2.png" alt="ShipStation Android screenshot 2" class="app-screenshot">
+          </div>
+          <a href="https://play.google.com/store/apps/details?id=com.shipstation.app" target="_blank">
+            <img src="images/googleplay-badge.svg" alt="Google Play" class="store-badge">
+          </a>
+        </div>
+        <div class="card">
+          <div class="card-title">Stamps.com iOS</div>
+          <div class="screenshot-row">
+            <img src="images/stamps-ios-1.png" alt="Stamps iOS screenshot 1" class="app-screenshot">
+            <img src="images/stamps-ios-2.png" alt="Stamps iOS screenshot 2" class="app-screenshot">
+          </div>
+          <a href="https://apps.apple.com/us/app/stamps-com-mobile-app/id1591959884" target="_blank">
+            <img src="images/appstore-badge.svg" alt="App Store" class="store-badge">
+          </a>
+        </div>
+        <div class="card">
+          <div class="card-title">Stamps.com Android</div>
+          <div class="screenshot-row">
+            <img src="images/stamps-android-1.png" alt="Stamps Android screenshot 1" class="app-screenshot">
+            <img src="images/stamps-android-2.png" alt="Stamps Android screenshot 2" class="app-screenshot">
+          </div>
+          <a href="https://play.google.com/store/apps/details?id=stamps.mobile.app" target="_blank">
+            <img src="images/googleplay-badge.svg" alt="Google Play" class="store-badge">
+          </a>
         </div>
       </div>
-      <div class="card">
-        <span>ShipStation Android</span>
-        <div class="screenshots">
-          <img src="images/ss-android-1.png" alt="ShipStation Android Screenshot 1">
-          <img src="images/ss-android-2.png" alt="ShipStation Android Screenshot 2">
-        </div>
-        <div class="store-badge">
-          <img src="images/googleplay-badge.svg" alt="Get it on Google Play">
-        </div>
-      </div>
-      <div class="card">
-        <span>Stamps.com iOS</span>
-        <div class="screenshots">
-          <img src="images/stamps-ios-1.png" alt="Stamps iOS Screenshot 1">
-          <img src="images/stamps-ios-2.png" alt="Stamps iOS Screenshot 2">
-        </div>
-        <div class="store-badge">
-          <img src="images/appstore-badge.svg" alt="Download on the App Store">
-        </div>
-      </div>
-      <div class="card">
-        <span>Stamps.com Android</span>
-        <div class="screenshots">
-          <img src="images/stamps-android-1.png" alt="Stamps Android Screenshot 1">
-          <img src="images/stamps-android-2.png" alt="Stamps Android Screenshot 2">
-        </div>
-        <div class="store-badge">
-          <img src="images/googleplay-badge.svg" alt="Get it on Google Play">
-        </div>
-      </div>
-    </div>
-    <hr>
 
-    <!-- Projects Section -->
-    <h2>Projects</h2>
-    <div class="grid">
-      <div class="card">
-        <span>racer-js</span>
-        <div class="screenshots">
-          <img src="images/racer-js-1.gif" alt="racer-js Demo 1">
-          <img src="images/racer-js-2.gif" alt="racer-js Demo 2">
+      <h2 class="section-heading">Projects</h2>
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">racer-js</div>
+          <figure>
+            <img src="images/racer-js-1.gif" alt="racer-js demo 1" class="project-gif">
+          </figure>
+          <figure>
+            <img src="images/racer-js-2.gif" alt="racer-js demo 2" class="project-gif">
+          </figure>
+          <div class="source-link">
+            <img src="images/github-logo.png" alt="GitHub" class="octocat-icon">
+            <a href="https://github.com/cazares/racer-js" target="_blank">Full Source Code</a>
+          </div>
         </div>
-        <div class="source-link">
-          <img src="images/github-mark-white.png" alt="GitHub">
-          <a href="https://github.com/cazares/racer-js">Full Source Code</a>
+        <div class="card">
+          <div class="card-title">gif-me</div>
+          <div class="gif-row">
+            <img src="images/gif-me-1.gif" alt="gif-me demo 1" class="project-gif small-gif">
+            <img src="images/gif-me-2.gif" alt="gif-me demo 2" class="project-gif small-gif">
+          </div>
+          <div class="source-link">
+            <img src="images/github-logo.png" alt="GitHub" class="octocat-icon">
+            <a href="https://github.com/cazares/gif-me" target="_blank">Full Source Code</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">precreated-historia</div>
+          <figure>
+            <img src="images/precreated-historia-1.gif" alt="precreated-historia demo 1" class="project-gif">
+          </figure>
+          <figure>
+            <img src="images/precreated-historia-2.gif" alt="precreated-historia demo 2" class="project-gif">
+          </figure>
+          <div class="source-link">
+            <img src="images/github-logo.png" alt="GitHub" class="octocat-icon">
+            <a href="https://github.com/cazares/precreated-historia" target="_blank">Full Source Code</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">solar-lending</div>
+          <figure>
+            <img src="images/solar-lending-gif.gif" alt="solar-lending demo" class="project-gif">
+          </figure>
+          <div class="source-link">
+            <img src="images/github-logo.png" alt="GitHub" class="octocat-icon">
+            <a href="https://github.com/cazares/solar-lending" target="_blank">Full Source Code</a>
+          </div>
         </div>
       </div>
-      <div class="card">
-        <span>gif-me</span>
-        <div class="screenshots side-by-side">
-          <img src="images/gif-me-1.gif" alt="gif-me Demo 1">
-          <img src="images/gif-me-2.gif" alt="gif-me Demo 2">
-        </div>
-        <div class="source-link">
-          <img src="images/github-mark-white.png" alt="GitHub">
-          <a href="https://github.com/cazares/gif-me">Full Source Code</a>
-        </div>
-      </div>
-      <div class="card">
-        <span>precreated-historia</span>
-        <div class="screenshots">
-          <img src="images/precreated-historia-1.gif" alt="precreated-historia Demo 1">
-          <img src="images/precreated-historia-2.gif" alt="precreated-historia Demo 2">
-        </div>
-        <div class="source-link">
-          <img src="images/github-mark-white.png" alt="GitHub">
-          <a href="https://github.com/cazares/precreated-historia">Full Source Code</a>
-        </div>
-      </div>
-      <div class="card">
-        <span>solar-lending</span>
-        <div class="screenshots">
-          <img src="images/solar-lending-gif.gif" alt="solar-lending Demo">
-        </div>
-        <div class="source-link">
-          <img src="images/github-mark-white.png" alt="GitHub">
-          <a href="https://github.com/cazares/solar-lending">Full Source Code</a>
-        </div>
-      </div>
-    </div>
+    </section>
   </div>
 
   <footer>
-    <p><a href="mailto:contact@miguelengineer.com">contact@miguelengineer.com</a></p>
+    <div class="email">
+      <a href="mailto:contact@miguelengineer.com">contact@miguelengineer.com</a>
+    </div>
   </footer>
 </body>
 </html>
