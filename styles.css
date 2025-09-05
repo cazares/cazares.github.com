@@ -183,3 +183,204 @@ h1 { font-weight: 700; }
 @media (max-width: 600px){
   .app-screenshot, .short-screenshot{ max-width:45%; height:auto; }
 }
+
+/* === POC: force all cards to 300x300 (quick & dirty) =================== */
+
+/* Grid: pack 300px cards per row; center leftover space */
+.cards{
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+  justify-content: center;
+}
+
+/* Card box: fixed square; allow shrink on tiny screens */
+.card{
+  width: 300px;              /* fixed */
+  max-width: 100%;           /* don’t overflow on very small screens */
+  height: 300px;             /* fixed */
+}
+
+/* Keep the icons/circles centered in every card */
+.icon-circle{
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Resume cards use same centering (covers the SVGs too) */
+.resume-grid .icon-circle svg{
+  display: block;
+  margin: 0 auto;
+}
+
+/* Projects: make the media fill remaining vertical space neatly */
+.projects-grid .card{
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.project-gif{
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gif-row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  flex: 1 1 auto;          /* fill vertical space */
+  height: 100%;
+}
+.gif-row .project-gif{
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Optional: disable double-wide Recommendations so it stays 300x300 too */
+.connect-grid .recommendations-card{ grid-column: auto !important; }
+
+/* Mobile: single column; keep 300px height but let width shrink to fit */
+@media (max-width: 600px){
+  .cards{ grid-template-columns: 1fr !important; }
+  .card{ width: 100%; height: 300px; }
+}
+
+/* === POC: 300px-wide cards, content-height; 2-col desktop / 1-col mobile === */
+
+/* Grid: two 300px columns, centered */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 300px) !important;
+  gap: 12px;
+  justify-content: center; /* center the 2-column grid */
+}
+
+/* Normalize every section’s grid to the same template */
+.cards.connect-grid,
+.cards.resume-grid,
+.cards.apps-grid,
+.cards.projects-grid {
+  grid-template-columns: repeat(2, 300px) !important;
+}
+
+/* Card box: fixed width, height auto (hug content) */
+.card {
+  width: 300px;
+  max-width: 100%;   /* avoids overflow on very small screens */
+  height: auto;      /* content decides height */
+}
+
+/* Always center the icon/circle inside cards */
+.icon-circle {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Make sure résumé SVGs are centered too */
+.resume-grid .icon-circle svg {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Kill any previous "square" / fixed-aspect rules */
+.connect-grid > .card,
+.resume-grid > .card,
+.projects-grid > .card {
+  aspect-ratio: auto !important;
+}
+
+/* If you previously had the Recommendations card span 2 cols, undo it */
+.connect-grid .recommendations-card {
+  grid-column: auto !important;
+}
+
+/* Projects media: let content size the height naturally */
+.projects-grid .project-gif,
+.gif-row .project-gif {
+  width: 100%;
+  height: auto !important; /* no forced fill */
+  object-fit: cover;
+}
+
+/* Mobile: single column; keep cards 300px wide unless viewport is smaller */
+@media (max-width: 600px) {
+  .cards { grid-template-columns: 1fr !important; }
+  .card {
+    width: min(300px, 100%);
+    justify-self: center; /* center the single column card */
+  }
+}
+
+/* === POC: 200px-wide cards, content-height; 2-col desktop / 1-col mobile === */
+
+/* Grid: two 200px columns, centered */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 200px) !important;
+  gap: 12px;
+  justify-content: center; /* center the grid */
+}
+
+/* Normalize each section’s grid */
+.cards.connect-grid,
+.cards.resume-grid,
+.cards.apps-grid,
+.cards.projects-grid {
+  grid-template-columns: repeat(2, 200px) !important;
+}
+
+/* Card box: fixed width, height hugs content */
+.card {
+  width: 200px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Always center the icon/circle */
+.icon-circle {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Center résumé SVGs inside the circle */
+.resume-grid .icon-circle svg {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Remove any old square/aspect rules */
+.connect-grid > .card,
+.resume-grid > .card,
+.projects-grid > .card {
+  aspect-ratio: auto !important;
+}
+
+/* Ensure Recommendations isn’t forced to span */
+.connect-grid .recommendations-card {
+  grid-column: auto !important;
+}
+
+/* Projects media: let content dictate height */
+.projects-grid .project-gif,
+.gif-row .project-gif {
+  width: 100%;
+  height: auto !important;
+  object-fit: cover;
+}
+
+/* Mobile: single column */
+@media (max-width: 600px) {
+  .cards { grid-template-columns: 1fr !important; }
+  .card {
+    width: min(200px, 100%);
+    justify-self: center;
+  }
+}
