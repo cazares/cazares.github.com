@@ -570,3 +570,150 @@ h1 { font-weight: 700; }
   object-fit: cover;
   border-radius: 6px;
 }
+
+/* === Projects media layout (single source of truth) ===================== */
+/* Turn each project card into a 3-row grid: [title] [media] [footer]       */
+.cards.projects-grid .card{
+  display: grid;
+  grid-template-rows: auto minmax(220px, 1fr) auto; /* media gets the space */
+}
+
+/* Hide old flex spacers just inside Projects so media can expand cleanly */
+.cards.projects-grid .card .spacer{ display:none !important; }
+
+/* Footer stays row 3; give it a little breathing room */
+.cards.projects-grid .card .source-link{ grid-row:3; margin-top:8px; }
+
+/* --- NON "gif-me" cards (single GIF) ----------------------------------- */
+/* Stretch the GIF to fill the whole media row; aspect ratio may distort (as requested) */
+.cards.projects-grid .card .project-gif{
+  grid-row:2;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: fill !important;          /* allow stretching */
+  border-radius: 6px;
+}
+
+/* --- "gif-me" card (two side-by-side GIFs) ------------------------------ */
+/* Put the two GIFs in the media row and keep their aspect ratios */
+.cards.projects-grid .card .gif-row{
+  grid-row:2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  height: 100%;                          /* constrain to the media row */
+  align-items: stretch;
+}
+
+/* Maintain aspect ratio and ensure both fit within the available space */
+.cards.projects-grid .card .gif-row .project-gif{
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;        /* keep AR for gif-me */
+  border-radius: 6px;
+}
+
+/* === Projects: fill media area & keep footer visible =================== */
+.cards.projects-grid .card{
+  aspect-ratio: 1 / 1;              /* at-least-square baseline */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;                  /* prevent media from pushing footer out */
+}
+
+/* Spacers inside project cards were shrinking media; disable them here */
+.cards.projects-grid .spacer{ display: none !important; }
+
+/* Single-media project cards (NOT gif-me): fill remaining vertical space */
+.cards.projects-grid img.project-gif:not(.gif-me-gif){
+  flex: 1 1 auto;                    /* let the image claim the free space */
+  width: 100% !important;
+  height: 100% !important;           /* override earlier height:auto */
+  object-fit: cover;                 /* we don't need to preserve aspect */
+  margin-top: 8px;
+}
+
+/* gif-me: make the two thumbnails share the same height and stay within
+   the area between the title and the footer */
+.cards.projects-grid .gif-row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  flex: 1 1 auto;                    /* this row takes the free vertical space */
+  min-height: 0;                     /* allow it to shrink as needed */
+  margin-top: 8px;
+}
+.cards.projects-grid .gif-row .project-gif{
+  width: 100% !important;
+  height: 100% !important;           /* equal heights, no overflow */
+  object-fit: cover;                 /* crop rather than overflow */
+}
+
+/* Keep the GitHub link pinned to the bottom of every project card */
+.cards.projects-grid .source-link{ margin-top: auto; }
+
+/* === FINAL OVERRIDES (paste at END of styles.css) ====================== */
+/* 1) Connect: keep hero double-wide on desktop, not on mobile */
+.cards.connect-grid .recommendations-card{
+  grid-column: 1 / -1 !important;
+}
+
+@media (max-width: 900px){
+  /* one column everywhere on phones; unified width */
+  .cards,
+  .cards.connect-grid,
+  .cards.resume-grid,
+  .cards.apps-grid,
+  .cards.projects-grid{
+    grid-template-columns: 1fr !important;
+    max-width: clamp(280px, 92vw, 420px) !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .card{ width: 100% !important; }
+  .cards.connect-grid .recommendations-card{ grid-column: auto !important; }
+}
+
+/* 2) PROJECTS — single source of truth */
+.cards.projects-grid > .card{
+  display: grid !important;
+  grid-template-rows: auto 1fr auto !important; /* title | media | footer */
+  aspect-ratio: 1 / 1 !important;               /* at-least square         */
+  overflow: hidden !important;
+  min-height: 0 !important;
+}
+
+/* spacers inside project cards steal height */
+.cards.projects-grid > .card .spacer{ display: none !important; }
+
+/* keep GitHub link at bottom */
+.cards.projects-grid > .card .source-link{
+  grid-row: 3 !important;
+  margin-top: 8px !important;
+}
+
+/* non-gif-me: stretch media to fill the media row (ignore AR) */
+.cards.projects-grid > .card .project-gif:not(.gif-me-gif){
+  grid-row: 2 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: fill !important;
+  border-radius: 6px;
+}
+
+/* gif-me: two equal thumbs that fit between title and footer */
+.cards.projects-grid > .card .gif-row{
+  grid-row: 2 !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 8px !important;
+  height: 100% !important;      /* constrained to media row */
+  min-height: 0 !important;
+  align-items: stretch !important;
+}
+.cards.projects-grid > .card .gif-row .project-gif{
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important; /* preserve AR for gif-me only */
+  border-radius: 6px;
+}
