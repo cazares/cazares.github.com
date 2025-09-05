@@ -530,3 +530,43 @@ h1 { font-weight: 700; }
   gap: 8px;
   height: 100%;
 }
+
+/* === Projects: square cards + media behavior (drop-in patch) === */
+
+/* 1) Cards are at least square, and laid out as columns */
+.cards.projects-grid .card{
+  aspect-ratio: 1 / 1;           /* min square; will grow taller if needed */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 2) Keep title fixed height; push link to the bottom */
+.cards.projects-grid .bottom-card-title{ flex: 0 0 auto; }
+.cards.projects-grid .source-link{ margin-top: auto; }
+
+/* 3) Kill spacers inside project cards so media can actually grow */
+.cards.projects-grid .spacer{ display: none; }
+
+/* 4) Single-GIF cards: fill all remaining vertical space */
+.cards.projects-grid .project-gif:not(.gif-me-gif){
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100% !important;       /* override earlier height:auto */
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* 5) gif-me: two equal thumbnails, locked by container ratio so the link shows */
+.cards.projects-grid .gif-row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  aspect-ratio: 16 / 9 !important;  /* fixes the row height responsively */
+}
+.cards.projects-grid .gif-row .project-gif{
+  width: 100%;
+  height: 100% !important;         /* equalize heights */
+  object-fit: cover;
+  border-radius: 6px;
+}
