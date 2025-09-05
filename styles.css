@@ -723,3 +723,191 @@ h1 { font-weight: 700; } /* was 900 */
 @media (max-width: 600px){
   .cards.apps-grid{ grid-template-columns: 1fr; } /* 1 col on phones */
 }
+
+.avatar-circle{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:50%;
+}
+
+/* Circle-crop the headshot like the other icons */
+.avatar-circle{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:50%;
+}
+
+/* Make the Recommendations card span both columns on desktop */
+@media (min-width:600px){
+  .connect-grid .recommendations-card{ grid-column: 1 / -1; }
+}
+
+/* Resumé: simple 2-card grid (matches your section width) */
+.resume-grid{
+  max-width:452px;                 /* same as .cards in prod */
+  grid-template-columns:1fr 1fr;   /* two columns on desktop */
+  gap:12px;
+}
+@media (max-width:600px){
+  .resume-grid{ grid-template-columns:1fr; } /* one column on phones */
+}
+
+/* --- Connect grid: 2-up, with a full-width hero card on top --- */
+.connect-grid{
+  max-width: 452px;                 /* same container as other sections */
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* two columns on desktop */
+  gap: 12px;
+  padding: 0 6px;                   /* creates side "gutters" so the hero card
+                                       aligns with the edges of the two cards below */
+}
+
+/* Make the Recommendations card appear above, spanning both columns */
+.connect-grid .recommendations-card{
+  grid-column: 1 / -1;              /* double-wide */
+  order: -1;                        /* place above the other two */
+  text-align: center;
+}
+
+/* Tighter avatar for the hero card so it feels balanced */
+.connect-grid .recommendations-card .icon-circle{
+  width: 64px;
+  height: 64px;
+  margin-bottom: 6px;
+}
+
+/* Circle-crop the headshot */
+.avatar-circle{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Phones: stack all three cards 1-up, natural order still puts
+   Recommendations first at the top */
+@media (max-width: 600px){
+  .connect-grid{
+    grid-template-columns: 1fr;
+    padding: 0;                     /* no need for gutters on single column */
+  }
+  .connect-grid .recommendations-card{
+    grid-column: auto;
+    order: -1;
+  }
+}
+
+/* --- Resumé grid: exactly same card widths as Connect --- */
+.resume-grid{
+  max-width: 452px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* same as Connect */
+  gap: 12px;
+  padding: 0 6px;                   /* same gutters for perfect line-up */
+}
+@media (max-width: 600px){
+  .resume-grid{
+    grid-template-columns: 1fr;
+    padding: 0;
+  }
+}
+
+/* === Uniform card widths (match Live Apps) === */
+.connect-grid,
+.resume-grid,
+.apps-grid,
+.projects-grid{
+  max-width: 452px;          /* same container as Live Apps */
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;  /* two equal columns */
+  gap: 12px;
+}
+
+/* Recommendations: double-wide and first */
+.connect-grid .recommendations-card{
+  grid-column: 1 / -1;       /* span both columns */
+}
+
+/* Circle-crop the headshot inside the same white icon circle */
+.icon-circle .avatar-circle{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Resumé section already uses .resume-grid — this makes the two cards
+   exactly the same width as LinkedIn/GitHub cards */
+.resume-grid .card { margin: 0; }
+
+/* === Mobile: single column & full width === */
+@media (max-width: 600px){
+  .connect-grid,
+  .resume-grid,
+  .apps-grid,
+  .projects-grid{
+    grid-template-columns: 1fr;     /* stack */
+    max-width: 100%;
+  }
+  .connect-grid .recommendations-card{ grid-column: auto; } /* harmless either way */
+}
+
+/* ----- unify section widths (same as Live Apps) ----- */
+:root { --colW: 452px; --gap: 12px; }
+
+.cards.connect-grid,
+.cards.resume-grid,
+.cards.apps-grid,
+.cards.projects-grid{
+  max-width: var(--colW);
+  margin: 0 auto;
+  gap: var(--gap);
+  grid-template-columns: 1fr 1fr;   /* lock to 2 cols on desktop */
+}
+
+/* Mobile: single column (still square) */
+@media (max-width: 600px){
+  .cards.connect-grid,
+  .cards.resume-grid,
+  .cards.apps-grid,
+  .cards.projects-grid{
+    max-width: 94%;
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ----- square cards for uniform width/height ----- */
+/* (Recommendations stays flexible height) */
+.connect-grid .card:not(.recommendations-card),
+.resume-grid .card,
+.projects-grid .card{
+  aspect-ratio: 1 / 1;   /* height == width */
+}
+
+/* Recommendations spans both columns and keeps natural height */
+.connect-grid .recommendations-card{
+  grid-column: 1 / -1;
+  aspect-ratio: auto;
+}
+
+/* ----- make project content fit neatly inside the square ----- */
+.projects-grid .bottom-card{
+  display: grid;
+  grid-template-rows: min-content 1fr min-content; /* title | media | link */
+}
+.projects-grid .project-gif{
+  width: 100% !important;
+  height: 100% !important;      /* fill the middle row */
+  object-fit: cover;
+  border-radius: 6px;
+  margin-top: 8px;
+}
+
+/* (Optional) keep icon circles from feeling tiny in the taller squares */
+@media (min-width: 601px){
+  .connect-grid .icon-circle,
+  .resume-grid .icon-circle{ width: 96px; height: 96px; }
+}
