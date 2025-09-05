@@ -1,913 +1,223 @@
-/* Open Sans (one family, multiple weights) */
-@font-face {
-  font-family: 'OpenSans';
-  src: url('./fonts/OpenSans-Light-webfont.woff') format('woff'),
-       url('./fonts/OpenSans-Light-webfont.ttf') format('truetype');
-  font-weight: 300;  /* Light */
-  font-style: normal;
-  font-display: swap;
+/* =================== Fonts =================== */
+@font-face{
+  font-family:'OpenSans';
+  src:url('./fonts/OpenSans-Light-webfont.woff') format('woff'),
+      url('./fonts/OpenSans-Light-webfont.ttf') format('truetype');
+  font-weight:300; font-style:normal; font-display:swap;
 }
-@font-face {
-  font-family: 'OpenSans';
-  src: url('./fonts/OpenSans-Regular-webfont.woff') format('woff'),
-       url('./fonts/OpenSans-Regular-webfont.ttf') format('truetype');
-  font-weight: 400;  /* Regular */
-  font-style: normal;
-  font-display: swap;
+@font-face{
+  font-family:'OpenSans';
+  src:url('./fonts/OpenSans-Regular-webfont.woff') format('woff'),
+      url('./fonts/OpenSans-Regular-webfont.ttf') format('truetype');
+  font-weight:400; font-style:normal; font-display:swap;
 }
-@font-face {
-  font-family: 'OpenSans';
-  src: url('./fonts/OpenSans-Semibold-webfont.woff') format('woff'),
-       url('./fonts/OpenSans-Semibold-webfont.ttf') format('truetype');
-  font-weight: 600;  /* Semibold */
-  font-style: normal;
-  font-display: swap;
+@font-face{
+  font-family:'OpenSans';
+  src:url('./fonts/OpenSans-Semibold-webfont.woff') format('woff'),
+      url('./fonts/OpenSans-Semibold-webfont.ttf') format('truetype');
+  font-weight:600; font-style:normal; font-display:swap;
 }
-@font-face {
-  font-family: 'OpenSans';
-  src: url('./fonts/OpenSans-Bold-webfont.woff') format('woff'),
-       url('./fonts/OpenSans-Bold-webfont.ttf') format('truetype');
-  font-weight: 700;  /* Bold */
-  font-style: normal;
-  font-display: swap;
+@font-face{
+  font-family:'OpenSans';
+  src:url('./fonts/OpenSans-Bold-webfont.woff') format('woff'),
+      url('./fonts/OpenSans-Bold-webfont.ttf') format('truetype');
+  font-weight:700; font-style:normal; font-display:swap;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html, body { height: 100%; }
+/* =================== Base =================== */
+*{ margin:0; padding:0; box-sizing:border-box; }
+html, body{ height:100%; }
 
-html {
-  background: linear-gradient(#2a2a29, #1c1c1c) no-repeat fixed;
-  background-size: cover;
-}
-body {
-  font-family: "OpenSans", Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 1.5;
-  color: #f0e7d5;
+html{ background:linear-gradient(#2a2a29, #1c1c1c) no-repeat fixed; background-size:cover; }
+body{
+  font-family:"OpenSans", Helvetica, Arial, sans-serif;
+  font-weight:400; font-size:18px; line-height:1.5; color:#f0e7d5;
 }
 
-header {
-  height: 5px;
-  background: #353535;
-  border-bottom: 4px solid #434343;
+/* --- Header hero (no blur; full face) --- */
+header{
+  --hero-h: clamp(140px, 24vh, 210px);
+  height:var(--hero-h);
+  background:#1c1c1c url('images/miguel-headshot.jpg') center 22% / cover no-repeat;
+  position:relative; overflow:hidden;
+}
+header::after{
+  content:"";
+  position:absolute; left:0; right:0; bottom:0; height:28px;
+  background:linear-gradient(to bottom, rgba(28,28,28,0), rgba(28,28,28,0.85));
 }
 
-footer {
-  background: #353535;
-  border-top: 4px solid #434343;
-  padding: 10px 0;
-  height: auto;
-}
-
-.wrapper {
-  flex: initial;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-direction: column;
-  padding-bottom: 40px;
-}
-
-h1 { font-weight: 700; } /* was 900 */
-  .section-heading,
-  .bottom-sections-heading,
-  .card-title,
-  .resume-card-title,
-  .bottom-card-title {
-  font-weight: 400;       /* was 600 in several places */
-}
-
-.divider {
-  width: 45%;
-  max-width: 430px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  border-top: 0.5px solid #f0e7d5b3;
-}
-
-.section-heading,
-.bottom-sections-heading {
-  font-family: "OpenSans", Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 28px;
-  line-height: 1;
-  color: #f7ce46;
-  text-align: center;
-  margin: 0;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  max-width: 452px;
-  margin: 0 auto;
-  gap: 12px;
-}
-
-.card {
-  background: #2e2e2e;
-  border: 1px solid #444;
-  border-radius: 8px;
-  padding: 14px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  text-decoration: none;
-  color: inherit;
-}
-
-.card:hover {
-  border-color: #f7ce46;
-  transform: translateY(-2px);
-  transition: all 0.2s ease;
-}
-
-.bottom-card {
-  padding: 0px;
-  padding-bottom: 7.5px;
-  padding-top: 7.5px;
-}
-
-.card-title {
-  font-weight: 600;
-  color: #f7ce46;
-  margin-top: 10px;
-}
-
-.resume-card-title {
-  font-family: "OpenSans", Helvetica, Arial, sans-serif;
-  font-weight: 600;
-  font-size: 15.5px;
-  line-height: 1.5;
-  color: #f7ce46;
-  margin-top: 10px;
-}
-
-/* bold only the word inside resume cards */
-.resume-card-title .resume-word { font-weight: 700; }
-
-.bottom-card-title {
-  font-weight: 600;
-  color: #f0e7d5;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
-.icon-circle {
-  background: #fff;
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 10px auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.social-logo {
-  width: 65%;   /* scales with the circle */
-  height: auto;
-}
-
-.github-logo {
-  width: 95%;
-  height: auto;
-}
-
-.linkedin-logo {
-  width: 70%;   /* also scales, slightly smaller inside */
-  height: auto;
-}
-
-.pdf-view {
-  width: 60%;   /* increase size */
-  height: auto;  /* keep square aspect */
-}
-
-.pdf-download {
-  width: 60%;
-  height: auto;
-  /* margin-top: 5px; */
-}
-
-.docx-view {
-  width: 60%;
-  height: auto;
-}
-
-.docx-download {
-  width: 60%;
-  height: auto;
-}
-
-.app-screenshot {
-  width: auto;
-  max-width: 75px;
-  height: 150px;
-  border-radius: 4px;
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
-.short-screenshot {
-  width: auto;
-  max-width: 75px;
-  height: 150px;
-  border-radius: 4px;
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
-.screenshot-row {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.store-badge {
-  margin-top: 5px;
-  align-self: center;
-  width: 120px;
-  height: auto;
-}
-
-.project-gif {
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-  margin-top: 8px;
-}
-
-.square-gif {
-  height: 80%;
-  max-height: 140px;
-}
-
-.gif-row {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  width: 100%;
-}
-
-.gif-me-gif {
-  width: 40%;
-  height: 85%;
-  max-width: 100px;
-  max-height: 150px;
-}
-
-.spacer {
-  flex-grow: 1;
-}
-
-.hide {
-  display: none !important;
-}
-
-.source-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-  gap: 6px;
-}
-
-.octocat-icon {
-  width: 22.5px;
-  height: 22.5px;
-}
-
-.source-link a {
-  color: #f0e7d5;
-  text-decoration: underline;
-  font-weight: 500;
-}
-
-.contact-inline {
-  text-align: center;
-  margin-top: 10px;
-}
-.contact-inline a {
-  color: #fff;
-  text-decoration: underline;
-  font-weight: 500;
-}
-.contact-inline a:hover {
-  color: #f7ce46;
-}
-
-.email {
-  text-align: center;
-  margin: 10px;
-}
-.email a {
-  color: #fff;
-  text-decoration: underline;
-  font-weight: 500;
-}
-.email a:hover {
-  color: #f7ce46;
-}
-
-/* Responsive fix */
-@media (max-width: 600px) {
-  .cards {
-    grid-template-columns: 1fr;
-    max-width: 100%;
-  }
-  .app-screenshot, .short-screenshot {
-    max-width: 45%;
-    height: auto;
-  }
-  .gif-me-gif {
-    max-width: 45%;
-    height: auto;
+/* Taller on mobile (+more bottom revealed) */
+@media (max-width:900px){
+  header{
+    --hero-h: clamp(180px, 30vh, 240px);
+    background-position:center 38%;
   }
 }
 
-/* ===== FINAL CLEAN PASS (paste once at END) ===== */
+footer{ background:#353535; border-top:4px solid #434343; padding:10px 0; height:auto; }
 
-/* Card title weights normalized */
-.card-title,
-.resume-card-title,
-.bottom-card-title { font-weight: 400; }
+.wrapper{ display:flex; flex-direction:column; align-items:center; padding-bottom:40px; }
 
-/* Hover + keyboard focus polish */
-.card {
+/* Headings / dividers */
+h1{ font-weight:700; margin-top:14px; }
+.section-heading, .bottom-sections-heading, .card-title, .resume-card-title, .bottom-card-title{ font-weight:400; }
+.divider{ width:45%; max-width:430px; margin:15px 0; border-top:.5px solid #f0e7d5b3; }
+.section-heading, .bottom-sections-heading{ font-size:28px; line-height:1; color:#f7ce46; text-align:center; }
+
+/* =================== Layout Vars =================== */
+:root{
+  --gap: 12px;
+  --desk-card: 280px;                      /* desktop width for each card */
+  --mobile-col: clamp(320px, 92vw, 440px); /* base mobile column width */
+}
+
+/* =================== Cards & Grids =================== */
+.cards{
+  display:grid; gap:var(--gap); justify-content:center;
+  grid-template-columns: repeat(2, var(--desk-card));
+}
+.cards .card{ width:var(--desk-card); }
+
+.card{
+  background:#2e2e2e; border:1px solid #444; border-radius:8px;
+  padding:14px; text-align:center; display:flex; flex-direction:column;
+  color:inherit; text-decoration:none;
   transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
 }
-.card:hover,
-.card:focus-visible {
-  transform: translateY(-2px);
-  border-color: #f7ce46;
-  box-shadow: 0 4px 16px rgba(247,206,70,.12);
-  outline: none;
+.card:hover, .card:focus-visible{
+  transform:translateY(-2px); border-color:#f7ce46; box-shadow:0 4px 16px rgba(247,206,70,.12); outline:none;
 }
 
-/* Résumé 2×2 matrix aligned with your other card grids */
-.resume-matrix {
-  max-width: 452px;                 /* same width as .cards */
-  display: grid;
-  grid-template-columns: 84px 1fr 1fr;  /* row label + 2 columns */
-  gap: 10px 14px;
-  align-items: start;
-}
-.resume-matrix .card { margin: 0; }  /* flush inside grid */
-
-.resume-matrix .col-heading {
-  text-align: center;
-  color: #f7ce46;
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: .02em;
-}
-.resume-matrix .row-heading {
-  text-align: right;
-  color: #f0e7d5;
-  font-weight: 400;
-  font-size: 13px;
-  align-self: center;
-  padding-right: 6px;
+/* Connect: recommendations spans both cols on desktop */
+.cards.connect-grid .recommendations-card{
+  grid-column:1 / -1; width:auto; justify-self:stretch;
 }
 
-/* Calm, compact subtitles: “Resumé  [PDF]” */
-.resume-card-title {
-  color: #f7ce46;
-  font-size: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 10px;
+/* Titles centered with consistent spacing */
+.card-title, .bottom-card-title{ text-align:center; margin-bottom:8px; }
+.card-title, .resume-card-title{ color:#f7ce46; margin-top:10px; }
+.bottom-card-title{ color:#f0e7d5; margin-top:0; }
+
+/* =================== Icons =================== */
+.icon-circle{
+  background:#fff; border-radius:50%;
+  width:80px; height:80px; margin:0 auto 10px auto;
+  display:flex; align-items:center; justify-content:center;
 }
+.social-logo{ width:65%; height:auto; }
+.github-logo{ width:95%; height:auto; }
+.linkedin-logo{ width:70%; height:auto; }
+.emoji-icon{ font-size:52px; line-height:1; display:inline-block; }
 
-/* “Resumé” = off-white + bold (no underline) */
-.resume-card-title .resume-keyword {
-  color: #f0e7d5;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-/* Format chip */
-.resume-card-title .chip {
-  border: 1px solid #f7ce46;
-  background: rgb(247 206 70 / .10);
-  color: #f7ce46;
-  border-radius: 9999px;
-  padding: 2px 8px;
-  font-size: 12px;
-  line-height: 1.2;
-  letter-spacing: .02em;
-}
-
-/* Slightly smaller icons in this section so it breathes */
-.resume-matrix .icon-circle { width: 76px; height: 76px; }
-
-/* Mobile: collapse headers, keep cards */
-@media (max-width: 600px) {
-  .resume-matrix { grid-template-columns: 1fr; gap: 10px; }
-  .resume-matrix .corner,
-  .resume-matrix .col-heading,
-  .resume-matrix .row-heading { display: none; }
-  .resume-card-title { font-size: 14px; gap: 6px; }
-  .resume-card-title .chip { font-size: 11px; padding: 2px 7px; }
-}
-
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .card { transition: none; }
-}
-
-/* micro-polish: quieter row labels & a hair tighter layout */
-.resume-matrix { grid-template-columns: 80px 1fr 1fr; } /* was 84px */
-.resume-matrix .row-heading { color: rgb(240 231 213 / .7); }
-
-/* micro-polish: reduce subtitle & chip just a bit for balance */
-.resume-card-title { font-size: 14.5px; gap: 6px; }
-.resume-card-title .chip { font-size: 11.5px; padding: 1px 7px; }
-
-/* --- Resume matrix: desktop + mobile --- */
-.resume-matrix{
-  display:grid;
-  grid-template-columns: 90px 1fr 1fr; /* row label + two columns */
-  gap:12px 14px;
-  max-width:452px;      /* matches your other card grids */
-  margin:0 auto;
-  align-items:start;
-}
-.resume-matrix .card{ margin:0; }
-
-/* Phones: hide headers; show clean 2x2 */
-@media (max-width: 640px){
-  .resume-matrix{
-    grid-template-columns: repeat(2, minmax(0,1fr));
-    max-width:94%;
-    width:94%;
-    gap:10px;
-  }
-  .resume-matrix .corner,
-  .resume-matrix .col-heading,
-  .resume-matrix .row-heading{ display:none; }
-
-  .resume-matrix .icon-circle{ width:72px; height:72px; }
-  .resume-card-title{ font-size:14.5px; gap:6px; }
-  .resume-card-title .chip{ font-size:11.5px; padding:1px 7px; }
-}
-
-/* Ultra-narrow screens: stack to 1 column */
-@media (max-width: 360px){
-  .resume-matrix{ grid-template-columns: 1fr; }
-}
-
-/* Projects grid: wider than the Connect/Apps grids */
-.projects-grid{
-  max-width: 980px;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap:16px;
-}
-
-/* Mobile behavior for projects */
-@media (max-width: 640px){
-  .projects-grid{
-    max-width:94%;
-    width:94%;
-    grid-template-columns: 1fr;  /* single column on small phones */
+/* Wrap the long recommendations title on mobile (~2 lines) */
+@media (max-width:900px){
+  .cards.connect-grid .recommendations-card .card-title{
+    max-inline-size:16ch; margin-left:auto; margin-right:auto; text-wrap:balance;
   }
 }
 
-/* --- Projects: consistent media aspect ratios --- */
+/* =================== Live Apps =================== */
+.resume-grid .icon-circle svg{ width:64%; height:auto; display:block; }
 
-/* Default: single media per card -> 16:9, cropped nicely */
-.projects-grid .project-gif {
-  width: 100%;
-  aspect-ratio: 16 / 9;      /* consistent frame */
-  height: auto;               /* fallback */
-  object-fit: cover;          /* fill frame, no distortion */
-  border-radius: 8px;
+/* ~20% of the inter-card gap between screenshots */
+.screenshot-row{
+  display:flex; justify-content:center; align-items:flex-end;
+  gap: calc(var(--gap) * 0.2);
 }
+.screenshot-row .spacer{ display:none !important; }
+.app-screenshot, .short-screenshot{ width:auto; max-width:75px; height:150px; border-radius:4px; margin:0; }
+.store-badge{ margin-top:5px; align-self:center; width:120px; height:auto; }
 
-/* "gif-me" has two media; make them square thumbnails that sit side-by-side */
-.projects-grid .gif-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
+/* =================== Projects (canonical layout) =================== */
+/* Turn each project card into [title] [media] [footer] */
+.cards.projects-grid .card{
+  display:grid !important;
+  grid-template-rows:auto minmax(220px, 1fr) auto;
+  overflow:hidden !important;
 }
-.projects-grid .gif-row .project-gif {
-  aspect-ratio: 1 / 1;        /* squares */
-  object-fit: cover;
-}
+.cards.projects-grid .card *{ min-height:0; }  /* prevent push/overflow */
 
-/* Neutralize old size helpers so the rules above win */
-.project-gif.square-gif,
-.project-gif.gif-me-gif {
-  max-height: none !important;
-  height: auto !important;
-  width: 100% !important;
+/* Footer pinned & centered */
+.cards.projects-grid .source-link{
+  grid-row:3; margin-top:10px;
+  display:flex; align-items:center; justify-content:center; gap:6px; text-align:center;
 }
+.octocat-icon{ width:22.5px; height:22.5px; }
+.source-link a, .source-link a:visited{ color:#f0e7d5; }
+.source-link a:hover{ color:#f7ce46; }
 
-/* Optional: on very small screens, give a bit more height so details are visible */
-@media (max-width: 420px) {
-  .projects-grid .project-gif { aspect-ratio: 4 / 3; }
-}
-
-/* --- Projects: lock to max two columns --- */
-.projects-grid{
-  max-width: 980px;                 /* two comfy columns */
-  margin: 0 auto;
-  grid-template-columns: repeat(2, minmax(280px, 1fr));
-  gap: 16px;
-}
-@media (max-width: 700px){
-  .projects-grid{
-    max-width: 94%;
-    width: 94%;
-    grid-template-columns: 1fr;     /* single column on phones */
-  }
+/* Non–gif-me: show only first GIF; fill media row (distortion allowed) */
+.cards.projects-grid .card > img.project-gif:nth-of-type(n+2){ display:none !important; }
+.cards.projects-grid .card > img.project-gif{
+  grid-row:2 !important; width:100% !important; height:100% !important;
+  object-fit:fill !important; border-radius:6px;
 }
 
-/* --- Projects: consistent media aspect ratios --- */
-.projects-grid .project-gif{
-  width: 100%;
-  aspect-ratio: 16 / 9;             /* uniform frame */
-  height: auto;
-  object-fit: cover;                 /* fill frame without distortion */
-  border-radius: 8px;
+/* gif-me: two equal tiles; fixed responsive height; no footer bleed */
+.cards.projects-grid .card .gif-row{
+  grid-row:2 !important;
+  display:grid !important; grid-template-columns:1fr 1fr !important;
+  gap:8px !important;
+  height:clamp(180px, 52vw, 260px) !important; /* mobile-friendly cap */
+  aspect-ratio:auto !important;
+  align-items:stretch !important; min-height:0;
+}
+.cards.projects-grid .card .gif-row .project-gif{
+  width:100% !important; height:100% !important; object-fit:cover !important; border-radius:6px;
 }
 
-/* gif-me: make the two thumbnails fill the SAME 16:9 slot */
-.projects-grid .gif-row{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  width: 100%;
-  aspect-ratio: 16 / 9;              /* ensures card height matches others */
+/* =================== Lightbox =================== */
+.lb{
+  position:fixed; inset:0; display:none;
+  align-items:center; justify-content:center;
+  background:rgba(0,0,0,.88); padding:20px; z-index:1000;
 }
-.projects-grid .gif-row .project-gif{
-  width: 100% !important;
-  height: 100% !important;
-  max-width: none !important;
-  max-height: none !important;
-  object-fit: cover;
-  border-radius: 8px;
+.lb.open{ display:flex; }
+.lb img{
+  max-width:min(94vw,1200px); max-height:90vh;
+  width:auto; height:auto; background:#fff; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,.35);
 }
-
-/* neutralize any old helpers that fight the sizes above */
-.project-gif.square-gif,
-.project-gif.gif-me-gif{
-  width: 100% !important;
-  height: 100% !important;
-  max-width: none !important;
-  max-height: none !important;
+.lb-btn{
+  position:absolute; top:14px; background:#111827; color:#fff; border:1px solid #374151; border-radius:9999px;
+  width:40px; height:40px; font-size:24px; line-height:36px; display:grid; place-items:center; cursor:pointer;
+}
+.lb-close{ right:14px; }
+.lb-prev, .lb-next{ top:50%; transform:translateY(-50%); width:48px; height:48px; font-size:36px; line-height:42px; }
+.lb-prev{ left:12px; } .lb-next{ right:12px; }
+@media (max-width:640px){
+  .lb-btn{ width:36px; height:36px; font-size:22px; }
+  .lb-prev, .lb-next{ font-size:30px; }
 }
 
-/* ===== Unified section width =====
-   Set one content width and have ALL .cards (incl. Projects) use it */
-:root { --content-max: 940px; }           /* pick the width your other sections use */
-.cards { max-width: var(--content-max); }  /* Live Apps / Connect already use .cards */
+/* =================== Links =================== */
+.contact-inline{ text-align:center; margin-top:10px; }
+.contact-inline a{ color:#fff; text-decoration:underline; font-weight:500; }
+.contact-inline a:hover{ color:#f7ce46; }
+.email{ text-align:center; margin:10px; }
+.email a{ color:#fff; text-decoration:underline; font-weight:500; }
+.email a:hover{ color:#f7ce46; }
 
-/* ===== Projects: lock to max 2 columns (same container width as others) ===== */
-.cards.projects-grid{
-  margin: 0 auto;
-  grid-template-columns: repeat(2, minmax(280px, 1fr));  /* max 2 cols */
-  gap: 16px;
-}
-@media (max-width: 700px){
-  .cards.projects-grid{ grid-template-columns: 1fr; }    /* phones: 1 col */
-}
-
-/* ===== Projects media: consistent aspect ratios ===== */
-.cards.projects-grid .project-gif{
-  width: 100%;
-  aspect-ratio: 16 / 9;          /* uniform frame for single media */
-  height: auto;
-  object-fit: cover;             /* fill without distortion */
-  border-radius: 8px;
-}
-
-/* gif-me: two thumbs share the same 16:9 slot so card height matches others */
-.cards.projects-grid .gif-row{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  width: 100%;
-  aspect-ratio: 16 / 9;          /* container defines the height */
-}
-.cards.projects-grid .gif-row .project-gif{
-  width: 100% !important;
-  height: 100% !important;
-  max-width: none !important;
-  max-height: none !important;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-/* Neutralize any old helpers that fight these sizes */
-.project-gif.square-gif,
-.project-gif.gif-me-gif{
-  width: 100% !important;
-  height: 100% !important;
-  max-width: none !important;
-  max-height: none !important;
-}
-
-/* ===== Unified section width =====
-   Set one content width and have ALL .cards (incl. Projects) use it */
-:root { --content-max: 940px; }           /* pick the width your other sections use */
-.cards { max-width: var(--content-max); }  /* Live Apps / Connect already use .cards */
-
-/* ===== Projects: lock to max 2 columns (same container width as others) ===== */
-.cards.projects-grid{
-  margin: 0 auto;
-  grid-template-columns: repeat(2, minmax(280px, 1fr));  /* max 2 cols */
-  gap: 16px;
-}
-@media (max-width: 700px){
-  .cards.projects-grid{ grid-template-columns: 1fr; }    /* phones: 1 col */
-}
-
-/* ===== Projects media: consistent aspect ratios ===== */
-.cards.projects-grid .project-gif{
-  width: 100%;
-  aspect-ratio: 16 / 9;          /* uniform frame for single media */
-  height: auto;
-  object-fit: cover;             /* fill without distortion */
-  border-radius: 8px;
-}
-
-/* gif-me: two thumbs share the same 16:9 slot so card height matches others */
-.cards.projects-grid .gif-row{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  width: 100%;
-  aspect-ratio: 16 / 9;          /* container defines the height */
-}
-.cards.projects-grid .gif-row .project-gif{
-  width: 100% !important;
-  height: 100% !important;
-  max-width: none !important;
-  max-height: none !important;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-/* Neutralize any old helpers that fight these sizes */
-.project-gif.square-gif,
-.project-gif.gif-me-gif{
-  width: 100% !important;
-  height: 100% !important;
-  max-width: none !important;
-  max-height: none !important;
-}
-
-/* === Projects: same max width as other sections + max 2 columns === */
-.cards.projects-grid{
-  /* your .cards container is 452px wide, match it here */
-  max-width: 452px;
-  margin: 0 auto;
-  grid-template-columns: 1fr 1fr;  /* lock to two columns on desktop */
-  gap: 12px;
-}
-@media (max-width: 600px){
-  .cards.projects-grid{ grid-template-columns: 1fr; } /* phones: 1 col */
-}
-
-/* === Projects media: clean, uniform aspect ratios === */
-.cards.projects-grid .project-gif{
-  width: 100%;
-  aspect-ratio: 16 / 9;   /* consistent preview frame */
-  height: auto;           /* fallback */
-  object-fit: cover;      /* fill without distortion */
-  border-radius: 6px;
-  margin-top: 8px;
-}
-
-/* gif-me: two thumbs should fill the SAME 16:9 slot */
-.cards.projects-grid .gif-row{
-  display: grid !important;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  width: 100%;
-  aspect-ratio: 16 / 9;   /* sets the card height */
-}
-.cards.projects-grid .gif-row .project-gif{
-  width: 100% !important;
-  height: 100% !important;
-  max-width: none !important;
-  max-height: none !important;
-  object-fit: cover;
-  border-radius: 6px;
-}
-
-/* Neutralize older helpers inside Projects so ratios hold */
-.cards.projects-grid .gif-me-gif,
-.cards.projects-grid .square-gif{
-  width: 100% !important;
-  height: 100% !important;
-  max-width: none !important;
-  max-height: none !important;
-}
-
-/* Live Apps: match the narrow sections and cap at 2 columns */
-.cards.apps-grid{
-  max-width: 452px;              /* same as your narrow sections */
-  margin: 0 auto;
-  grid-template-columns: 1fr 1fr; /* 2 columns on desktop */
-  gap: 12px;
-}
-@media (max-width: 600px){
-  .cards.apps-grid{ grid-template-columns: 1fr; } /* 1 col on phones */
-}
-
-.avatar-circle{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:50%;
-}
-
-/* Circle-crop the headshot like the other icons */
-.avatar-circle{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:50%;
-}
-
-/* Make the Recommendations card span both columns on desktop */
-@media (min-width:600px){
-  .connect-grid .recommendations-card{ grid-column: 1 / -1; }
-}
-
-/* Resumé: simple 2-card grid (matches your section width) */
-.resume-grid{
-  max-width:452px;                 /* same as .cards in prod */
-  grid-template-columns:1fr 1fr;   /* two columns on desktop */
-  gap:12px;
-}
-@media (max-width:600px){
-  .resume-grid{ grid-template-columns:1fr; } /* one column on phones */
-}
-
-/* --- Connect grid: 2-up, with a full-width hero card on top --- */
-.connect-grid{
-  max-width: 452px;                 /* same container as other sections */
-  display: grid;
-  grid-template-columns: 1fr 1fr;   /* two columns on desktop */
-  gap: 12px;
-  padding: 0 6px;                   /* creates side "gutters" so the hero card
-                                       aligns with the edges of the two cards below */
-}
-
-/* Make the Recommendations card appear above, spanning both columns */
-.connect-grid .recommendations-card{
-  grid-column: 1 / -1;              /* double-wide */
-  order: -1;                        /* place above the other two */
-  text-align: center;
-}
-
-/* Tighter avatar for the hero card so it feels balanced */
-.connect-grid .recommendations-card .icon-circle{
-  width: 64px;
-  height: 64px;
-  margin-bottom: 6px;
-}
-
-/* Circle-crop the headshot */
-.avatar-circle{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-/* Phones: stack all three cards 1-up, natural order still puts
-   Recommendations first at the top */
-@media (max-width: 600px){
-  .connect-grid{
-    grid-template-columns: 1fr;
-    padding: 0;                     /* no need for gutters on single column */
-  }
-  .connect-grid .recommendations-card{
-    grid-column: auto;
-    order: -1;
-  }
-}
-
-/* --- Resumé grid: exactly same card widths as Connect --- */
-.resume-grid{
-  max-width: 452px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;   /* same as Connect */
-  gap: 12px;
-  padding: 0 6px;                   /* same gutters for perfect line-up */
-}
-@media (max-width: 600px){
-  .resume-grid{
-    grid-template-columns: 1fr;
-    padding: 0;
-  }
-}
-
-/* === Uniform card widths (match Live Apps) === */
-.connect-grid,
-.resume-grid,
-.apps-grid,
-.projects-grid{
-  max-width: 452px;          /* same container as Live Apps */
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;  /* two equal columns */
-  gap: 12px;
-}
-
-/* Recommendations: double-wide and first */
-.connect-grid .recommendations-card{
-  grid-column: 1 / -1;       /* span both columns */
-}
-
-/* Circle-crop the headshot inside the same white icon circle */
-.icon-circle .avatar-circle{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-/* Resumé section already uses .resume-grid — this makes the two cards
-   exactly the same width as LinkedIn/GitHub cards */
-.resume-grid .card { margin: 0; }
-
-/* === Mobile: single column & full width === */
-@media (max-width: 600px){
-  .connect-grid,
-  .resume-grid,
-  .apps-grid,
-  .projects-grid{
-    grid-template-columns: 1fr;     /* stack */
-    max-width: 100%;
-  }
-  .connect-grid .recommendations-card{ grid-column: auto; } /* harmless either way */
-}
-
-/* ----- unify section widths (same as Live Apps) ----- */
-:root { --colW: 452px; --gap: 12px; }
-
-.cards.connect-grid,
-.cards.resume-grid,
-.cards.apps-grid,
-.cards.projects-grid{
-  max-width: var(--colW);
-  margin: 0 auto;
-  gap: var(--gap);
-  grid-template-columns: 1fr 1fr;   /* lock to 2 cols on desktop */
-}
-
-/* Mobile: single column (still square) */
-@media (max-width: 600px){
+/* =================== Mobile: single column + section-specific widths =================== */
+@media (max-width:900px){
+  /* Base single column for all sections */
+  .cards,
   .cards.connect-grid,
   .cards.resume-grid,
   .cards.apps-grid,
   .cards.projects-grid{
-    max-width: 94%;
-    grid-template-columns: 1fr;
+    grid-template-columns:1fr !important;
+    max-width:var(--mobile-col) !important;
+    margin-left:auto; margin-right:auto;
   }
-}
+  .cards .card{ width:100% !important; justify-self:stretch !important; }
+  .cards.connect-grid .recommendations-card{ grid-column:auto !important; }
 
-/* ----- square cards for uniform width/height ----- */
-/* (Recommendations stays flexible height) */
-.connect-grid .card:not(.recommendations-card),
-.resume-grid .card,
-.projects-grid .card{
-  aspect-ratio: 1 / 1;   /* height == width */
-}
-
-/* Recommendations spans both columns and keeps natural height */
-.connect-grid .recommendations-card{
-  grid-column: 1 / -1;
-  aspect-ratio: auto;
-}
-
-/* ----- make project content fit neatly inside the square ----- */
-.projects-grid .bottom-card{
-  display: grid;
-  grid-template-rows: min-content 1fr min-content; /* title | media | link */
-}
-.projects-grid .project-gif{
-  width: 100% !important;
-  height: 100% !important;      /* fill the middle row */
-  object-fit: cover;
-  border-radius: 6px;
-  margin-top: 8px;
-}
-
-/* (Optional) keep icon circles from feeling tiny in the taller squares */
-@media (min-width: 601px){
-  .connect-grid .icon-circle,
-  .resume-grid .icon-circle{ width: 96px; height: 96px; }
+  /* Tune widths per section */
+  :root{
+    --mobile-col-resume:   clamp(380px, 96vw, 560px); /* a bit wider */
+    --mobile-col-projects: clamp(300px, 88vw, 420px); /* a bit narrower */
+  }
+  .cards.resume-grid{  max-width:var(--mobile-col-resume) !important; }
+  .cards.projects-grid{ max-width:var(--mobile-col-projects) !important; }
 }
