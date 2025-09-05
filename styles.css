@@ -1,57 +1,62 @@
 /* =================== Fonts =================== */
-@font-face {
-  font-family: 'OpenSans';
-  src: url('./fonts/OpenSans-Light-webfont.woff') format('woff'),
-       url('./fonts/OpenSans-Light-webfont.ttf') format('truetype');
-  font-weight: 300; font-style: normal; font-display: swap;
+@font-face{
+  font-family:'OpenSans';
+  src:url('./fonts/OpenSans-Light-webfont.woff') format('woff'),
+      url('./fonts/OpenSans-Light-webfont.ttf') format('truetype');
+  font-weight:300; font-style:normal; font-display:swap;
 }
-@font-face {
-  font-family: 'OpenSans';
-  src: url('./fonts/OpenSans-Regular-webfont.woff') format('woff'),
-       url('./fonts/OpenSans-Regular-webfont.ttf') format('truetype');
-  font-weight: 400; font-style: normal; font-display: swap;
+@font-face{
+  font-family:'OpenSans';
+  src:url('./fonts/OpenSans-Regular-webfont.woff') format('woff'),
+      url('./fonts/OpenSans-Regular-webfont.ttf') format('truetype');
+  font-weight:400; font-style:normal; font-display:swap;
 }
-@font-face {
-  font-family: 'OpenSans';
-  src: url('./fonts/OpenSans-Semibold-webfont.woff') format('woff'),
-       url('./fonts/OpenSans-Semibold-webfont.ttf') format('truetype');
-  font-weight: 600; font-style: normal; font-display: swap;
+@font-face{
+  font-family:'OpenSans';
+  src:url('./fonts/OpenSans-Semibold-webfont.woff') format('woff'),
+      url('./fonts/OpenSans-Semibold-webfont.ttf') format('truetype');
+  font-weight:600; font-style:normal; font-display:swap;
 }
-@font-face {
-  font-family: 'OpenSans';
-  src: url('./fonts/OpenSans-Bold-webfont.woff') format('woff'),
-       url('./fonts/OpenSans-Bold-webfont.ttf') format('truetype');
-  font-weight: 700; font-style: normal; font-display: swap;
+@font-face{
+  font-family:'OpenSans';
+  src:url('./fonts/OpenSans-Bold-webfont.woff') format('woff'),
+      url('./fonts/OpenSans-Bold-webfont.ttf') format('truetype');
+  font-weight:700; font-style:normal; font-display:swap;
 }
 
 /* =================== Base =================== */
 *{ margin:0; padding:0; box-sizing:border-box; }
 html, body{ height:100%; }
 
-html{ background: linear-gradient(#2a2a29, #1c1c1c) no-repeat fixed; background-size:cover; }
+html{ background:linear-gradient(#2a2a29, #1c1c1c) no-repeat fixed; background-size:cover; }
 body{
   font-family:"OpenSans", Helvetica, Arial, sans-serif;
   font-weight:400; font-size:18px; line-height:1.5; color:#f0e7d5;
 }
 
-/* --- Cover photo banner (no blur) --- */
+/* --- Header hero (no blur; full face) --- */
 header{
   --hero-h: clamp(140px, 24vh, 210px);
-  height: var(--hero-h);
-  background: #1c1c1c url('images/miguel-headshot.jpg') center 26% / cover no-repeat;
-  position: relative; overflow:hidden;
+  height:var(--hero-h);
+  background:#1c1c1c url('images/miguel-headshot.jpg') center 22% / cover no-repeat;
+  position:relative; overflow:hidden;
 }
 header::after{
-  content:""; position:absolute; left:0; right:0; bottom:0; height:48px;
-  background: linear-gradient(to bottom, rgba(28,28,28,0), rgba(28,28,28,1));
+  content:"";
+  position:absolute; left:0; right:0; bottom:0; height:28px;
+  background:linear-gradient(to bottom, rgba(28,28,28,0), rgba(28,28,28,0.85));
 }
+
+/* Taller on mobile (+more bottom revealed) */
 @media (max-width:900px){
-  header{ --hero-h: clamp(120px, 22vh, 170px); background-position:center 30%; }
+  header{
+    --hero-h: clamp(180px, 30vh, 240px);
+    background-position:center 38%;
+  }
 }
 
 footer{ background:#353535; border-top:4px solid #434343; padding:10px 0; height:auto; }
 
-/* container */
 .wrapper{ display:flex; flex-direction:column; align-items:center; padding-bottom:40px; }
 
 /* Headings / dividers */
@@ -63,8 +68,8 @@ h1{ font-weight:700; margin-top:14px; }
 /* =================== Layout Vars =================== */
 :root{
   --gap: 12px;
-  --desk-card: 280px;                        /* desktop per-card width (all sections) */
-  --mobile-col: clamp(320px, 92vw, 440px);   /* single-column width on phones */
+  --desk-card: 280px;                      /* desktop width for each card */
+  --mobile-col: clamp(320px, 92vw, 440px); /* base mobile column width */
 }
 
 /* =================== Cards & Grids =================== */
@@ -72,7 +77,7 @@ h1{ font-weight:700; margin-top:14px; }
   display:grid; gap:var(--gap); justify-content:center;
   grid-template-columns: repeat(2, var(--desk-card));
 }
-.cards .card{ width: var(--desk-card); }
+.cards .card{ width:var(--desk-card); }
 
 .card{
   background:#2e2e2e; border:1px solid #444; border-radius:8px;
@@ -81,20 +86,20 @@ h1{ font-weight:700; margin-top:14px; }
   transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
 }
 .card:hover, .card:focus-visible{
-  transform: translateY(-2px); border-color:#f7ce46; box-shadow:0 4px 16px rgba(247,206,70,.12); outline:none;
+  transform:translateY(-2px); border-color:#f7ce46; box-shadow:0 4px 16px rgba(247,206,70,.12); outline:none;
 }
 
-/* Connect hero spans both columns on desktop */
+/* Connect: recommendations spans both cols on desktop */
 .cards.connect-grid .recommendations-card{
-  grid-column: 1 / -1; width:auto; justify-self:stretch;
+  grid-column:1 / -1; width:auto; justify-self:stretch;
 }
 
-/* Titles always centered with consistent spacing */
+/* Titles centered with consistent spacing */
 .card-title, .bottom-card-title{ text-align:center; margin-bottom:8px; }
 .card-title, .resume-card-title{ color:#f7ce46; margin-top:10px; }
 .bottom-card-title{ color:#f0e7d5; margin-top:0; }
 
-/* =================== Icon circles / emoji icon =================== */
+/* =================== Icons =================== */
 .icon-circle{
   background:#fff; border-radius:50%;
   width:80px; height:80px; margin:0 auto 10px auto;
@@ -103,22 +108,19 @@ h1{ font-weight:700; margin-top:14px; }
 .social-logo{ width:65%; height:auto; }
 .github-logo{ width:95%; height:auto; }
 .linkedin-logo{ width:70%; height:auto; }
+.emoji-icon{ font-size:52px; line-height:1; display:inline-block; }
 
-.emoji-icon{
-  font-size:52px; line-height:1; display:inline-block;
-}
-
-/* On mobile, wrap the long hero title to ~2 lines */
+/* Wrap the long recommendations title on mobile (~2 lines) */
 @media (max-width:900px){
   .cards.connect-grid .recommendations-card .card-title{
     max-inline-size:16ch; margin-left:auto; margin-right:auto; text-wrap:balance;
   }
 }
 
-/* =================== Live Apps media =================== */
+/* =================== Live Apps =================== */
 .resume-grid .icon-circle svg{ width:64%; height:auto; display:block; }
 
-/* tighter gap between screenshots (~20% of inter-card gap) */
+/* ~20% of the inter-card gap between screenshots */
 .screenshot-row{
   display:flex; justify-content:center; align-items:flex-end;
   gap: calc(var(--gap) * 0.2);
@@ -127,47 +129,55 @@ h1{ font-weight:700; margin-top:14px; }
 .app-screenshot, .short-screenshot{ width:auto; max-width:75px; height:150px; border-radius:4px; margin:0; }
 .store-badge{ margin-top:5px; align-self:center; width:120px; height:auto; }
 
-/* =================== Projects (canonical) =================== */
-/* turn each project card into [title] [media] [footer] */
+/* =================== Projects (canonical layout) =================== */
+/* Turn each project card into [title] [media] [footer] */
 .cards.projects-grid .card{
   display:grid !important;
-  grid-template-rows: auto minmax(220px, 1fr) auto;
+  grid-template-rows:auto minmax(220px, 1fr) auto;
   overflow:hidden !important;
 }
-.cards.projects-grid .card *{ min-height:0; }    /* no pushing */
+.cards.projects-grid .card *{ min-height:0; }  /* prevent push/overflow */
 
-/* footer pinned & centered */
+/* Footer pinned & centered */
 .cards.projects-grid .source-link{
   grid-row:3; margin-top:10px;
   display:flex; align-items:center; justify-content:center; gap:6px; text-align:center;
 }
 .octocat-icon{ width:22.5px; height:22.5px; }
+.source-link a, .source-link a:visited{ color:#f0e7d5; }
+.source-link a:hover{ color:#f7ce46; }
 
-/* Non gif-me: show first GIF only, fill media row (AR can distort) */
+/* Non–gif-me: show only first GIF; fill media row (distortion allowed) */
 .cards.projects-grid .card > img.project-gif:nth-of-type(n+2){ display:none !important; }
 .cards.projects-grid .card > img.project-gif{
   grid-row:2 !important; width:100% !important; height:100% !important;
-  object-fit: fill !important; border-radius:6px;
+  object-fit:fill !important; border-radius:6px;
 }
 
-/* gif-me: two equal tiles; never taller than media row; no footer bleed */
+/* gif-me: two equal tiles; fixed responsive height; no footer bleed */
 .cards.projects-grid .card .gif-row{
   grid-row:2 !important;
   display:grid !important; grid-template-columns:1fr 1fr !important;
-  gap:8px !important; aspect-ratio:16 / 9; align-items:stretch !important; min-height:0;
+  gap:8px !important;
+  height:clamp(180px, 52vw, 260px) !important; /* mobile-friendly cap */
+  aspect-ratio:auto !important;
+  align-items:stretch !important; min-height:0;
 }
 .cards.projects-grid .card .gif-row .project-gif{
-  width:100% !important; height:100% !important; object-fit:contain !important; border-radius:6px;
+  width:100% !important; height:100% !important; object-fit:cover !important; border-radius:6px;
 }
 
-/* =================== Lightbox (Recommendations preview) =================== */
+/* =================== Lightbox =================== */
 .lb{
   position:fixed; inset:0; display:none;
   align-items:center; justify-content:center;
   background:rgba(0,0,0,.88); padding:20px; z-index:1000;
 }
 .lb.open{ display:flex; }
-.lb img{ max-width:min(94vw,1200px); max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,.35); }
+.lb img{
+  max-width:min(94vw,1200px); max-height:90vh;
+  width:auto; height:auto; background:#fff; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
 .lb-btn{
   position:absolute; top:14px; background:#111827; color:#fff; border:1px solid #374151; border-radius:9999px;
   width:40px; height:40px; font-size:24px; line-height:36px; display:grid; place-items:center; cursor:pointer;
@@ -188,142 +198,26 @@ h1{ font-weight:700; margin-top:14px; }
 .email a{ color:#fff; text-decoration:underline; font-weight:500; }
 .email a:hover{ color:#f7ce46; }
 
-/* =================== Mobile: single column everywhere =================== */
+/* =================== Mobile: single column + section-specific widths =================== */
 @media (max-width:900px){
+  /* Base single column for all sections */
   .cards,
   .cards.connect-grid,
   .cards.resume-grid,
   .cards.apps-grid,
   .cards.projects-grid{
-    grid-template-columns: 1fr !important;
-    max-width: var(--mobile-col) !important;
+    grid-template-columns:1fr !important;
+    max-width:var(--mobile-col) !important;
     margin-left:auto; margin-right:auto;
   }
   .cards .card{ width:100% !important; justify-self:stretch !important; }
   .cards.connect-grid .recommendations-card{ grid-column:auto !important; }
-}
 
-/* =============== FINAL MOBILE TWEAKS (append at end) =============== */
-
-/* If the extra hero div is still in the HTML, hide it so only <header> shows */
-.hero-cover{ display:none !important; }
-
-/* 1) MOBILE HERO — make it ~50px taller and reveal more at the bottom */
-@media (max-width:900px){
-  header{
-    /* previously clamp(120px, 22vh, 170px) — now taller */
-    --hero-h: clamp(180px, 30vh, 240px);
-    /* nudge focus down so more of the lower area is visible */
-    background-position: center 38%;
-  }
-}
-
-/* 2) MOBILE WIDTHS PER SECTION */
-@media (max-width:900px){
-  /* Resumé a bit wider than the base column */
-  .cards.resume-grid{
-    max-width: calc(var(--mobile-col) + 60px) !important;
-  }
-
-  /* Projects a bit narrower than the base column */
-  .cards.projects-grid{
-    max-width: calc(var(--mobile-col) - 40px) !important;
-  }
-
-  /* Ensure cards fill their section columns */
-  .cards.resume-grid .card,
-  .cards.projects-grid .card{
-    width: 100% !important;
-    justify-self: stretch !important;
-  }
-}
-
-/* 3) PROJECT FOOTER LINK COLOR (visited/hover) */
-.source-link a,
-.source-link a:visited{ color:#f0e7d5 !important; }
-.source-link a:hover{ color:#f7ce46 !important; }
-
-/* =========================
-   QUICK PATCHES / OVERRIDES
-   ========================= */
-
-/* 1) DESKTOP BANNER: remove the harsh bar and show more face */
-header{
-  background-position: center 22% !important;             /* scoot up a touch */
-}
-header::after{
-  height: 28px !important;                                 /* shorter fade */
-  background: linear-gradient(to bottom,
-               rgba(28,28,28,0),
-               rgba(28,28,28,0.85)) !important;            /* softer */
-  pointer-events: none;
-}
-
-/* (safety) if a spare .hero-cover exists, keep it inert on desktop */
-@media (min-width: 901px){
-  .hero-cover{ display:none !important; }
-}
-
-/* 2) MOBILE WIDTH TUNING: resume wider, projects narrower */
-@media (max-width: 900px){
-  /* Default mobile column stays as-is for Connect & Live Apps */
+  /* Tune widths per section */
   :root{
-    --mobile-col-resume:  clamp(360px, 96vw, 540px);       /* wider than Connect */
-    --mobile-col-projects: clamp(300px, 88vw, 420px);      /* a bit narrower */
+    --mobile-col-resume:   clamp(380px, 96vw, 560px); /* a bit wider */
+    --mobile-col-projects: clamp(300px, 88vw, 420px); /* a bit narrower */
   }
-
-  .cards.resume-grid{
-    max-width: var(--mobile-col-resume) !important;
-  }
-  .cards.projects-grid{
-    max-width: var(--mobile-col-projects) !important;
-  }
-}
-
-/* 3) PROJECTS: hard-center titles/footers and stop any overflow */
-.cards.projects-grid .bottom-card-title{
-  text-align: center !important;
-  margin: 8px 0 6px !important;
-}
-.cards.projects-grid .source-link{
-  display:flex !important;
-  justify-content:center !important;
-  align-items:center !important;
-  gap:6px !important;
-  text-align:center !important;
-  width:100% !important;
-  margin: 10px 0 4px !important;
-}
-.cards.projects-grid .card{ overflow:hidden !important; }
-.cards.projects-grid .card *{ min-height:0 !important; }
-
-/* 4) gif-me media rules — same height tiles, no overflow, footer never overlaps */
-.cards.projects-grid .card .gif-row{
-  grid-row:2 !important;
-  display:grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap:8px !important;
-
-  /* Fixed, sensible row height on mobile so the card never balloons */
-  height: clamp(180px, 52vw, 260px) !important;
-  aspect-ratio: auto !important;     /* let the height above be the boss */
-  align-items: stretch !important;
-}
-.cards.projects-grid .card .gif-row .project-gif{
-  width:100% !important;
-  height:100% !important;
-  object-fit: cover !important;      /* fills the tile, equal heights */
-  border-radius:6px;
-}
-
-/* 5) Non–gif-me (single GIF) remains full-bleed within the media row */
-.cards.projects-grid .card > img.project-gif{
-  grid-row:2 !important;
-  width:100% !important;
-  height:100% !important;
-  object-fit: fill !important;        /* your earlier spec */
-  border-radius:6px;
-}
-.cards.projects-grid .card > img.project-gif:nth-of-type(n+2){
-  display:none !important;            /* hide any extra GIFs */
+  .cards.resume-grid{  max-width:var(--mobile-col-resume) !important; }
+  .cards.projects-grid{ max-width:var(--mobile-col-projects) !important; }
 }
