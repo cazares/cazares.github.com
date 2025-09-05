@@ -17,15 +17,17 @@
     <h2 class="section-heading">Connect</h2>
     <div class="divider"></div>
     <div class="cards connect-grid">
-      <!-- Recommendations (spans both columns) -->
-      <a href="https://www.linkedin.com/in/cazaresm/details/recommendations/?detailScreenTabIndex=0"
-         target="_blank" class="card recommendations-card">
-        <div class="icon-circle">
-          <img src="images/miguel-headshot.jpg" alt="Professional Recommendations" class="avatar-circle"/>
-        </div>
-        <div class="card-title">Professional Recommendations</div>
+      <a href="#" 
+        class="card recommendations-card" 
+        id="recsPreviewCard"
+        role="button"
+        aria-controls="recsLightbox"
+        aria-label="Open recommendations preview">
+          <div class="icon-circle">
+            <img src="images/miguel-headshot.jpg" alt="Professional Recommendations" class="avatar-circle"/>
+          </div>
+          <div class="card-title">Professional Recommendations</div>
       </a>
-
       <a href="http://linkedin.com/in/cazaresm" target="_blank" class="card">
         <div class="icon-circle">
           <img src="images/linkedin.png" alt="LinkedIn" class="social-logo linkedin-logo"/>
@@ -217,5 +219,58 @@
       <a href="mailto:contact@miguelengineer.com">contact@miguelengineer.com</a>
     </div>
   </footer>
+  <!-- Simple Lightbox -->
+  <div id="recsLightbox" class="lb" aria-hidden="true" role="dialog" aria-label="Recommendations preview">
+    <button class="lb-btn lb-close" aria-label="Close">×</button>
+    <button class="lb-btn lb-prev" aria-label="Previous">‹</button>
+    <img id="lbImage" alt="Recommendations preview"/>
+    <button class="lb-btn lb-next" aria-label="Next">›</button>
+  </div>
+  <script>
+    // === Minimal lightbox for Recommendations ===
+    const RECS_IMAGES = [
+      'images/recsNEW-balanced-2col-white.png'
+      // Add more files if you split into pages
+    ];
+
+    const openBtn = document.getElementById('recsPreviewCard');
+    const lb = document.getElementById('recsLightbox');
+    const lbImg = document.getElementById('lbImage');
+    const prevBtn = lb.querySelector('.lb-prev');
+    const nextBtn = lb.querySelector('.lb-next');
+    const closeBtn = lb.querySelector('.lb-close');
+
+    let idx = 0;
+
+    function show(i){
+      idx = (i + RECS_IMAGES.length) % RECS_IMAGES.length;
+      lbImg.src = RECS_IMAGES[idx];
+      lb.setAttribute('aria-hidden', 'false');
+      lb.classList.add('open');
+      const many = RECS_IMAGES.length > 1;
+      prevBtn.style.display = many ? '' : 'none';
+      nextBtn.style.display = many ? '' : 'none';
+    }
+    function close(){
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden', 'true');
+      lbImg.removeAttribute('src');
+    }
+
+    openBtn?.addEventListener('click', (e)=>{ e.preventDefault(); show(0); });
+    closeBtn.addEventListener('click', close);
+    prevBtn.addEventListener('click', (e)=>{ e.stopPropagation(); show(idx - 1); });
+    nextBtn.addEventListener('click', (e)=>{ e.stopPropagation(); show(idx + 1); });
+
+    lb.addEventListener('click', (e)=>{ if(e.target === lb) close(); });
+    window.addEventListener('keydown', (e)=>{
+      if(!lb.classList.contains('open')) return;
+      if(e.key === 'Escape') close();
+      if(RECS_IMAGES.length > 1){
+        if(e.key === 'ArrowLeft') show(idx - 1);
+        if(e.key === 'ArrowRight') show(idx + 1);
+      }
+    });
+  </script>
 </body>
 </html>
