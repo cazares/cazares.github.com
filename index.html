@@ -8,7 +8,6 @@
 </head>
 <body>
   <header></header>
-
   <div class="wrapper">
     <h1>Miguel Cazares</h1>
     <div class="divider"></div>
@@ -24,7 +23,7 @@
         aria-controls="recsLightbox"
         aria-label="Open recommendations preview">
           <div class="icon-circle">
-            <img src="images/miguel-headshot.jpg" alt="Professional Recommendations" class="avatar-circle"/>
+            <span class="emoji-icon" role="img" aria-label="Developer">👨🏽‍💻</span>
           </div>
           <div class="card-title">Professional Recommendations</div>
       </a>
@@ -227,12 +226,24 @@
     <button class="lb-btn lb-next" aria-label="Next">›</button>
   </div>
   <script>
-    // === Minimal lightbox for Recommendations ===
-    const RECS_IMAGES = [
+    // === Recommendations: desktop vs mobile asset sets ===
+    const RECS_IMAGES_DESKTOP = [
       'images/recsNEW-balanced-2col-white.png'
-      // Add more files if you split into pages
+    ];
+    const RECS_IMAGES_MOBILE = [
+      'images/recs-vertical-ordered-white-v3.png'
     ];
 
+    const mqMobile = window.matchMedia('(max-width: 900px)');
+    let RECS_IMAGES = RECS_IMAGES_DESKTOP;
+
+    function pickRecsSet() {
+      RECS_IMAGES = mqMobile.matches ? RECS_IMAGES_MOBILE : RECS_IMAGES_DESKTOP;
+    }
+    pickRecsSet();
+    mqMobile.addEventListener?.('change', pickRecsSet);
+
+    // === Minimal lightbox ===
     const openBtn = document.getElementById('recsPreviewCard');
     const lb = document.getElementById('recsLightbox');
     const lbImg = document.getElementById('lbImage');
@@ -243,6 +254,7 @@
     let idx = 0;
 
     function show(i){
+      pickRecsSet(); // re-evaluate on open/resize
       idx = (i + RECS_IMAGES.length) % RECS_IMAGES.length;
       lbImg.src = RECS_IMAGES[idx];
       lb.setAttribute('aria-hidden', 'false');
