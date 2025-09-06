@@ -1,27 +1,27 @@
 /* =================== Fonts =================== */
-@font-face{
-  font-family:'OpenSans';
-  src:url('./fonts/OpenSans-Light-webfont.woff') format('woff'),
-      url('./fonts/OpenSans-Light-webfont.ttf') format('truetype');
-  font-weight:300; font-style:normal; font-display:swap;
+@font-face {
+  font-family: 'OpenSans';
+  src: url('./fonts/OpenSans-Light-webfont.woff') format('woff'),
+       url('./fonts/OpenSans-Light-webfont.ttf') format('truetype');
+  font-weight: 300; font-style: normal; font-display: swap;
 }
-@font-face{
-  font-family:'OpenSans';
-  src:url('./fonts/OpenSans-Regular-webfont.woff') format('woff'),
-      url('./fonts/OpenSans-Regular-webfont.ttf') format('truetype');
-  font-weight:400; font-style:normal; font-display:swap;
+@font-face {
+  font-family: 'OpenSans';
+  src: url('./fonts/OpenSans-Regular-webfont.woff') format('woff'),
+       url('./fonts/OpenSans-Regular-webfont.ttf') format('truetype');
+  font-weight: 400; font-style: normal; font-display: swap;
 }
-@font-face{
-  font-family:'OpenSans';
-  src:url('./fonts/OpenSans-Semibold-webfont.woff') format('woff'),
-      url('./fonts/OpenSans-Semibold-webfont.ttf') format('truetype');
-  font-weight:600; font-style:normal; font-display:swap;
+@font-face {
+  font-family: 'OpenSans';
+  src: url('./fonts/OpenSans-Semibold-webfont.woff') format('woff'),
+       url('./fonts/OpenSans-Semibold-webfont.ttf') format('truetype');
+  font-weight: 600; font-style: normal; font-display: swap;
 }
-@font-face{
-  font-family:'OpenSans';
-  src:url('./fonts/OpenSans-Bold-webfont.woff') format('woff'),
-      url('./fonts/OpenSans-Bold-webfont.ttf') format('truetype');
-  font-weight:700; font-style:normal; font-display:swap;
+@font-face {
+  font-family: 'OpenSans';
+  src: url('./fonts/OpenSans-Bold-webfont.woff') format('woff'),
+       url('./fonts/OpenSans-Bold-webfont.ttf') format('truetype');
+  font-weight: 700; font-style: normal; font-display: swap;
 }
 
 /* =================== Base =================== */
@@ -34,40 +34,48 @@ body{
   font-weight:400; font-size:18px; line-height:1.5; color:#f0e7d5;
 }
 
-footer{ background:#353535; border-top:4px solid #434343; padding:10px 0; }
+footer{ background:#353535; border-top:4px solid #434343; padding:10px 0; height:auto; }
 
-/* =================== Hero (static crop for all sizes) =================== */
+/* =================== Hero banner (static, no zoom) =================== */
+:root{
+  --hero-h: clamp(180px, 28vh, 260px);
+  --gap: 12px;
+  --desk-card: 280px; /* desktop card width (also used on mobile for reflow-only) */
+}
+
 header{
-  height: 260px;                                      /* fixed height = same crop */
-  background: #1c1c1c url('images/miguel-headshot.jpg')
-              center 38% / cover no-repeat !important;
-  position: relative; overflow:hidden;
+  height: var(--hero-h);
+  position: relative;
+  overflow: hidden;
+  background: #1c1c1c;
+}
+header .hero-img{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  width: auto;
+  max-width: none;
+  pointer-events: none;
 }
 header::after{
   content:""; position:absolute; left:0; right:0; bottom:0; height:28px;
-  background: linear-gradient(to bottom, rgba(28,28,28,0), rgba(28,28,28,0.85));
+  background: linear-gradient(to bottom, rgba(28,28,28,0), rgba(28,28,28,.85));
 }
 
 /* container */
 .wrapper{ display:flex; flex-direction:column; align-items:center; padding-bottom:40px; }
 
 /* Headings / dividers */
-h1{ font-weight:700; margin-top:14px; }
-.section-heading, .bottom-sections-heading, .card-title, .resume-card-title, .bottom-card-title{ font-weight:400; }
+.section-heading, .bottom-sections-heading, .card-title, .bottom-card-title{ font-weight:400; }
+.name-heading{ color:#f7ce46; font-weight:600; }              /* less-bold yellow name */
 .divider{ width:45%; max-width:430px; margin:15px 0; border-top:.5px solid #f0e7d5b3; }
-.section-heading, .bottom-sections-heading{ font-size:28px; line-height:1; color:#f7ce46; text-align:center; }
-
-/* =================== Layout Vars =================== */
-:root{
-  --gap: 12px;
-  --desk-card: 280px;   /* single source of truth for card width everywhere */
-}
+.bottom-sections-heading{ font-size:28px; line-height:1; color:#f7ce46; text-align:center; }
 
 /* =================== Cards & Grids =================== */
 .cards{
-  display:grid;
-  gap:var(--gap);
-  justify-content:center;
+  display:grid; gap:var(--gap); justify-content:center;
   grid-template-columns: repeat(2, var(--desk-card));
 }
 .cards .card{ width: var(--desk-card); }
@@ -82,12 +90,9 @@ h1{ font-weight:700; margin-top:14px; }
   transform: translateY(-2px); border-color:#f7ce46; box-shadow:0 4px 16px rgba(247,206,70,.12); outline:none;
 }
 
-/* Connect hero spans both columns on desktop */
-.cards.connect-grid .recommendations-card{ grid-column: 1 / -1; width:auto; justify-self:stretch; }
-
 /* Titles always centered with consistent spacing */
 .card-title, .bottom-card-title{ text-align:center; margin-bottom:8px; }
-.card-title, .resume-card-title{ color:#f7ce46; margin-top:10px; }
+.card-title{ color:#f7ce46; margin-top:10px; }
 .bottom-card-title{ color:#f0e7d5; margin-top:0; }
 
 /* =================== Icon circles / emoji icon =================== */
@@ -96,15 +101,15 @@ h1{ font-weight:700; margin-top:14px; }
   width:80px; height:80px; margin:0 auto 10px auto;
   display:flex; align-items:center; justify-content:center;
 }
+.icon-circle svg{ width:64%; height:auto; display:block; }   /* works for PDF icon */
 .social-logo{ width:65%; height:auto; }
 .github-logo{ width:95%; height:auto; }
 .linkedin-logo{ width:70%; height:auto; }
+
 .emoji-icon{ font-size:52px; line-height:1; display:inline-block; }
 
-/* =================== Live Apps media =================== */
-.resume-grid .icon-circle svg{ width:64%; height:auto; display:block; }
-
-/* Gap between screenshots: +10px on ALL sizes */
+/* =================== Portfolio (Live Apps) media =================== */
+/* gap between screenshots = 20% of card gap + 10px (desktop & mobile) */
 .screenshot-row{
   display:flex; justify-content:center; align-items:flex-end;
   gap: calc(var(--gap) * 0.2 + 10px);
@@ -114,7 +119,6 @@ h1{ font-weight:700; margin-top:14px; }
 .store-badge{ margin-top:5px; align-self:center; width:120px; height:auto; }
 
 /* =================== Projects (canonical) =================== */
-/* Turn each project card into [title] [media] [footer] */
 .cards.projects-grid .card{
   display:grid !important;
   grid-template-rows: auto minmax(220px, 1fr) auto;
@@ -122,40 +126,33 @@ h1{ font-weight:700; margin-top:14px; }
 }
 .cards.projects-grid .card *{ min-height:0; }
 
-/* footer pinned & centered */
 .cards.projects-grid .source-link{
   grid-row:3; margin-top:10px;
   display:flex; align-items:center; justify-content:center; gap:6px; text-align:center;
 }
 .octocat-icon{ width:22.5px; height:22.5px; }
 
-/* Non gif-me: show first GIF only, fill media row (allow distortion per spec) */
+/* Non gif-me: show first GIF only, fill media row (AR can distort) */
 .cards.projects-grid .card > img.project-gif:nth-of-type(n+2){ display:none !important; }
 .cards.projects-grid .card > img.project-gif{
   grid-row:2 !important; width:100% !important; height:100% !important;
   object-fit: fill !important; border-radius:6px;
 }
 
-/* gif-me: two equal tiles; fixed sensible row height on mobile; no overflow */
+/* gif-me: two equal tiles; capped row; no footer bleed */
 .cards.projects-grid .card .gif-row{
   grid-row:2 !important;
   display:grid !important; grid-template-columns:1fr 1fr !important;
-  gap:8px !important; align-items:stretch !important;
-}
-@media (max-width:900px){
-  .cards.projects-grid .card .gif-row{
-    height: clamp(180px, 52vw, 260px) !important;
-    aspect-ratio: auto !important;
-  }
+  gap:8px !important; align-items:stretch !important; min-height:0;
+  height: clamp(180px, 52vw, 260px) !important;
 }
 .cards.projects-grid .card .gif-row .project-gif{
   width:100% !important; height:100% !important; object-fit:cover !important; border-radius:6px;
 }
 
-/* =================== Lightbox (Recommendations preview) =================== */
+/* =================== Lightbox =================== */
 .lb{
-  position:fixed; inset:0; display:none;
-  align-items:center; justify-content:center;
+  position:fixed; inset:0; display:none; align-items:center; justify-content:center;
   background:rgba(0,0,0,.88); padding:20px; z-index:1000;
 }
 .lb.open{ display:flex; }
@@ -173,32 +170,28 @@ h1{ font-weight:700; margin-top:14px; }
 }
 
 /* =================== Links =================== */
+/* email link behavior */
 .contact-inline{ text-align:center; margin-top:10px; }
 .contact-inline a{ color:#fff; text-decoration:underline; font-weight:500; }
 .contact-inline a:hover{ color:#f7ce46; }
-.email{ text-align:center; margin:10px; }
-.email a{ color:#fff; text-decoration:underline; font-weight:500; }
-.email a:hover{ color:#f7ce46; }
+/* force project/portfolio links to stay off-white, never blue/purple */
+.source-link a,
+.source-link a:visited{ color:#f0e7d5 !important; text-decoration:underline; font-weight:500; }
+.source-link a:hover{ color:#f7ce46 !important; }
 
-/* =================== Mobile reflow (no resizing of cards) =================== */
+/* =================== Mobile: reflow only (keep desktop card width) =================== */
 @media (max-width:900px){
-  /* Keep the exact desktop card width; just go to one column and center */
   .cards,
   .cards.connect-grid,
-  .cards.resume-grid,
   .cards.apps-grid,
   .cards.projects-grid{
-    grid-template-columns: var(--desk-card) !important;
+    grid-template-columns: var(--desk-card) !important;  /* 1 column, same width */
     justify-content: center !important;
+    max-width: calc(var(--desk-card) + 2 * var(--gap)) !important;
+    margin-left:auto; margin-right:auto;
   }
   .cards .card{
-    width: var(--desk-card) !important;
+    width: var(--desk-card) !important;  /* keep size identical */
     justify-self: center !important;
   }
-  /* Recommendations card no longer spans on mobile (still same width) */
-  .cards.connect-grid .recommendations-card{ grid-column: auto !important; }
 }
-
-/* Project link colors (visited/hover) */
-.source-link a, .source-link a:visited{ color:#f0e7d5 !important; }
-.source-link a:hover{ color:#f7ce46 !important; }

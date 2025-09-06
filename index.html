@@ -7,19 +7,29 @@
   <link rel="stylesheet" href="./styles.css"/>
 </head>
 <body>
-  <!-- Single, static hero banner (same crop on desktop + mobile) -->
-  <header></header>
+  <!-- Static banner: same crop at all widths (no parallax/zoom) -->
+  <header id="heroHeader" aria-label="Hero banner">
+    <img
+      id="heroImg"
+      class="hero-img"
+      src="images/miguel-headshot.jpg"
+      alt="Miguel Cazares"
+      draggable="false"
+      decoding="async"
+      fetchpriority="high"
+    />
+  </header>
 
   <div class="wrapper">
-    <h1>Miguel Cazares</h1>
+    <!-- Replace “Connect” with less-bold yellow name -->
+    <h2 class="section-heading name-heading">Miguel Cazares</h2>
     <div class="divider"></div>
 
-    <!-- Connect -->
-    <h2 class="section-heading">Connect</h2>
-    <div class="divider"></div>
+    <!-- First section (formerly “Connect”) -->
     <div class="cards connect-grid">
+      <!-- Professional Recommendations (normal single card) -->
       <a href="#"
-         class="card recommendations-card"
+         class="card"
          id="recsPreviewCard"
          role="button"
          aria-controls="recsLightbox"
@@ -28,6 +38,29 @@
           <span class="emoji-icon" role="img" aria-label="Developer">👨🏽‍💻</span>
         </div>
         <div class="card-title">Professional Recommendations</div>
+      </a>
+
+      <!-- Resumé PDF (moved here between recs & LinkedIn) -->
+      <a href="https://drive.google.com/file/d/1Ndtgh_3tXw0I6aBqizJWBkDvW961dsrN/view"
+         target="_blank" rel="noopener noreferrer"
+         class="card" aria-label="View PDF resumé">
+        <div class="icon-circle">
+          <svg class="doc-svg" viewBox="0 0 128 128" aria-hidden="true">
+            <rect x="12" y="8" width="88" height="112" rx="12" ry="12"
+                  fill="#fff" stroke="#1f2937" stroke-width="8"/>
+            <path d="M100 8v24a8 8 0 0 0 8 8h24"
+                  fill="#fff" stroke="#1f2937" stroke-width="8"/>
+            <rect x="20" y="26" width="68" height="26" rx="6" fill="#ef4444"/>
+            <text x="54" y="45" fill="#fff"
+                  font-family="OpenSans, Helvetica, Arial, sans-serif"
+                  font-weight="700" font-size="18" text-anchor="middle">PDF</text>
+            <g transform="translate(0,0) scale(0.88) translate(10,16)">
+              <circle cx="64" cy="80" r="22" fill="none" stroke="#111827" stroke-width="8"/>
+              <line x1="80" y1="96" x2="98" y2="114" stroke="#111827" stroke-width="8" stroke-linecap="round"/>
+            </g>
+          </svg>
+        </div>
+        <div class="card-title">Resumé PDF</div>
       </a>
 
       <a href="http://linkedin.com/in/cazaresm" target="_blank" class="card">
@@ -51,62 +84,10 @@
 
     <div class="divider"></div>
 
-    <!-- Resumé -->
-    <h2 class="section-heading">Resumé</h2>
-    <div class="divider"></div>
-    <div class="cards resume-grid">
-      <!-- PDF -->
-      <a href="https://drive.google.com/file/d/1Ndtgh_3tXw0I6aBqizJWBkDvW961dsrN/view"
-         target="_blank" rel="noopener noreferrer"
-         class="card resume-card" aria-label="View PDF resumé">
-        <div class="icon-circle">
-          <svg class="doc-svg" viewBox="0 0 128 128" aria-hidden="true">
-            <rect x="12" y="8" width="88" height="112" rx="12" ry="12"
-                  fill="#fff" stroke="#1f2937" stroke-width="8"/>
-            <path d="M100 8v24a8 8 0 0 0 8 8h24"
-                  fill="#fff" stroke="#1f2937" stroke-width="8"/>
-            <rect x="20" y="26" width="68" height="26" rx="6" fill="#ef4444"/>
-            <text x="54" y="45" fill="#fff"
-                  font-family="OpenSans, Helvetica, Arial, sans-serif"
-                  font-weight="700" font-size="18" text-anchor="middle">PDF</text>
-            <g transform="translate(0,0) scale(0.88) translate(10,16)">
-              <circle cx="64" cy="80" r="22" fill="none" stroke="#111827" stroke-width="8"/>
-              <line x1="80" y1="96" x2="98" y2="114" stroke="#111827" stroke-width="8" stroke-linecap="round"/>
-            </g>
-          </svg>
-        </div>
-        <div class="resume-card-title">Resumé PDF</div>
-      </a>
-
-      <!-- DOCX -->
-      <a href="https://docs.google.com/document/d/15kc1eJa78rhplQGx2GNXjU8IS50FnnRE/preview"
-         target="_blank" rel="noopener noreferrer"
-         class="card resume-card" aria-label="View DOCX resumé">
-        <div class="icon-circle">
-          <svg class="doc-svg" viewBox="0 0 128 128" aria-hidden="true">
-            <rect x="12" y="8" width="88" height="112" rx="12" ry="12"
-                  fill="#fff" stroke="#1f2937" stroke-width="8"/>
-            <path d="M100 8v24a8 8 0 0 0 8 8h24"
-                  fill="#fff" stroke="#1f2937" stroke-width="8"/>
-            <rect x="20" y="26" width="68" height="26" rx="6" fill="#3b82f6"/>
-            <text x="54" y="45" fill="#fff"
-                  font-family="OpenSans, Helvetica, Arial, sans-serif"
-                  font-weight="700" font-size="18" text-anchor="middle">DOCX</text>
-            <g transform="translate(0,0) scale(0.88) translate(10,16)">
-              <circle cx="64" cy="80" r="22" fill="none" stroke="#111827" stroke-width="8"/>
-              <line x1="80" y1="96" x2="98" y2="114" stroke="#111827" stroke-width="8" stroke-linecap="round"/>
-            </g>
-          </svg>
-        </div>
-        <div class="resume-card-title">Resumé DOCX</div>
-      </a>
-    </div>
-
+    <!-- “Live Apps” renamed to Portfolio -->
+    <h2 class="bottom-sections-heading">Portfolio</h2>
     <div class="divider"></div>
 
-    <!-- Live Apps -->
-    <h2 class="bottom-sections-heading">Live Apps</h2>
-    <div class="divider"></div>
     <div class="cards apps-grid">
       <a href="https://apps.apple.com/us/app/shipstation-mobile/id972151811" target="_blank" class="card bottom-card">
         <div class="bottom-card-title">ShipStation iOS</div>
@@ -153,16 +134,16 @@
       </a>
     </div>
 
+    <!-- Untitled projects: keep only a divider, then the grid -->
     <div class="divider"></div>
 
-    <!-- Projects -->
-    <h2 class="bottom-sections-heading">Projects</h2>
-    <div class="divider"></div>
     <div class="cards projects-grid">
       <div class="card bottom-card">
         <div class="bottom-card-title">racer-js</div>
+        <div class="spacer"></div>
         <img src="images/racer-js-1.gif" alt="racer-js demo 1" class="project-gif square-gif"/>
         <img src="images/racer-js-2.gif" alt="racer-js demo 2" class="project-gif hide"/>
+        <div class="spacer"></div>
         <div class="source-link">
           <img src="images/github-logo-white.png" alt="GitHub" class="octocat-icon"/>
           <a href="https://github.com/cazares/racer-js" target="_blank">Full Source Code</a>
@@ -171,10 +152,12 @@
 
       <div class="card bottom-card">
         <div class="bottom-card-title">gif-me</div>
+        <div class="spacer"></div>
         <div class="gif-row">
           <img src="images/gif-me-1.gif" alt="gif-me demo 1" class="project-gif gif-me-gif"/>
           <img src="images/gif-me-2.gif" alt="gif-me demo 2" class="project-gif gif-me-gif"/>
         </div>
+        <div class="spacer"></div>
         <div class="source-link">
           <img src="images/github-logo-white.png" alt="GitHub" class="octocat-icon"/>
           <a href="https://github.com/cazares/gif-me" target="_blank">Full Source Code</a>
@@ -183,8 +166,10 @@
 
       <div class="card bottom-card">
         <div class="bottom-card-title">precreated-historia</div>
+        <div class="spacer"></div>
         <img src="images/precreated-historia-1.gif" alt="precreated-historia demo 1" class="project-gif square-gif"/>
         <img src="images/precreated-historia-2.gif" alt="precreated-historia demo 2" class="project-gif hide"/>
+        <div class="spacer"></div>
         <div class="source-link">
           <img src="images/github-logo-white.png" alt="GitHub" class="octocat-icon"/>
           <a href="https://github.com/cazares/precreated-historia" target="_blank">Full Source Code</a>
@@ -193,7 +178,9 @@
 
       <div class="card bottom-card">
         <div class="bottom-card-title">solar-lending</div>
+        <div class="spacer"></div>
         <img src="images/solar-lending-gif.gif" alt="solar-lending demo" class="project-gif square-gif"/>
+        <div class="spacer"></div>
         <div class="source-link">
           <img src="images/github-logo-white.png" alt="GitHub" class="octocat-icon"/>
           <a href="https://github.com/cazares/solar-lending" target="_blank">Full Source Code</a>
@@ -208,7 +195,7 @@
     </div>
   </footer>
 
-  <!-- Lightbox -->
+  <!-- Lightbox for Recommendations -->
   <div id="recsLightbox" class="lb" aria-hidden="true" role="dialog" aria-label="Recommendations preview">
     <button class="lb-btn lb-close" aria-label="Close">×</button>
     <button class="lb-btn lb-prev" aria-label="Previous">‹</button>
@@ -217,16 +204,37 @@
   </div>
 
   <script>
-    // Desktop grid vs. Mobile long image
+    // --- Lock hero crop to mobile-baseline look (no zoom on resize) ---
+    (function(){
+      const header  = document.getElementById('heroHeader');
+      const heroImg = document.getElementById('heroImg');
+
+      function freezeHero() {
+        const h = header.clientHeight;
+        heroImg.style.height = h + 'px';
+        heroImg.style.width  = 'auto';
+        heroImg.style.left   = '50%';
+        heroImg.style.transform = 'translateX(-50%)';
+      }
+
+      window.addEventListener('load', freezeHero, { once: true });
+      let t;
+      const re = () => { clearTimeout(t); t = setTimeout(freezeHero, 50); };
+      window.addEventListener('resize', re);
+      window.addEventListener('orientationchange', re);
+    })();
+
+    // === Recommendations: desktop vs mobile asset sets ===
     const RECS_IMAGES_DESKTOP = ['images/recsNEW-balanced-2col-white.png'];
     const RECS_IMAGES_MOBILE  = ['images/recs-vertical-ordered-white-v3.png'];
 
     const mqMobile = window.matchMedia('(max-width: 900px)');
     let RECS_IMAGES = RECS_IMAGES_DESKTOP;
     function pickRecsSet(){ RECS_IMAGES = mqMobile.matches ? RECS_IMAGES_MOBILE : RECS_IMAGES_DESKTOP; }
-    pickRecsSet(); mqMobile.addEventListener?.('change', pickRecsSet);
+    pickRecsSet();
+    mqMobile.addEventListener?.('change', pickRecsSet);
 
-    // Minimal lightbox
+    // === Minimal lightbox ===
     const openBtn = document.getElementById('recsPreviewCard');
     const lb = document.getElementById('recsLightbox');
     const lbImg = document.getElementById('lbImage');
@@ -239,28 +247,28 @@
       pickRecsSet();
       idx = (i + RECS_IMAGES.length) % RECS_IMAGES.length;
       lbImg.src = RECS_IMAGES[idx];
+      lb.setAttribute('aria-hidden', 'false');
       lb.classList.add('open');
-      lb.setAttribute('aria-hidden','false');
       const many = RECS_IMAGES.length > 1;
       prevBtn.style.display = many ? '' : 'none';
       nextBtn.style.display = many ? '' : 'none';
     }
-    function closeLB(){
+    function close(){
       lb.classList.remove('open');
-      lb.setAttribute('aria-hidden','true');
+      lb.setAttribute('aria-hidden', 'true');
       lbImg.removeAttribute('src');
     }
 
-    openBtn?.addEventListener('click', e => { e.preventDefault(); show(0); });
-    closeBtn.addEventListener('click', closeLB);
-    prevBtn.addEventListener('click', e => { e.stopPropagation(); show(idx - 1); });
-    nextBtn.addEventListener('click', e => { e.stopPropagation(); show(idx + 1); });
-    lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
-    window.addEventListener('keydown', e => {
+    openBtn?.addEventListener('click', (e)=>{ e.preventDefault(); show(0); });
+    closeBtn.addEventListener('click', close);
+    prevBtn.addEventListener('click', (e)=>{ e.stopPropagation(); show(idx - 1); });
+    nextBtn.addEventListener('click', (e)=>{ e.stopPropagation(); show(idx + 1); });
+    lb.addEventListener('click', (e)=>{ if(e.target === lb) close(); });
+    window.addEventListener('keydown', (e)=>{
       if(!lb.classList.contains('open')) return;
-      if(e.key === 'Escape') closeLB();
+      if(e.key === 'Escape') close();
       if(RECS_IMAGES.length > 1){
-        if(e.key === 'ArrowLeft')  show(idx - 1);
+        if(e.key === 'ArrowLeft') show(idx - 1);
         if(e.key === 'ArrowRight') show(idx + 1);
       }
     });
