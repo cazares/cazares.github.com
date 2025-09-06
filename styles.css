@@ -200,30 +200,3 @@ header::after{
     justify-self: center !important;
   }
 }
-
-/* ===== iPhone “Full Source Code” overlap fix (minimal, safe) ===== */
-
-/* give the grid a little breathing room so the footer never kisses the media */
-.cards.projects-grid .card{
-  row-gap: 10px;            /* new */
-  padding-bottom: 8px;      /* new */
-}
-
-/* make sure the media is a block (Safari baseline quirk) */
-.cards.projects-grid .card > img.project-gif,
-.cards.projects-grid .card .gif-row{
-  display: block;           /* new */
-}
-
-/* keep footer on top if Safari tries to paint it under the media */
-.cards.projects-grid .source-link{
-  position: relative;       /* new */
-  z-index: 2;               /* new */
-}
-
-/* ultra-narrow phones: prefer contain so the image never bleeds into the footer */
-@media (max-width: 430px){
-  .cards.projects-grid .card > img.project-gif{
-    object-fit: contain !important;   /* new, mobile-only */
-  }
-}
