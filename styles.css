@@ -101,7 +101,7 @@ header::after{
   width:80px; height:80px; margin:0 auto 10px auto;
   display:flex; align-items:center; justify-content:center;
 }
-.icon-circle svg{ width:64%; height:auto; display:block; }   /* works for PDF icon */
+.icon-circle svg{ width:64%; height:auto; display:block; }
 .social-logo{ width:65%; height:auto; }
 .github-logo{ width:95%; height:auto; }
 .linkedin-logo{ width:70%; height:auto; }
@@ -169,12 +169,17 @@ header::after{
   .lb-prev, .lb-next{ font-size:30px; }
 }
 
-/* =================== Links =================== */
-/* email link behavior */
+/* =================== Links (force off-white; no blue/purple) =================== */
 .contact-inline{ text-align:center; margin-top:10px; }
-.contact-inline a{ color:#fff; text-decoration:underline; font-weight:500; }
+.contact-inline a,
+.contact-inline a:visited{ color:#fff; text-decoration:underline; font-weight:500; }
 .contact-inline a:hover{ color:#f7ce46; }
-/* force project/portfolio links to stay off-white, never blue/purple */
+
+.email{ text-align:center; margin:12px; }
+.email a,
+.email a:visited{ color:#fff; text-decoration:underline; font-weight:500; }
+.email a:hover{ color:#f7ce46; }
+
 .source-link a,
 .source-link a:visited{ color:#f0e7d5 !important; text-decoration:underline; font-weight:500; }
 .source-link a:hover{ color:#f7ce46 !important; }
