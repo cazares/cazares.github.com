@@ -200,3 +200,28 @@ header::after{
     justify-self: center !important;
   }
 }
+
+/* ===== MOBILE FIX: prevent "Full Source Code" overlap on project cards ===== */
+@media (max-width: 900px){
+  /* Make rows explicit on mobile: [title][media][footer] */
+  .cards.projects-grid .card{
+    grid-template-rows: auto auto auto !important;
+  }
+
+  /* Non–gif-me media (single <img>): stable aspect box + spacing */
+  .cards.projects-grid .card > img.project-gif{
+    display: block;          /* avoid inline baseline quirks */
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9;    /* consistent media height on phones */
+    object-fit: cover !important;
+    margin-bottom: 8px;      /* clear the footer area */
+  }
+
+  /* Keep the footer firmly on row 3 and above any repainting */
+  .cards.projects-grid .source-link{
+    grid-row: 3 !important;
+    position: relative;
+    z-index: 1;
+  }
+}
