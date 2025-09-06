@@ -28,35 +28,28 @@
 *{ margin:0; padding:0; box-sizing:border-box; }
 html, body{ height:100%; }
 
-html{ background:linear-gradient(#2a2a29, #1c1c1c) no-repeat fixed; background-size:cover; }
+html{ background: linear-gradient(#2a2a29, #1c1c1c) no-repeat fixed; background-size:cover; }
 body{
   font-family:"OpenSans", Helvetica, Arial, sans-serif;
   font-weight:400; font-size:18px; line-height:1.5; color:#f0e7d5;
 }
 
-/* --- Header hero (no blur; full face) --- */
+footer{ background:#353535; border-top:4px solid #434343; padding:10px 0; }
+
+/* =================== Hero (single static crop) =================== */
+/* Same crop on all sizes — no parallax, no zoom shenanigans */
 header{
-  --hero-h: clamp(140px, 24vh, 210px);
-  height:var(--hero-h);
-  background:#1c1c1c url('images/miguel-headshot.jpg') center 22% / cover no-repeat;
-  position:relative; overflow:hidden;
+  --hero-h: clamp(180px, 30vh, 240px);
+  height: var(--hero-h);
+  background: #1c1c1c url('images/miguel-headshot.jpg') center 38% / cover no-repeat !important;
+  position: relative; overflow:hidden;
 }
 header::after{
-  content:"";
-  position:absolute; left:0; right:0; bottom:0; height:28px;
-  background:linear-gradient(to bottom, rgba(28,28,28,0), rgba(28,28,28,0.85));
+  content:""; position:absolute; left:0; right:0; bottom:0; height:28px;
+  background: linear-gradient(to bottom, rgba(28,28,28,0), rgba(28,28,28,0.85));
 }
 
-/* Taller on mobile (+more bottom revealed) */
-@media (max-width:900px){
-  header{
-    --hero-h: clamp(180px, 30vh, 240px);
-    background-position:center 38%;
-  }
-}
-
-footer{ background:#353535; border-top:4px solid #434343; padding:10px 0; height:auto; }
-
+/* container */
 .wrapper{ display:flex; flex-direction:column; align-items:center; padding-bottom:40px; }
 
 /* Headings / dividers */
@@ -68,8 +61,8 @@ h1{ font-weight:700; margin-top:14px; }
 /* =================== Layout Vars =================== */
 :root{
   --gap: 12px;
-  --desk-card: 280px;                      /* desktop width for each card */
-  --mobile-col: clamp(320px, 92vw, 440px); /* base mobile column width */
+  --desk-card: 280px;                        /* desktop card width (all sections) */
+  --mobile-col: clamp(320px, 92vw, 440px);   /* single-column width on phones */
 }
 
 /* =================== Cards & Grids =================== */
@@ -77,7 +70,7 @@ h1{ font-weight:700; margin-top:14px; }
   display:grid; gap:var(--gap); justify-content:center;
   grid-template-columns: repeat(2, var(--desk-card));
 }
-.cards .card{ width:var(--desk-card); }
+.cards .card{ width: var(--desk-card); }
 
 .card{
   background:#2e2e2e; border:1px solid #444; border-radius:8px;
@@ -86,20 +79,18 @@ h1{ font-weight:700; margin-top:14px; }
   transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
 }
 .card:hover, .card:focus-visible{
-  transform:translateY(-2px); border-color:#f7ce46; box-shadow:0 4px 16px rgba(247,206,70,.12); outline:none;
+  transform: translateY(-2px); border-color:#f7ce46; box-shadow:0 4px 16px rgba(247,206,70,.12); outline:none;
 }
 
-/* Connect: recommendations spans both cols on desktop */
-.cards.connect-grid .recommendations-card{
-  grid-column:1 / -1; width:auto; justify-self:stretch;
-}
+/* Connect hero spans both columns on desktop */
+.cards.connect-grid .recommendations-card{ grid-column: 1 / -1; width:auto; justify-self:stretch; }
 
-/* Titles centered with consistent spacing */
+/* Titles always centered with consistent spacing */
 .card-title, .bottom-card-title{ text-align:center; margin-bottom:8px; }
 .card-title, .resume-card-title{ color:#f7ce46; margin-top:10px; }
 .bottom-card-title{ color:#f0e7d5; margin-top:0; }
 
-/* =================== Icons =================== */
+/* =================== Icon circles / emoji icon =================== */
 .icon-circle{
   background:#fff; border-radius:50%;
   width:80px; height:80px; margin:0 auto 10px auto;
@@ -110,74 +101,68 @@ h1{ font-weight:700; margin-top:14px; }
 .linkedin-logo{ width:70%; height:auto; }
 .emoji-icon{ font-size:52px; line-height:1; display:inline-block; }
 
-/* Wrap the long recommendations title on mobile (~2 lines) */
-@media (max-width:900px){
-  .cards.connect-grid .recommendations-card .card-title{
-    max-inline-size:16ch; margin-left:auto; margin-right:auto; text-wrap:balance;
-  }
-}
-
-/* =================== Live Apps =================== */
+/* =================== Live Apps media =================== */
 .resume-grid .icon-circle svg{ width:64%; height:auto; display:block; }
 
-/* ~20% of the inter-card gap between screenshots */
+/* Bring screenshots a touch closer; +10px on desktop */
 .screenshot-row{
   display:flex; justify-content:center; align-items:flex-end;
   gap: calc(var(--gap) * 0.2);
+}
+@media (min-width:901px){
+  .screenshot-row{ gap: calc(var(--gap) * 0.2 + 10px); }
 }
 .screenshot-row .spacer{ display:none !important; }
 .app-screenshot, .short-screenshot{ width:auto; max-width:75px; height:150px; border-radius:4px; margin:0; }
 .store-badge{ margin-top:5px; align-self:center; width:120px; height:auto; }
 
-/* =================== Projects (canonical layout) =================== */
+/* =================== Projects (canonical) =================== */
 /* Turn each project card into [title] [media] [footer] */
 .cards.projects-grid .card{
   display:grid !important;
-  grid-template-rows:auto minmax(220px, 1fr) auto;
+  grid-template-rows: auto minmax(220px, 1fr) auto;
   overflow:hidden !important;
 }
-.cards.projects-grid .card *{ min-height:0; }  /* prevent push/overflow */
+.cards.projects-grid .card *{ min-height:0; }
 
-/* Footer pinned & centered */
+/* footer pinned & centered */
 .cards.projects-grid .source-link{
   grid-row:3; margin-top:10px;
   display:flex; align-items:center; justify-content:center; gap:6px; text-align:center;
 }
 .octocat-icon{ width:22.5px; height:22.5px; }
-.source-link a, .source-link a:visited{ color:#f0e7d5; }
-.source-link a:hover{ color:#f7ce46; }
 
-/* Non–gif-me: show only first GIF; fill media row (distortion allowed) */
+/* Non gif-me: show first GIF only, fill media row (allow distortion per spec) */
 .cards.projects-grid .card > img.project-gif:nth-of-type(n+2){ display:none !important; }
 .cards.projects-grid .card > img.project-gif{
   grid-row:2 !important; width:100% !important; height:100% !important;
-  object-fit:fill !important; border-radius:6px;
+  object-fit: fill !important; border-radius:6px;
 }
 
-/* gif-me: two equal tiles; fixed responsive height; no footer bleed */
+/* gif-me: two equal tiles; fixed sensible row height on mobile; no overflow */
 .cards.projects-grid .card .gif-row{
   grid-row:2 !important;
   display:grid !important; grid-template-columns:1fr 1fr !important;
-  gap:8px !important;
-  height:clamp(180px, 52vw, 260px) !important; /* mobile-friendly cap */
-  aspect-ratio:auto !important;
-  align-items:stretch !important; min-height:0;
+  gap:8px !important; align-items:stretch !important;
+}
+@media (max-width:900px){
+  .cards.projects-grid .card .gif-row{
+    height: clamp(180px, 52vw, 260px) !important;
+    aspect-ratio: auto !important;
+  }
 }
 .cards.projects-grid .card .gif-row .project-gif{
   width:100% !important; height:100% !important; object-fit:cover !important; border-radius:6px;
 }
 
-/* =================== Lightbox =================== */
+/* =================== Lightbox (Recommendations preview) =================== */
 .lb{
   position:fixed; inset:0; display:none;
   align-items:center; justify-content:center;
   background:rgba(0,0,0,.88); padding:20px; z-index:1000;
 }
 .lb.open{ display:flex; }
-.lb img{
-  max-width:min(94vw,1200px); max-height:90vh;
-  width:auto; height:auto; background:#fff; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,.35);
-}
+.lb img{ max-width:min(94vw,1200px); max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,.35); }
 .lb-btn{
   position:absolute; top:14px; background:#111827; color:#fff; border:1px solid #374151; border-radius:9999px;
   width:40px; height:40px; font-size:24px; line-height:36px; display:grid; place-items:center; cursor:pointer;
@@ -198,26 +183,31 @@ h1{ font-weight:700; margin-top:14px; }
 .email a{ color:#fff; text-decoration:underline; font-weight:500; }
 .email a:hover{ color:#f7ce46; }
 
-/* =================== Mobile: single column + section-specific widths =================== */
+/* =================== Mobile: single column everywhere =================== */
 @media (max-width:900px){
-  /* Base single column for all sections */
   .cards,
   .cards.connect-grid,
   .cards.resume-grid,
   .cards.apps-grid,
   .cards.projects-grid{
-    grid-template-columns:1fr !important;
-    max-width:var(--mobile-col) !important;
+    grid-template-columns: 1fr !important;
+    max-width: var(--mobile-col) !important;
     margin-left:auto; margin-right:auto;
   }
   .cards .card{ width:100% !important; justify-self:stretch !important; }
   .cards.connect-grid .recommendations-card{ grid-column:auto !important; }
-
-  /* Tune widths per section */
-  :root{
-    --mobile-col-resume:   clamp(380px, 96vw, 560px); /* a bit wider */
-    --mobile-col-projects: clamp(300px, 88vw, 420px); /* a bit narrower */
-  }
-  .cards.resume-grid{  max-width:var(--mobile-col-resume) !important; }
-  .cards.projects-grid{ max-width:var(--mobile-col-projects) !important; }
 }
+
+/* --- Mobile width tuning: resume a bit wider, projects a bit narrower --- */
+@media (max-width:900px){
+  :root{
+    --mobile-col-resume:  clamp(360px, 96vw, 540px);
+    --mobile-col-projects: clamp(300px, 88vw, 420px);
+  }
+  .cards.resume-grid{   max-width: var(--mobile-col-resume)   !important; }
+  .cards.projects-grid{ max-width: var(--mobile-col-projects) !important; }
+}
+
+/* Project link colors (visited/hover) */
+.source-link a, .source-link a:visited{ color:#f0e7d5 !important; }
+.source-link a:hover{ color:#f7ce46 !important; }
