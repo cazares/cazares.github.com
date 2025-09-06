@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="./styles.css"/>
 </head>
 <body>
-  <!-- Hero banner: single, static crop (same on desktop + mobile) -->
+  <!-- Single, static hero banner (same crop on desktop + mobile) -->
   <header></header>
 
   <div class="wrapper">
@@ -55,7 +55,6 @@
     <h2 class="section-heading">Resumé</h2>
     <div class="divider"></div>
     <div class="cards resume-grid">
-
       <!-- PDF -->
       <a href="https://drive.google.com/file/d/1Ndtgh_3tXw0I6aBqizJWBkDvW961dsrN/view"
          target="_blank" rel="noopener noreferrer"
@@ -218,7 +217,7 @@
   </div>
 
   <script>
-    // --- Recommendations: desktop grid vs mobile long image ---
+    // Desktop grid vs. Mobile long image
     const RECS_IMAGES_DESKTOP = ['images/recsNEW-balanced-2col-white.png'];
     const RECS_IMAGES_MOBILE  = ['images/recs-vertical-ordered-white-v3.png'];
 
@@ -227,7 +226,7 @@
     function pickRecsSet(){ RECS_IMAGES = mqMobile.matches ? RECS_IMAGES_MOBILE : RECS_IMAGES_DESKTOP; }
     pickRecsSet(); mqMobile.addEventListener?.('change', pickRecsSet);
 
-    // --- Minimal lightbox ---
+    // Minimal lightbox
     const openBtn = document.getElementById('recsPreviewCard');
     const lb = document.getElementById('recsLightbox');
     const lbImg = document.getElementById('lbImage');

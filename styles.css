@@ -36,12 +36,11 @@ body{
 
 footer{ background:#353535; border-top:4px solid #434343; padding:10px 0; }
 
-/* =================== Hero (single static crop) =================== */
-/* Same crop on all sizes — no parallax, no zoom shenanigans */
+/* =================== Hero (static crop for all sizes) =================== */
 header{
-  --hero-h: clamp(180px, 30vh, 240px);
-  height: var(--hero-h);
-  background: #1c1c1c url('images/miguel-headshot.jpg') center 38% / cover no-repeat !important;
+  height: 260px;                                      /* fixed height = same crop */
+  background: #1c1c1c url('images/miguel-headshot.jpg')
+              center 38% / cover no-repeat !important;
   position: relative; overflow:hidden;
 }
 header::after{
@@ -61,13 +60,14 @@ h1{ font-weight:700; margin-top:14px; }
 /* =================== Layout Vars =================== */
 :root{
   --gap: 12px;
-  --desk-card: 280px;                        /* desktop card width (all sections) */
-  --mobile-col: clamp(320px, 92vw, 440px);   /* single-column width on phones */
+  --desk-card: 280px;   /* single source of truth for card width everywhere */
 }
 
 /* =================== Cards & Grids =================== */
 .cards{
-  display:grid; gap:var(--gap); justify-content:center;
+  display:grid;
+  gap:var(--gap);
+  justify-content:center;
   grid-template-columns: repeat(2, var(--desk-card));
 }
 .cards .card{ width: var(--desk-card); }
@@ -104,13 +104,10 @@ h1{ font-weight:700; margin-top:14px; }
 /* =================== Live Apps media =================== */
 .resume-grid .icon-circle svg{ width:64%; height:auto; display:block; }
 
-/* Bring screenshots a touch closer; +10px on desktop */
+/* Gap between screenshots: +10px on ALL sizes */
 .screenshot-row{
   display:flex; justify-content:center; align-items:flex-end;
-  gap: calc(var(--gap) * 0.2);
-}
-@media (min-width:901px){
-  .screenshot-row{ gap: calc(var(--gap) * 0.2 + 10px); }
+  gap: calc(var(--gap) * 0.2 + 10px);
 }
 .screenshot-row .spacer{ display:none !important; }
 .app-screenshot, .short-screenshot{ width:auto; max-width:75px; height:150px; border-radius:4px; margin:0; }
@@ -183,29 +180,23 @@ h1{ font-weight:700; margin-top:14px; }
 .email a{ color:#fff; text-decoration:underline; font-weight:500; }
 .email a:hover{ color:#f7ce46; }
 
-/* =================== Mobile: single column everywhere =================== */
+/* =================== Mobile reflow (no resizing of cards) =================== */
 @media (max-width:900px){
+  /* Keep the exact desktop card width; just go to one column and center */
   .cards,
   .cards.connect-grid,
   .cards.resume-grid,
   .cards.apps-grid,
   .cards.projects-grid{
-    grid-template-columns: 1fr !important;
-    max-width: var(--mobile-col) !important;
-    margin-left:auto; margin-right:auto;
+    grid-template-columns: var(--desk-card) !important;
+    justify-content: center !important;
   }
-  .cards .card{ width:100% !important; justify-self:stretch !important; }
-  .cards.connect-grid .recommendations-card{ grid-column:auto !important; }
-}
-
-/* --- Mobile width tuning: resume a bit wider, projects a bit narrower --- */
-@media (max-width:900px){
-  :root{
-    --mobile-col-resume:  clamp(360px, 96vw, 540px);
-    --mobile-col-projects: clamp(300px, 88vw, 420px);
+  .cards .card{
+    width: var(--desk-card) !important;
+    justify-self: center !important;
   }
-  .cards.resume-grid{   max-width: var(--mobile-col-resume)   !important; }
-  .cards.projects-grid{ max-width: var(--mobile-col-projects) !important; }
+  /* Recommendations card no longer spans on mobile (still same width) */
+  .cards.connect-grid .recommendations-card{ grid-column: auto !important; }
 }
 
 /* Project link colors (visited/hover) */
