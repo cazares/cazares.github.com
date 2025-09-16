@@ -318,3 +318,17 @@ header::after{
     z-index: 1;
   }
 }
+
+/* Wide desktop: bump grids to 4 columns when there's room (no 3-col state) */
+@media (min-width: 1200px){
+  .cards,
+  .cards.connect-grid,
+  .cards.apps-grid,
+  .cards.projects-grid{
+    grid-template-columns: repeat(4, var(--desk-card)) !important;
+    max-width: calc(4 * var(--desk-card) + 3 * var(--gap)) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
