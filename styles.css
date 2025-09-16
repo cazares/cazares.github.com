@@ -28,13 +28,26 @@
 *{ margin:0; padding:0; box-sizing:border-box; }
 html, body{ height:100%; }
 
-html{ background: linear-gradient(#2a2a29, #1c1c1c) no-repeat fixed; background-size:cover; }
-body{
-  font-family:"OpenSans", Helvetica, Arial, sans-serif;
-  font-weight:400; font-size:18px; line-height:1.5; color:#f0e7d5;
+html{
+  /* Slight warm dark gradient background for depth */
+  background: linear-gradient(#2a2a29, #1c1c1c) no-repeat fixed;
+  background-size:cover;
 }
 
-footer{ background:#353535; border-top:4px solid #434343; padding:10px 0; height:auto; }
+body{
+  font-family:"OpenSans", Helvetica, Arial, sans-serif;
+  font-weight:400;
+  font-size:18px;
+  line-height:1.5;
+  color:#f0e7d5;  /* off-white, warmer */
+}
+
+footer{
+  background:#353535;
+  border-top:4px solid #434343;
+  padding:10px 0;
+  height:auto;
+}
 
 /* =================== Hero banner (static, no zoom) =================== */
 :root{
@@ -60,45 +73,79 @@ header .hero-img{
   pointer-events: none;
 }
 header::after{
-  content:""; position:absolute; left:0; right:0; bottom:0; height:28px;
+  content:"";
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height:28px;
   background: linear-gradient(to bottom, rgba(28,28,28,0), rgba(28,28,28,.85));
 }
 
 /* container */
-.wrapper{ display:flex; flex-direction:column; align-items:center; padding-bottom:40px; }
+.wrapper{
+  display:flex; flex-direction:column; align-items:center;
+  padding-bottom:40px;
+}
 
 /* Headings / dividers */
-.section-heading, .bottom-sections-heading, .card-title, .bottom-card-title{ font-weight:400; }
-.name-heading{ color:#f7ce46; font-weight:600; }              /* less-bold yellow name */
-.divider{ width:45%; max-width:430px; margin:15px 0; border-top:.5px solid #f0e7d5b3; }
-.bottom-sections-heading{ font-size:28px; line-height:1; color:#f7ce46; text-align:center; }
+.section-heading, .bottom-sections-heading, .card-title, .bottom-card-title{
+  font-weight:400;
+}
+.name-heading{ color:#f7ce46; font-weight:600; }  /* less-bold yellow name */
+.divider{
+  width:45%; max-width:430px;
+  margin:15px 0;
+  border-top:.5px solid #f0e7d5b3;
+}
+.bottom-sections-heading{
+  font-size:28px; line-height:1; color:#f7ce46; text-align:center;
+}
 
 /* =================== Cards & Grids =================== */
 .cards{
-  display:grid; gap:var(--gap); justify-content:center;
+  display:grid;
+  gap:var(--gap);
+  justify-content:center;
   grid-template-columns: repeat(2, var(--desk-card));
 }
 .cards .card{ width: var(--desk-card); }
 
 .card{
-  background:#2e2e2e; border:1px solid #444; border-radius:8px;
-  padding:14px; text-align:center; display:flex; flex-direction:column;
+  background:#2e2e2e;
+  border:1px solid #444;
+  border-radius:8px;
+  padding:14px;
+  text-align:center;
+  display:flex; flex-direction:column;
   color:inherit; text-decoration:none;
   transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
 }
 .card:hover, .card:focus-visible{
-  transform: translateY(-2px); border-color:#f7ce46; box-shadow:0 4px 16px rgba(247,206,70,.12); outline:none;
+  transform: translateY(-2px);
+  border-color:#f7ce46;
+  box-shadow:0 4px 16px rgba(247,206,70,.12);
+  outline:none;
 }
 
 /* Titles always centered with consistent spacing */
-.card-title, .bottom-card-title{ text-align:center; margin-bottom:8px; }
-.card-title{ color:#f7ce46; margin-top:10px; }
-.bottom-card-title{ color:#f0e7d5; margin-top:0; }
+.card-title, .bottom-card-title{
+  text-align:center;
+  margin-bottom:8px;
+}
+.card-title{
+  color:#f7ce46;
+  margin-top:10px;
+}
+.bottom-card-title{
+  color:#f0e7d5;
+  margin-top:0;
+}
 
 /* =================== Icon circles / emoji icon =================== */
 .icon-circle{
-  background:#fff; border-radius:50%;
-  width:80px; height:80px; margin:0 auto 10px auto;
+  background:#fff;
+  border-radius:50%;
+  width:80px; height:80px;
+  margin:0 auto 10px auto;
   display:flex; align-items:center; justify-content:center;
 }
 .icon-circle svg{ width:64%; height:auto; display:block; }
@@ -106,17 +153,24 @@ header::after{
 .github-logo{ width:95%; height:auto; }
 .linkedin-logo{ width:70%; height:auto; }
 
-.emoji-icon{ font-size:52px; line-height:1; display:inline-block; }
+.emoji-icon{
+  font-size:52px;
+  line-height:1;
+  display:inline-block;
+}
 
 /* =================== Portfolio (Live Apps) media =================== */
-/* gap between screenshots = 20% of card gap + 10px (desktop & mobile) */
 .screenshot-row{
   display:flex; justify-content:center; align-items:flex-end;
   gap: calc(var(--gap) * 0.2 + 10px);
 }
 .screenshot-row .spacer{ display:none !important; }
-.app-screenshot, .short-screenshot{ width:auto; max-width:75px; height:150px; border-radius:4px; margin:0; }
-.store-badge{ margin-top:5px; align-self:center; width:120px; height:auto; }
+.app-screenshot, .short-screenshot{
+  width:auto; max-width:75px; height:150px; border-radius:4px; margin:0;
+}
+.store-badge{
+  margin-top:5px; align-self:center; width:120px; height:auto;
+}
 
 /* =================== Projects (canonical) =================== */
 .cards.projects-grid .card{
@@ -127,42 +181,74 @@ header::after{
 .cards.projects-grid .card *{ min-height:0; }
 
 .cards.projects-grid .source-link{
-  grid-row:3; margin-top:10px;
+  grid-row:3;
+  margin-top:10px;
   display:flex; align-items:center; justify-content:center; gap:6px; text-align:center;
 }
-.octocat-icon{ width:22.5px; height:22.5px; }
+.octocat-icon{
+  width:22.5px; height:22.5px;
+}
 
 /* Non gif-me: show first GIF only, fill media row (AR can distort) */
-.cards.projects-grid .card > img.project-gif:nth-of-type(n+2){ display:none !important; }
+.cards.projects-grid .card > img.project-gif:nth-of-type(n+2){
+  display:none !important;
+}
 .cards.projects-grid .card > img.project-gif{
-  grid-row:2 !important; width:100% !important; height:100% !important;
-  object-fit: fill !important; border-radius:6px;
+  grid-row:2 !important;
+  width:100% !important;
+  height:100% !important;
+  object-fit: fill !important;
+  border-radius:6px;
 }
 
 /* gif-me: two equal tiles; capped row; no footer bleed */
 .cards.projects-grid .card .gif-row{
   grid-row:2 !important;
-  display:grid !important; grid-template-columns:1fr 1fr !important;
-  gap:8px !important; align-items:stretch !important; min-height:0;
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:8px !important;
+  align-items:stretch !important;
+  min-height:0;
   height: clamp(180px, 52vw, 260px) !important;
 }
 .cards.projects-grid .card .gif-row .project-gif{
-  width:100% !important; height:100% !important; object-fit:cover !important; border-radius:6px;
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  border-radius:6px;
 }
 
 /* =================== Lightbox =================== */
 .lb{
   position:fixed; inset:0; display:none; align-items:center; justify-content:center;
-  background:rgba(0,0,0,.88); padding:20px; z-index:1000;
+  background:rgba(0,0,0,.88);
+  padding:20px;
+  z-index:1000;
 }
 .lb.open{ display:flex; }
-.lb img{ max-width:min(94vw,1200px); max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,.35); }
+.lb img{
+  max-width:min(94vw,1200px);
+  max-height:90vh;
+  width:auto; height:auto;
+  background:#fff;
+  border-radius:8px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
 .lb-btn{
-  position:absolute; top:14px; background:#111827; color:#fff; border:1px solid #374151; border-radius:9999px;
-  width:40px; height:40px; font-size:24px; line-height:36px; display:grid; place-items:center; cursor:pointer;
+  position:absolute;
+  top:14px;
+  background:#111827; color:#fff;
+  border:1px solid #374151; border-radius:9999px;
+  width:40px; height:40px;
+  font-size:24px; line-height:36px;
+  display:grid; place-items:center; cursor:pointer;
 }
 .lb-close{ right:14px; }
-.lb-prev, .lb-next{ top:50%; transform:translateY(-50%); width:48px; height:48px; font-size:36px; line-height:42px; }
+.lb-prev, .lb-next{
+  top:50%; transform:translateY(-50%);
+  width:48px; height:48px;
+  font-size:36px; line-height:42px;
+}
 .lb-prev{ left:12px; } .lb-next{ right:12px; }
 @media (max-width:640px){
   .lb-btn{ width:36px; height:36px; font-size:22px; }
@@ -172,16 +258,28 @@ header::after{
 /* =================== Links (force off-white; no blue/purple) =================== */
 .contact-inline{ text-align:center; margin-top:10px; }
 .contact-inline a,
-.contact-inline a:visited{ color:#fff; text-decoration:underline; font-weight:500; }
+.contact-inline a:visited{
+  color:#fff;
+  text-decoration:underline;
+  font-weight:500;
+}
 .contact-inline a:hover{ color:#f7ce46; }
 
 .email{ text-align:center; margin:12px; }
 .email a,
-.email a:visited{ color:#fff; text-decoration:underline; font-weight:500; }
+.email a:visited{
+  color:#fff;
+  text-decoration:underline;
+  font-weight:500;
+}
 .email a:hover{ color:#f7ce46; }
 
 .source-link a,
-.source-link a:visited{ color:#f0e7d5 !important; text-decoration:underline; font-weight:500; }
+.source-link a:visited{
+  color:#f0e7d5 !important;
+  text-decoration:underline;
+  font-weight:500;
+}
 .source-link a:hover{ color:#f7ce46 !important; }
 
 /* =================== Mobile: reflow only (keep desktop card width) =================== */
@@ -203,22 +301,17 @@ header::after{
 
 /* ===== MOBILE FIX: prevent "Full Source Code" overlap on project cards ===== */
 @media (max-width: 900px){
-  /* Make rows explicit on mobile: [title][media][footer] */
   .cards.projects-grid .card{
     grid-template-rows: auto auto auto !important;
   }
-
-  /* Non–gif-me media (single <img>): stable aspect box + spacing */
   .cards.projects-grid .card > img.project-gif{
-    display: block;          /* avoid inline baseline quirks */
+    display: block;
     width: 100% !important;
     height: auto !important;
-    aspect-ratio: 16 / 9;    /* consistent media height on phones */
+    aspect-ratio: 16 / 9;
     object-fit: cover !important;
-    margin-bottom: 8px;      /* clear the footer area */
+    margin-bottom: 8px;
   }
-
-  /* Keep the footer firmly on row 3 and above any repainting */
   .cards.projects-grid .source-link{
     grid-row: 3 !important;
     position: relative;

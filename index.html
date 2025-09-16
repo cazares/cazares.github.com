@@ -29,19 +29,15 @@
 
     <!-- First section -->
     <div class="cards connect-grid">
-      <a href="#"
-         class="card"
-         id="recsPreviewCard"
-         role="button"
-         aria-controls="recsLightbox"
-         aria-label="Open recommendations preview">
+      <a href="https://drive.google.com/file/d/19nlv7DANcq6jkOJETZHnFUwx8ip1nF2a/view?usp=sharing"
+         target="_blank" rel="noopener noreferrer"
+         class="card" aria-label="View recommendations PDF">
         <div class="icon-circle">
           <span class="emoji-icon" role="img" aria-label="Developer">👨🏽‍💻</span>
         </div>
         <div class="card-title">Professional Recommendations</div>
       </a>
 
-      <!-- Resumé PDF (moved here) -->
       <a href="https://drive.google.com/file/d/1Ndtgh_3tXw0I6aBqizJWBkDvW961dsrN/view"
          target="_blank" rel="noopener noreferrer"
          class="card" aria-label="View PDF resumé">
@@ -85,7 +81,6 @@
 
     <div class="divider"></div>
 
-    <!-- “Live Apps” renamed to Portfolio -->
     <h2 class="bottom-sections-heading">Portfolio</h2>
     <div class="divider"></div>
 
@@ -112,7 +107,7 @@
         <img src="images/googleplay-badge.svg" alt="Google Play" class="store-badge"/>
       </a>
 
-      <a href="https://apps.apple.com/us/app/stamps-com-mobile-app/id1591959884" target="_blank" class="card bottom-card">
+      <a href="https://apps.apple.com/us/app/stamps.com-mobile-app/id1591959884" target="_blank" class="card bottom-card">
         <div class="bottom-card-title">Stamps.com iOS</div>
         <div class="screenshot-row">
           <div class="spacer"></div>
@@ -135,7 +130,6 @@
       </a>
     </div>
 
-    <!-- Untitled projects: only divider above -->
     <div class="divider"></div>
 
     <div class="cards projects-grid">
@@ -196,20 +190,10 @@
     </div>
   </footer>
 
-  <!-- Lightbox for Recommendations -->
-  <div id="recsLightbox" class="lb" aria-hidden="true" role="dialog" aria-label="Recommendations preview">
-    <button class="lb-btn lb-close" aria-label="Close">×</button>
-    <button class="lb-btn lb-prev" aria-label="Previous">‹</button>
-    <img id="lbImage" alt="Recommendations preview"/>
-    <button class="lb-btn lb-next" aria-label="Next">›</button>
-  </div>
-
   <script>
-    // --- Lock hero crop to mobile-baseline look (no zoom on resize) ---
     (function(){
       const header  = document.getElementById('heroHeader');
       const heroImg = document.getElementById('heroImg');
-
       function freezeHero() {
         const h = header.clientHeight;
         heroImg.style.height = h + 'px';
@@ -217,62 +201,12 @@
         heroImg.style.left   = '50%';
         heroImg.style.transform = 'translateX(-50%)';
       }
-
       window.addEventListener('load', freezeHero, { once: true });
       let t;
       const re = () => { clearTimeout(t); t = setTimeout(freezeHero, 50); };
       window.addEventListener('resize', re);
       window.addEventListener('orientationchange', re);
     })();
-
-    // === Recommendations: desktop vs mobile asset sets ===
-    const RECS_IMAGES_DESKTOP = ['images/recsNEW-balanced-2col-white.png'];
-    const RECS_IMAGES_MOBILE  = ['images/recs-vertical-ordered-white-v3.png'];
-
-    const mqMobile = window.matchMedia('(max-width: 900px)');
-    let RECS_IMAGES = RECS_IMAGES_DESKTOP;
-    function pickRecsSet(){ RECS_IMAGES = mqMobile.matches ? RECS_IMAGES_MOBILE : RECS_IMAGES_DESKTOP; }
-    pickRecsSet();
-    mqMobile.addEventListener?.('change', pickRecsSet);
-
-    // === Minimal lightbox ===
-    const openBtn = document.getElementById('recsPreviewCard');
-    const lb = document.getElementById('recsLightbox');
-    const lbImg = document.getElementById('lbImage');
-    const prevBtn = lb.querySelector('.lb-prev');
-    const nextBtn = lb.querySelector('.lb-next');
-    const closeBtn = lb.querySelector('.lb-close');
-    let idx = 0;
-
-    function show(i){
-      pickRecsSet();
-      idx = (i + RECS_IMAGES.length) % RECS_IMAGES.length;
-      lbImg.src = RECS_IMAGES[idx];
-      lb.setAttribute('aria-hidden', 'false');
-      lb.classList.add('open');
-      const many = RECS_IMAGES.length > 1;
-      prevBtn.style.display = many ? '' : 'none';
-      nextBtn.style.display = many ? '' : 'none';
-    }
-    function close(){
-      lb.classList.remove('open');
-      lb.setAttribute('aria-hidden', 'true');
-      lbImg.removeAttribute('src');
-    }
-
-    openBtn?.addEventListener('click', (e)=>{ e.preventDefault(); show(0); });
-    closeBtn.addEventListener('click', close);
-    prevBtn.addEventListener('click', (e)=>{ e.stopPropagation(); show(idx - 1); });
-    nextBtn.addEventListener('click', (e)=>{ e.stopPropagation(); show(idx + 1); });
-    lb.addEventListener('click', (e)=>{ if(e.target === lb) close(); });
-    window.addEventListener('keydown', (e)=>{
-      if(!lb.classList.contains('open')) return;
-      if(e.key === 'Escape') close();
-      if(RECS_IMAGES.length > 1){
-        if(e.key === 'ArrowLeft') show(idx - 1);
-        if(e.key === 'ArrowRight') show(idx + 1);
-      }
-    });
   </script>
 </body>
 </html>
