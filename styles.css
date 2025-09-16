@@ -136,7 +136,7 @@ header::after{
 /* =================== Portfolio screenshots =================== */
 .screenshot-row{
   display:flex; justify-content:center; align-items:flex-end;
-  gap: calc(var(--gap) * 0.2 + 10px);
+  gap: calc(var(--gap) * 0.2 + 1px);
 }
 .screenshot-row .spacer{ display:none !important; }
 .app-screenshot, .short-screenshot{
@@ -194,13 +194,13 @@ header::after{
 }
 .contact-inline a:hover{ background: rgba(247,206,70,0.10); border-color: #f7ce46; }
 
-/* Footer email (Option A: plain/simple) */
+/* Footer email (plain/simple) */
 .email{ text-align:center; margin:24px 0; }
 .email a, .email a:visited{
   color:#fff;
   text-decoration:underline;
   font-weight:500;
-  font-size: clamp(18px, 1.6vw, 22px); /* larger, matches top size but plain */
+  font-size: clamp(18px, 1.6vw, 22px);
   line-height:1.6;
 }
 .email a:hover{ color:#f7ce46; }
@@ -243,32 +243,54 @@ header::after{
 }
 
 /* =================== Apps grid (desktop/tablet) =================== */
-/* Bigger screenshots (~+15%), tighter spacing, larger titles */
+/* Shorter tiles (−25%), larger titles, screenshots scaled to fit */
 .cards.apps-grid .card{
   display: grid !important;
-  grid-template-rows: auto minmax(330px, 1fr) auto !important; /* was 300px */
+  grid-template-rows: auto minmax(200px, 1fr) auto !important; /* shorter row */
   overflow: hidden;
 }
-.cards.apps-grid .card .card-title{ font-size: 26px; } /* +4px bump */
+.cards.apps-grid .card .app-card-title{ font-size: 24px !important; } /* force bump */
 .cards.apps-grid .screenshot-row{
   grid-row: 2 !important;
-  min-height: 330px;                     /* match row height above */
+  min-height: 220px;
+  max-height: 220px;
   align-items: center;
   justify-content: center;
-  gap: calc(var(--gap) * 0.15 + 8px);    /* slightly tighter between screenshots */
+  gap: calc(var(--gap) * 0.15 + 1px);
 }
 .app-screenshot, .short-screenshot{
-  height: 253px;      /* ~15% bigger (was 220px) */
-  max-width: 126px;   /* ~15% bigger (was 110px) */
-  width: auto;
+  height: auto;     /* scaled down proportionally */
+  max-width: 125px;
+  width: 100%;
   margin: 0;
+  aspect-ratio: 9 / 16;
+}
+.ios-screenshot{
+  height: 100%;     /* scaled down proportionally */
+  max-width: 125px;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 2px;
+  aspect-ratio: 9 / 16;
+  min-height: 225px;
+  max-height: 225px;
+}
+.android-screenshot {
+  height: 100%;     /* scaled down proportionally */
+  max-width: 125px;
+  width: 100%;
+  margin: 0;
+  margin-top: 5px;
+  aspect-ratio: 9 / 16;
+  min-height: 225px;
+  max-height: 225px;
 }
 .cards.apps-grid .store-badge{
   grid-row: 3 !important;
   align-self: center;
   justify-self: center;
   display: block;
-  width: 150px;       /* 25% bigger than original 120px */
+  width: 150px;
   height: auto;
   margin-top: 14px;
 }
@@ -276,7 +298,7 @@ header::after{
 /* =================== Top row (connect-grid) =================== */
 .cards.connect-grid .card{
   display: grid !important;
-  grid-template-rows: auto minmax(140px,1fr) auto !important; /* title / icon / label */
+  grid-template-rows: auto minmax(140px,1fr) auto !important;
   overflow: hidden;
 }
 .cards.connect-grid .icon-circle{
