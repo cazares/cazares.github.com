@@ -128,11 +128,7 @@ header::after{
 }
 .icon-circle svg{ width:64%; height:auto; display:block; }
 .social-logo{ width:65%; height:auto; }
-.github-logo {
-  width: 90%;
-  height: auto;
-  object-fit: contain;
-}
+.github-logo { width: 90%; height: auto; object-fit: contain; }
 .linkedin-logo{ width:70%; height:auto; }
 
 .emoji-icon{ font-size:70px; line-height:1; display:inline-block; }
@@ -179,7 +175,7 @@ header::after{
 .source-link a, .source-link a:visited{ color:#f0e7d5 !important; text-decoration:underline; font-weight:500; }
 .source-link a:hover{ color:#f7ce46 !important; }
 
-/* Inline contact email */
+/* Inline contact email (top) */
 .contact-inline{
   text-align:center;
   margin: 24px 0;
@@ -198,10 +194,21 @@ header::after{
 }
 .contact-inline a:hover{ background: rgba(247,206,70,0.10); border-color: #f7ce46; }
 
-/* Footer email */
+/* Footer email (match top pill) */
 .email{ text-align:center; margin:24px 0; }
-.email a, .email a:visited{ color:#fff; text-decoration:underline; font-weight:500; font-size:20px; }
-.email a:hover{ color:#f7ce46; }
+.email a,
+.email a:visited{
+  color:#fff; text-decoration:underline; font-weight:500;
+  display:inline-block;
+  font-size: clamp(18px, 1.6vw, 22px);
+  line-height: 1.6;
+  padding: 6px 12px;
+  border-radius: 8px;
+  text-underline-offset: 3px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid #444;
+}
+.email a:hover{ background: rgba(247,206,70,0.10); border-color: #f7ce46; }
 
 /* =================== Responsive =================== */
 @media (max-width:900px){
@@ -240,22 +247,24 @@ header::after{
   }
 }
 
-/* =================== Apps grid =================== */
+/* =================== Apps grid (desktop/tablet) =================== */
+/* Bigger screenshots to reduce whitespace; larger titles; centered badge */
 .cards.apps-grid .card{
   display: grid !important;
-  grid-template-rows: auto minmax(260px, 1fr) auto !important; /* title / media / badge */
+  grid-template-rows: auto minmax(300px, 1fr) auto !important; /* title / media / badge */
   overflow: hidden;
 }
+.cards.apps-grid .card .card-title{ font-size: 22px; } /* bump app titles only */
 .cards.apps-grid .screenshot-row{
   grid-row: 2 !important;
-  min-height: 260px;
+  min-height: 300px;
   align-items: center;
   justify-content: center;
-  gap: calc(var(--gap) * 0.2 + 10px);
+  gap: calc(var(--gap) * 0.2 + 12px);
 }
 .app-screenshot, .short-screenshot{
-  height: 190px;
-  max-width: 95px;
+  height: 220px;           /* was 190px */
+  max-width: 110px;        /* was 95px */
   width: auto;
   margin: 0;
 }
@@ -264,7 +273,7 @@ header::after{
   align-self: center;
   justify-self: center;
   display: block;
-  width: 150px;   /* 25% bigger */
+  width: 150px;            /* 25% bigger */
   height: auto;
   margin-top: 14px;
 }
@@ -272,7 +281,7 @@ header::after{
 /* =================== Top row (connect-grid) =================== */
 .cards.connect-grid .card{
   display: grid !important;
-  grid-template-rows: auto minmax(140px,1fr) auto !important;
+  grid-template-rows: auto minmax(140px,1fr) auto !important; /* title / icon / label */
   overflow: hidden;
 }
 .cards.connect-grid .icon-circle{
@@ -281,13 +290,10 @@ header::after{
   margin: 0 auto;
   align-self: center;
 }
-.cards.connect-grid .icon-circle img{ width:64% !important; height:auto !important; }
+.cards.connect-grid .social-logo{ width:64%; height:auto; }
+.cards.connect-grid .github-logo{ width:90%; height:auto; object-fit:contain; }
 .cards.connect-grid .linkedin-logo{
-  width:auto !important;
-  height:auto !important;
-  max-width:72% !important;
-  max-height:72% !important;
-  object-fit:contain !important;
+  width:auto; height:auto; max-width:72%; max-height:72%; object-fit:contain;
 }
 .cards.connect-grid .card-title{
   grid-row: 3 !important;
