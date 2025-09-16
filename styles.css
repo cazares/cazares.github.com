@@ -332,3 +332,35 @@ header::after{
   }
 }
 
+/* Make the apps cards use the same 3-row layout as projects */
+.cards.apps-grid .card{
+  display: grid !important;
+  grid-template-rows: auto minmax(220px, 1fr) auto !important; /* title / media / footer */
+  overflow: hidden;
+}
+
+/* Treat the screenshots strip as the media row with a stable height */
+.cards.apps-grid .screenshot-row{
+  grid-row: 2 !important;
+  min-height: 220px;            /* match projects' media height */
+  align-items: center;          /* vertically center the screenshots */
+  justify-content: center;      /* horizontally center as you already do */
+  gap: calc(var(--gap) * 0.2 + 10px);
+}
+
+/* Keep the store badge as the footer row element */
+.cards.apps-grid .store-badge{
+  grid-row: 3 !important;
+  align-self: center;
+  margin-top: 10px;
+}
+
+/* Optional: on narrow screens, keep things tidy and consistent */
+@media (max-width: 900px){
+  .cards.apps-grid .card{
+    grid-template-rows: auto auto auto !important;  /* explicit rows like projects */
+  }
+  .cards.apps-grid .screenshot-row{
+    min-height: unset;           /* let it shrink naturally on phones */
+  }
+}
