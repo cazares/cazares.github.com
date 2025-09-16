@@ -28,19 +28,31 @@
 *{ margin:0; padding:0; box-sizing:border-box; }
 html, body{ height:100%; }
 
-html{ background: linear-gradient(#2a2a29, #1c1c1c) no-repeat fixed; background-size:cover; }
-body{
-  font-family:"OpenSans", Helvetica, Arial, sans-serif;
-  font-weight:400; font-size:18px; line-height:1.5; color:#f0e7d5;
+html{
+  background: linear-gradient(#2a2a29, #1c1c1c) no-repeat fixed;
+  background-size:cover;
 }
 
-footer{ background:#353535; border-top:4px solid #434343; padding:10px 0; height:auto; }
+body{
+  font-family:"OpenSans", Helvetica, Arial, sans-serif;
+  font-weight:400;
+  font-size:18px;
+  line-height:1.5;
+  color:#f0e7d5;
+}
 
-/* =================== Hero banner (static, no zoom) =================== */
+footer{
+  background:#353535;
+  border-top:4px solid #434343;
+  padding:10px 0;
+  height:auto;
+}
+
+/* =================== Hero banner =================== */
 :root{
   --hero-h: clamp(180px, 28vh, 260px);
   --gap: 12px;
-  --desk-card: 280px; /* desktop card width (also used on mobile for reflow-only) */
+  --desk-card: 280px;
 }
 
 header{
@@ -60,89 +72,101 @@ header .hero-img{
   pointer-events: none;
 }
 header::after{
-  content:""; position:absolute; left:0; right:0; bottom:0; height:28px;
+  content:"";
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height:28px;
   background: linear-gradient(to bottom, rgba(28,28,28,0), rgba(28,28,28,.85));
 }
 
-/* container */
+/* =================== Layout wrappers =================== */
 .wrapper{ display:flex; flex-direction:column; align-items:center; padding-bottom:40px; }
 
-/* Headings / dividers */
 .section-heading, .bottom-sections-heading, .card-title, .bottom-card-title{ font-weight:400; }
-.name-heading{ color:#f7ce46; font-weight:600; }              /* less-bold yellow name */
+.name-heading{ color:#f7ce46; font-weight:600; }
 .divider{ width:45%; max-width:430px; margin:15px 0; border-top:.5px solid #f0e7d5b3; }
 .bottom-sections-heading{ font-size:28px; line-height:1; color:#f7ce46; text-align:center; }
 
+.miguel-title { font-size: 52px; font-weight: 400; }
+
 /* =================== Cards & Grids =================== */
 .cards{
-  display:grid; gap:var(--gap); justify-content:center;
+  display:grid;
+  gap:var(--gap);
+  justify-content:center;
   grid-template-columns: repeat(2, var(--desk-card));
 }
 .cards .card{ width: var(--desk-card); }
 
 .card{
-  background:#2e2e2e; border:1px solid #444; border-radius:8px;
-  padding:14px; text-align:center; display:flex; flex-direction:column;
+  background:#2e2e2e;
+  border:1px solid #444;
+  border-radius:8px;
+  padding:14px;
+  text-align:center;
+  display:flex; flex-direction:column;
   color:inherit; text-decoration:none;
   transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
 }
 .card:hover, .card:focus-visible{
-  transform: translateY(-2px); border-color:#f7ce46; box-shadow:0 4px 16px rgba(247,206,70,.12); outline:none;
+  transform: translateY(-2px);
+  border-color:#f7ce46;
+  box-shadow:0 4px 16px rgba(247,206,70,.12);
+  outline:none;
 }
 
-/* Titles always centered with consistent spacing */
+/* Titles */
 .card-title, .bottom-card-title{ text-align:center; margin-bottom:8px; }
 .card-title{ color:#f7ce46; margin-top:10px; }
 .bottom-card-title{ color:#f0e7d5; margin-top:0; }
 
-/* =================== Icon circles / emoji icon =================== */
+/* =================== Icon circles =================== */
 .icon-circle{
-  background:#fff; border-radius:50%;
-  width:80px; height:80px; margin:0 auto 10px auto;
+  background:#fff;
+  border-radius:50%;
+  width:80px; height:80px;
+  margin:0 auto 10px auto;
   display:flex; align-items:center; justify-content:center;
 }
 .icon-circle svg{ width:64%; height:auto; display:block; }
 .social-logo{ width:65%; height:auto; }
-.github-logo{ width:95%; height:auto; }
+.github-logo { width: 90%; height: auto; object-fit: contain; }
 .linkedin-logo{ width:70%; height:auto; }
 
-.emoji-icon{ font-size:52px; line-height:1; display:inline-block; }
+.emoji-icon{ font-size:70px; line-height:1; display:inline-block; }
 
-/* =================== Portfolio (Live Apps) media =================== */
-/* gap between screenshots = 20% of card gap + 10px (desktop & mobile) */
+/* =================== Portfolio screenshots =================== */
 .screenshot-row{
   display:flex; justify-content:center; align-items:flex-end;
-  gap: calc(var(--gap) * 0.2 + 10px);
+  gap: calc(var(--gap) * 0.2 + 1px);
 }
 .screenshot-row .spacer{ display:none !important; }
-.app-screenshot, .short-screenshot{ width:auto; max-width:75px; height:150px; border-radius:4px; margin:0; }
-.store-badge{ margin-top:5px; align-self:center; width:120px; height:auto; }
+.app-screenshot, .short-screenshot{
+  width:auto; max-width:75px; height:150px; border-radius:4px; margin:0;
+}
+.miguels-portfolio-title { font-size: 42px; }
 
-/* =================== Projects (canonical) =================== */
+/* =================== Projects =================== */
 .cards.projects-grid .card{
   display:grid !important;
   grid-template-rows: auto minmax(220px, 1fr) auto;
   overflow:hidden !important;
 }
 .cards.projects-grid .card *{ min-height:0; }
-
 .cards.projects-grid .source-link{
   grid-row:3; margin-top:10px;
   display:flex; align-items:center; justify-content:center; gap:6px; text-align:center;
 }
 .octocat-icon{ width:22.5px; height:22.5px; }
 
-/* Non gif-me: show first GIF only, fill media row (AR can distort) */
 .cards.projects-grid .card > img.project-gif:nth-of-type(n+2){ display:none !important; }
 .cards.projects-grid .card > img.project-gif{
   grid-row:2 !important; width:100% !important; height:100% !important;
   object-fit: fill !important; border-radius:6px;
 }
 
-/* gif-me: two equal tiles; capped row; no footer bleed */
 .cards.projects-grid .card .gif-row{
-  grid-row:2 !important;
-  display:grid !important; grid-template-columns:1fr 1fr !important;
+  grid-row:2 !important; display:grid !important; grid-template-columns:1fr 1fr !important;
   gap:8px !important; align-items:stretch !important; min-height:0;
   height: clamp(180px, 52vw, 260px) !important;
 }
@@ -150,78 +174,153 @@ header::after{
   width:100% !important; height:100% !important; object-fit:cover !important; border-radius:6px;
 }
 
-/* =================== Lightbox =================== */
-.lb{
-  position:fixed; inset:0; display:none; align-items:center; justify-content:center;
-  background:rgba(0,0,0,.88); padding:20px; z-index:1000;
-}
-.lb.open{ display:flex; }
-.lb img{ max-width:min(94vw,1200px); max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,.35); }
-.lb-btn{
-  position:absolute; top:14px; background:#111827; color:#fff; border:1px solid #374151; border-radius:9999px;
-  width:40px; height:40px; font-size:24px; line-height:36px; display:grid; place-items:center; cursor:pointer;
-}
-.lb-close{ right:14px; }
-.lb-prev, .lb-next{ top:50%; transform:translateY(-50%); width:48px; height:48px; font-size:36px; line-height:42px; }
-.lb-prev{ left:12px; } .lb-next{ right:12px; }
-@media (max-width:640px){
-  .lb-btn{ width:36px; height:36px; font-size:22px; }
-  .lb-prev, .lb-next{ font-size:30px; }
-}
-
-/* =================== Links (force off-white; no blue/purple) =================== */
-.contact-inline{ text-align:center; margin-top:10px; }
-.contact-inline a,
-.contact-inline a:visited{ color:#fff; text-decoration:underline; font-weight:500; }
-.contact-inline a:hover{ color:#f7ce46; }
-
-.email{ text-align:center; margin:12px; }
-.email a,
-.email a:visited{ color:#fff; text-decoration:underline; font-weight:500; }
-.email a:hover{ color:#f7ce46; }
-
-.source-link a,
-.source-link a:visited{ color:#f0e7d5 !important; text-decoration:underline; font-weight:500; }
+/* =================== Links =================== */
+.source-link a, .source-link a:visited{ color:#f0e7d5 !important; text-decoration:underline; font-weight:500; }
 .source-link a:hover{ color:#f7ce46 !important; }
 
-/* =================== Mobile: reflow only (keep desktop card width) =================== */
+/* Inline contact email (top) */
+.contact-inline{
+  text-align:center;
+  margin: 24px 0;
+}
+.contact-inline a,
+.contact-inline a:visited{
+  color:#fff; text-decoration:underline; font-weight:500;
+  display:inline-block;
+  font-size: clamp(18px, 1.6vw, 26px);
+  line-height: 1.6;
+  padding: 6px 12px;
+  border-radius: 8px;
+  text-underline-offset: 3px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid #444;
+}
+.contact-inline a:hover{ background: rgba(247,206,70,0.10); border-color: #f7ce46; }
+
+/* Footer email (plain/simple) */
+.email{ text-align:center; margin:24px 0; }
+.email a, .email a:visited{
+  color:#fff;
+  text-decoration:underline;
+  font-weight:500;
+  font-size: clamp(18px, 1.6vw, 26px);
+  line-height:1.6;
+}
+.email a:hover{ color:#f7ce46; }
+
+/* =================== Responsive =================== */
 @media (max-width:900px){
   .cards,
   .cards.connect-grid,
   .cards.apps-grid,
   .cards.projects-grid{
-    grid-template-columns: var(--desk-card) !important;  /* 1 column, same width */
+    grid-template-columns: var(--desk-card) !important;
     justify-content: center !important;
     max-width: calc(var(--desk-card) + 2 * var(--gap)) !important;
     margin-left:auto; margin-right:auto;
   }
-  .cards .card{
-    width: var(--desk-card) !important;  /* keep size identical */
-    justify-self: center !important;
+  .cards .card{ width: var(--desk-card) !important; justify-self: center !important; }
+
+  .cards.projects-grid .card{ grid-template-rows: auto auto auto !important; }
+  .cards.projects-grid .card > img.project-gif{
+    display: block; width: 100% !important; height: auto !important;
+    aspect-ratio: 16 / 9; object-fit: cover !important; margin-bottom: 8px;
+  }
+  .cards.projects-grid .source-link{ grid-row: 3 !important; position: relative; z-index: 1; }
+
+  .cards.apps-grid .card{ grid-template-rows: auto auto auto !important; }
+  .cards.apps-grid .screenshot-row{ min-height: unset; }
+  .app-screenshot, .short-screenshot{ height:150px; max-width:75px; }
+}
+
+@media (min-width: 1200px){
+  .cards,
+  .cards.connect-grid,
+  .cards.apps-grid,
+  .cards.projects-grid{
+    grid-template-columns: repeat(4, var(--desk-card)) !important;
+    max-width: calc(4 * var(--desk-card) + 3 * var(--gap)) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 }
 
-/* ===== MOBILE FIX: prevent "Full Source Code" overlap on project cards ===== */
-@media (max-width: 900px){
-  /* Make rows explicit on mobile: [title][media][footer] */
-  .cards.projects-grid .card{
-    grid-template-rows: auto auto auto !important;
-  }
+/* =================== Apps grid (desktop/tablet) =================== */
+/* Shorter tiles (−25%), larger titles, screenshots scaled to fit */
+.cards.apps-grid .card{
+  display: grid !important;
+  grid-template-rows: auto minmax(200px, 1fr) auto !important; /* shorter row */
+  overflow: hidden;
+}
+.cards.apps-grid .card .app-card-title{ font-size: 24px !important; } /* force bump */
+.cards.apps-grid .screenshot-row{
+  grid-row: 2 !important;
+  min-height: 220px;
+  max-height: 220px;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--gap) * 0.15 + 1px);
+}
+.app-screenshot, .short-screenshot{
+  height: auto;     /* scaled down proportionally */
+  max-width: 125px;
+  width: 100%;
+  margin: 0;
+  aspect-ratio: 9 / 16;
+}
+.ios-screenshot{
+  height: 100%;     /* scaled down proportionally */
+  max-width: 125px;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 2px;
+  aspect-ratio: 9 / 16;
+  min-height: 225px;
+  max-height: 225px;
+}
+.android-screenshot {
+  height: 100%;     /* scaled down proportionally */
+  max-width: 125px;
+  width: 100%;
+  margin: 0;
+  margin-top: 5px;
+  aspect-ratio: 9 / 16;
+  min-height: 225px;
+  max-height: 225px;
+}
+.cards.apps-grid .store-badge{
+  grid-row: 3 !important;
+  align-self: center;
+  justify-self: center;
+  display: block;
+  width: 150px;
+  height: auto;
+  margin-top: 14px;
+}
 
-  /* Non–gif-me media (single <img>): stable aspect box + spacing */
-  .cards.projects-grid .card > img.project-gif{
-    display: block;          /* avoid inline baseline quirks */
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 16 / 9;    /* consistent media height on phones */
-    object-fit: cover !important;
-    margin-bottom: 8px;      /* clear the footer area */
-  }
+/* =================== Top row (connect-grid) =================== */
+.cards.connect-grid .card{
+  display: grid !important;
+  grid-template-rows: auto minmax(140px,1fr) auto !important;
+  overflow: hidden;
+}
+.cards.connect-grid .icon-circle{
+  grid-row: 2 !important;
+  width: 115px; height: 115px;
+  margin: 0 auto;
+  align-self: center;
+}
+.cards.connect-grid .social-logo{ width:64%; height:auto; }
+.cards.connect-grid .github-logo{ width:90%; height:auto; object-fit:contain; }
+.cards.connect-grid .linkedin-logo{
+  width:auto; height:auto; max-width:72%; max-height:72%; object-fit:contain;
+}
+.cards.connect-grid .card-title{
+  grid-row: 3 !important;
+  margin-top: 10px;
+  font-size: 26px;
+}
 
-  /* Keep the footer firmly on row 3 and above any repainting */
-  .cards.projects-grid .source-link{
-    grid-row: 3 !important;
-    position: relative;
-    z-index: 1;
-  }
+html {
+  scroll-behavior: smooth;
 }
