@@ -194,21 +194,16 @@ header::after{
 }
 .contact-inline a:hover{ background: rgba(247,206,70,0.10); border-color: #f7ce46; }
 
-/* Footer email (match top pill) */
+/* Footer email (Option A: plain/simple) */
 .email{ text-align:center; margin:24px 0; }
-.email a,
-.email a:visited{
-  color:#fff; text-decoration:underline; font-weight:500;
-  display:inline-block;
-  font-size: clamp(18px, 1.6vw, 22px);
-  line-height: 1.6;
-  padding: 6px 12px;
-  border-radius: 8px;
-  text-underline-offset: 3px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid #444;
+.email a, .email a:visited{
+  color:#fff;
+  text-decoration:underline;
+  font-weight:500;
+  font-size: clamp(18px, 1.6vw, 22px); /* larger, matches top size but plain */
+  line-height:1.6;
 }
-.email a:hover{ background: rgba(247,206,70,0.10); border-color: #f7ce46; }
+.email a:hover{ color:#f7ce46; }
 
 /* =================== Responsive =================== */
 @media (max-width:900px){
@@ -248,23 +243,23 @@ header::after{
 }
 
 /* =================== Apps grid (desktop/tablet) =================== */
-/* Bigger screenshots to reduce whitespace; larger titles; centered badge */
+/* Bigger screenshots (~+15%), tighter spacing, larger titles */
 .cards.apps-grid .card{
   display: grid !important;
-  grid-template-rows: auto minmax(300px, 1fr) auto !important; /* title / media / badge */
+  grid-template-rows: auto minmax(330px, 1fr) auto !important; /* was 300px */
   overflow: hidden;
 }
-.cards.apps-grid .card .card-title{ font-size: 22px; } /* bump app titles only */
+.cards.apps-grid .card .card-title{ font-size: 26px; } /* +4px bump */
 .cards.apps-grid .screenshot-row{
   grid-row: 2 !important;
-  min-height: 300px;
+  min-height: 330px;                     /* match row height above */
   align-items: center;
   justify-content: center;
-  gap: calc(var(--gap) * 0.2 + 12px);
+  gap: calc(var(--gap) * 0.15 + 8px);    /* slightly tighter between screenshots */
 }
 .app-screenshot, .short-screenshot{
-  height: 220px;           /* was 190px */
-  max-width: 110px;        /* was 95px */
+  height: 253px;      /* ~15% bigger (was 220px) */
+  max-width: 126px;   /* ~15% bigger (was 110px) */
   width: auto;
   margin: 0;
 }
@@ -273,7 +268,7 @@ header::after{
   align-self: center;
   justify-self: center;
   display: block;
-  width: 150px;            /* 25% bigger */
+  width: 150px;       /* 25% bigger than original 120px */
   height: auto;
   margin-top: 14px;
 }
