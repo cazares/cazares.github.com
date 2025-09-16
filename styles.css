@@ -154,7 +154,7 @@ header::after{
 .linkedin-logo{ width:70%; height:auto; }
 
 .emoji-icon{
-  font-size:52px;
+  font-size:70px;
   line-height:1;
   display:inline-block;
 }
@@ -363,4 +363,133 @@ header::after{
   .cards.apps-grid .screenshot-row{
     min-height: unset;           /* let it shrink naturally on phones */
   }
+}
+
+/* --- Make TOP ROW (connect-grid) match the neat 3-row look --- */
+.cards.connect-grid .card{
+  display: grid !important;
+  grid-template-rows: auto minmax(180px, 1fr) auto !important; /* title / icon / footer(=title row here) */
+  overflow: hidden;
+}
+.cards.connect-grid .icon-circle{
+  grid-row: 2 !important;
+  width: 96px; height: 96px;          /* slightly larger icon on desktop */
+  margin: 8px auto 4px auto;
+}
+.cards.connect-grid .card-title{
+  grid-row: 3 !important;
+  margin-top: 8px;
+}
+
+/* --- Bump APP SCREENSHOT sizes & keep rows aligned like last row --- */
+.cards.apps-grid .card{
+  display: grid !important;
+  grid-template-rows: auto minmax(260px, 1fr) auto !important; /* title / media / badge */
+}
+.cards.apps-grid .screenshot-row{
+  grid-row: 2 !important;
+  min-height: 260px;                 /* taller media box */
+  align-items: center;
+  justify-content: center;
+}
+.app-screenshot,
+.short-screenshot{
+  height: 190px;                     /* was 150px */
+  max-width: 95px;                   /* was 75px */
+  width: auto;
+  margin: 0;
+}
+.cards.apps-grid .store-badge{
+  grid-row: 3 !important;
+  align-self: center;
+  margin-top: 12px;
+}
+
+/* --- Keep mobile tidy (no oversized elements on phones) --- */
+@media (max-width: 900px){
+  .cards.connect-grid .card{
+    grid-template-rows: auto auto auto !important;
+  }
+  .cards.apps.grid .card{
+    grid-template-rows: auto auto auto !important;
+  }
+  .cards.apps-grid .screenshot-row{
+    min-height: unset;
+  }
+  .app-screenshot,
+  .short-screenshot{
+    height: 150px;
+    max-width: 75px;
+  }
+}
+
+/* Top row (connect-grid): force consistent 3-row layout */
+.cards.connect-grid .card{
+  display: grid !important;
+  grid-template-rows: auto minmax(140px,1fr) auto !important; /* title / icon / footer(title text) */
+  overflow: hidden;
+}
+.cards.connect-grid .icon-circle{
+  grid-row: 2 !important;
+  width: 96px; height: 96px;
+  margin: 0 auto;
+  align-self: center;
+}
+.cards.connect-grid .card-title{
+  grid-row: 3 !important;
+  margin-top: 10px;
+}
+
+/* Top row (connect-grid): larger icons + bigger text */
+.cards.connect-grid .icon-circle{
+  width: 115px;   /* was 96px → ~20% larger */
+  height: 115px;
+}
+
+.cards.connect-grid .emoji-icon,
+.cards.connect-grid .social-logo,
+.cards.connect-grid .github-logo,
+.cards.connect-grid .linkedin-logo{
+  transform: scale(1.2);  /* grow inner icon proportionally */
+}
+
+.cards.connect-grid .card-title{
+  font-size: 22px; /* base +4px (assuming ~18px before) */
+}
+
+/* Top row: keep icons neatly inside their circles */
+.cards.connect-grid .icon-circle{
+  width: 115px; height: 115px;  /* your larger size */
+}
+
+.cards.connect-grid .emoji-icon,
+.cards.connect-grid .social-logo,
+.cards.connect-grid .github-logo,
+.cards.connect-grid .linkedin-logo{
+  transform: none !important;    /* undo earlier scale so they don't overflow */
+}
+
+/* Force consistent fit for raster logos in the circle */
+.cards.connect-grid .icon-circle img{
+  width: 94% !important;         /* same proportion as your SVGs */
+  height: auto !important;
+}
+
+/* Make sure the GitHub/LinkedIn overrides from base CSS don’t win */
+.cards.connect-grid .github-logo{ width: 100% !important; }
+.cards.connect-grid .linkedin-logo{ width: 64% !important; }
+
+/* Fine-tune LinkedIn logo inside connect-grid circle */
+.cards.connect-grid .linkedin-logo{
+  width: 56% !important;   /* smaller than 64% */
+  height: auto !important;
+}
+
+/* Force LinkedIn logo to always fit inside circle */
+.cards.connect-grid .linkedin-logo {
+  width: auto !important;
+  height: auto !important;
+  max-width: 72% !important;   /* keeps it narrower */
+  max-height: 72% !important;  /* prevents tall overflow */
+  object-fit: contain !important;
 }
