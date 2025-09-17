@@ -5,46 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Miguel Cazares</title>
 
-  <!-- Preload critical fonts -->
+  <!-- Preload critical fonts (same-origin). These match the weights you use above-the-fold. -->
   <link rel="preload" href="./fonts/OpenSans-Regular-webfont.woff" as="font" type="font/woff" crossorigin>
   <link rel="preload" href="./fonts/OpenSans-Semibold-webfont.woff" as="font" type="font/woff" crossorigin>
 
-  <!-- Preload hero image -->
+  <!-- Preload hero image (optional; fetchpriority already high, but this keeps it explicit) -->
   <link rel="preload" as="image" href="images/miguel-headshot.jpg" imagesrcset="images/miguel-headshot.jpg 446w">
 
-  <!-- Critical CSS (tiny) to paint fast -->
+  <!-- Critical CSS: minimal rules for a fast first paint -->
   <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    html,body{height:100%}
-    html{background:linear-gradient(#2a2a29,#1c1c1c) no-repeat fixed;background-size:cover}
-    body{font-family:"OpenSans",Helvetica,Arial,sans-serif;font-weight:400;font-size:18px;line-height:1.5;color:#f0e7d5}
-    :root{--hero-h:clamp(180px,28vh,260px);--gap:12px;--desk-card:280px}
-    header{height:var(--hero-h);position:relative;overflow:hidden;background:#1c1c1c}
-    header .hero-img{position:absolute;top:0;left:50%;transform:translateX(-50%);height:100%;width:auto;max-width:none;pointer-events:none}
-    header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:28px;background:linear-gradient(to bottom,rgba(28,28,28,0),rgba(28,28,28,.85))}
-    .wrapper{display:flex;flex-direction:column;align-items:center;padding-bottom:40px}
-    .divider{width:40%;margin:15px 0;border-top:.5px solid #f0e7d5b3}
-    .section-heading,.bottom-sections-heading{font-weight:400;text-align:center}
-    .name-heading{color:#f7ce46;font-weight:600}
-    .miguel-title{font-size:52px;font-weight:400}
-    .cards{display:grid;gap:var(--gap);justify-content:center;grid-template-columns:repeat(2,var(--desk-card))}
-    .cards .card{width:var(--desk-card)}
-    .card{background:#2e2e2e;border:1px solid #444;border-radius:8px;padding:14px;text-align:center;display:flex;flex-direction:column;color:inherit;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
-    .card:hover,.card:focus-visible{transform:translateY(-2px);border-color:#f7ce46;box-shadow:0 4px 16px rgba(247,206,70,.12);outline:none}
-    .cards.connect-grid .card{display:grid;grid-template-rows:auto minmax(140px,1fr) auto;overflow:hidden}
-    .icon-circle{background:#fff;border-radius:50%;width:80px;height:80px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center}
-    .card-title{color:#f7ce46;margin-top:10px;margin-bottom:8px}
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { height:100%; }
+    html { background: linear-gradient(#2a2a29, #1c1c1c) no-repeat fixed; background-size:cover; }
+    body { font-family:"OpenSans", Helvetica, Arial, sans-serif; font-weight:400; font-size:18px; line-height:1.5; color:#f0e7d5; }
+    :root{ --hero-h: clamp(180px, 28vh, 260px); --gap: 12px; --desk-card: 280px; }
+
+    /* hero */
+    header { height: var(--hero-h); position:relative; overflow:hidden; background:#1c1c1c; }
+    header .hero-img { position:absolute; top:0; left:50%; transform:translateX(-50%); height:100%; width:auto; max-width:none; pointer-events:none; }
+    header::after { content:""; position:absolute; left:0; right:0; bottom:0; height:28px;
+      background: linear-gradient(to bottom, rgba(28,28,28,0), rgba(28,28,28,.85)); }
+
+    /* wrapper + name */
+    .wrapper { display:flex; flex-direction:column; align-items:center; padding-bottom:40px; }
+    .divider { width:40%; margin:15px 0; border-top:.5px solid #f0e7d5b3; }
+    .section-heading, .bottom-sections-heading { font-weight:400; text-align:center; }
+    .name-heading { color:#f7ce46; font-weight:600; }
+    .miguel-title { font-size:52px; font-weight:400; }
+
+    /* top cards */
+    .cards { display:grid; gap:var(--gap); justify-content:center; grid-template-columns: repeat(2, var(--desk-card)); }
+    .cards .card { width: var(--desk-card); }
+    .card {
+      background:#2e2e2e; border:1px solid #444; border-radius:8px; padding:14px; text-align:center;
+      display:flex; flex-direction:column; color:inherit; text-decoration:none;
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+    .card:hover, .card:focus-visible { transform:translateY(-2px); border-color:#f7ce46; box-shadow:0 4px 16px rgba(247,206,70,.12); outline:none; }
+
+    .cards.connect-grid .card { display:grid; grid-template-rows:auto minmax(140px,1fr) auto; overflow:hidden; }
+    .icon-circle { background:#fff; border-radius:50%; width:80px; height:80px; margin:0 auto 10px; display:flex; align-items:center; justify-content:center; }
+    .card-title { color:#f7ce46; margin-top:10px; margin-bottom:8px; }
+
     @media (max-width:900px){
-      .cards{grid-template-columns:var(--desk-card);max-width:calc(var(--desk-card) + 2*var(--gap));margin:0 auto}
-      .cards .card{width:var(--desk-card);justify-self:center}
+      .cards { grid-template-columns: var(--desk-card); max-width: calc(var(--desk-card) + 2 * var(--gap)); margin: 0 auto; }
+      .cards .card { width: var(--desk-card); justify-self:center; }
     }
   </style>
 
-  <!-- Full stylesheet -->
-  <link rel="stylesheet" href="./styles.css?v=2025-09-17-17-25"/>
+  <!-- Full stylesheet for everything else (cached) -->
+  <link rel="stylesheet" href="./styles.css?v=2025-09-06-04-09-pm"/>
 </head>
 <body>
-  <!-- Static banner -->
+  <!-- Static banner: same crop at all widths (no parallax/zoom) -->
   <header id="heroHeader" aria-label="Hero banner">
     <img
       id="heroImg"
@@ -63,9 +76,11 @@
     <h2 class="section-heading name-heading miguel-title">Miguel Cazares</h2>
     <div class="divider"></div>
 
-    <!-- Connect -->
+    <!-- First section -->
     <div class="cards connect-grid">
-      <a href="https://drive.google.com/file/d/1Ndtgh_3tXw0I6aBqizJWBkDvW961dsrN/view" target="_blank" rel="noopener noreferrer" class="card" aria-label="View PDF résumé">
+      <a href="https://drive.google.com/file/d/1Ndtgh_3tXw0I6aBqizJWBkDvW961dsrN/view"
+         target="_blank" rel="noopener noreferrer"
+         class="card" aria-label="View PDF résumé">
         <div class="icon-circle">
           <svg class="doc-svg" viewBox="0 0 128 128" aria-hidden="true" width="82" height="82">
             <rect x="12" y="8" width="88" height="112" rx="12" ry="12" fill="#fff" stroke="#1f2937" stroke-width="8"/>
@@ -83,14 +98,16 @@
 
       <a href="http://linkedin.com/in/cazaresm" target="_blank" rel="noopener noreferrer" class="card">
         <div class="icon-circle">
-          <img src="images/linkedin.png" alt="LinkedIn" class="social-logo linkedin-logo" loading="lazy" decoding="async" width="512" height="512"/>
+          <img src="images/linkedin.png" alt="LinkedIn" class="social-logo linkedin-logo"
+               loading="lazy" decoding="async" width="512" height="512"/>
         </div>
         <div class="card-title">LinkedIn</div>
       </a>
 
       <a href="https://github.com/cazares" target="_blank" rel="noopener noreferrer" class="card">
         <div class="icon-circle">
-          <img src="images/github-logo.png" alt="GitHub" class="github-logo" loading="lazy" decoding="async" width="640" height="640"/>
+          <img src="images/github-logo.png" alt="GitHub" class="github-logo"
+               loading="lazy" decoding="async" width="640" height="640"/>
         </div>
         <div class="card-title">GitHub</div>
       </a>
@@ -105,58 +122,81 @@
     <h2 class="bottom-sections-heading miguels-portfolio-title">Portfolio</h2>
     <div class="wide-divider wide-divider-bottom-space"></div>
 
-    <!-- Apps grid -->
     <div class="cards apps-grid">
       <!-- ShipStation iOS -->
-      <a href="https://apps.apple.com/us/app/shipstation-mobile/id972151811" target="_blank" rel="noopener noreferrer" class="card bottom-card">
+      <a href="https://apps.apple.com/us/app/shipstation-mobile/id972151811"
+         target="_blank" rel="noopener noreferrer" class="card bottom-card" id="app-ship-ios">
         <div class="bottom-card-title app-card-title">ShipStation iOS</div>
         <div class="screenshot-row">
           <div class="spacer"></div>
-          <img src="images/ss-ios-1.png" alt="ShipStation iOS screenshot 1" class="app-shot" loading="lazy" decoding="async" width="620" height="1266"/>
-          <img src="images/ss-ios-2.png" alt="ShipStation iOS screenshot 2" class="app-shot" loading="lazy" decoding="async" width="620" height="1266"/>
+          <img src="images/ss-ios-1.png" alt="ShipStation iOS screenshot 1"
+               class="app-screenshot ios-screenshot" loading="lazy" decoding="async"
+               width="620" height="1266"/>
+          <img src="images/ss-ios-2.png" alt="ShipStation iOS screenshot 2"
+               class="app-screenshot ios-screenshot" loading="lazy" decoding="async"
+               width="618" height="1266"/>
           <div class="spacer"></div>
         </div>
         <p class="project-blurb">Sole engineer, scaled to 50k+ MAU and 4.7★ App Store rating</p>
-        <img src="images/appstore-badge.svg" alt="App Store" class="store-badge" loading="lazy" decoding="async" width="135" height="40"/>
+        <img src="images/appstore-badge.svg" alt="App Store"
+             class="store-badge" loading="lazy" decoding="async" width="135" height="40"/>
       </a>
 
       <!-- ShipStation Android -->
-      <a href="https://play.google.com/store/apps/details?id=com.shipstation.app" target="_blank" rel="noopener noreferrer" class="card bottom-card">
+      <a href="https://play.google.com/store/apps/details?id=com.shipstation.app"
+         target="_blank" rel="noopener noreferrer" class="card bottom-card" id="app-ship-android">
         <div class="bottom-card-title app-card-title">ShipStation Android</div>
         <div class="screenshot-row">
           <div class="spacer"></div>
-          <img src="images/ss-android-1.png" alt="ShipStation Android screenshot 1" class="app-shot" loading="lazy" decoding="async" width="620" height="1266"/>
-          <img src="images/ss-android-2.png" alt="ShipStation Android screenshot 2" class="app-shot" loading="lazy" decoding="async" width="620" height="1266"/>
+          <img src="images/ss-android-1.png" alt="ShipStation Android screenshot 1"
+               class="app-screenshot android-screenshot" loading="lazy" decoding="async"
+               width="1074" height="1926"/>
+          <img src="images/ss-android-2.png" alt="ShipStation Android screenshot 2"
+               class="app-screenshot android-screenshot" loading="lazy" decoding="async"
+               width="1074" height="1920"/>
           <div class="spacer"></div>
         </div>
         <p class="project-blurb">Built from scratch, 100k+ installs and 4.3★ Google Play rating</p>
-        <img src="images/googleplay-badge.svg" alt="Google Play" class="store-badge" loading="lazy" decoding="async" width="135" height="40"/>
+        <img src="images/googleplay-badge.svg" alt="Google Play"
+             class="store-badge" loading="lazy" decoding="async" width="135" height="40"/>
       </a>
 
       <!-- Stamps.com iOS -->
-      <a href="https://apps.apple.com/us/app/stamps.com-mobile-app/id1591959884" target="_blank" rel="noopener noreferrer" class="card bottom-card">
+      <a href="https://apps.apple.com/us/app/stamps.com-mobile-app/id1591959884"
+         target="_blank" rel="noopener noreferrer" class="card bottom-card" id="app-stamps-ios">
         <div class="bottom-card-title app-card-title">Stamps.com iOS</div>
         <div class="screenshot-row">
           <div class="spacer"></div>
-          <img src="images/stamps-ios-1.png" alt="Stamps iOS screenshot 1" class="app-shot" loading="lazy" decoding="async" width="620" height="1266"/>
-          <img src="images/stamps-ios-2.png" alt="Stamps iOS screenshot 2" class="app-shot" loading="lazy" decoding="async" width="620" height="1266"/>
+          <img src="images/stamps-ios-1.png" alt="Stamps iOS screenshot 1"
+               class="app-screenshot ios-screenshot" loading="lazy" decoding="async"
+               width="620" height="1244"/>
+          <img src="images/stamps-ios-2.png" alt="Stamps iOS screenshot 2"
+               class="app-screenshot ios-screenshot" loading="lazy" decoding="async"
+               width="606" height="1266"/>
           <div class="spacer"></div>
         </div>
         <p class="project-blurb">Modernized with React Native bridge and advanced in-app printing</p>
-        <img src="images/appstore-badge.svg" alt="App Store" class="store-badge" loading="lazy" decoding="async" width="135" height="40"/>
+        <img src="images/appstore-badge.svg" alt="App Store"
+             class="store-badge" loading="lazy" decoding="async" width="135" height="40"/>
       </a>
 
       <!-- Stamps.com Android -->
-      <a href="https://play.google.com/store/apps/details?id=stamps.mobile.app" target="_blank" rel="noopener noreferrer" class="card bottom-card">
+      <a href="https://play.google.com/store/apps/details?id=stamps.mobile.app"
+         target="_blank" rel="noopener noreferrer" class="card bottom-card" id="app-stamps-android">
         <div class="bottom-card-title app-card-title">Stamps.com Android</div>
         <div class="screenshot-row">
           <div class="spacer"></div>
-          <img src="images/stamps-android-1.png" alt="Stamps Android screenshot 1" class="app-shot" loading="lazy" decoding="async" width="620" height="1266"/>
-          <img src="images/stamps-android-2.png" alt="Stamps Android screenshot 2" class="app-shot" loading="lazy" decoding="async" width="620" height="1266"/>
+          <img src="images/stamps-android-1.png" alt="Stamps Android screenshot 1"
+               class="app-screenshot android-screenshot" loading="lazy" decoding="async"
+               width="764" height="1664"/>
+          <img src="images/stamps-android-2.png" alt="Stamps Android screenshot 2"
+               class="app-screenshot android-screenshot" loading="lazy" decoding="async"
+               width="768" height="1650"/>
           <div class="spacer"></div>
         </div>
         <p class="project-blurb">Delivered feature parity with iOS, boosting cross-platform adoption</p>
-        <img src="images/googleplay-badge.svg" alt="Google Play" class="store-badge" loading="lazy" decoding="async" width="135" height="40"/>
+        <img src="images/googleplay-badge.svg" alt="Google Play"
+             class="store-badge" loading="lazy" decoding="async" width="135" height="40"/>
       </a>
     </div>
 
@@ -164,14 +204,19 @@
     <h2 class="bottom-sections-heading miguels-projects-title">Personal Projects</h2>
     <div class="wide-divider miguels-projects-spacing-bottom"></div>
 
-    <!-- Personal projects (unchanged) -->
     <div class="cards projects-grid">
       <div class="card bottom-card">
         <div class="spacer"></div>
-        <img src="images/racer-js-1.gif" alt="racer-js demo 1" class="project-media square-media" loading="lazy" decoding="async" width="538" height="410"/>
+        <img src="images/racer-js-1.gif" alt="racer-js demo 1"
+             class="project-gif square-gif" loading="lazy" decoding="async"
+             width="538" height="410"/>
+        <img src="images/racer-js-2.gif" alt="racer-js demo 2"
+             class="project-gif hide" loading="lazy" decoding="async"
+             width="565" height="404"/>
         <div class="spacer"></div>
         <div class="source-link">
-          <img src="images/github-logo-white.png" alt="GitHub" class="octocat-icon" loading="lazy" decoding="async" width="230" height="225"/>
+          <img src="images/github-logo-white.png" alt="GitHub" class="octocat-icon"
+               loading="lazy" decoding="async" width="230" height="225"/>
           <a href="https://github.com/cazares/racer-js" target="_blank" rel="noopener noreferrer">racer-js</a>
         </div>
       </div>
@@ -179,32 +224,46 @@
       <div class="card bottom-card">
         <div class="spacer"></div>
         <div class="gif-row">
-          <img src="images/gif-me-1.gif" alt="gif-me demo 1" class="project-media" loading="lazy" decoding="async" width="177" height="382"/>
-          <img src="images/gif-me-2.gif" alt="gif-me demo 2" class="project-media" loading="lazy" decoding="async" width="216" height="288"/>
+          <img src="images/gif-me-1.gif" alt="gif-me demo 1"
+               class="project-gif gif-me-gif" loading="lazy" decoding="async"
+               width="177" height="382"/>
+          <img src="images/gif-me-2.gif" alt="gif-me demo 2"
+               class="project-gif gif-me-gif" loading="lazy" decoding="async"
+               width="216" height="288"/>
         </div>
         <div class="spacer"></div>
         <div class="source-link">
-          <img src="images/github-logo-white.png" alt="GitHub" class="octocat-icon" loading="lazy" decoding="async" width="230" height="225"/>
+          <img src="images/github-logo-white.png" alt="GitHub" class="octocat-icon"
+               loading="lazy" decoding="async" width="230" height="225"/>
           <a href="https://github.com/cazares/gif-me" target="_blank" rel="noopener noreferrer">gif-me</a>
         </div>
       </div>
 
       <div class="card bottom-card">
         <div class="spacer"></div>
-        <img src="images/precreated-historia-1.gif" alt="precreated-historia demo 1" class="project-media square-media" loading="lazy" decoding="async" width="382" height="256"/>
+        <img src="images/precreated-historia-1.gif" alt="precreated-historia demo 1"
+             class="project-gif square-gif" loading="lazy" decoding="async"
+             width="382" height="256"/>
+        <img src="images/precreated-historia-2.gif" alt="precreated-historia demo 2"
+             class="project-gif hide" loading="lazy" decoding="async"
+             width="320" height="214"/>
         <div class="spacer"></div>
         <div class="source-link">
-          <img src="images/github-logo-white.png" alt="GitHub" class="octocat-icon" loading="lazy" decoding="async" width="230" height="225"/>
+          <img src="images/github-logo-white.png" alt="GitHub" class="octocat-icon"
+               loading="lazy" decoding="async" width="230" height="225"/>
           <a href="https://github.com/cazares/precreated-historia" target="_blank" rel="noopener noreferrer">precreated-historia</a>
         </div>
       </div>
 
       <div class="card bottom-card">
         <div class="spacer"></div>
-        <img src="images/solar-lending-gif.gif" alt="solar-lending demo" class="project-media square-media" loading="lazy" decoding="async" width="493" height="554"/>
+        <img src="images/solar-lending-gif.gif" alt="solar-lending demo"
+             class="project-gif square-gif" loading="lazy" decoding="async"
+             width="493" height="554"/>
         <div class="spacer"></div>
         <div class="source-link">
-          <img src="images/github-logo-white.png" alt="GitHub" class="octocat-icon" loading="lazy" decoding="async" width="230" height="225"/>
+          <img src="images/github-logo-white.png" alt="GitHub" class="octocat-icon"
+               loading="lazy" decoding="async" width="230" height="225"/>
           <a href="https://github.com/cazares/solar-lending" target="_blank" rel="noopener noreferrer">solar-lending</a>
         </div>
       </div>
