@@ -137,7 +137,8 @@ header::after{
 .github-logo { width: 90%; height: auto; object-fit: contain; }
 .linkedin-logo{ width:70%; height:auto; }
 
-.emoji-icon{ font-size:70px; line-height:1; display:inline-block; }
+/* Keep logos square to avoid shift while loading */
+.linkedin-logo, .github-logo { aspect-ratio: 1 / 1; }
 
 /* =================== Portfolio screenshots =================== */
 .screenshot-row{
@@ -155,10 +156,10 @@ header::after{
 }
 
 /* =================== Projects =================== */
-
 .miguels-projects-spacing-top { margin-top: 55px; }
 .miguels-projects-spacing-bottom { margin-bottom: 25px; }
 .miguels-projects-title { font-size: 24px; }
+
 .cards.projects-grid .card{
   display:grid !important;
   grid-template-rows: auto minmax(220px, 1fr) auto;
@@ -185,6 +186,10 @@ header::after{
 .cards.projects-grid .card .gif-row .project-gif{
   width:100% !important; height:100% !important; object-fit:cover !important; border-radius:6px;
 }
+
+/* Square preview tiles */
+.square-gif { aspect-ratio: 1 / 1; object-fit: cover; }
+.project-gif { display: block; }
 
 /* =================== Links =================== */
 .source-link a, .source-link a:visited{ color:#f0e7d5 !important; text-decoration:underline; font-weight:500; }
@@ -220,6 +225,83 @@ header::after{
 }
 .email a:hover{ color:#f7ce46; }
 
+/* =================== Apps grid (desktop/tablet) =================== */
+/* Title, screenshots, BLURB, badge */
+.cards.apps-grid .card{
+  display: grid !important;
+  grid-template-rows: auto minmax(200px, 1fr) auto auto !important; /* title, shots, blurb, badge */
+  overflow: hidden;
+}
+.cards.apps-grid .card .app-card-title{ font-size: 24px !important; }
+
+.cards.apps-grid .screenshot-row{
+  grid-row: 2 !important;
+  min-height: 220px;
+  max-height: 220px;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--gap) * 0.15 + 1px);
+}
+
+/* Screenshots (phones) */
+.app-screenshot, .short-screenshot{
+  height: auto;
+  max-width: 125px;
+  width: 100%;
+  margin: 0;
+  border-radius: 4px;
+  aspect-ratio: 9 / 16; /* safe default */
+}
+/* iOS screenshots (matches intrinsic ~620x1266, 606x1266) */
+.ios-screenshot{ aspect-ratio: 620 / 1266; }
+/* Android screenshots (sources vary slightly; keep consistent portrait) */
+.android-screenshot{ aspect-ratio: 9 / 16; }
+
+/* Blurb row */
+.cards.apps-grid .card .project-blurb{
+  grid-row: 3 !important;
+  font-size: 0.9em;
+  color: #ccc;
+  text-align: center;
+  margin: 10px 10px 0;
+  line-height: 1.4;
+}
+
+/* Store badges */
+.cards.apps-grid .store-badge{
+  grid-row: 4 !important;
+  align-self: center;
+  justify-self: center;
+  display: block;
+  width: 135px;
+  height: auto;
+  margin: 10px 0 0;
+  aspect-ratio: 135 / 40; /* reserve space pre-load */
+}
+
+/* =================== Top row (connect-grid) =================== */
+.cards.connect-grid .card{
+  display: grid !important;
+  grid-template-rows: auto minmax(140px,1fr) auto !important;
+  overflow: hidden;
+}
+.cards.connect-grid .icon-circle{
+  grid-row: 2 !important;
+  width: 115px; height: 115px;
+  margin: 0 auto;
+  align-self: center;
+}
+.cards.connect-grid .social-logo{ width:64%; height:auto; }
+.cards.connect-grid .github-logo{ width:90%; height:auto; object-fit:contain; }
+.cards.connect-grid .linkedin-logo{
+  width:auto; height:auto; max-width:72%; max-height:72%; object-fit:contain;
+}
+.cards.connect-grid .card-title{
+  grid-row: 3 !important;
+  margin-top: 10px;
+  font-size: 26px;
+}
+
 /* =================== Responsive =================== */
 @media (min-width: 1200px){
   .cards,
@@ -248,122 +330,22 @@ header::after{
   }
   .cards .card{ width: var(--desk-card) !important; justify-self: center !important; }
 
-  /* projects grid mobile (unchanged) */
+  /* projects grid mobile */
   .cards.projects-grid .card{ grid-template-rows: auto auto auto !important; }
   .cards.projects-grid .card > img.project-gif{
-    display:block; width:100% !important; height:auto !important;
-    aspect-ratio:16 / 9; object-fit:cover !important; margin-bottom:8px;
+    display: block; width: 100% !important; height: auto !important;
+    aspect-ratio: 16 / 9; object-fit: cover !important; margin-bottom: 8px;
   }
-  .cards.projects-grid .source-link{ grid-row:3 !important; position:relative; z-index:1; }
+  .cards.projects-grid .source-link{ grid-row: 3 !important; position: relative; z-index: 1; }
 
   /* apps grid mobile – keep 4 rows */
   .cards.apps-grid .card{ grid-template-rows: auto auto auto auto !important; }
   .cards.apps-grid .screenshot-row{ min-height: unset; max-height: unset; gap: 8px; }
-  .app-screenshot{ max-width: 110px; border-radius: 4px; }
-}
-
-/* =================== Apps grid (desktop/tablet) =================== */
-/* Title, screenshots, BLURB, badge */
-.cards.apps-grid .card{
-  display: grid !important;
-  grid-template-rows: auto minmax(200px, 1fr) auto auto !important; /* +1 row */
-  overflow: hidden;
-}
-.cards.apps-grid .card .app-card-title{ font-size: 24px !important; }
-
-.cards.apps-grid .screenshot-row{
-  grid-row: 2 !important;
-  min-height: 220px;
-  max-height: 220px;
-  align-items: center;
-  justify-content: center;
-  gap: calc(var(--gap) * 0.15 + 1px);
-}
-
-/* NEW: blurb row */
-.cards.apps-grid .card .project-blurb{
-  grid-row: 3 !important;
-  font-size: 0.9em;
-  color: #ccc;
-  text-align: center;
-  margin: 10px 10px 0;
-  line-height: 1.4;
-}
-
-/* Badge moves to row 4 */
-.cards.apps-grid .store-badge{
-  grid-row: 4 !important;        /* was 3 */
-  align-self: center;
-  justify-self: center;
-  display: block;
-  width: 135px;
-  height: auto;
-  margin: 10px 0 0;              /* a tad tighter than before */
-}
-
-/* Screenshot sizing (kept consistent) */
-.app-screenshot, .short-screenshot{
-  height: auto;
-  max-width: 125px;
-  width: 100%;
-  margin: 0;
-  aspect-ratio: 9 / 16;
-  border-radius: 4px;
-}
-.ios-screenshot{
-  height: 100%;
-  max-width: 125px;
-  width: 100%;
-  margin: 0 0 2px 0;
-  aspect-ratio: 9 / 16;
-  min-height: 225px;
-  max-height: 225px;
-}
-.android-screenshot{
-  height: 100%;
-  max-width: 125px;
-  width: 100%;
-  margin: 5px 0 0 0;
-  aspect-ratio: 9 / 16;
-  min-height: 225px;
-  max-height: 225px;
-}
-
-/* =================== Mobile tweak =================== */
-@media (max-width:900px){
-  .cards.apps-grid .card{
-    grid-template-rows: auto auto auto auto !important; /* 4 rows on mobile too */
-  }
-  .cards.apps-grid .screenshot-row{
-    min-height: unset; max-height: unset; gap: 8px;
-  }
   .app-screenshot{ max-width: 110px; }
 }
 
-
-/* =================== Top row (connect-grid) =================== */
-.cards.connect-grid .card{
-  display: grid !important;
-  grid-template-rows: auto minmax(140px,1fr) auto !important;
-  overflow: hidden;
-}
-.cards.connect-grid .icon-circle{
-  grid-row: 2 !important;
-  width: 115px; height: 115px;
-  margin: 0 auto;
-  align-self: center;
-}
-.cards.connect-grid .social-logo{ width:64%; height:auto; }
-.cards.connect-grid .github-logo{ width:90%; height:auto; object-fit:contain; }
-.cards.connect-grid .linkedin-logo{
-  width:auto; height:auto; max-width:72%; max-height:72%; object-fit:contain;
-}
-.cards.connect-grid .card-title{
-  grid-row: 3 !important;
-  margin-top: 10px;
-  font-size: 26px;
-}
-
-html {
-  scroll-behavior: smooth;
+/* =================== Motion preference =================== */
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+  .card:hover, .card:focus-visible { transform: none; box-shadow: none; }
 }
