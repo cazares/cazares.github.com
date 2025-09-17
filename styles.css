@@ -53,10 +53,6 @@ footer{
   --hero-h: clamp(180px, 28vh, 260px);
   --gap: 12px;
   --desk-card: 280px;
-
-  /* Screenshot sizing */
-  --shot-w: 125px;                            /* nominal phone width (for calc only) */
-  --shot-h: calc(var(--shot-w) * 16 / 9);     /* ≈ 222px: row height so tops/bottoms flush */
 }
 
 header{
@@ -221,40 +217,43 @@ header::after{
 .email a:hover{ color:#f7ce46; }
 
 /* =================== Apps grid (desktop/tablet) =================== */
-/* Title, screenshots, BLURB, badge */
+/* Each card gets a fixed screenshot band (row 2) so pair tops/bottoms are flush */
 .cards.apps-grid .card{
+  --shot-h: 230px;   /* default screenshot band height (tweak per tile via id) */
+  --title-mb: 12px;   /* space beneath title */
+  --blurb-mt: 10px;  /* space above blurb */
   display: grid !important;
-  grid-template-rows: auto var(--shot-h) auto auto !important; /* fixed row height for shots */
+  grid-template-rows: auto var(--shot-h) auto auto !important; /* title, screenshots, blurb, badge */
   overflow: hidden;
 }
-.cards.apps-grid .card .app-card-title{ font-size: 24px !important; }
+.cards.apps-grid .card .app-card-title{
+  font-size: 24px !important;
+  margin: 0 0 var(--title-mb);
+  line-height: 1.15;
+}
 
-/* Row that holds the two screenshots */
+/* The row that holds both screenshots */
 .cards.apps-grid .screenshot-row{
   grid-row: 2 !important;
-  height: var(--shot-h);          /* fixed so tops/bottoms are flush */
+  height: var(--shot-h);
+  line-height: 0;                  /* removes descender/baseline gaps */
   overflow: hidden;
   display: flex;
   justify-content: center;
-  align-items: stretch;           /* children stretch to full row height */
+  align-items: center;
   gap: calc(var(--gap) * 0.15 + 1px);
 }
+.cards.apps-grid .screenshot-row .spacer{ display:none !important; }
 
-/* Screenshots: fill the row height exactly; allow width to grow a bit */
-.app-screenshot,
-.short-screenshot{
-  height: 100%;
-  width: auto;                    /* preserve aspect ratio */
-  /* No max-width limit -> Android can be slightly wider to reach full height */
-  margin: 0;
-  border-radius: 4px;
-  display: block;
+/* Screenshots: all are 620×1266; keep ratio and match the row height */
+.cards.apps-grid .screenshot-row img{
+  height: var(--shot-h);
+  width: calc(var(--shot-h) * 620 / 1266);
+  aspect-ratio: 620 / 1266;
   object-fit: contain;
+  display: block;
+  border-radius: 4px;
 }
-
-/* Explicit variants (kept simple; row controls the height) */
-.ios-screenshot{ height: 100%; width: auto; }
-.android-screenshot{ height: 100%; width: auto; }
 
 /* Blurb row */
 .cards.apps-grid .card .project-blurb{
@@ -262,7 +261,7 @@ header::after{
   font-size: 0.9em;
   color: #ccc;
   text-align: center;
-  margin: 10px 10px 0;
+  margin: var(--blurb-mt) 10px 0;
   line-height: 1.4;
 }
 
@@ -337,13 +336,16 @@ header::after{
   }
   .cards.projects-grid .source-link{ grid-row:3 !important; position:relative; z-index:1; }
 
-  /* apps grid mobile – keep 4 rows, relax sizing */
+  /* apps grid mobile – relax sizing */
   .cards.apps-grid .card{ grid-template-rows: auto auto auto auto !important; }
   .cards.apps-grid .screenshot-row{
-    height: auto; gap: 8px; align-items: center;
+    height: auto;
+    gap: 8px;
   }
-  .app-screenshot, .short-screenshot{
-    height: auto; width: auto; max-width: 110px; max-height: none;
+  .cards.apps-grid .screenshot-row img{
+    height: auto;
+    width: auto;
+    max-width: 110px;
   }
 }
 
@@ -353,70 +355,10 @@ header::after{
   .card:hover, .card:focus-visible { transform: none; box-shadow: none; }
 }
 
-/* ===== Per-tile controls for app screenshots ===== */
-
-/* sensible global defaults (apply to all four) */
-.cards.apps-grid .card{
-  --shot-h: 230px;     /* screenshot band height */
-  --title-mb: 8px;     /* space under title (nudges screenshots down when larger) */
-  --blurb-mt: 10px;    /* space above blurb (adds space below screenshots) */
-}
-
-/* apply the knobs */
-.cards.apps-grid .app-card-title{
-  margin: 0 0 var(--title-mb);
-  line-height: 1.15;
-}
-
-.cards.apps-grid .screenshot-row{
-  height: var(--shot-h);
-  line-height: 0;                  /* kills baseline gaps */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: calc(var(--gap) * 0.15 + 1px);
-  margin: 0;                       /* positioning is via title/blurb margins */
-}
-
-.cards.apps-grid .screenshot-row img{
-  /* all shots are 620×1266; keep that ratio while matching the band height */
-  height: var(--shot-h);
-  width: calc(var(--shot-h) * 620 / 1266);
-  aspect-ratio: 620 / 1266;
-  object-fit: contain;
-  display: block;
-  border-radius: 4px;
-}
-
-.cards.apps-grid .project-blurb{
-  margin: var(--blurb-mt) 10px 0;
-}
-
-/* ===== Optional per-tile overrides ===== */
-/* tweak JUST ONE tile by overriding the variables on its #id */
-
-#app-ship-ios{
-  /* examples — adjust as you like */
-  /* --shot-h: 232px; */
-  /* --title-mb: 7px; */
-  /* --blurb-mt: 10px; */
-}
-
-#app-ship-android{
-  /* e.g., nudge screenshots slightly down and make them a touch taller */
-  --shot-h: 236.5px;
-  /* --title-mb: 10px; */
-  /* --blurb-mt: 10px; */
-}
-
-#app-stamps-ios{
-  /* --shot-h: 230px; */
-  /* --title-mb: 8px; */
-  /* --blurb-mt: 10px; */
-}
-
-#app-stamps-android{
-  /* --shot-h: 230px; */
-  /* --title-mb: 8px; */
-  /* --blurb-mt: 10px; */
-}
+/* ===== Optional per-tile overrides (tune just one card via its id) ===== */
+/*
+#app-ship-ios      { --shot-h: 230px; --title-mb: 8px;  --blurb-mt: 10px; }
+#app-ship-android  { --shot-h: 230px; --title-mb: 8px;  --blurb-mt: 10px; }
+#app-stamps-ios    { --shot-h: 230px; --title-mb: 8px;  --blurb-mt: 10px; }
+#app-stamps-android{ --shot-h: 230px; --title-mb: 8px;  --blurb-mt: 10px; }
+*/
