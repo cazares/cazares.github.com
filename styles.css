@@ -53,6 +53,10 @@ footer{
   --hero-h: clamp(180px, 28vh, 260px);
   --gap: 12px;
   --desk-card: 280px;
+
+  /* Screenshot sizing */
+  --shot-w: 125px;                            /* nominal phone width (for calc only) */
+  --shot-h: calc(var(--shot-w) * 16 / 9);     /* ≈ 222px: row height so tops/bottoms flush */
 }
 
 header{
@@ -136,16 +140,9 @@ header::after{
 .social-logo{ width:65%; height:auto; }
 .github-logo { width: 90%; height: auto; object-fit: contain; }
 .linkedin-logo{ width:70%; height:auto; }
-
-/* Keep logos square to avoid shift while loading */
 .linkedin-logo, .github-logo { aspect-ratio: 1 / 1; }
 
-/* =================== Portfolio screenshots =================== */
-.screenshot-row{
-  display:flex; justify-content:center; align-items:flex-end;
-  gap: calc(var(--gap) * 0.2 + 1px);
-}
-.screenshot-row .spacer{ display:none !important; }
+/* =================== Portfolio headings & blurbs =================== */
 .miguels-portfolio-title { font-size: 42px; }
 .project-blurb {
   font-size: 0.9em;
@@ -186,8 +183,6 @@ header::after{
 .cards.projects-grid .card .gif-row .project-gif{
   width:100% !important; height:100% !important; object-fit:cover !important; border-radius:6px;
 }
-
-/* Square preview tiles */
 .square-gif { aspect-ratio: 1 / 1; object-fit: cover; }
 .project-gif { display: block; }
 
@@ -229,33 +224,37 @@ header::after{
 /* Title, screenshots, BLURB, badge */
 .cards.apps-grid .card{
   display: grid !important;
-  grid-template-rows: auto minmax(200px, 1fr) auto auto !important; /* title, shots, blurb, badge */
+  grid-template-rows: auto var(--shot-h) auto auto !important; /* fixed row height for shots */
   overflow: hidden;
 }
 .cards.apps-grid .card .app-card-title{ font-size: 24px !important; }
 
+/* Row that holds the two screenshots */
 .cards.apps-grid .screenshot-row{
   grid-row: 2 !important;
-  min-height: 220px;
-  max-height: 220px;
-  align-items: center;
+  height: var(--shot-h);          /* fixed so tops/bottoms are flush */
+  overflow: hidden;
+  display: flex;
   justify-content: center;
+  align-items: stretch;           /* children stretch to full row height */
   gap: calc(var(--gap) * 0.15 + 1px);
 }
 
-/* Screenshots (phones) */
-.app-screenshot, .short-screenshot{
-  height: auto;
-  max-width: 125px;
-  width: 100%;
+/* Screenshots: fill the row height exactly; allow width to grow a bit */
+.app-screenshot,
+.short-screenshot{
+  height: 100%;
+  width: auto;                    /* preserve aspect ratio */
+  /* No max-width limit -> Android can be slightly wider to reach full height */
   margin: 0;
   border-radius: 4px;
-  aspect-ratio: 9 / 16; /* safe default */
+  display: block;
+  object-fit: contain;
 }
-/* iOS screenshots (matches intrinsic ~620x1266, 606x1266) */
-.ios-screenshot{ aspect-ratio: 620 / 1266; }
-/* Android screenshots (sources vary slightly; keep consistent portrait) */
-.android-screenshot{ aspect-ratio: 9 / 16; }
+
+/* Explicit variants (kept simple; row controls the height) */
+.ios-screenshot{ height: 100%; width: auto; }
+.android-screenshot{ height: 100%; width: auto; }
 
 /* Blurb row */
 .cards.apps-grid .card .project-blurb{
@@ -276,7 +275,7 @@ header::after{
   width: 135px;
   height: auto;
   margin: 10px 0 0;
-  aspect-ratio: 135 / 40; /* reserve space pre-load */
+  aspect-ratio: 135 / 40;      /* reserve space pre-load */
 }
 
 /* =================== Top row (connect-grid) =================== */
@@ -333,15 +332,19 @@ header::after{
   /* projects grid mobile */
   .cards.projects-grid .card{ grid-template-rows: auto auto auto !important; }
   .cards.projects-grid .card > img.project-gif{
-    display: block; width: 100% !important; height: auto !important;
-    aspect-ratio: 16 / 9; object-fit: cover !important; margin-bottom: 8px;
+    display:block; width:100% !important; height:auto !important;
+    aspect-ratio:16 / 9; object-fit:cover !important; margin-bottom:8px;
   }
-  .cards.projects-grid .source-link{ grid-row: 3 !important; position: relative; z-index: 1; }
+  .cards.projects-grid .source-link{ grid-row:3 !important; position:relative; z-index:1; }
 
-  /* apps grid mobile – keep 4 rows */
+  /* apps grid mobile – keep 4 rows, relax sizing */
   .cards.apps-grid .card{ grid-template-rows: auto auto auto auto !important; }
-  .cards.apps-grid .screenshot-row{ min-height: unset; max-height: unset; gap: 8px; }
-  .app-screenshot{ max-width: 110px; }
+  .cards.apps-grid .screenshot-row{
+    height: auto; gap: 8px; align-items: center;
+  }
+  .app-screenshot, .short-screenshot{
+    height: auto; width: auto; max-width: 110px; max-height: none;
+  }
 }
 
 /* =================== Motion preference =================== */
