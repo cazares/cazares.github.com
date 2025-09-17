@@ -84,10 +84,14 @@ header::after{
 
 .section-heading, .bottom-sections-heading, .card-title, .bottom-card-title{ font-weight:400; }
 .name-heading{ color:#f7ce46; font-weight:600; }
-.divider{ width:45%; max-width:430px; margin:15px 0; border-top:.5px solid #f0e7d5b3; }
+.divider { width:40%; margin:15px 0; border-top:.5px solid #f0e7d5b3; }
+.wide-divider { width:55%; margin:15px 0; border-top:.5px solid #f0e7d5b3; }
+.wide-divider-bottom-space { margin-bottom: 25px; }
 .bottom-sections-heading{ font-size:28px; line-height:1; color:#f7ce46; text-align:center; }
 
 .miguel-title { font-size: 52px; font-weight: 400; }
+
+.project-github-text { font-size: 16px; }
 
 /* =================== Cards & Grids =================== */
 .cards{
@@ -132,21 +136,23 @@ header::after{
 .social-logo{ width:65%; height:auto; }
 .github-logo { width: 90%; height: auto; object-fit: contain; }
 .linkedin-logo{ width:70%; height:auto; }
+.linkedin-logo, .github-logo { aspect-ratio: 1 / 1; }
 
-.emoji-icon{ font-size:70px; line-height:1; display:inline-block; }
-
-/* =================== Portfolio screenshots =================== */
-.screenshot-row{
-  display:flex; justify-content:center; align-items:flex-end;
-  gap: calc(var(--gap) * 0.2 + 1px);
-}
-.screenshot-row .spacer{ display:none !important; }
-.app-screenshot, .short-screenshot{
-  width:auto; max-width:75px; height:150px; border-radius:4px; margin:0;
-}
+/* =================== Portfolio headings & blurbs =================== */
 .miguels-portfolio-title { font-size: 42px; }
+.project-blurb {
+  font-size: 0.9em;
+  color: #ccc;
+  text-align: center;
+  margin-top: 6px;
+  line-height: 1.4;
+}
 
 /* =================== Projects =================== */
+.miguels-projects-spacing-top { margin-top: 55px; }
+.miguels-projects-spacing-bottom { margin-bottom: 25px; }
+.miguels-projects-title { font-size: 24px; }
+
 .cards.projects-grid .card{
   display:grid !important;
   grid-template-rows: auto minmax(220px, 1fr) auto;
@@ -173,6 +179,8 @@ header::after{
 .cards.projects-grid .card .gif-row .project-gif{
   width:100% !important; height:100% !important; object-fit:cover !important; border-radius:6px;
 }
+.square-gif { aspect-ratio: 1 / 1; object-fit: cover; }
+.project-gif { display: block; }
 
 /* =================== Links =================== */
 .source-link a, .source-link a:visited{ color:#f0e7d5 !important; text-decoration:underline; font-weight:500; }
@@ -208,94 +216,65 @@ header::after{
 }
 .email a:hover{ color:#f7ce46; }
 
-/* =================== Responsive =================== */
-@media (max-width:900px){
-  .cards,
-  .cards.connect-grid,
-  .cards.apps-grid,
-  .cards.projects-grid{
-    grid-template-columns: var(--desk-card) !important;
-    justify-content: center !important;
-    max-width: calc(var(--desk-card) + 2 * var(--gap)) !important;
-    margin-left:auto; margin-right:auto;
-  }
-  .cards .card{ width: var(--desk-card) !important; justify-self: center !important; }
-
-  .cards.projects-grid .card{ grid-template-rows: auto auto auto !important; }
-  .cards.projects-grid .card > img.project-gif{
-    display: block; width: 100% !important; height: auto !important;
-    aspect-ratio: 16 / 9; object-fit: cover !important; margin-bottom: 8px;
-  }
-  .cards.projects-grid .source-link{ grid-row: 3 !important; position: relative; z-index: 1; }
-
-  .cards.apps-grid .card{ grid-template-rows: auto auto auto !important; }
-  .cards.apps-grid .screenshot-row{ min-height: unset; }
-  .app-screenshot, .short-screenshot{ height:150px; max-width:75px; }
-}
-
-@media (min-width: 1200px){
-  .cards,
-  .cards.connect-grid,
-  .cards.apps-grid,
-  .cards.projects-grid{
-    grid-template-columns: repeat(4, var(--desk-card)) !important;
-    max-width: calc(4 * var(--desk-card) + 3 * var(--gap)) !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-}
-
 /* =================== Apps grid (desktop/tablet) =================== */
-/* Shorter tiles (−25%), larger titles, screenshots scaled to fit */
+/* Each card gets a fixed screenshot band (row 2) so pair tops/bottoms are flush */
 .cards.apps-grid .card{
+  --shot-h: 230px;   /* default screenshot band height (tweak per tile via id) */
+  --title-mb: 12px;   /* space beneath title */
+  --blurb-mt: 10px;  /* space above blurb */
   display: grid !important;
-  grid-template-rows: auto minmax(200px, 1fr) auto !important; /* shorter row */
+  grid-template-rows: auto var(--shot-h) auto auto !important; /* title, screenshots, blurb, badge */
   overflow: hidden;
 }
-.cards.apps-grid .card .app-card-title{ font-size: 24px !important; } /* force bump */
+.cards.apps-grid .card .app-card-title{
+  font-size: 24px !important;
+  margin: 0 0 var(--title-mb);
+  line-height: 1.15;
+}
+
+/* The row that holds both screenshots */
 .cards.apps-grid .screenshot-row{
   grid-row: 2 !important;
-  min-height: 220px;
-  max-height: 220px;
-  align-items: center;
+  height: var(--shot-h);
+  line-height: 0;                  /* removes descender/baseline gaps */
+  overflow: hidden;
+  display: flex;
   justify-content: center;
+  align-items: center;
   gap: calc(var(--gap) * 0.15 + 1px);
 }
-.app-screenshot, .short-screenshot{
-  height: auto;     /* scaled down proportionally */
-  max-width: 125px;
-  width: 100%;
-  margin: 0;
-  aspect-ratio: 9 / 16;
+.cards.apps-grid .screenshot-row .spacer{ display:none !important; }
+
+/* Screenshots: all are 620×1266; keep ratio and match the row height */
+.cards.apps-grid .screenshot-row img{
+  height: var(--shot-h);
+  width: calc(var(--shot-h) * 620 / 1266);
+  aspect-ratio: 620 / 1266;
+  object-fit: contain;
+  display: block;
+  border-radius: 4px;
 }
-.ios-screenshot{
-  height: 100%;     /* scaled down proportionally */
-  max-width: 125px;
-  width: 100%;
-  margin: 0;
-  margin-bottom: 2px;
-  aspect-ratio: 9 / 16;
-  min-height: 225px;
-  max-height: 225px;
-}
-.android-screenshot {
-  height: 100%;     /* scaled down proportionally */
-  max-width: 125px;
-  width: 100%;
-  margin: 0;
-  margin-top: 5px;
-  aspect-ratio: 9 / 16;
-  min-height: 225px;
-  max-height: 225px;
-}
-.cards.apps-grid .store-badge{
+
+/* Blurb row */
+.cards.apps-grid .card .project-blurb{
   grid-row: 3 !important;
+  font-size: 0.9em;
+  color: #ccc;
+  text-align: center;
+  margin: var(--blurb-mt) 10px 0;
+  line-height: 1.4;
+}
+
+/* Store badges */
+.cards.apps-grid .store-badge{
+  grid-row: 4 !important;
   align-self: center;
   justify-self: center;
   display: block;
-  width: 150px;
+  width: 135px;
   height: auto;
-  margin-top: 14px;
+  margin: 10px 0 0;
+  aspect-ratio: 135 / 40;      /* reserve space pre-load */
 }
 
 /* =================== Top row (connect-grid) =================== */
@@ -321,6 +300,65 @@ header::after{
   font-size: 26px;
 }
 
-html {
-  scroll-behavior: smooth;
+/* =================== Responsive =================== */
+@media (min-width: 1200px){
+  .cards,
+  .cards.connect-grid,
+  .cards.apps-grid,
+  .cards.projects-grid{
+    grid-template-columns: repeat(4, var(--desk-card)) !important;
+    max-width: calc(4 * var(--desk-card) + 3 * var(--gap)) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .cards.connect-grid {
+    grid-template-columns: repeat(3, var(--desk-card)) !important;
+  }
 }
+
+@media (max-width:900px){
+  .cards,
+  .cards.connect-grid,
+  .cards.apps-grid,
+  .cards.projects-grid{
+    grid-template-columns: var(--desk-card) !important;
+    justify-content: center !important;
+    max-width: calc(var(--desk-card) + 2 * var(--gap)) !important;
+    margin-left:auto; margin-right:auto;
+  }
+  .cards .card{ width: var(--desk-card) !important; justify-self: center !important; }
+
+  /* projects grid mobile */
+  .cards.projects-grid .card{ grid-template-rows: auto auto auto !important; }
+  .cards.projects-grid .card > img.project-gif{
+    display:block; width:100% !important; height:auto !important;
+    aspect-ratio:16 / 9; object-fit:cover !important; margin-bottom:8px;
+  }
+  .cards.projects-grid .source-link{ grid-row:3 !important; position:relative; z-index:1; }
+
+  /* apps grid mobile – relax sizing */
+  .cards.apps-grid .card{ grid-template-rows: auto auto auto auto !important; }
+  .cards.apps-grid .screenshot-row{
+    height: auto;
+    gap: 8px;
+  }
+  .cards.apps-grid .screenshot-row img{
+    height: auto;
+    width: auto;
+    max-width: 110px;
+  }
+}
+
+/* =================== Motion preference =================== */
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+  .card:hover, .card:focus-visible { transform: none; box-shadow: none; }
+}
+
+/* ===== Optional per-tile overrides (tune just one card via its id) ===== */
+/*
+#app-ship-ios      { --shot-h: 230px; --title-mb: 8px;  --blurb-mt: 10px; }
+#app-ship-android  { --shot-h: 230px; --title-mb: 8px;  --blurb-mt: 10px; }
+#app-stamps-ios    { --shot-h: 230px; --title-mb: 8px;  --blurb-mt: 10px; }
+#app-stamps-android{ --shot-h: 230px; --title-mb: 8px;  --blurb-mt: 10px; }
+*/
