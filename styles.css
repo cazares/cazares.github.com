@@ -22,13 +22,14 @@ footer{background:#353535;border-top:4px solid #434343;padding:10px 0}
 /* =============== Layout helpers =============== */
 .container{width:min(var(--container-max), 100% - 48px);margin:16px auto 0}
 .wrapper{display:flex;flex-direction:column;align-items:center;padding-bottom:40px}
-.wide-divider{width:55%;margin:15px auto;border-top:.5px solid #f0e7d5b3}
+/* 008 - Divider padding-top gets set here */
+.wide-divider{width:55%;margin:15px auto;border-top:.5px solid #f0e7d5b3 padding-top:18px; }
 .wide-divider-bottom-space{margin-bottom:25px}
 .bottom-sections-heading{font-size:28px;line-height:1;color:#f7ce46;text-align:center}
 .miguels-portfolio-title{font-size:42px}
 
 /* =============== HERO =============== */
-.top-hero{background:#1c1c1c;border-bottom:1px solid #2b2b2b}
+.top-hero{background:#1c1c1c;border-bottom:1px solid #2b2b2b padding-top:24px !important; }
 .hero-grid{
   display:grid;
   grid-template-columns: repeat(4, var(--desk-card));
@@ -36,15 +37,7 @@ footer{background:#353535;border-top:4px solid #434343;padding:10px 0}
   gap: var(--gap);
   align-items: stretch;
 }
-.hero-img{
-  grid-column: 1 / span 1;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;                   /* no zoom/crop */
-  background:#111;                       /* letterbox fill if needed */
-  border-radius: 10px;
-  display:block;
-}
+.hero-img{grid-column:1 / span 1;width:100%;height:100%;object-fit:cover;background:transparent;border-radius:18px;display:block;}
 .term-card{
   grid-column: 2 / -1;                   /* spans cols 2-4 on desktop */
   display:grid;
@@ -95,7 +88,7 @@ footer{background:#353535;border-top:4px solid #434343;padding:10px 0}
 @media (max-width:1199px){
   :root{ --container-max: calc(2 * var(--desk-card) + var(--gap)); }
   .hero-grid{ grid-template-columns: repeat(2, var(--desk-card)); }
-  .hero-img{ grid-column: 1 / span 1; }
+  .hero-img{grid-column:1 / span 1;width:100%;height:100%;object-fit:cover;background:transparent;border-radius:18px;display:block;}
   .term-card{ grid-column: 2 / span 1; }     /* sits to the right of headshot */
 }
 @media (max-width:900px){
@@ -105,11 +98,7 @@ footer{background:#353535;border-top:4px solid #434343;padding:10px 0}
     grid-auto-rows: auto;                    /* stack naturally on phones */
     justify-content:center;
   }
-  .hero-img{
-    width: 100%;
-    height: auto;                            /* match natural image height */
-    object-fit: contain;
-  }
+  .hero-img{grid-column:1 / span 1;width:100%;height:100%;object-fit:cover;background:transparent;border-radius:18px;display:block;}
   .term-card{
     grid-column: 1;
     width: 100%;
@@ -245,4 +234,123 @@ footer{background:#353535;border-top:4px solid #434343;padding:10px 0}
 .bottom-sections-heading + .wide-divider{ margin-top:12px !important; margin-bottom:18px !important; }
 .wide-divider + .miguels-projects-title{ margin-top:10px !important; }
 .miguels-projects-title + .wide-divider{ margin-top:10px !important; margin-bottom:14px !important; }
-.top-hero{ background:transparent !important; border:none !important; box-shadow:none !important; }
+.top-hero{ background:transparent !important; border:none !important; box-shadow:none !important;  padding-top:24px !important; }
+
+/* 007 - Adjust .top-hero padding-top here for vertical spacing */
+.top-hero { padding-top: 10px !important; }
+
+
+/* =========================
+   RESPONSIVE + FIXED OVERRIDES
+   - Desktop: 4 columns
+   - Mobile: 1 column @ 91.1% width
+   - Everything else fixed px
+   ========================= */
+
+/* Center the top non-hero row (Resume, LinkedIn, GitHub) */
+.cards.connect-grid,
+.top-links,
+.cards:first-of-type{
+  justify-content: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* 013 - Divider width set here */
+.wide-divider{
+  width: 100%;  /* 013 */
+}
+
+/* Remove vertical spacing between dividers and card rows, with markers */
+/* 009 - Adjust margin-top between divider and following card row (divider -> cards) */
+.wide-divider + .cards{ margin-top: 0px !important; }  /* 009 */
+
+/* 010 - Adjust margin-bottom between previous card row and next divider (cards -> divider) */
+.cards + .wide-divider{ margin-top: 0px !important; }  /* 010 */
+
+/* Remove spacing between divider and section heading text, with markers */
+/* 014 - Adjust margin-top between divider and section heading (divider -> heading) */
+.wide-divider + .bottom-sections-heading,
+.wide-divider + .miguels-projects-title{
+  margin-top: 0px !important; /* 014 */
+}
+
+/* 015 - Adjust margin-bottom between section heading and divider (heading -> divider) */
+.bottom-sections-heading + .wide-divider,
+.miguels-projects-title + .wide-divider{
+  margin-top: 0px !important; /* 015 */
+}
+
+/* 011/012 - Resume/LinkedIn/GitHub card size markers */
+.cards.connect-grid .card,
+.top-links .card{
+  width: 280px;   /* 011 - Top link card width here */
+  height: 160px;  /* 012 - Top link card height here */
+}
+
+/* Keep headings fixed px (no responsive scaling) */
+.bottom-sections-heading{ font-size: 28px !important; font-weight: 700 !important; text-align: center; color:#f7ce46; }
+.miguels-projects-title{ font-size: 22px !important; font-weight: 500 !important; text-align: center; color:#f7ce46; }
+
+/* HERO defaults: fixed structure on desktop; transparent bg stays */
+.top-hero{ background: transparent !important; border: none !important; }
+.hero-grid, .hero .hero-row{ display:grid; gap:12px; }
+.hero-img, .hero .hero-photo{ border-radius:18px; overflow:hidden; background:transparent; }
+.hero-img, .hero .hero-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* 016 - Desktop min-width breakpoint */
+@media (min-width: 901px){
+  .container{ width: 1156px; margin-left:auto; margin-right:auto; }
+  .hero-grid, .hero .hero-row{ grid-template-columns: 280px 280px 280px 280px; grid-auto-rows: 180px; }
+  .hero-img, .hero .hero-photo{ grid-column: 1 / span 1; }
+  .term, .term-card{ grid-column: 2 / -1; height: 100%; }
+
+  .cards,
+  .cards.apps-grid,
+  .cards.projects-grid,
+  .cards.connect-grid{
+    display:grid;
+    grid-template-columns: 280px 280px 280px 280px;
+    gap: 12px;
+    width: 1156px;
+    margin-left:auto; margin-right:auto;
+    justify-content: center;
+  }
+  .cards .card{ width: 280px; }
+}
+
+/* 017 - Mobile max-width breakpoint */
+@media (max-width: 900px){
+  .container{ width: 100%; }
+  .hero-grid, .hero .hero-row{
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    margin-left:auto; margin-right:auto;
+  }
+  .hero-img, .hero .hero-photo{
+    grid-column: 1 / -1;
+    width: 91.1%;                 /* 018 - Mobile card width % here */
+    height: auto;
+    margin: 0 auto;
+  }
+  .term, .term-card{
+    grid-column: 1 / -1;
+    width: 91.1%;                 /* 018 - Mobile card width % here */
+    margin: 8px auto 0;
+    height: auto;
+  }
+
+  .cards,
+  .cards.apps-grid,
+  .cards.projects-grid,
+  .cards.connect-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    width: 91.1%;                 /* 018 - Mobile card width % here */
+    margin-left: auto; margin-right: auto;
+    justify-content: center;
+  }
+  .cards .card{ width: 100%; }
+}
+
