@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 220">
+  <defs>
+    <style>
+      .mono{
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      }
+    </style>
+  </defs>
+  <!-- Panel -->
+  <rect x="4" y="4" width="1192" height="212" rx="16" fill="#1b1b1b" stroke="#333" stroke-width="2"/>
+  <!-- Title bar -->
+  <rect x="4" y="4" width="1192" height="36" rx="16" fill="#262626"/>
+  <!-- Traffic lights -->
+  <circle cx="28" cy="22" r="6.5" fill="#ff5f56"/>
+  <circle cx="48" cy="22" r="6.5" fill="#ffbd2e"/>
+  <circle cx="68" cy="22" r="6.5" fill="#27c93f"/>
+  <!-- Name -->
+  <text class="mono" x="600" y="140" text-anchor="middle"
+        fill="#f7ce46" font-size="88" font-weight="700" letter-spacing="0.5">
+    Miguel Cazares
+  </text>
+</svg>
+

@@ -32,7 +32,6 @@ html{
   background: linear-gradient(#2a2a29, #1c1c1c) no-repeat fixed;
   background-size:cover;
 }
-
 body{
   font-family:"OpenSans", Helvetica, Arial, sans-serif;
   font-weight:400;
@@ -40,65 +39,113 @@ body{
   line-height:1.5;
   color:#f0e7d5;
 }
-
 footer{
   background:#353535;
   border-top:4px solid #434343;
   padding:10px 0;
   height:auto;
 }
-
-/* =================== Hero banner =================== */
 :root{
-  --hero-h: clamp(180px, 28vh, 260px);
   --gap: 12px;
-  --desk-card: 280px;
+  --desk-card: 280px;                 /* single column width */
+  --ring: #2b2b2b;                    /* console outline */
+  --term-bg-top: #1b1d20;
+  --term-bg-bot: #131416;
+  --term-bar: #1f2023;
+  --accent: #f7ce46;                  /* yellow */
 }
 
-header{
-  height: var(--hero-h);
+/* =================== Top grid (headshot + console) =================== */
+/* Shares the same outer width as the cards grids below, so edges line up */
+.top-grid{
+  width: 100%;
+  margin: 22px auto 12px;
+  display: grid;
+  grid-template-columns: var(--desk-card) 1fr; /* left fixed, right fills */
+  gap: var(--gap);
+  align-items: start;
+  /* default to 3-card container width so it matches the connect row below */
+  max-width: calc(3 * var(--desk-card) + 2 * var(--gap));
+  padding: 0 var(--gap);
+}
+.headshot{
+  width: var(--desk-card);
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 6px 22px rgba(0,0,0,.35);
+}
+
+/* Terminal card */
+.term-card{
   position: relative;
-  overflow: hidden;
-  background: #1c1c1c;
+  background: linear-gradient(180deg, var(--term-bg-top), var(--term-bg-bot));
+  border-radius: 12px;
+  padding: 14px 16px 16px;
+  min-height: max(180px, 0.9 * var(--desk-card));
+  outline: 1px solid var(--ring);                 /* clearer border */
+  box-shadow:
+    0 12px 32px rgba(0,0,0,.45),
+    inset 0 1px 0 rgba(255,255,255,.04),
+    inset 0 -40px 100px rgba(0,0,0,.25);
 }
-header .hero-img{
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 100%;
-  width: auto;
-  max-width: none;
-  pointer-events: none;
+.term-chrome{
+  position: relative;
+  height: 26px;
+  background: var(--term-bar);
+  margin: -14px -16px 10px;   /* bleed to edges so border stays visible */
+  border-radius: 12px 12px 0 0;
+  border-bottom: 1px solid #0e0f10;
 }
-header::after{
-  content:"";
-  position:absolute;
-  left:0; right:0; bottom:0;
-  height:28px;
-  background: linear-gradient(to bottom, rgba(28,28,28,0), rgba(28,28,28,.85));
+.term-chrome .dot{
+  display:inline-block; width:10px; height:10px; border-radius:50%;
+  margin: 8px 6px 0 10px; vertical-align:top; box-shadow: 0 1px 0 rgba(0,0,0,.45);
+}
+.term-chrome .dot.red{   background:#ef4444; }
+.term-chrome .dot.amber{ background:#f59e0b; }
+.term-chrome .dot.green{ background:#22c55e; }
+
+.term-body{ display:flex; flex-direction:column; gap:10px; }
+.term-name{
+  color: var(--accent);
+  font-weight: 600;
+  /* Always try to be big, but shrink gracefully when the console is narrow */
+  font-size: clamp(22px, 4.4vw, 42px);
+  line-height: 1.1;
+  letter-spacing: .3px;
+  text-shadow: 0 2px 0 rgba(0,0,0,.25);
+  /* allow wrapping — no cutoff */
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.term-email{
+  align-self: flex-start;
+  color: #d9d9d9;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-size: clamp(14px, 2.1vw, 18px);
 }
 
-/* =================== Layout wrappers =================== */
+/* =================== Layout wrappers & headings =================== */
 .wrapper{ display:flex; flex-direction:column; align-items:center; padding-bottom:40px; }
 
 .section-heading, .bottom-sections-heading, .card-title, .bottom-card-title{ font-weight:400; }
-.name-heading{ color:#f7ce46; font-weight:600; }
+.name-heading{ color:var(--accent); font-weight:600; }
 .divider { width:40%; margin:15px 0; border-top:.5px solid #f0e7d5b3; }
 .wide-divider { width:55%; margin:15px 0; border-top:.5px solid #f0e7d5b3; }
 .wide-divider-bottom-space { margin-bottom: 25px; }
-.bottom-sections-heading{ font-size:28px; line-height:1; color:#f7ce46; text-align:center; }
-
-.miguel-title { font-size: 52px; font-weight: 400; }
-
-.project-github-text { font-size: 16px; }
+.bottom-sections-heading{ font-size:28px; line-height:1; color:var(--accent); text-align:center; }
+.miguels-portfolio-title { font-size: 42px; }
 
 /* =================== Cards & Grids =================== */
 .cards{
   display:grid;
   gap:var(--gap);
   justify-content:center;
-  grid-template-columns: repeat(2, var(--desk-card));
+  grid-template-columns: repeat(2, var(--desk-card)); /* default tablet/desktop base */
+  max-width: calc(2 * var(--desk-card) + 1 * var(--gap));
+  margin-left:auto; margin-right:auto;
+  padding: 0 var(--gap);
 }
 .cards .card{ width: var(--desk-card); }
 
@@ -114,17 +161,20 @@ header::after{
 }
 .card:hover, .card:focus-visible{
   transform: translateY(-2px);
-  border-color:#f7ce46;
+  border-color:var(--accent);
   box-shadow:0 4px 16px rgba(247,206,70,.12);
   outline:none;
 }
 
-/* Titles */
+/* Top row (connect) specifically goes to 3 across at desktop */
+.cards.connect-grid{
+  grid-template-columns: repeat(3, var(--desk-card));
+  max-width: calc(3 * var(--desk-card) + 2 * var(--gap));
+}
 .card-title, .bottom-card-title{ text-align:center; margin-bottom:8px; }
-.card-title{ color:#f7ce46; margin-top:10px; }
-.bottom-card-title{ color:#f0e7d5; margin-top:0; }
+.card-title{ color:var(--accent); margin-top:10px; }
 
-/* =================== Icon circles =================== */
+/* Icons */
 .icon-circle{
   background:#fff;
   border-radius:50%;
@@ -138,14 +188,47 @@ header::after{
 .linkedin-logo{ width:70%; height:auto; }
 .linkedin-logo, .github-logo { aspect-ratio: 1 / 1; }
 
-/* =================== Portfolio headings & blurbs =================== */
-.miguels-portfolio-title { font-size: 42px; }
-.project-blurb {
-  font-size: 0.9em;
-  color: #ccc;
-  text-align: center;
-  margin-top: 6px;
-  line-height: 1.4;
+/* =================== Apps grid =================== */
+.cards.apps-grid{
+  display: grid !important;
+  grid-template-columns: repeat(4, var(--desk-card));
+  max-width: calc(4 * var(--desk-card) + 3 * var(--gap));
+}
+.cards.apps-grid .card{
+  --shot-h: 230px;
+  --title-mb: 12px;
+  --blurb-mt: 10px;
+  display: grid !important;
+  grid-template-rows: auto var(--shot-h) auto auto !important;
+  overflow: hidden;
+}
+.cards.apps-grid .card .app-card-title{
+  font-size: 24px !important;
+  margin: 0 0 var(--title-mb);
+  line-height: 1.15;
+}
+.cards.apps-grid .screenshot-row{
+  grid-row: 2 !important;
+  height: var(--shot-h);
+  display: flex; align-items: center; justify-content: center;
+  gap: calc(var(--gap) * 0.15 + 1px);
+}
+.cards.apps-grid .screenshot-row img{
+  height: var(--shot-h);
+  width: calc(var(--shot-h) * 620 / 1266);
+  aspect-ratio: 620 / 1266;
+  object-fit: contain;
+  display: block;
+  border-radius: 4px;
+}
+.cards.apps-grid .card .project-blurb{
+  grid-row:3 !important;
+  font-size: 0.9em; color:#ccc; text-align:center;
+  margin: var(--blurb-mt) 10px 0; line-height:1.4;
+}
+.cards.apps-grid .store-badge{
+  grid-row:4 !important; align-self:center; justify-self:center;
+  display:block; width:135px; height:auto; margin:10px 0 0; aspect-ratio:135/40;
 }
 
 /* =================== Projects =================== */
@@ -153,6 +236,10 @@ header::after{
 .miguels-projects-spacing-bottom { margin-bottom: 25px; }
 .miguels-projects-title { font-size: 24px; }
 
+.cards.projects-grid{
+  grid-template-columns: repeat(4, var(--desk-card));
+  max-width: calc(4 * var(--desk-card) + 3 * var(--gap));
+}
 .cards.projects-grid .card{
   display:grid !important;
   grid-template-rows: auto minmax(220px, 1fr) auto;
@@ -164,201 +251,62 @@ header::after{
   display:flex; align-items:center; justify-content:center; gap:6px; text-align:center;
 }
 .octocat-icon{ width:22.5px; height:22.5px; }
-
-.cards.projects-grid .card > img.project-gif:nth-of-type(n+2){ display:none !important; }
-.cards.projects-grid .card > img.project-gif{
-  grid-row:2 !important; width:100% !important; height:100% !important;
-  object-fit: fill !important; border-radius:6px;
-}
-
-.cards.projects-grid .card .gif-row{
-  grid-row:2 !important; display:grid !important; grid-template-columns:1fr 1fr !important;
-  gap:8px !important; align-items:stretch !important; min-height:0;
-  height: clamp(180px, 52vw, 260px) !important;
-}
-.cards.projects-grid .card .gif-row .project-gif{
-  width:100% !important; height:100% !important; object-fit:cover !important; border-radius:6px;
-}
+.cards.projects-grid .card > img.project-gif{ grid-row:2 !important; width:100% !important; height:100% !important; object-fit: fill !important; border-radius:6px; }
 .square-gif { aspect-ratio: 1 / 1; object-fit: cover; }
 .project-gif { display: block; }
 
 /* =================== Links =================== */
 .source-link a, .source-link a:visited{ color:#f0e7d5 !important; text-decoration:underline; font-weight:500; }
-.source-link a:hover{ color:#f7ce46 !important; }
-
-/* Inline contact email (top) */
-.contact-inline{
-  text-align:center;
-  margin: 24px 0;
-}
-.contact-inline a,
-.contact-inline a:visited{
-  color:#fff; text-decoration:underline; font-weight:500;
-  display:inline-block;
-  font-size: clamp(18px, 1.6vw, 26px);
-  line-height: 1.6;
-  padding: 6px 12px;
-  border-radius: 8px;
-  text-underline-offset: 3px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid #444;
-}
-.contact-inline a:hover{ background: rgba(247,206,70,0.10); border-color: #f7ce46; }
-
-/* Footer email (plain/simple) */
-.email{ text-align:center; margin:24px 0; }
-.email a, .email a:visited{
-  color:#fff;
-  text-decoration:underline;
-  font-weight:500;
-  font-size: clamp(18px, 1.6vw, 26px);
-  line-height:1.6;
-}
-.email a:hover{ color:#f7ce46; }
-
-/* =================== Apps grid (desktop/tablet) =================== */
-/* Each card gets a fixed screenshot band (row 2) so pair tops/bottoms are flush */
-.cards.apps-grid .card{
-  --shot-h: 230px;   /* default screenshot band height (tweak per tile via id) */
-  --title-mb: 12px;   /* space beneath title */
-  --blurb-mt: 10px;  /* space above blurb */
-  display: grid !important;
-  grid-template-rows: auto var(--shot-h) auto auto !important; /* title, screenshots, blurb, badge */
-  overflow: hidden;
-}
-.cards.apps-grid .card .app-card-title{
-  font-size: 24px !important;
-  margin: 0 0 var(--title-mb);
-  line-height: 1.15;
-}
-
-/* The row that holds both screenshots */
-.cards.apps-grid .screenshot-row{
-  grid-row: 2 !important;
-  height: var(--shot-h);
-  line-height: 0;                  /* removes descender/baseline gaps */
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: calc(var(--gap) * 0.15 + 1px);
-}
-.cards.apps-grid .screenshot-row .spacer{ display:none !important; }
-
-/* Screenshots: all are 620×1266; keep ratio and match the row height */
-.cards.apps-grid .screenshot-row img{
-  height: var(--shot-h);
-  width: calc(var(--shot-h) * 620 / 1266);
-  aspect-ratio: 620 / 1266;
-  object-fit: contain;
-  display: block;
-  border-radius: 4px;
-}
-
-/* Blurb row */
-.cards.apps-grid .card .project-blurb{
-  grid-row: 3 !important;
-  font-size: 0.9em;
-  color: #ccc;
-  text-align: center;
-  margin: var(--blurb-mt) 10px 0;
-  line-height: 1.4;
-}
-
-/* Store badges */
-.cards.apps-grid .store-badge{
-  grid-row: 4 !important;
-  align-self: center;
-  justify-self: center;
-  display: block;
-  width: 135px;
-  height: auto;
-  margin: 10px 0 0;
-  aspect-ratio: 135 / 40;      /* reserve space pre-load */
-}
-
-/* =================== Top row (connect-grid) =================== */
-.cards.connect-grid .card{
-  display: grid !important;
-  grid-template-rows: auto minmax(140px,1fr) auto !important;
-  overflow: hidden;
-}
-.cards.connect-grid .icon-circle{
-  grid-row: 2 !important;
-  width: 115px; height: 115px;
-  margin: 0 auto;
-  align-self: center;
-}
-.cards.connect-grid .social-logo{ width:64%; height:auto; }
-.cards.connect-grid .github-logo{ width:90%; height:auto; object-fit:contain; }
-.cards.connect-grid .linkedin-logo{
-  width:auto; height:auto; max-width:72%; max-height:72%; object-fit:contain;
-}
-.cards.connect-grid .card-title{
-  grid-row: 3 !important;
-  margin-top: 10px;
-  font-size: 26px;
-}
+.source-link a:hover{ color:var(--accent) !important; }
 
 /* =================== Responsive =================== */
-@media (min-width: 1200px){
-  .cards,
-  .cards.connect-grid,
+/* >=1200px = 4-up app & projects grids already set above */
+
+/* 900–1199: 2-up grids; top-grid shrinks to 2-card container width */
+@media (max-width:1199px){
   .cards.apps-grid,
   .cards.projects-grid{
-    grid-template-columns: repeat(4, var(--desk-card)) !important;
-    max-width: calc(4 * var(--desk-card) + 3 * var(--gap)) !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    grid-template-columns: repeat(2, var(--desk-card)) !important;
+    max-width: calc(2 * var(--desk-card) + 1 * var(--gap)) !important;
   }
-  .cards.connect-grid {
-    grid-template-columns: repeat(3, var(--desk-card)) !important;
+  .top-grid{
+    max-width: calc(2 * var(--desk-card) + 1 * var(--gap));
+    grid-template-columns: var(--desk-card) 1fr; /* headshot + console */
   }
 }
 
+/* <=900: single-column cards; top-grid becomes a 1-column stack and the console width matches the headshot */
 @media (max-width:900px){
   .cards,
   .cards.connect-grid,
   .cards.apps-grid,
   .cards.projects-grid{
     grid-template-columns: var(--desk-card) !important;
+    max-width: calc(var(--desk-card)) !important;
     justify-content: center !important;
-    max-width: calc(var(--desk-card) + 2 * var(--gap)) !important;
-    margin-left:auto; margin-right:auto;
   }
   .cards .card{ width: var(--desk-card) !important; justify-self: center !important; }
 
-  /* projects grid mobile */
-  .cards.projects-grid .card{ grid-template-rows: auto auto auto !important; }
-  .cards.projects-grid .card > img.project-gif{
-    display:block; width:100% !important; height:auto !important;
-    aspect-ratio:16 / 9; object-fit:cover !important; margin-bottom:8px;
+  .top-grid{
+    max-width: var(--desk-card);
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
-  .cards.projects-grid .source-link{ grid-row:3 !important; position:relative; z-index:1; }
+  .headshot{ justify-self:center; }
+  .term-card{
+    width: var(--desk-card);
+    justify-self:center;
+    min-height: 0;                 /* let content define height on small screens */
+  }
 
-  /* apps grid mobile – relax sizing */
+  /* apps grid relax screenshot sizing */
   .cards.apps-grid .card{ grid-template-rows: auto auto auto auto !important; }
-  .cards.apps-grid .screenshot-row{
-    height: auto;
-    gap: 8px;
-  }
-  .cards.apps-grid .screenshot-row img{
-    height: auto;
-    width: auto;
-    max-width: 110px;
-  }
+  .cards.apps-grid .screenshot-row{ height:auto; gap:8px; }
+  .cards.apps-grid .screenshot-row img{ height:auto; width:auto; max-width:110px; }
 }
 
-/* =================== Motion preference =================== */
+/* Motion pref */
 @media (prefers-reduced-motion: reduce) {
   .card { transition: none; }
   .card:hover, .card:focus-visible { transform: none; box-shadow: none; }
 }
-
-/* ===== Optional per-tile overrides (tune just one card via its id) ===== */
-/*
-#app-ship-ios      { --shot-h: 230px; --title-mb: 8px;  --blurb-mt: 10px; }
-#app-ship-android  { --shot-h: 230px; --title-mb: 8px;  --blurb-mt: 10px; }
-#app-stamps-ios    { --shot-h: 230px; --title-mb: 8px;  --blurb-mt: 10px; }
-#app-stamps-android{ --shot-h: 230px; --title-mb: 8px;  --blurb-mt: 10px; }
-*/
