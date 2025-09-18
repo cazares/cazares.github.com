@@ -1,312 +1,226 @@
 /* =================== Fonts =================== */
-@font-face {
-  font-family: 'OpenSans';
-  src: url('./fonts/OpenSans-Light-webfont.woff') format('woff'),
-       url('./fonts/OpenSans-Light-webfont.ttf') format('truetype');
-  font-weight: 300; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'OpenSans';
-  src: url('./fonts/OpenSans-Regular-webfont.woff') format('woff'),
-       url('./fonts/OpenSans-Regular-webfont.ttf') format('truetype');
-  font-weight: 400; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'OpenSans';
-  src: url('./fonts/OpenSans-Semibold-webfont.woff') format('woff'),
-       url('./fonts/OpenSans-Semibold-webfont.ttf') format('truetype');
-  font-weight: 600; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'OpenSans';
-  src: url('./fonts/OpenSans-Bold-webfont.woff') format('woff'),
-       url('./fonts/OpenSans-Bold-webfont.ttf') format('truetype');
-  font-weight: 700; font-style: normal; font-display: swap;
-}
+@font-face{font-family:'OpenSans';src:url('./fonts/OpenSans-Light-webfont.woff') format('woff'),url('./fonts/OpenSans-Light-webfont.ttf') format('truetype');font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:'OpenSans';src:url('./fonts/OpenSans-Regular-webfont.woff') format('woff'),url('./fonts/OpenSans-Regular-webfont.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'OpenSans';src:url('./fonts/OpenSans-Semibold-webfont.woff') format('woff'),url('./fonts/OpenSans-Semibold-webfont.ttf') format('truetype');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'OpenSans';src:url('./fonts/OpenSans-Bold-webfont.woff') format('woff'),url('./fonts/OpenSans-Bold-webfont.ttf') format('truetype');font-weight:700;font-style:normal;font-display:swap}
 
 /* =================== Base =================== */
-*{ margin:0; padding:0; box-sizing:border-box; }
-html, body{ height:100%; }
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+html{background:linear-gradient(#2a2a29,#1c1c1c) fixed no-repeat;background-size:cover}
+body{font-family:"OpenSans",Helvetica,Arial,sans-serif;font-weight:400;font-size:18px;line-height:1.5;color:#f0e7d5}
+footer{background:#353535;border-top:4px solid #434343;padding:10px 0;height:auto}
 
-html{
-  background: linear-gradient(#2a2a29, #1c1c1c) no-repeat fixed;
-  background-size:cover;
-}
-body{
-  font-family:"OpenSans", Helvetica, Arial, sans-serif;
-  font-weight:400;
-  font-size:18px;
-  line-height:1.5;
-  color:#f0e7d5;
-}
-footer{
-  background:#353535;
-  border-top:4px solid #434343;
-  padding:10px 0;
-  height:auto;
-}
+/* Vars shared with HTML inline */
 :root{
-  --gap: 12px;
-  --desk-card: 280px;                 /* single column width */
-  --ring: #2b2b2b;                    /* console outline */
-  --term-bg-top: #1b1d20;
-  --term-bg-bot: #131416;
-  --term-bar: #1f2023;
-  --accent: #f7ce46;                  /* yellow */
+  --gap:12px;
+  --desk-card:280px;
+  --container-max: calc(4 * var(--desk-card) + 3 * var(--gap));
+  --hero-h: clamp(180px, 28vh, 260px);
+  --head-w: clamp(240px, 26vw, 360px);
 }
 
-/* =================== Top grid (headshot + console) =================== */
-/* Shares the same outer width as the cards grids below, so edges line up */
-.top-grid{
-  width: 100%;
-  margin: 22px auto 12px;
+/* =================== HERO =================== */
+.top-hero{
+  background:#1c1c1c;
+  border-bottom:1px solid #2b2b2b;
+}
+.hero-inner{
+  width: min(var(--container-max), 100% - 48px);
+  margin: 14px auto 0;
   display: grid;
-  grid-template-columns: var(--desk-card) 1fr; /* left fixed, right fills */
-  gap: var(--gap);
-  align-items: start;
-  /* default to 3-card container width so it matches the connect row below */
-  max-width: calc(3 * var(--desk-card) + 2 * var(--gap));
-  padding: 0 var(--gap);
+  grid-template-columns: var(--head-w) 1fr;
+  gap: 18px;
+  align-items: stretch;
+  padding-bottom: 12px;
 }
-.headshot{
-  width: var(--desk-card);
-  height: auto;
-  display: block;
+.hero-shot{
+  width: var(--head-w);
+  height: var(--hero-h);
+  object-fit: cover;
   border-radius: 8px;
-  box-shadow: 0 6px 22px rgba(0,0,0,.35);
+  display:block;
 }
 
-/* Terminal card */
+/* Console card (HTML/CSS, no SVG so text reflows nicely) */
 .term-card{
   position: relative;
-  background: linear-gradient(180deg, var(--term-bg-top), var(--term-bg-bot));
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 18px 20px 16px;
+  background:#121314;
+  border:1.5px solid #2f2f2f;
   border-radius: 12px;
-  padding: 14px 16px 16px;
-  min-height: max(180px, 0.9 * var(--desk-card));
-  outline: 1px solid var(--ring);                 /* clearer border */
-  box-shadow:
-    0 12px 32px rgba(0,0,0,.45),
-    inset 0 1px 0 rgba(255,255,255,.04),
-    inset 0 -40px 100px rgba(0,0,0,.25);
+  height: var(--hero-h);        /* match headshot height on desktop/tablet */
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 10px 24px rgba(0,0,0,.35);
 }
-.term-chrome{
-  position: relative;
-  height: 26px;
-  background: var(--term-bar);
-  margin: -14px -16px 10px;   /* bleed to edges so border stays visible */
-  border-radius: 12px 12px 0 0;
-  border-bottom: 1px solid #0e0f10;
+.term-card::before{
+  content:"";
+  position:absolute;
+  left:16px; top:10px;
+  width:48px; height:12px;
+  background:
+    radial-gradient(circle at 6px 6px,#ef4444 6px,transparent 7px) 0 0/18px 18px no-repeat,
+    radial-gradient(circle at 6px 6px,#f59e0b 6px,transparent 7px) 16px 0/18px 18px no-repeat,
+    radial-gradient(circle at 6px 6px,#10b981 6px,transparent 7px) 32px 0/18px 18px no-repeat;
+  pointer-events:none;
 }
-.term-chrome .dot{
-  display:inline-block; width:10px; height:10px; border-radius:50%;
-  margin: 8px 6px 0 10px; vertical-align:top; box-shadow: 0 1px 0 rgba(0,0,0,.45);
-}
-.term-chrome .dot.red{   background:#ef4444; }
-.term-chrome .dot.amber{ background:#f59e0b; }
-.term-chrome .dot.green{ background:#22c55e; }
-
-.term-body{ display:flex; flex-direction:column; gap:10px; }
-.term-name{
-  color: var(--accent);
-  font-weight: 600;
-  /* Always try to be big, but shrink gracefully when the console is narrow */
-  font-size: clamp(22px, 4.4vw, 42px);
-  line-height: 1.1;
-  letter-spacing: .3px;
-  text-shadow: 0 2px 0 rgba(0,0,0,.25);
-  /* allow wrapping — no cutoff */
-  white-space: normal;
-  overflow-wrap: anywhere;
-}
-.term-email{
-  align-self: flex-start;
-  color: #d9d9d9;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  font-size: clamp(14px, 2.1vw, 18px);
-}
-
-/* =================== Layout wrappers & headings =================== */
-.wrapper{ display:flex; flex-direction:column; align-items:center; padding-bottom:40px; }
-
-.section-heading, .bottom-sections-heading, .card-title, .bottom-card-title{ font-weight:400; }
-.name-heading{ color:var(--accent); font-weight:600; }
-.divider { width:40%; margin:15px 0; border-top:.5px solid #f0e7d5b3; }
-.wide-divider { width:55%; margin:15px 0; border-top:.5px solid #f0e7d5b3; }
-.wide-divider-bottom-space { margin-bottom: 25px; }
-.bottom-sections-heading{ font-size:28px; line-height:1; color:var(--accent); text-align:center; }
-.miguels-portfolio-title { font-size: 42px; }
-
-/* =================== Cards & Grids =================== */
-.cards{
-  display:grid;
-  gap:var(--gap);
-  justify-content:center;
-  grid-template-columns: repeat(2, var(--desk-card)); /* default tablet/desktop base */
-  max-width: calc(2 * var(--desk-card) + 1 * var(--gap));
-  margin-left:auto; margin-right:auto;
-  padding: 0 var(--gap);
-}
-.cards .card{ width: var(--desk-card); }
-
-.card{
-  background:#2e2e2e;
-  border:1px solid #444;
-  border-radius:8px;
-  padding:14px;
-  text-align:center;
-  display:flex; flex-direction:column;
-  color:inherit; text-decoration:none;
-  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-}
-.card:hover, .card:focus-visible{
-  transform: translateY(-2px);
-  border-color:var(--accent);
-  box-shadow:0 4px 16px rgba(247,206,70,.12);
-  outline:none;
-}
-
-/* Top row (connect) specifically goes to 3 across at desktop */
-.cards.connect-grid{
-  grid-template-columns: repeat(3, var(--desk-card));
-  max-width: calc(3 * var(--desk-card) + 2 * var(--gap));
-}
-.card-title, .bottom-card-title{ text-align:center; margin-bottom:8px; }
-.card-title{ color:var(--accent); margin-top:10px; }
-
-/* Icons */
-.icon-circle{
-  background:#fff;
-  border-radius:50%;
-  width:80px; height:80px;
-  margin:0 auto 10px auto;
-  display:flex; align-items:center; justify-content:center;
-}
-.icon-circle svg{ width:64%; height:auto; display:block; }
-.social-logo{ width:65%; height:auto; }
-.github-logo { width: 90%; height: auto; object-fit: contain; }
-.linkedin-logo{ width:70%; height:auto; }
-.linkedin-logo, .github-logo { aspect-ratio: 1 / 1; }
-
-/* =================== Apps grid =================== */
-.cards.apps-grid{
-  display: grid !important;
-  grid-template-columns: repeat(4, var(--desk-card));
-  max-width: calc(4 * var(--desk-card) + 3 * var(--gap));
-}
-.cards.apps-grid .card{
-  --shot-h: 230px;
-  --title-mb: 12px;
-  --blurb-mt: 10px;
-  display: grid !important;
-  grid-template-rows: auto var(--shot-h) auto auto !important;
-  overflow: hidden;
-}
-.cards.apps-grid .card .app-card-title{
-  font-size: 24px !important;
-  margin: 0 0 var(--title-mb);
+.term-title{
+  margin-top: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-weight: 700;
+  color:#f7ce46;
+  font-size: clamp(28px, 4.8vw, 48px); /* large but clamps so it won’t cut off */
   line-height: 1.15;
 }
-.cards.apps-grid .screenshot-row{
-  grid-row: 2 !important;
-  height: var(--shot-h);
-  display: flex; align-items: center; justify-content: center;
-  gap: calc(var(--gap) * 0.15 + 1px);
+.term-email{
+  margin-top: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: clamp(15px, 2.2vw, 20px);
+  color:#d8dbe1;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  border-radius: 6px;
 }
-.cards.apps-grid .screenshot-row img{
-  height: var(--shot-h);
-  width: calc(var(--shot-h) * 620 / 1266);
-  aspect-ratio: 620 / 1266;
-  object-fit: contain;
-  display: block;
-  border-radius: 4px;
+
+/* 2-column “tablet” – keep hero as 2-col and aligned with grid */
+@media (max-width: 1199px){
+  :root{ --container-max: calc(3 * var(--desk-card) + 2 * var(--gap)); }
 }
-.cards.apps-grid .card .project-blurb{
-  grid-row:3 !important;
-  font-size: 0.9em; color:#ccc; text-align:center;
-  margin: var(--blurb-mt) 10px 0; line-height:1.4;
+
+/* 1-column phones – stack, match widths, never overlap content */
+@media (max-width: 900px){
+  :root{ --container-max: calc(var(--desk-card)); }
+  .hero-inner{
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 12px;
+  }
+  .hero-shot{
+    width: clamp(260px, 74vw, 420px);
+    height: auto;               /* natural image height on phones */
+  }
+  .term-card{
+    width: clamp(260px, 74vw, 420px); /* exactly match headshot width */
+    height: auto;                     /* let content decide height */
+    align-items: flex-start;
+  }
 }
-.cards.apps-grid .store-badge{
-  grid-row:4 !important; align-self:center; justify-self:center;
-  display:block; width:135px; height:auto; margin:10px 0 0; aspect-ratio:135/40;
+
+/* =================== Layout wrappers =================== */
+.wrapper{display:flex;flex-direction:column;align-items:center;padding-bottom:40px}
+.section-heading,.bottom-sections-heading,.card-title,.bottom-card-title{font-weight:400}
+.name-heading{color:#f7ce46;font-weight:600}
+.divider{width:40%;margin:15px 0;border-top:.5px solid #f0e7d5b3}
+.wide-divider{width:55%;margin:15px 0;border-top:.5px solid #f0e7d5b3}
+.wide-divider-bottom-space{margin-bottom:25px}
+.bottom-sections-heading{font-size:28px;line-height:1;color:#f7ce46;text-align:center}
+.miguels-portfolio-title{font-size:42px}
+.miguel-title{font-size:52px;font-weight:400}
+.project-github-text{font-size:16px}
+
+/* =================== Cards & Grids =================== */
+.cards{display:grid;gap:var(--gap);justify-content:center;grid-template-columns:repeat(2,var(--desk-card))}
+.cards .card{width:var(--desk-card)}
+.card{
+  background:#2e2e2e;border:1px solid #444;border-radius:8px;padding:14px;text-align:center;
+  display:flex;flex-direction:column;color:inherit;text-decoration:none;
+  transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease
 }
+.card:hover,.card:focus-visible{transform:translateY(-2px);border-color:#f7ce46;box-shadow:0 4px 16px rgba(247,206,70,.12);outline:none}
+
+/* Titles */
+.card-title,.bottom-card-title{text-align:center;margin-bottom:8px}
+.card-title{color:#f7ce46;margin-top:10px}
+.bottom-card-title{color:#f0e7d5;margin-top:0}
+
+/* =================== Icon circles =================== */
+.icon-circle{
+  background:#fff;border-radius:50%;width:115px;height:115px;margin:0 auto;
+  display:flex;align-items:center;justify-content:center
+}
+.icon-circle img{display:block}
+.social-logo{width:64%;height:auto}
+.github-logo{width:90%;height:auto;object-fit:contain} /* keep white background visible, no filters */
+
+/* =================== Portfolio headings & blurbs =================== */
+.project-blurb{font-size:.9em;color:#ccc;text-align:center;margin-top:6px;line-height:1.4}
 
 /* =================== Projects =================== */
-.miguels-projects-spacing-top { margin-top: 55px; }
-.miguels-projects-spacing-bottom { margin-bottom: 25px; }
-.miguels-projects-title { font-size: 24px; }
+.miguels-projects-spacing-top{margin-top:55px}
+.miguels-projects-spacing-bottom{margin-bottom:25px}
+.miguels-projects-title{font-size:24px}
 
-.cards.projects-grid{
-  grid-template-columns: repeat(4, var(--desk-card));
-  max-width: calc(4 * var(--desk-card) + 3 * var(--gap));
-}
-.cards.projects-grid .card{
-  display:grid !important;
-  grid-template-rows: auto minmax(220px, 1fr) auto;
-  overflow:hidden !important;
-}
-.cards.projects-grid .card *{ min-height:0; }
-.cards.projects-grid .source-link{
-  grid-row:3; margin-top:10px;
-  display:flex; align-items:center; justify-content:center; gap:6px; text-align:center;
-}
-.octocat-icon{ width:22.5px; height:22.5px; }
-.cards.projects-grid .card > img.project-gif{ grid-row:2 !important; width:100% !important; height:100% !important; object-fit: fill !important; border-radius:6px; }
-.square-gif { aspect-ratio: 1 / 1; object-fit: cover; }
-.project-gif { display: block; }
+.cards.projects-grid .card{display:grid !important;grid-template-rows:auto minmax(220px,1fr) auto;overflow:hidden !important}
+.cards.projects-grid .card *{min-height:0}
+.cards.projects-grid .source-link{grid-row:3;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:6px;text-align:center}
+.octocat-icon{width:22.5px;height:22.5px}
+.cards.projects-grid .card>img.project-gif:nth-of-type(n+2){display:none !important}
+.cards.projects-grid .card>img.project-gif{grid-row:2 !important;width:100% !important;height:100% !important;object-fit:fill !important;border-radius:6px}
+.cards.projects-grid .card .gif-row{grid-row:2 !important;display:grid !important;grid-template-columns:1fr 1fr !important;gap:8px !important;align-items:stretch !important;min-height:0;height:clamp(180px,52vw,260px) !important}
+.cards.projects-grid .card .gif-row .project-gif{width:100% !important;height:100% !important;object-fit:cover !important;border-radius:6px}
+.square-gif{aspect-ratio:1/1;object-fit:cover}
+.project-gif{display:block}
 
 /* =================== Links =================== */
-.source-link a, .source-link a:visited{ color:#f0e7d5 !important; text-decoration:underline; font-weight:500; }
-.source-link a:hover{ color:var(--accent) !important; }
+.source-link a,.source-link a:visited{color:#f0e7d5 !important;text-decoration:underline;font-weight:500}
+.source-link a:hover{color:#f7ce46 !important}
+
+/* Footer email */
+.email{text-align:center;margin:24px 0}
+.email a,.email a:visited{color:#fff;text-decoration:underline;font-weight:500;font-size:clamp(18px,1.6vw,26px);line-height:1.6}
+.email a:hover{color:#f7ce46}
+
+/* =================== Apps grid =================== */
+.cards.apps-grid .card{
+  --shot-h:230px;--title-mb:12px;--blurb-mt:10px;
+  display:grid !important;grid-template-rows:auto var(--shot-h) auto auto !important;overflow:hidden
+}
+.cards.apps-grid .card .app-card-title{font-size:24px !important;margin:0 0 var(--title-mb);line-height:1.15}
+.cards.apps-grid .screenshot-row{grid-row:2 !important;height:var(--shot-h);line-height:0;overflow:hidden;display:flex;justify-content:center;align-items:center;gap:calc(var(--gap)*0.15 + 1px)}
+.cards.apps-grid .screenshot-row .spacer{display:none !important}
+.cards.apps-grid .screenshot-row img{height:var(--shot-h);width:calc(var(--shot-h) * 620 / 1266);aspect-ratio:620/1266;object-fit:contain;display:block;border-radius:4px}
+.cards.apps-grid .card .project-blurb{grid-row:3 !important;font-size:.9em;color:#ccc;text-align:center;margin:var(--blurb-mt) 10px 0;line-height:1.4}
+.cards.apps-grid .store-badge{grid-row:4 !important;align-self:center;justify-self:center;display:block;width:135px;height:auto;margin:10px 0 0;aspect-ratio:135/40}
+
+/* =================== Top row (connect-grid) =================== */
+.cards.connect-grid{grid-template-columns:repeat(3,var(--desk-card)) !important;max-width:min(var(--container-max),100% - 48px);margin-left:auto;margin-right:auto}
+.cards.connect-grid .card{display:grid !important;grid-template-rows:auto minmax(140px,1fr) auto !important;overflow:hidden}
+.cards.connect-grid .card-title{grid-row:3 !important;margin-top:10px;font-size:26px}
 
 /* =================== Responsive =================== */
-/* >=1200px = 4-up app & projects grids already set above */
-
-/* 900–1199: 2-up grids; top-grid shrinks to 2-card container width */
+@media (min-width:1200px){
+  .cards,.cards.apps-grid,.cards.projects-grid{grid-template-columns:repeat(4,var(--desk-card)) !important;max-width:min(var(--container-max),100% - 48px) !important;margin-left:auto !important;margin-right:auto !important}
+}
 @media (max-width:1199px){
-  .cards.apps-grid,
-  .cards.projects-grid{
-    grid-template-columns: repeat(2, var(--desk-card)) !important;
-    max-width: calc(2 * var(--desk-card) + 1 * var(--gap)) !important;
-  }
-  .top-grid{
-    max-width: calc(2 * var(--desk-card) + 1 * var(--gap));
-    grid-template-columns: var(--desk-card) 1fr; /* headshot + console */
-  }
+  .cards,.cards.apps-grid,.cards.projects-grid{grid-template-columns:repeat(2,var(--desk-card)) !important;max-width:calc(2 * var(--desk-card) + var(--gap)) !important}
 }
-
-/* <=900: single-column cards; top-grid becomes a 1-column stack and the console width matches the headshot */
 @media (max-width:900px){
-  .cards,
-  .cards.connect-grid,
-  .cards.apps-grid,
-  .cards.projects-grid{
-    grid-template-columns: var(--desk-card) !important;
-    max-width: calc(var(--desk-card)) !important;
-    justify-content: center !important;
+  .cards,.cards.apps-grid,.cards.projects-grid,.cards.connect-grid{
+    grid-template-columns:var(--desk-card) !important;
+    justify-content:center !important;
+    max-width:calc(var(--desk-card) + 2 * var(--gap)) !important;
+    margin-left:auto;margin-right:auto
   }
-  .cards .card{ width: var(--desk-card) !important; justify-self: center !important; }
+  .cards .card{width:var(--desk-card) !important;justify-self:center !important}
 
-  .top-grid{
-    max-width: var(--desk-card);
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-  .headshot{ justify-self:center; }
-  .term-card{
-    width: var(--desk-card);
-    justify-self:center;
-    min-height: 0;                 /* let content define height on small screens */
-  }
+  /* projects grid mobile */
+  .cards.projects-grid .card{grid-template-rows:auto auto auto !important}
+  .cards.projects-grid .card>img.project-gif{display:block;width:100% !important;height:auto !important;aspect-ratio:16/9;object-fit:cover !important;margin-bottom:8px}
+  .cards.projects-grid .source-link{grid-row:3 !important;position:relative;z-index:1}
 
-  /* apps grid relax screenshot sizing */
-  .cards.apps-grid .card{ grid-template-rows: auto auto auto auto !important; }
-  .cards.apps-grid .screenshot-row{ height:auto; gap:8px; }
-  .cards.apps-grid .screenshot-row img{ height:auto; width:auto; max-width:110px; }
+  /* apps grid mobile */
+  .cards.apps-grid .card{grid-template-rows:auto auto auto auto !important}
+  .cards.apps-grid .screenshot-row{height:auto;gap:8px}
+  .cards.apps-grid .screenshot-row img{height:auto;width:auto;max-width:110px}
 }
 
-/* Motion pref */
-@media (prefers-reduced-motion: reduce) {
-  .card { transition: none; }
-  .card:hover, .card:focus-visible { transform: none; box-shadow: none; }
+/* =================== Motion preference =================== */
+@media (prefers-reduced-motion:reduce){
+  .card{transition:none}
+  .card:hover,.card:focus-visible{transform:none;box-shadow:none}
 }
