@@ -223,38 +223,44 @@ footer{background:#353535;border-top:4px solid #434343;padding:10px 0}
 }
 
 
-/* === Adjust3: hero corners, height tweak, titles sizes/weights, no footer accents === */
+/* === adj7: remove side gutter on hero photo; hard-fix dividers/title centering === */
 
-/* Hero photo rounding fix: ensure the visible container clips with radius */
+/* 1) HERO PHOTO: shrink container width to image content so no left/right "black" bands */
 .hero .hero-photo, .hero-img{
+  width: auto !important;              /* let item size to its content */
+  height: 100% !important;
   border-radius: 18px !important;
   overflow: hidden !important;
   background: transparent !important;
+  justify-self: start !important;      /* keep left edge aligned with grid */
 }
 .hero .hero-photo img, .hero-img img{
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 18px !important; /* mirror radius on inner img */
+  height: 100% !important;             /* scale by height */
+  width: auto !important;              /* natural aspect ratio, no letterbox */
+  display: block !important;
+  border-radius: 18px !important;
 }
 
-/* Make hero row 15% shorter while preserving left/right edges */
-.hero .hero-row, .hero-grid{
-  grid-auto-rows: calc(var(--hero-h) * 0.85) !important;
-}
-.term, .term-card{ height: 100% !important; }
+/* 2) HEADERS: ensure hero container remains transparent */
+.top-hero{ background: transparent !important; border: none !important; box-shadow: none !important; padding: 0 !important; }
 
-/* Title spacing: keep dividers but tighten top gap further where needed */
-/* (Keeping previous 8px/6px top gaps from prior patch) */
-
-/* Portfolio font tweaks: +4px from current 27px -> 31px, weight down by 100 (600->500) */
-.bottom-sections-heading{
-  font-size: 31px !important;
-  font-weight: 500 !important;
+/* 3) DIVIDERS & TITLES: normalize base, then drive spacing via adjacency (high specificity) */
+.container .wide-divider{
+  display:block;
+  height:0;
+  border-top: .5px solid #f0e7d5b3;
+  margin:0 auto !important;
+  width:55%;
 }
 
-/* Projects font tweaks: -4px from current 24px -> 20px, weight down by 200 (400->200) */
-.miguels-projects-title{
-  font-size: 20px !important;
-  font-weight: 200 !important;
-}
+/* Remove padding that can throw centering */
+.container .bottom-sections-heading,
+.container .miguels-projects-title{ padding:0 !important; margin-left:auto !important; margin-right:auto !important; }
+
+/* Portfolio: 12px between top divider->title, and title->bottom divider; 18px to cards */
+.container :is(.wide-divider)+.bottom-sections-heading{ margin-top:12px !important; }
+.container .bottom-sections-heading+:is(.wide-divider){ margin-top:12px !important; margin-bottom:18px !important; }
+
+/* Projects: 10px / 10px then 14px to grid */
+.container :is(.wide-divider)+.miguels-projects-title{ margin-top:10px !important; }
+.container .miguels-projects-title+:is(.wide-divider){ margin-top:10px !important; margin-bottom:14px !important; }
