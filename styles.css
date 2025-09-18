@@ -1,172 +1,185 @@
-/* =================== Fonts =================== */
+/* =============== Fonts =============== */
 @font-face{font-family:'OpenSans';src:url('./fonts/OpenSans-Light-webfont.woff') format('woff'),url('./fonts/OpenSans-Light-webfont.ttf') format('truetype');font-weight:300;font-style:normal;font-display:swap}
 @font-face{font-family:'OpenSans';src:url('./fonts/OpenSans-Regular-webfont.woff') format('woff'),url('./fonts/OpenSans-Regular-webfont.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:'OpenSans';src:url('./fonts/OpenSans-Semibold-webfont.woff') format('woff'),url('./fonts/OpenSans-Semibold-webfont.ttf') format('truetype');font-weight:600;font-style:normal;font-display:swap}
 @font-face{font-family:'OpenSans';src:url('./fonts/OpenSans-Bold-webfont.woff') format('woff'),url('./fonts/OpenSans-Bold-webfont.ttf') format('truetype');font-weight:700;font-style:normal;font-display:swap}
 
-/* =================== Base =================== */
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%}
-html{background:linear-gradient(#2a2a29,#1c1c1c) fixed no-repeat;background-size:cover}
-body{font-family:"OpenSans",Helvetica,Arial,sans-serif;font-weight:400;font-size:18px;line-height:1.5;color:#f0e7d5}
-footer{background:#353535;border-top:4px solid #434343;padding:10px 0;height:auto}
-
-/* Vars shared with HTML inline */
+/* =============== Variables =============== */
 :root{
   --gap:12px;
   --desk-card:280px;
   --container-max: calc(4 * var(--desk-card) + 3 * var(--gap));
-  --hero-h: clamp(180px, 28vh, 260px);
-  --head-w: clamp(240px, 26vw, 360px);
+  --hero-h: clamp(200px, 28vh, 260px); /* shared fixed height on desktop/tablet */
 }
 
-/* =================== HERO =================== */
-.top-hero{
-  background:#1c1c1c;
-  border-bottom:1px solid #2b2b2b;
-}
-.hero-inner{
-  width: min(var(--container-max), 100% - 48px);
-  margin: 14px auto 0;
-  display: grid;
-  grid-template-columns: var(--head-w) 1fr;
-  gap: 18px;
-  align-items: stretch;
-  padding-bottom: 12px;
-}
-.hero-shot{
-  width: var(--head-w);
-  height: var(--hero-h);
-  object-fit: cover;
-  border-radius: 8px;
-  display:block;
-}
+/* =============== Shell =============== */
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+html{background:linear-gradient(#2a2a29,#1c1c1c) fixed no-repeat;background-size:cover}
+body{font-family:"OpenSans",Helvetica,Arial,sans-serif;font-weight:400;font-size:18px;line-height:1.5;color:#f0e7d5}
+footer{background:#353535;border-top:4px solid #434343;padding:10px 0}
 
-/* Console card (HTML/CSS, no SVG so text reflows nicely) */
-.term-card{
-  position: relative;
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 18px 20px 16px;
-  background:#121314;
-  border:1.5px solid #2f2f2f;
-  border-radius: 12px;
-  height: var(--hero-h);        /* match headshot height on desktop/tablet */
-  text-decoration: none;
-  color: inherit;
-  box-shadow: 0 10px 24px rgba(0,0,0,.35);
-}
-.term-card::before{
-  content:"";
-  position:absolute;
-  left:16px; top:10px;
-  width:48px; height:12px;
-  background:
-    radial-gradient(circle at 6px 6px,#ef4444 6px,transparent 7px) 0 0/18px 18px no-repeat,
-    radial-gradient(circle at 6px 6px,#f59e0b 6px,transparent 7px) 16px 0/18px 18px no-repeat,
-    radial-gradient(circle at 6px 6px,#10b981 6px,transparent 7px) 32px 0/18px 18px no-repeat;
-  pointer-events:none;
-}
-.term-title{
-  margin-top: 12px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-  font-weight: 700;
-  color:#f7ce46;
-  font-size: clamp(28px, 4.8vw, 48px); /* large but clamps so it won’t cut off */
-  line-height: 1.15;
-}
-.term-email{
-  margin-top: 8px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-  font-size: clamp(15px, 2.2vw, 20px);
-  color:#d8dbe1;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  border-radius: 6px;
-}
-
-/* 2-column “tablet” – keep hero as 2-col and aligned with grid */
-@media (max-width: 1199px){
-  :root{ --container-max: calc(3 * var(--desk-card) + 2 * var(--gap)); }
-}
-
-/* 1-column phones – stack, match widths, never overlap content */
-@media (max-width: 900px){
-  :root{ --container-max: calc(var(--desk-card)); }
-  .hero-inner{
-    grid-template-columns: 1fr;
-    justify-items: center;
-    gap: 12px;
-  }
-  .hero-shot{
-    width: clamp(260px, 74vw, 420px);
-    height: auto;               /* natural image height on phones */
-  }
-  .term-card{
-    width: clamp(260px, 74vw, 420px); /* exactly match headshot width */
-    height: auto;                     /* let content decide height */
-    align-items: flex-start;
-  }
-}
-
-/* =================== Layout wrappers =================== */
+/* =============== Layout helpers =============== */
+.container{width:min(var(--container-max), 100% - 48px);margin:16px auto 0}
 .wrapper{display:flex;flex-direction:column;align-items:center;padding-bottom:40px}
-.section-heading,.bottom-sections-heading,.card-title,.bottom-card-title{font-weight:400}
-.name-heading{color:#f7ce46;font-weight:600}
-.divider{width:40%;margin:15px 0;border-top:.5px solid #f0e7d5b3}
-.wide-divider{width:55%;margin:15px 0;border-top:.5px solid #f0e7d5b3}
+.wide-divider{width:55%;margin:15px auto;border-top:.5px solid #f0e7d5b3}
 .wide-divider-bottom-space{margin-bottom:25px}
 .bottom-sections-heading{font-size:28px;line-height:1;color:#f7ce46;text-align:center}
 .miguels-portfolio-title{font-size:42px}
-.miguel-title{font-size:52px;font-weight:400}
-.project-github-text{font-size:16px}
 
-/* =================== Cards & Grids =================== */
-.cards{display:grid;gap:var(--gap);justify-content:center;grid-template-columns:repeat(2,var(--desk-card))}
+/* =============== HERO =============== */
+.top-hero{background:#1c1c1c;border-bottom:1px solid #2b2b2b}
+.hero-grid{
+  display:grid;
+  grid-template-columns: repeat(4, var(--desk-card));
+  grid-auto-rows: var(--hero-h);        /* makes headshot & console equal height */
+  gap: var(--gap);
+  align-items: stretch;
+}
+.hero-img{
+  grid-column: 1 / span 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;                   /* no zoom/crop */
+  background:#111;                       /* letterbox fill if needed */
+  border-radius: 10px;
+  display:block;
+}
+.term-card{
+  grid-column: 2 / -1;                   /* spans cols 2-4 on desktop */
+  display:grid;
+  grid-template-rows: 34px 1fr;          /* titlebar + body */
+  height: 100%;
+  border:1.5px solid #2f2f2f;
+  border-radius: 10px;
+  background:#0f1011;                    /* simple, solid */
+  box-shadow: 0 8px 18px rgba(0,0,0,.35);
+}
+.term-titlebar{
+  background:#202326;                    /* clearly different from body */
+  border-bottom:1px solid #101214;
+  border-radius:10px 10px 0 0;
+  position:relative;
+}
+.term-titlebar .dot{
+  position:absolute;top:9px;width:10px;height:10px;border-radius:50%;
+  box-shadow:0 0 0 1px rgba(0,0,0,.25)
+}
+.term-titlebar .red{left:12px;background:#ef4444}
+.term-titlebar .amber{left:28px;background:#f59e0b}
+.term-titlebar .green{left:44px;background:#10b981}
+
+.term-body{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:14px 18px 16px;
+}
+.term-name{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  color:#f7ce46;
+  font-weight:700;
+  line-height:1.15;
+  /* Big but safe — grows on desktop, wraps if needed on tablet */
+  font-size: clamp(28px, 3.9vw, 56px);
+  margin: 2px 0 6px;
+}
+.term-email{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  color:#d8dbe1;
+  font-size: clamp(15px, 1.6vw, 20px);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  width:max-content;
+}
+
+/* ======= Breakpoints for hero & grid ======= */
+@media (max-width:1199px){
+  :root{ --container-max: calc(2 * var(--desk-card) + var(--gap)); }
+  .hero-grid{ grid-template-columns: repeat(2, var(--desk-card)); }
+  .hero-img{ grid-column: 1 / span 1; }
+  .term-card{ grid-column: 2 / span 1; }     /* sits to the right of headshot */
+}
+@media (max-width:900px){
+  :root{ --container-max: var(--desk-card); }
+  .hero-grid{
+    grid-template-columns: var(--desk-card);
+    grid-auto-rows: auto;                    /* stack naturally on phones */
+    justify-content:center;
+  }
+  .hero-img{
+    width: 100%;
+    height: auto;                            /* match natural image height */
+    object-fit: contain;
+  }
+  .term-card{
+    grid-column: 1;
+    width: 100%;
+    height: auto;                            /* never overlaps content */
+  }
+}
+
+/* =============== Cards & Grids =============== */
+.cards{
+  display:grid;
+  gap:var(--gap);
+  justify-content:center;
+  grid-template-columns:repeat(2,var(--desk-card));
+}
 .cards .card{width:var(--desk-card)}
 .card{
   background:#2e2e2e;border:1px solid #444;border-radius:8px;padding:14px;text-align:center;
-  display:flex;flex-direction:column;color:inherit;text-decoration:none;
+  display:grid;grid-template-rows:auto auto auto;gap:8px;
+  color:inherit;text-decoration:none;
   transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease
 }
 .card:hover,.card:focus-visible{transform:translateY(-2px);border-color:#f7ce46;box-shadow:0 4px 16px rgba(247,206,70,.12);outline:none}
 
 /* Titles */
-.card-title,.bottom-card-title{text-align:center;margin-bottom:8px}
-.card-title{color:#f7ce46;margin-top:10px}
-.bottom-card-title{color:#f0e7d5;margin-top:0}
+.card-title,.bottom-card-title{text-align:center;margin-bottom:0}
+.card-title{color:#f7ce46;margin-top:6px;font-size:26px}
+.bottom-card-title{color:#f0e7d5}
 
-/* =================== Icon circles =================== */
+/* Icon circles (keep GitHub black on white) */
 .icon-circle{
-  background:#fff;border-radius:50%;width:115px;height:115px;margin:0 auto;
+  background:#fff;border-radius:50%;width:115px;height:115px;margin:2px auto 6px;
   display:flex;align-items:center;justify-content:center
 }
-.icon-circle img{display:block}
+.icon-circle img{display:block;filter:none;mix-blend-mode:normal}
 .social-logo{width:64%;height:auto}
-.github-logo{width:90%;height:auto;object-fit:contain} /* keep white background visible, no filters */
+.github-logo{width:90%;height:auto;object-fit:contain}
 
-/* =================== Portfolio headings & blurbs =================== */
-.project-blurb{font-size:.9em;color:#ccc;text-align:center;margin-top:6px;line-height:1.4}
+/* ===== Apps grid ===== */
+.cards.apps-grid .card{
+  --shot-h:230px;
+  grid-template-rows:auto var(--shot-h) auto auto;
+}
+.cards.apps-grid .app-card-title{font-size:24px;line-height:1.15}
+.cards.apps-grid .screenshot-row{
+  grid-row:2;height:var(--shot-h);line-height:0;overflow:hidden;
+  display:flex;justify-content:center;align-items:center;gap:6px
+}
+.cards.apps-grid .screenshot-row img{
+  height:var(--shot-h);width:calc(var(--shot-h) * 620 / 1266);
+  aspect-ratio:620/1266;object-fit:contain;border-radius:4px
+}
+.project-blurb{font-size:.9em;color:#ccc;text-align:center;margin-top:8px;line-height:1.4}
+.store-badge{grid-row:4;justify-self:center;width:135px;height:auto;margin-top:10px}
 
-/* =================== Projects =================== */
+/* ===== Projects ===== */
 .miguels-projects-spacing-top{margin-top:55px}
 .miguels-projects-spacing-bottom{margin-bottom:25px}
 .miguels-projects-title{font-size:24px}
 
-.cards.projects-grid .card{display:grid !important;grid-template-rows:auto minmax(220px,1fr) auto;overflow:hidden !important}
+.cards.projects-grid .card{grid-template-rows:auto minmax(220px,1fr) auto;overflow:hidden}
 .cards.projects-grid .card *{min-height:0}
 .cards.projects-grid .source-link{grid-row:3;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:6px;text-align:center}
 .octocat-icon{width:22.5px;height:22.5px}
-.cards.projects-grid .card>img.project-gif:nth-of-type(n+2){display:none !important}
-.cards.projects-grid .card>img.project-gif{grid-row:2 !important;width:100% !important;height:100% !important;object-fit:fill !important;border-radius:6px}
-.cards.projects-grid .card .gif-row{grid-row:2 !important;display:grid !important;grid-template-columns:1fr 1fr !important;gap:8px !important;align-items:stretch !important;min-height:0;height:clamp(180px,52vw,260px) !important}
-.cards.projects-grid .card .gif-row .project-gif{width:100% !important;height:100% !important;object-fit:cover !important;border-radius:6px}
+.cards.projects-grid .card>img.project-gif:nth-of-type(n+2){display:none}
+.cards.projects-grid .card>img.project-gif{grid-row:2;width:100%;height:100%;object-fit:fill;border-radius:6px}
+.cards.projects-grid .card .gif-row{grid-row:2;display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:stretch;min-height:0;height:clamp(180px,52vw,260px)}
+.cards.projects-grid .card .gif-row .project-gif{width:100%;height:100%;object-fit:cover;border-radius:6px}
 .square-gif{aspect-ratio:1/1;object-fit:cover}
-.project-gif{display:block}
 
-/* =================== Links =================== */
+/* Links */
 .source-link a,.source-link a:visited{color:#f0e7d5 !important;text-decoration:underline;font-weight:500}
 .source-link a:hover{color:#f7ce46 !important}
 
@@ -175,51 +188,35 @@ footer{background:#353535;border-top:4px solid #434343;padding:10px 0;height:aut
 .email a,.email a:visited{color:#fff;text-decoration:underline;font-weight:500;font-size:clamp(18px,1.6vw,26px);line-height:1.6}
 .email a:hover{color:#f7ce46}
 
-/* =================== Apps grid =================== */
-.cards.apps-grid .card{
-  --shot-h:230px;--title-mb:12px;--blurb-mt:10px;
-  display:grid !important;grid-template-rows:auto var(--shot-h) auto auto !important;overflow:hidden
-}
-.cards.apps-grid .card .app-card-title{font-size:24px !important;margin:0 0 var(--title-mb);line-height:1.15}
-.cards.apps-grid .screenshot-row{grid-row:2 !important;height:var(--shot-h);line-height:0;overflow:hidden;display:flex;justify-content:center;align-items:center;gap:calc(var(--gap)*0.15 + 1px)}
-.cards.apps-grid .screenshot-row .spacer{display:none !important}
-.cards.apps-grid .screenshot-row img{height:var(--shot-h);width:calc(var(--shot-h) * 620 / 1266);aspect-ratio:620/1266;object-fit:contain;display:block;border-radius:4px}
-.cards.apps-grid .card .project-blurb{grid-row:3 !important;font-size:.9em;color:#ccc;text-align:center;margin:var(--blurb-mt) 10px 0;line-height:1.4}
-.cards.apps-grid .store-badge{grid-row:4 !important;align-self:center;justify-self:center;display:block;width:135px;height:auto;margin:10px 0 0;aspect-ratio:135/40}
-
-/* =================== Top row (connect-grid) =================== */
-.cards.connect-grid{grid-template-columns:repeat(3,var(--desk-card)) !important;max-width:min(var(--container-max),100% - 48px);margin-left:auto;margin-right:auto}
-.cards.connect-grid .card{display:grid !important;grid-template-rows:auto minmax(140px,1fr) auto !important;overflow:hidden}
-.cards.connect-grid .card-title{grid-row:3 !important;margin-top:10px;font-size:26px}
-
-/* =================== Responsive =================== */
+/* ===== Grid breakpoints (cards) ===== */
 @media (min-width:1200px){
-  .cards,.cards.apps-grid,.cards.projects-grid{grid-template-columns:repeat(4,var(--desk-card)) !important;max-width:min(var(--container-max),100% - 48px) !important;margin-left:auto !important;margin-right:auto !important}
+  .cards,.cards.apps-grid,.cards.projects-grid{grid-template-columns:repeat(4,var(--desk-card));max-width:min(var(--container-max),100% - 48px);margin-left:auto;margin-right:auto}
+  .cards.connect-grid{grid-template-columns:repeat(3,var(--desk-card));max-width:min(var(--container-max),100% - 48px)}
 }
 @media (max-width:1199px){
-  .cards,.cards.apps-grid,.cards.projects-grid{grid-template-columns:repeat(2,var(--desk-card)) !important;max-width:calc(2 * var(--desk-card) + var(--gap)) !important}
+  .cards,.cards.apps-grid,.cards.projects-grid{grid-template-columns:repeat(2,var(--desk-card));max-width:calc(2 * var(--desk-card) + var(--gap))}
+  .cards.connect-grid{grid-template-columns:repeat(2,var(--desk-card))}
 }
 @media (max-width:900px){
   .cards,.cards.apps-grid,.cards.projects-grid,.cards.connect-grid{
-    grid-template-columns:var(--desk-card) !important;
-    justify-content:center !important;
-    max-width:calc(var(--desk-card) + 2 * var(--gap)) !important;
+    grid-template-columns:var(--desk-card);
+    justify-content:center;
+    max-width:calc(var(--desk-card) + 2 * var(--gap));
     margin-left:auto;margin-right:auto
   }
-  .cards .card{width:var(--desk-card) !important;justify-self:center !important}
+  .cards .card{width:var(--desk-card);justify-self:center}
 
   /* projects grid mobile */
-  .cards.projects-grid .card{grid-template-rows:auto auto auto !important}
-  .cards.projects-grid .card>img.project-gif{display:block;width:100% !important;height:auto !important;aspect-ratio:16/9;object-fit:cover !important;margin-bottom:8px}
-  .cards.projects-grid .source-link{grid-row:3 !important;position:relative;z-index:1}
+  .cards.projects-grid .card{grid-template-rows:auto auto auto}
+  .cards.projects-grid .card>img.project-gif{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;margin-bottom:8px}
 
   /* apps grid mobile */
-  .cards.apps-grid .card{grid-template-rows:auto auto auto auto !important}
+  .cards.apps-grid .card{grid-template-rows:auto auto auto auto}
   .cards.apps-grid .screenshot-row{height:auto;gap:8px}
   .cards.apps-grid .screenshot-row img{height:auto;width:auto;max-width:110px}
 }
 
-/* =================== Motion preference =================== */
+/* Reduce motion */
 @media (prefers-reduced-motion:reduce){
   .card{transition:none}
   .card:hover,.card:focus-visible{transform:none;box-shadow:none}
