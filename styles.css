@@ -221,3 +221,31 @@ footer{background:#353535;border-top:4px solid #434343;padding:10px 0}
   .card{transition:none}
   .card:hover,.card:focus-visible{transform:none;box-shadow:none}
 }
+
+
+/* === Adjust2: hero rounding, title spacing, Portfolio size/weight, hero 10% taller & transparent === */
+
+/* 1) Hero image rounded corners (apply broadly so it sticks) */
+.hero-img, .hero .hero-photo, .hero .hero-photo img, .hero-img img {
+  border-radius: 18px !important;
+  background: transparent !important;
+}
+
+/* 2) Title spacing—reduce space between TOP divider and text by ~25% (hardcoded) */
+.wide-divider + .bottom-sections-heading { margin-top: 8px !important; }         /* was 10px */
+.wide-divider + .miguels-projects-title { margin-top: 6px !important; }          /* was 8px */
+
+/* 3) Portfolio emphasis tweaks */
+.bottom-sections-heading {
+  font-weight: 600 !important;   /* down from 700 by 100 */
+  font-size: 27px !important;    /* ~15% down from 32px */
+}
+
+/* 4) Hero container 10% taller and transparent background */
+.top-hero {
+  background: transparent !important;
+  border-bottom: none !important;
+}
+.hero-grid, .hero .hero-row {
+  grid-auto-rows: calc(var(--hero-h) * 1.10) !important;
+}
