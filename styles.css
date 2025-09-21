@@ -48,6 +48,7 @@ footer{
 :root{
   --gap: 12px;
   --desk-card: 280px;                 /* single column width */
+  --gif-h: 120px;
   --ring: #2b2b2b;                    /* console outline */
   --term-bg-top: #1b1d20;
   --term-bg-bot: #131416;
@@ -251,9 +252,51 @@ footer{
   display:flex; align-items:center; justify-content:center; gap:6px; text-align:center;
 }
 .octocat-icon{ width:22.5px; height:22.5px; }
-.cards.projects-grid .card > img.project-gif{ grid-row:2 !important; width:100% !important; height:100% !important; object-fit: fill !important; border-radius:6px; }
+.cards.projects-grid .card > img.project-gif { 
+  width:100% !important; 
+  height:auto !important; 
+  object-fit: contain !important; 
+  border-radius:4px !important; 
+  max-width: 280px; 
+  max-height: var(--gif-h) !important; 
+  justify-content: center !important;
+}
 .square-gif { aspect-ratio: 1 / 1; object-fit: cover; }
-.project-gif { display: block; }
+.project-gif { 
+  display: block; 
+  max-height: var(--gif-h) !important;
+  background-color: #222221;
+}
+.gif-me { 
+  object-fit: contain !important; 
+  justify-content: center !important; 
+  width: 100% !important;
+  object-fit: contain;
+  border-radius:4px !important; 
+} 
+/* .solar-lending { max-height: 80px !important;} */
+.solar-lending { 
+  display: block; 
+  max-height: var(--gif-h) !important; 
+  object-fit: contain !important; 
+  justify-content: center !important; 
+  width: 100% !important; 
+  background-color: #222221;
+  border-radius:4px !important; 
+}
+
+/* .precreated {
+  max-height: 50px !important;
+} */
+ .precreated { 
+  display: block !important; 
+  max-height: var(--gif-h) !important; 
+  object-fit: contain !important; 
+  justify-content: center !important; 
+  width: 100% !important; 
+  background-color: #222221;
+  border-radius:8px !important; 
+}
 
 /* =================== Links =================== */
 .source-link a, .source-link a:visited{ color:#f0e7d5 !important; text-decoration:underline; font-weight:500; }
@@ -275,14 +318,16 @@ footer{
   }
 }
 
-/* <=900: single-column cards; top-grid becomes a 1-column stack and the console width matches the headshot */
+/* <=900: single-column cards; top-grid becomes a 1-column stack and the console width matches the heaurl(../../../../../Downloads/gif-me-gif-0.gif)dshot */
 @media (max-width:900px){
   .cards,
   .cards.connect-grid,
   .cards.apps-grid,
   .cards.projects-grid{
-    grid-template-columns: var(--desk-card) !important;
-    max-width: calc(var(--desk-card)) !important;
+    grid-template-columns: var(180px) !important;
+    /* max-width: calc(var(--desk-card)) !important; */
+    max-width: 18px !important;
+    max-height: 180px !important;
     justify-content: center !important;
   }
   .cards .card{ width: var(--desk-card) !important; justify-self: center !important; }
