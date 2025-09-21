@@ -241,25 +241,26 @@ footer{
   grid-template-columns: repeat(4, var(--desk-card));
   max-width: calc(4 * var(--desk-card) + 3 * var(--gap));
 }
-.cards.projects-grid .card{
-  display:grid !important;
-  grid-template-rows: auto minmax(220px, 1fr) auto;
-  overflow:hidden !important;
+.cards.projects-grid .card {
+  display: grid !important;
+  grid-template-rows: auto auto auto;  /* title, gif, link */
+  height: auto !important;            /* let content define */
 }
 .cards.projects-grid .card *{ min-height:0; }
-.cards.projects-grid .source-link{
-  grid-row:3; margin-top:10px;
-  display:flex; align-items:center; justify-content:center; gap:6px; text-align:center;
+.cards.projects-grid .source-link {
+  grid-row: 3;
+  margin-top: 18px !important; /* add spacing from GIF */
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
 }
 .octocat-icon{ width:22.5px; height:22.5px; }
-.cards.projects-grid .card > img.project-gif { 
-  width:100% !important; 
-  height:auto !important; 
-  object-fit: contain !important; 
-  border-radius:4px !important; 
-  max-width: 280px; 
-  max-height: var(--gif-h) !important; 
-  justify-content: center !important;
+.cards.projects-grid .card > img.project-gif {
+  width: 100% !important;
+  height: auto !important;            /* shrink to actual gif height */
+  max-height: var(--gif-h) !important; /* still cap it */
+  object-fit: contain !important;
 }
 .square-gif { aspect-ratio: 1 / 1; object-fit: cover; }
 .project-gif { 
