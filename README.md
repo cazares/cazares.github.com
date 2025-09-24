@@ -1,8 +1,8 @@
-**source code for miguel-cazares.com**
+**source code for miguelengineer.com
 
 formerly:
 
 cazares.github.com
 ==================
 
-https://cazares.github.io
+https://miguelengineer.com
