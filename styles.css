@@ -85,7 +85,7 @@ header::after{
 .section-heading, .bottom-sections-heading, .card-title, .bottom-card-title{ font-weight:400; }
 .name-heading{ color:#f7ce46; font-weight:600; }
 .divider { width:40%; margin:15px 0; border-top:.5px solid #f0e7d5b3; }
-.wide-divider { width:55%; margin:15px 0; border-top:.5px solid #f0e7d5b3; }
+.wide-divider{margin-left:auto;margin-right:auto;width:70%;min-width:60%;max-width:80%;}
 .wide-divider-bottom-space { margin-bottom: 25px; }
 .bottom-sections-heading{ font-size:28px; line-height:1; color:#f7ce46; text-align:center; }
 
@@ -468,12 +468,7 @@ grid-template-columns: 1fr !important; }
 
 
 /* MIGUEL: center section dividers and add page padding */
-.wide-divider{
-  margin-left: auto;
-  margin-right: auto;
-  width: 20%;
-  max-width: 150px;
-}
+.wide-divider{margin-left:auto;margin-right:auto;width:70%;min-width:60%;max-width:80%;}
 body{
   padding-top: 15px;
   padding-bottom: 40px;
@@ -497,7 +492,54 @@ body{
 
 
 
-/* guarantee bottom spacing */
+/* MIGUEL: ensure both gifs show side-by-side in gif rows */
+.cards.projects-grid .card .gif-row{
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 8px !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+.cards.projects-grid .card .gif-row .project-gif{
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+}
+@media(max-width: 900px){
+  .wide-divider{ width: 80%; max-width: 90%; }
+  .cards.projects-grid .card .gif-row{ grid-template-columns: 1fr !important; }
+}
+
+
+
+/* === MIGUEL: mid-range identity row width fix, centered dividers, hard 40px bottom === */
+
+/* MID-RANGE (901–1199px): let identity row follow container width, not 3-tile desktop width */
+@media (min-width: 901px) and (max-width: 1199px){
+  .identity-row{
+    width: auto !important;
+    max-width: var(--content-max, 1100px);
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Section dividers: visible, centered, responsive width */
+.wide-divider{
+  height: 1px;
+  background: rgba(221, 184, 75, 0.55);
+  margin: 12px auto 18px auto;
+  width: 70%;
+  min-width: 60%;
+  max-width: 80%;
+}
+@media (max-width: 900px){
+  .wide-divider{ width: 85%; max-width: 90%; }
+}
+
+/* Guaranteed bottom spacing */
 body{ padding-bottom: 40px !important; }
 .page-end-spacer{ height: 40px; }
 
