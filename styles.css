@@ -479,3 +479,25 @@ body{
   padding-bottom: 40px;
 }
 
+
+
+/* identity subtitle under name */
+.identity-subtitle{
+  font-size: 1.15rem;
+  line-height: 1.25;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  color: var(--accent, #DDB84B); /* match gold accent; fallback if var missing */
+  margin-top: 4px;
+}
+.identity-email{ margin-top: 8px; } /* a touch more space below subtitle */
+@media(max-width:900px){
+  .identity-subtitle{ text-align:center; }
+}
+
+
+
+/* guarantee bottom spacing */
+body{ padding-bottom: 40px !important; }
+.page-end-spacer{ height: 40px; }
+
