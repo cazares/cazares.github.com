@@ -85,7 +85,7 @@ header::after{
 .section-heading, .bottom-sections-heading, .card-title, .bottom-card-title{ font-weight:400; }
 .name-heading{ color:#f7ce46; font-weight:600; }
 .divider { width:40%; margin:15px 0; border-top:.5px solid #f0e7d5b3; }
-.wide-divider{margin-left:auto;margin-right:auto;width:70%;min-width:60%;max-width:80%;}
+
 .wide-divider-bottom-space { margin-bottom: 25px; }
 .bottom-sections-heading{ font-size:28px; line-height:1; color:#f7ce46; text-align:center; }
 
@@ -468,7 +468,7 @@ grid-template-columns: 1fr !important; }
 
 
 /* MIGUEL: center section dividers and add page padding */
-.wide-divider{margin-left:auto;margin-right:auto;width:70%;min-width:60%;max-width:80%;}
+
 body{
   padding-top: 15px;
   padding-bottom: 40px;
@@ -506,7 +506,7 @@ body{
   object-fit: contain !important;
 }
 @media(max-width: 900px){
-  .wide-divider{ width: 80%; max-width: 90%; }
+  
   .cards.projects-grid .card .gif-row{ grid-template-columns: 1fr !important; }
 }
 
@@ -527,19 +527,43 @@ body{
 }
 
 /* Section dividers: visible, centered, responsive width */
-.wide-divider{
-  height: 1px;
-  background: rgba(221, 184, 75, 0.55);
-  margin: 12px auto 18px auto;
-  width: 70%;
-  min-width: 60%;
-  max-width: 80%;
-}
+
 @media (max-width: 900px){
-  .wide-divider{ width: 85%; max-width: 90%; }
+  
 }
 
 /* Guaranteed bottom spacing */
 body{ padding-bottom: 40px !important; }
 .page-end-spacer{ height: 40px; }
+
+
+
+/* === MIGUEL: divider narrowing, spacing, centering; identity row polish === */
+
+/* 1) Dividers ~25% narrower and centered */
+.wide-divider{
+  height: 1px;
+  background: rgba(221, 184, 75, 0.55);
+  margin-left: auto;
+  margin-right: auto;
+  width: 52.5%;
+  min-width: 45%;
+  max-width: 60%;
+}
+
+/* 2) Looser OUTER spacing for any divider pair in a section */
+.wide-divider:first-of-type{ margin-top: 28px; }
+.wide-divider:last-of-type{  margin-bottom: 28px; }
+
+/* 3) Equal INNER gaps around heading so it's centered between the two lines */
+.wide-divider + h2{ margin-top: 16px; margin-bottom: 16px; }
+.wide-divider + h2 + .wide-divider{ margin-top: 16px; }
+
+/* 1-mobile) Narrower but solid on mobile */
+@media (max-width: 900px){
+  .wide-divider{ width: 64%; max-width: 68%; }
+}
+
+/* 5) Identity row top polish */
+.identity-row{ padding-top: 10px; }
 
