@@ -541,15 +541,7 @@ body{ padding-bottom: 40px !important; }
 /* === MIGUEL: divider narrowing, spacing, centering; identity row polish === */
 
 /* 1) Dividers ~25% narrower and centered */
-.wide-divider{
-  height: 1px;
-  background: rgba(221, 184, 75, 0.55);
-  margin-left: auto;
-  margin-right: auto;
-  width: 52.5%;
-  min-width: 45%;
-  max-width: 60%;
-}
+
 
 /* 2) Looser OUTER spacing for any divider pair in a section */
 .wide-divider:first-of-type{ margin-top: 28px; }
@@ -557,13 +549,142 @@ body{ padding-bottom: 40px !important; }
 
 /* 3) Equal INNER gaps around heading so it's centered between the two lines */
 .wide-divider + h2{ margin-top: 16px; margin-bottom: 16px; }
-.wide-divider + h2 + .wide-divider{ margin-top: 16px; }
+.wide-divider + h2 + 
 
 /* 1-mobile) Narrower but solid on mobile */
 @media (max-width: 900px){
-  .wide-divider{ width: 64%; max-width: 68%; }
+  
 }
 
 /* 5) Identity row top polish */
 .identity-row{ padding-top: 10px; }
+
+
+/* --- Divider Tweaks --- */
+.divider {
+  width: 60%; /* 25% narrower than before (was ~80%) */
+  margin: 25px auto; /* looser spacing above/below */
+}
+
+/* Section headings: keep text centered vertically between dividers */
+.section-heading {
+  display: inline-block;
+  position: relative;
+  top: 0;
+  margin: 0 auto 0 auto;
+  padding: 10px 0;
+}
+
+/* Portfolio section spacing */
+.portfolio-section .divider:first-of-type {
+  margin-top: 30px; /* extra top spacing */
+}
+.portfolio-section .divider:last-of-type {
+  margin-bottom: 30px; /* extra bottom spacing */
+}
+
+/* Personal Projects section spacing */
+.personal-projects-section .divider:first-of-type {
+  margin-top: 30px;
+}
+.personal-projects-section .divider:last-of-type {
+  margin-bottom: 30px;
+}
+
+/* Identity row breathing room */
+.identity-row {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* Ensure page bottom has breathing room */
+body {
+  padding-bottom: 40px;
+}
+
+
+/* === MIGUEL: Final all-5 tweaks applied === */
+
+/* Divider width ~25% smaller */
+.divider, .wide-divider {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 1px;
+  background: rgba(221, 184, 75, 0.55);
+}
+@media (max-width: 900px){
+  .divider, .wide-divider { width: 68%; }
+}
+
+/* Extra padding around divider pairs */
+.section-heading {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Identity row breathing room */
+.identity-row {
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+/* Bottom page spacing */
+body { padding-bottom: 40px !important; }
+.page-end-spacer { height: 40px; }
+
+
+
+/* === MIGUEL PATCH FROM UPLOAD: spacing + dividers + connect gap (non-destructive) === */
+
+/* Connect row breathing room so divider below isn't tight */
+
+
+/* Dividers ~25% narrower, centered */
+.wide-divider{
+  height: 1px;
+  background: rgba(221,184,75,0.55);
+  margin-left: auto;
+  margin-right: auto;
+  width: 52.5%;
+  min-width: 45%;
+  max-width: 60%;
+}
+@media (max-width: 900px){
+  .wide-divider{ width: 64%; max-width: 68%; }
+}
+
+/* Equalize inner gaps so headings are centered between the two lines */
+.wide-divider + h2{ margin-top: 30px; margin-bottom: 30px; }
+.wide-divider + h2 + .wide-divider{ margin-top: 30px; }
+
+/* Looser outer spacing around divider pairs */
+.wide-divider:first-of-type{ margin-top: 30px; }
+.wide-divider:last-of-type{ margin-bottom: 30px; }
+
+/* Identity row light padding; safe across ranges */
+.identity-row{ padding-top: 10px; padding-bottom: 20px; }
+
+/* Guaranteed 40px bottom spacing */
+body{ padding-bottom: 40px !important; }
+.page-end-spacer{ height: 40px; }
+
+
+
+/* === MIGUEL PATCH: normalize all vertical gaps to 30px === */
+
+/* Connect row bottom spacing */
+.connect-row{ margin-bottom: 30px; }
+
+/* Equalize inner gaps so headings are centered between dividers */
+.wide-divider + h2{ margin-top: 30px; margin-bottom: 30px; }
+.wide-divider + h2 + .wide-divider{ margin-top: 30px; }
+
+/* Looser outer spacing around divider pairs */
+.wide-divider:first-of-type{ margin-top: 30px; }
+.wide-divider:last-of-type{ margin-bottom: 30px; }
+
+/* Ensure bottom spacing */
+body{ padding-bottom: 40px !important; }
+.page-end-spacer{ height: 40px; }
 
