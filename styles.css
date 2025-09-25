@@ -171,7 +171,7 @@ header::after{
 }
 
 .cards.projects-grid .card .gif-row{
-  grid-row:2 !important; display:grid !important; grid-template-columns:repeat(4, minmax(0, 1fr)) !important !important /* MIGUEL: replaced 2-col with 4-col */;
+  grid-row:2 !important; display:grid !important; grid-template-columns: repeat(4, minmax(0, 1fr)) !important /* MIGUEL: replace 2-col with 4-col */;
   gap:8px !important; align-items:stretch !important; min-height:0;
   height: clamp(180px, 52vw, 260px) !important;
 }
@@ -310,23 +310,21 @@ header::after{
   gap: 16px;
 }
   .cards.connect-grid {
-    justify-content: center; /* keep row centered with 3 items */
-    grid-template-columns: repeat(3, var(--desk-card)) !important /* MIGUEL: revert to 3-col on desktop for visual centering */;
+    grid-template-columns: repeat(3, var(--desk-card)) !important;
   }
 }
 
 @media (max-width:900px){
-  /* MIGUEL: force 1-col on connect grid at small widths to prevent accidental 2-col wrapping */
-  .cards.connect-grid { grid-template-columns: 1fr !important; }
+  .cards.connect-grid{ grid-template-columns: 1fr !important; }
 
   .cards,
   .cards.connect-grid,
   .cards.apps-grid,
   .cards.projects-grid {
   display: grid;
-  /* MIGUEL: removed conflicting 4-col at small widths */ /* /* MIGUEL: removed conflicting 4-col at small widths */ /* grid-template-columns: repeat(4, minmax(0, 1fr)); */ */
+  
   gap: 16px;
-}
+grid-template-columns: 1fr !important; }
   .cards .card{ width: var(--desk-card) !important; justify-self: center !important; }
 
   /* projects grid mobile */
@@ -366,7 +364,9 @@ header::after{
 
 /* Simplified mobile layout: 1 column + preserved overlap fix */
 @media (max-width: 900px) {
-  .cards.projects-grid { grid-template-columns: 1fr !important; }
+  .cards.connect-grid{ grid-template-columns: 1fr !important; }
+
+  .cards.projects-grid {  grid-template-columns: 1fr !important; }
   .cards.projects-grid .card { grid-template-rows: auto auto auto !important; }
   .cards.projects-grid .card > img.project-gif {
     display: block; width: 100% !important; height: auto !important;
@@ -377,9 +377,47 @@ header::after{
 
 
 
-@media (min-width: 901px) and (max-width: 1199px) {
-  /* MIGUEL: enforce only 1-col in mid range to eliminate accidental 2-col */
-  .cards.projects-grid { grid-template-columns: 1fr !important; }
-  .cards.connect-grid  { grid-template-columns: 1fr !important; }
+@media (min-width: 901px) and (max-width: 1199px){
+  /* MIGUEL: lock mid-range to 1-col for both grids */
+  .cards.projects-grid{ grid-template-columns: 1fr !important; }
+  .cards.connect-grid{  grid-template-columns: 1fr !important; }
+}
+
+
+
+/* === Identity row (photo + name block) === */
+.identity-row{
+  display:flex;
+  align-items:flex-start;
+  gap: 24px;
+  max-width: var(--content-max, 1100px);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.identity-photo header#heroHeader{ margin: 0; }
+.identity-photo img#heroImg{ display:block; width: clamp(220px, 26vw, 280px); height: auto; border-radius: 8px; }
+.identity-meta{ display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start; min-width: 280px; flex:1; }
+.identity-meta .miguel-title{ text-align:left !important; margin: 8px 0; }
+.identity-meta .divider{ margin: 12px 0; }
+
+@media (max-width: 900px){
+  .identity-row{ flex-direction: column; align-items: center; gap: 16px; }
+  .identity-meta{ align-items:center; }
+  .identity-meta .miguel-title{ text-align:center !important; }
+}
+
+
+
+/* MIGUEL: align identity row edges to the 3-tile connect track */
+@media (min-width: 1200px){
+  :root { --cards-gap: 16px; } /* safeguard if not defined */
+  .identity-row{
+    width: calc(3 * var(--desk-card) + 2 * var(--cards-gap));
+    max-width: none;            /* let exact width apply */
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
