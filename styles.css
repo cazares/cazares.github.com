@@ -86,7 +86,7 @@ header::after{
 .name-heading{ color:#f7ce46; font-weight:600; }
 .divider { width:40%; margin:15px 0; border-top:.5px solid #f0e7d5b3; }
 
-.wide-divider-bottom-space { margin-bottom: 25px; }
+.wide-divider-bottom-space { margin-bottom: 0px; }
 .bottom-sections-heading{ font-size:28px; line-height:1; color:#f7ce46; text-align:center; }
 
 .miguel-title { font-size: 52px; font-weight: 400; }
@@ -148,8 +148,8 @@ header::after{
 }
 
 /* =================== Projects =================== */
-.miguels-projects-spacing-top { margin-top: 55px; }
-.miguels-projects-spacing-bottom { margin-bottom: 25px; }
+.miguels-projects-spacing-top { margin-top: 20px; }
+.miguels-projects-spacing-bottom { margin-bottom: 0px; }
 .miguels-projects-title { font-size: 24px; }
 
 .cards.projects-grid .card{
@@ -171,7 +171,7 @@ header::after{
 }
 
 .cards.projects-grid .card .gif-row{
-  grid-row:2 !important; display:grid !important; grid-template-columns: repeat(4, minmax(0, 1fr)) !important /* MIGUEL: replace 2-col with 4-col */;
+  grid-row:2 !important; display:grid !important; grid-template-columns: repeat(4, minmax(0, 1fr)) !important ;
   gap:8px !important; align-items:stretch !important; min-height:0;
   height: clamp(131px, 15vw, 167px) !important;
 }
@@ -378,7 +378,7 @@ grid-template-columns: 1fr !important; }
 
 
 @media (min-width: 901px) and (max-width: 1199px){
-  /* MIGUEL: lock mid-range to 1-col for both grids */
+  
   .cards.projects-grid{ grid-template-columns: 1fr !important; }
   .cards.connect-grid{  grid-template-columns: 1fr !important; }
 }
@@ -408,7 +408,7 @@ grid-template-columns: 1fr !important; }
 
 
 
-/* MIGUEL: align identity row edges to the 3-tile connect track */
+
 @media (min-width: 1200px){
   :root { --cards-gap: 16px; } /* safeguard if not defined */
   .identity-row{
@@ -423,7 +423,7 @@ grid-template-columns: 1fr !important; }
 
 
 
-/* MIGUEL: identity row aligned to 3-tile connect track with fixed photo column */
+
 @media (min-width: 1200px){
   :root { --cards-gap: 16px; } /* safety if not defined */
   .identity-row{
@@ -450,7 +450,7 @@ grid-template-columns: 1fr !important; }
 }
 
 
-/* MIGUEL: hide dividers */
+
 .divider{ display:none !important; }
 
 /* identity email under name */
@@ -467,7 +467,7 @@ grid-template-columns: 1fr !important; }
 }
 
 
-/* MIGUEL: center section dividers and add page padding */
+
 
 body{
   padding-top: 15px;
@@ -492,7 +492,7 @@ body{
 
 
 
-/* MIGUEL: ensure both gifs show side-by-side in gif rows */
+
 .cards.projects-grid .card .gif-row{
   display: grid !important;
   grid-template-columns: repeat(2, 1fr) !important;
@@ -563,7 +563,7 @@ body{ padding-bottom: 40px !important; }
 /* --- Divider Tweaks --- */
 .divider {
   width: 60%; /* 25% narrower than before (was ~80%) */
-  margin: 25px auto; /* looser spacing above/below */
+  margin: 20px auto; /* looser spacing above/below */
 }
 
 /* Section headings: keep text centered vertically between dividers */
@@ -577,18 +577,18 @@ body{ padding-bottom: 40px !important; }
 
 /* Portfolio section spacing */
 .portfolio-section .divider:first-of-type {
-  margin-top: 30px; /* extra top spacing */
+  margin-top: 20px; /* extra top spacing */
 }
 .portfolio-section .divider:last-of-type {
-  margin-bottom: 30px; /* extra bottom spacing */
+  margin-bottom: 20px; /* extra bottom spacing */
 }
 
 /* Personal Projects section spacing */
 .personal-projects-section .divider:first-of-type {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 .personal-projects-section .divider:last-of-type {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 /* Identity row breathing room */
@@ -655,36 +655,45 @@ body { padding-bottom: 40px !important; }
 }
 
 /* Equalize inner gaps so headings are centered between the two lines */
-.wide-divider + h2{ margin-top: 30px; margin-bottom: 30px; }
-.wide-divider + h2 + .wide-divider{ margin-top: 30px; }
-
-/* Looser outer spacing around divider pairs */
-.wide-divider:first-of-type{ margin-top: 30px; }
-.wide-divider:last-of-type{ margin-bottom: 30px; }
+.wide-divider + h2{ margin-top: 20px; margin-bottom: 20px; }
+.wide-divider + h2 + .wide-divider{ margin-top: 20px; }
 
 /* Identity row light padding; safe across ranges */
 .identity-row{ padding-top: 10px; padding-bottom: 20px; }
 
-/* Guaranteed 40px bottom spacing */
-body{ padding-bottom: 40px !important; }
-.page-end-spacer{ height: 40px; }
-
-
-
 /* === MIGUEL PATCH: normalize all vertical gaps to 30px === */
 
 /* Connect row bottom spacing */
-.connect-row{ margin-bottom: 30px; }
+.connect-row{ margin-bottom: 20px; }
 
 /* Equalize inner gaps so headings are centered between dividers */
-.wide-divider + h2{ margin-top: 30px; margin-bottom: 30px; }
-.wide-divider + h2 + .wide-divider{ margin-top: 30px; }
+/* .wide-divider + h2{ margin-top: 20px; margin-bottom: 20px; }
+.wide-divider + h2 + .wide-divider{ margin-top: 20px; } */
 
 /* Looser outer spacing around divider pairs */
-.wide-divider:first-of-type{ margin-top: 30px; }
-.wide-divider:last-of-type{ margin-bottom: 30px; }
+/* .wide-divider:first-of-type{ margin-top: 20px; } */
+.wide-divider:last-of-type{ margin-bottom: 20px; }
 
 /* Ensure bottom spacing */
-body{ padding-bottom: 40px !important; }
-.page-end-spacer{ height: 40px; }
+/* body{ padding-bottom: 40px !important; }
+.page-end-spacer{ height: 40px; } */
+
+
+
+/* === MIGUEL: collapse-proof 30px vertical rhythm (no HTML changes) === */
+
+/* Keep heading centered between the two dividers */
+.wide-divider + h2{ margin-top: 20px; margin-bottom: 20px; }
+
+/* Ensure the top-of-pair has 30px above */
+.wide-divider:first-of-type{ margin-top: 20px; }
+
+/* Divider → content gap: use padding on the container after the second divider (prevents margin-collapsing) */
+.wide-divider + h2 + .wide-divider + .cards,
+.wide-divider + h2 + .wide-divider + .projects-grid{
+  padding-top: 20px;
+}
+
+/* Connect row → first divider gap */
+.cards.connect-grid{ margin-bottom: 20px; }
 
