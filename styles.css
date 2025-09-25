@@ -98,8 +98,7 @@ header::after{
   display:grid;
   gap:var(--gap);
   justify-content:center;
-  grid-template-columns: repeat(2, var(--desk-card));
-}
+  }
 .cards .card{ width: var(--desk-card); }
 
 .card{
@@ -305,12 +304,11 @@ header::after{
   .cards,
   .cards.connect-grid,
   .cards.apps-grid,
-  .cards.projects-grid{
-    grid-template-columns: repeat(4, var(--desk-card)) !important;
-    max-width: calc(4 * var(--desk-card) + 3 * var(--gap)) !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
+  .cards.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
   .cards.connect-grid {
     grid-template-columns: repeat(3, var(--desk-card)) !important;
   }
@@ -320,12 +318,11 @@ header::after{
   .cards,
   .cards.connect-grid,
   .cards.apps-grid,
-  .cards.projects-grid{
-    grid-template-columns: var(--desk-card) !important;
-    justify-content: center !important;
-    max-width: calc(var(--desk-card) + 2 * var(--gap)) !important;
-    margin-left:auto; margin-right:auto;
-  }
+  .cards.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
   .cards .card{ width: var(--desk-card) !important; justify-self: center !important; }
 
   /* projects grid mobile */
@@ -362,3 +359,15 @@ header::after{
 #app-stamps-ios    { --shot-h: 230px; --title-mb: 8px;  --blurb-mt: 10px; }
 #app-stamps-android{ --shot-h: 230px; --title-mb: 8px;  --blurb-mt: 10px; }
 */
+
+/* Simplified mobile layout: 1 column + preserved overlap fix */
+@media (max-width: 900px) {
+  .cards.projects-grid { grid-template-columns: 1fr !important; }
+  .cards.projects-grid .card { grid-template-rows: auto auto auto !important; }
+  .cards.projects-grid .card > img.project-gif {
+    display: block; width: 100% !important; height: auto !important;
+    aspect-ratio: 16/9; object-fit: cover !important; margin-bottom: 8px;
+  }
+  .cards.projects-grid .source-link { grid-row: 3 !important; position: relative; z-index: 1; }
+}
+
