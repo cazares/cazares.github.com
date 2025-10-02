@@ -1,3 +1,9 @@
+:root{
+  --connect-h: 0px;  /* Connect row tile inner height */
+  --app-h: 300px;      /* Apps screenshot band height */
+  --project-h: 500px;  /* Projects media band height */
+}
+
 /* =====================================================
    MIGUEL — Simplified CSS (Two Modes Only)
    - Mobile (≤900px): 1 column
@@ -79,10 +85,8 @@ footer{ background:#353535; border-top:4px solid #434343; padding:10px 0; height
 .cards,
 .cards.apps-grid,
 .cards.projects-grid,
-/* === Projects row === */
-.cards.projects-grid .card {
-  --project-h: 240px; /* control just projects row */
-  grid-template-rows: auto minmax(var(--project-h), 1fr) auto !important;
+.cards.connect-grid{
+  display:grid; grid-template-columns:1fr; gap:16px;
 }
 .cards .card{
   background:#2e2e2e; border:1px solid #444; border-radius:8px; padding:14px;
@@ -110,12 +114,6 @@ footer{ background:#353535; border-top:4px solid #434343; padding:10px 0; height
 .linkedin-logo{ width:70%; height:auto; }
 .linkedin-logo, .github-logo{ aspect-ratio:1/1; }
 
-/* === Connect row === */
-.cards.connect-grid .card {
-  --connect-h: 160px; /* control just connect row */
-  grid-template-rows: auto minmax(var(--connect-h), 1fr) auto !important;
-}
-
 /* Projects */
 .project-blurb{ font-size:.9em; color:#ccc; text-align:center; margin-top:6px; line-height:1.4; }
 .miguels-projects-title{ font-size:24px; }
@@ -132,10 +130,8 @@ footer{ background:#353535; border-top:4px solid #434343; padding:10px 0; height
 }
 
 /* Apps grid (screenshots band) */
-/* === Apps row === */
-.cards.apps-grid .card {
-  --app-h: 230px; /* control just apps row */
-  grid-template-rows: auto var(--app-h) auto auto !important;
+.cards.apps-grid .card{
+  display:grid; grid-template-rows: auto var(--app-h) auto auto !important; overflow:hidden;
 }
 .cards.apps-grid .card .app-card-title{ font-size:24px; margin:0 0 12px; line-height:1.15; }
 .cards.apps-grid .screenshot-row{
@@ -168,4 +164,12 @@ footer{ background:#353535; border-top:4px solid #434343; padding:10px 0; height
 @media (prefers-reduced-motion: reduce){
   .cards .card{ transition:none; }
   .cards .card:hover, .cards .card:focus-visible{ transform:none; box-shadow:none; }
+}
+
+
+/* Connect row specific heights */
+.cards.connect-grid .card{
+  display: grid;
+  grid-template-rows: auto minmax(var(--connect-h), 1fr) auto !important;
+  overflow: hidden;
 }
