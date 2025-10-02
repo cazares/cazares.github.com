@@ -1,14 +1,21 @@
 /* =====================================================
-   MIGUEL — Styles (name color + connect icons fix)
+   MIGUEL — Styles (regenerated)
+   Changes in this version:
+   1) Identity row vertically centered
+   2) Apps grid titles centered + larger
+   3) Apps grid text (blurb) guaranteed to show fully (no clipping)
+   4) Dividers match grid width (3-col for Connect, 4-col for Portfolio/Projects);
+      pairs are equal widths; mobile uses full width.
+   Kept: name color, connect icon containment, bottom‑pinned project links,
+         width‑bound GIFs, headshot 160px, left-edge alignment.
 ===================================================== */
 
 :root{
-  --card-w: 280px;
-  --gap: 16px;
-  --project-h: 240px;
-  --app-h: 230px;
+  --card-w: 280px;          /* fixed column width on desktop */
+  --gap: 16px;              /* grid gap */
+  --app-h: 230px;           /* screenshot band height for apps */
   --gold: #DDB84B;
-  --name-color: #E8C15A;   /* picked from screenshot; tweak if needed */
+  --name-color: #E8C15A;
   --text: #f0e7d5;
   --bg1: #1c1c1c;
   --bg2: #2e2e2e;
@@ -20,15 +27,28 @@ html, body{ height:100%; }
 html{ background: linear-gradient(#2a2a29, var(--bg1)) no-repeat fixed; background-size:cover; }
 body{ font-family: "OpenSans", Helvetica, Arial, sans-serif; font-size:18px; line-height:1.5; color:var(--text); padding:15px 0 40px; }
 
-/* Identity */
-.identity-row{ display:flex; align-items:flex-start; justify-content:flex-start; gap:24px; max-width:1100px; margin:0 auto; padding:10px 16px 20px; }
+/* ---------- Identity ---------- */
+.identity-row{
+  display:flex;
+  align-items:center;          /* CENTER vertically (was flex-start) */
+  justify-content:flex-start;
+  gap:24px;
+  max-width:1100px;
+  margin:0 auto;
+  padding:10px 16px 20px;
+}
 .identity-photo{ flex:0 0 auto; }
 .identity-photo img#headshot,
-.identity-photo img#heroImg{ display:block; width:auto; height:160px; border-radius:8px; object-fit:cover; }
-.identity-meta{ display:flex; flex-direction:column; align-items:flex-start; justify-content:center; min-width:280px; flex:0 1 680px; row-gap:6px; }
-.miguel-title{ font-size:52px; font-weight:400; color: var(--name-color); margin:0; line-height:1.05; }
+.identity-photo img#heroImg{
+  display:block; width:auto; height:160px; border-radius:8px; object-fit:cover;
+}
+.identity-meta{
+  display:flex; flex-direction:column; align-items:flex-start; justify-content:center; row-gap:6px;
+  min-width:280px; flex:0 1 680px;
+}
+.miguel-title{ font-size:52px; font-weight:400; color:var(--name-color); margin:0; line-height:1.05; }
 .identity-subtitle{ font-size:1.15rem; line-height:1.25; font-weight:500; letter-spacing:.2px; color: var(--gold); }
-.identity-email{ font-size:.95rem; color:#ddd; text-decoration:none; margin-top:6px; display:inline-block; }
+.identity-email{ font-size:.95rem; color:#ddd; text-decoration:none; display:inline-block; }
 .identity-email:hover{ text-decoration:underline; color:#fff; }
 
 @media (max-width:900px){
@@ -39,57 +59,126 @@ body{ font-family: "OpenSans", Helvetica, Arial, sans-serif; font-size:18px; lin
   .identity-row{ width: calc(3 * var(--card-w) + 2 * var(--gap)); padding-left:0; padding-right:0; max-width:none; }
 }
 
-/* Headings / Dividers */
-.bottom-sections-heading{ font-size:28px; line-height:1; color:var(--gold); text-align:center; font-weight:400; }
-.divider{ width:60%; margin:20px auto; height:1px; background:rgba(221,184,75,.55); border:0; }
-.wide-divider + h2, .section-heading{ margin-top:16px; margin-bottom:16px; }
+/* ---------- Grids (mobile first) ---------- */
+.cards,
+.cards.apps-grid,
+.cards.projects-grid,
+.cards.connect-grid{ display:grid; grid-template-columns:1fr; gap:var(--gap); }
 
-/* Grids */
-.cards, .cards.apps-grid, .cards.projects-grid, .cards.connect-grid{ display:grid; grid-template-columns:1fr; gap:var(--gap); }
 @media (min-width:901px){
-  .cards, .cards.apps-grid, .cards.projects-grid{ grid-template-columns: repeat(4, var(--card-w)); justify-content:center; }
+  .cards,
+  .cards.apps-grid,
+  .cards.projects-grid{ grid-template-columns: repeat(4, var(--card-w)); justify-content:center; }
   .cards.connect-grid{ grid-template-columns: repeat(3, var(--card-w)); justify-content:center; }
 }
 
-/* Card */
-.cards .card{ background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:14px; text-align:center; display:flex; flex-direction:column; color:inherit; text-decoration:none; transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease; }
-.cards .card:hover, .cards .card:focus-visible{ transform:translateY(-2px); border-color:var(--gold); box-shadow:0 4px 16px rgba(247,206,70,.12); outline:none; }
-.card-title, .bottom-card-title{ text-align:center; margin-bottom:8px; font-weight:400; }
-.card-title{ color:var(--gold); margin-top:10px; }
-.bottom-card-title{ color:var(--text); margin-top:0; }
+/* ---------- Card base ---------- */
+.cards .card{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:14px;
+  text-align:left;
+  display:flex; flex-direction:column;
+  color:inherit; text-decoration:none;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.cards .card:hover, .cards .card:focus-visible{
+  transform: translateY(-2px);
+  border-color: var(--gold);
+  box-shadow: 0 4px 16px rgba(247,206,70,.12);
+  outline:none;
+}
 .cards .card img{ max-width:100%; height:auto; display:block; border-radius:6px; }
 
-/* Connect row (hug content) */
-.cards.connect-grid .card{ display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px; height:auto; }
-.cards.connect-grid .icon-circle{ background:#fff; border-radius:50%; width:115px; height:115px; margin:0 auto 10px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
-.cards.connect-grid .icon-circle img,
-.cards.connect-grid .icon-circle svg,
-.cards.connect-grid .icon-circle .social-logo,
-.cards.connect-grid .icon-circle .github-logo,
-.cards.connect-grid .icon-circle .linkedin-logo{
-  width:64% !important;
-  height:64% !important;
-  display:block;
-  object-fit:contain;
+/* ---------- Connect row (icons contained) ---------- */
+.cards.connect-grid .card{ align-items:center; justify-content:center; padding:20px; text-align:center; }
+.icon-circle{ background:#fff; border-radius:50%; width:115px; height:115px; display:flex; align-items:center; justify-content:center; overflow:hidden; margin-bottom:10px; }
+.icon-circle img,
+.icon-circle svg{ width:64%; height:64%; object-fit:contain; display:block; }
+.card-title{ color:var(--gold); font-weight:500; margin-top:0; text-align:center; }
+
+/* ---------- Apps grid ---------- */
+.cards.apps-grid .card{
+  display:grid;
+  grid-template-rows: auto var(--app-h) auto auto;  /* title, screenshots, blurb, badge */
+  grid-auto-rows: min-content;                      /* let text grow; no clipping */
+  overflow: visible;                                /* allow blurb to render fully */
 }
-.cards.connect-grid .card-title{ margin-top:0; }
+.cards.apps-grid .card .app-card-title{
+  font-size: 26px;                /* larger title */
+  margin: 0 0 12px;
+  line-height: 1.15;
+  text-align: center;             /* centered titles */
+}
+.cards.apps-grid .screenshot-row{
+  grid-row: 2;
+  display:flex; justify-content:center; align-items:center;
+  gap:8px; line-height:0; overflow:hidden;
+}
+.cards.apps-grid .screenshot-row img{
+  height: var(--app-h);
+  width: auto;
+  display:block;
+  border-radius:4px;
+}
+.cards.apps-grid .card .project-blurb{
+  grid-row: 3;
+  margin: 10px 10px 0;
+  line-height: 1.4;
+}
+.cards.apps-grid .store-badge{
+  grid-row: 4;
+  align-self: end; justify-self: center;
+  width:135px; height:auto; aspect-ratio:135/40;
+  margin-top: 12px;
+}
 
-/* Apps grid */
-.cards.apps-grid .card{ display:grid; grid-template-rows:auto var(--app-h) auto auto; overflow:hidden; }
-.cards.apps-grid .card .app-card-title{ font-size:24px; margin:0 0 12px; line-height:1.15; }
-.cards.apps-grid .screenshot-row{ grid-row:2; line-height:0; overflow:hidden; display:flex; align-items:center; justify-content:center; gap:8px; }
-.cards.apps-grid .screenshot-row img{ display:block; max-height:calc(var(--app-h) - 8px); height:auto; width:auto; border-radius:4px; }
-.cards.apps-grid .card .project-blurb{ grid-row:3; margin:10px 10px 0; }
-.cards.apps-grid .store-badge{ grid-row:4; align-self:end; justify-self:center; display:block; width:135px; height:auto; aspect-ratio:135/40; margin-top:12px; }
+/* ---------- Projects grid ---------- */
+.cards.projects-grid .card{
+  display:grid;
+  grid-template-rows: auto 1fr auto;   /* title, gif, footer (stuck bottom) */
+  padding:12px;
+}
+.bottom-card-title{ color:var(--text); text-align:left; margin-bottom:8px; }
+.cards.projects-grid .project-gif{ grid-row:2; width:100%; height:auto; object-fit:cover; border-radius:6px; display:block; }
+.cards.projects-grid .source-link{
+  grid-row:3; margin-top:auto; align-self:end;
+  display:flex; align-items:center; justify-content:center; gap:8px; text-align:center;
+}
+.octocat-icon{ width:22px; height:22px; display:block; }
+.source-link a, .source-link a:visited{ color:#f0e7d5 !important; text-decoration:none; font-weight:500; }
+.source-link a:hover{ color: var(--gold) !important; text-decoration: underline; }
 
-/* Projects grid */
-.cards.projects-grid .card{ display:grid; grid-template-rows:auto minmax(var(--project-h),1fr) auto; overflow:hidden; }
-.cards.projects-grid .card > img.project-gif:nth-of-type(n+2){ display:none !important; }
-.cards.projects-grid .source-link{ margin-top:12px; display:flex; align-items:center; justify-content:center; gap:6px; text-align:center; }
-.octocat-icon{ width:22.5px; height:22.5px; }
-.project-blurb{ font-size:.9em; color:#ccc; text-align:center; margin-top:8px; line-height:1.4; max-width:26ch; margin-left:auto; margin-right:auto; }
+/* ---------- Headings & Dividers ---------- */
+.bottom-sections-heading{ font-size:28px; line-height:1; color:var(--gold); text-align:center; font-weight:400; }
 
-/* Motion */
-@media (prefers-reduced-motion: reduce){ .cards .card{ transition:none; } .cards .card:hover, .cards .card:focus-visible{ transform:none; box-shadow:none; } }
+/* Default divider width = 4-column grid width (Portfolio/Projects) */
+.divider{
+  height:1px; background:rgba(221,184,75,.55);
+  margin:20px auto;
+  width: 100%;
+}
+@media (min-width:901px){
+  .divider{ width: calc(4 * var(--card-w) + 3 * var(--gap)); }
+  /* For the Connect section (3 columns), match that grid width for BOTH dividers in the pair */
+  .divider:has(+ h2 + .divider + .cards.connect-grid),
+  h2 + .divider:has(+ .cards.connect-grid){
+    width: calc(3 * var(--card-w) + 2 * var(--gap));
+  }
+}
 
-.page-end-spacer{ height:40px; }
+/* ---------- Motion preference ---------- */
+@media (prefers-reduced-motion: reduce){
+  .cards .card{ transition:none; }
+  .cards .card:hover, .cards .card:focus-visible{ transform:none; box-shadow:none; }
+}
+
+/* ---------- Responsive (single column) ---------- */
+@media (max-width:900px){
+  .cards,
+  .cards.apps-grid,
+  .cards.projects-grid,
+  .cards.connect-grid{ grid-template-columns:1fr; }
+  .divider{ width: calc(100% - 32px); } /* full width minus body padding */
+}
