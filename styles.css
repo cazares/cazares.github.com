@@ -74,7 +74,7 @@ footer{
 :root{
   --hero-h: clamp(131px, 15vw, 167px);               /* Responsive hero height, within safe bounds */
   --gap: 12px;                                       /* Default grid gap */
-  --desk-card: 280px;                                /* Fixed desktop card width for consistent columns */
+  /* --desk-card removed (fixed widths used) */                                /* Fixed desktop card width for consistent columns */
 }
 
 header{
@@ -576,4 +576,12 @@ header::after{
 /* Mobile divider width adjustments for visual balance */
 @media (max-width: 900px){
   .divider, .wide-divider { width: 68%; }            /* Slightly narrower lines on mobile */
+}
+
+
+/* Image overflow guard */
+.cards .card img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
