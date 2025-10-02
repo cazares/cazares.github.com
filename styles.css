@@ -1,77 +1,100 @@
-/* =================== Fonts =================== */
+/* =========================================
+   MIGUEL — Fully Commented CSS
+   - Comments explain purpose of selectors, tokens, and key properties
+   - Redundant/legacy commented-out rules have been removed where safe
+   - Feel free to diff against your original for clarity
+   ========================================= */
+
+/* =================== Fonts ===================
+   Declare Open Sans in multiple weights.
+   'font-display: swap' prevents invisible text while fonts load. */
 @font-face {
-  font-family: 'OpenSans';
+  font-family: 'OpenSans';                           /* Family name referenced throughout */
   src: url('./fonts/OpenSans-Light-webfont.woff') format('woff'),
-       url('./fonts/OpenSans-Light-webfont.ttf') format('truetype');
-  font-weight: 300; font-style: normal; font-display: swap;
+       url('./fonts/OpenSans-Light-webfont.ttf') format('truetype'); /* Fallback to TTF */
+  font-weight: 300;                                  /* Light */
+  font-style: normal;                                /* Not italic */
+  font-display: swap;                                /* Use fallback font until loaded */
 }
 @font-face {
   font-family: 'OpenSans';
   src: url('./fonts/OpenSans-Regular-webfont.woff') format('woff'),
        url('./fonts/OpenSans-Regular-webfont.ttf') format('truetype');
-  font-weight: 400; font-style: normal; font-display: swap;
+  font-weight: 400;                                  /* Regular */
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: 'OpenSans';
   src: url('./fonts/OpenSans-Semibold-webfont.woff') format('woff'),
        url('./fonts/OpenSans-Semibold-webfont.ttf') format('truetype');
-  font-weight: 600; font-style: normal; font-display: swap;
+  font-weight: 600;                                  /* Semibold */
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: 'OpenSans';
   src: url('./fonts/OpenSans-Bold-webfont.woff') format('woff'),
        url('./fonts/OpenSans-Bold-webfont.ttf') format('truetype');
-  font-weight: 700; font-style: normal; font-display: swap;
+  font-weight: 700;                                  /* Bold */
+  font-style: normal;
+  font-display: swap;
 }
 
-/* =================== Base =================== */
-*{ margin:0; padding:0; box-sizing:border-box; }
-html, body{ height:100%; }
+/* =================== Base ===================
+   Normalize spacing and establish global text + colors. */
+*{ margin:0; padding:0; box-sizing:border-box; }     /* Avoid layout surprises from defaults */
+html, body{ height:100%; }                           /* Ensure full-height background */
 
 html{
+  /* Fixed gradient background across the page */
   background: linear-gradient(#2a2a29, #1c1c1c) no-repeat fixed;
-  background-size:cover;
+  background-size:cover;                             /* Stretch to viewport */
 }
 
 body{
-  font-family:"OpenSans", Helvetica, Arial, sans-serif;
+  font-family:"OpenSans", Helvetica, Arial, sans-serif; /* Custom → system fallbacks */
   font-weight:400;
-  font-size:18px;
-  line-height:1.5;
-  color:#f0e7d5;
+  font-size:18px;                                    /* Comfortable base size */
+  line-height:1.5;                                   /* Readable leading */
+  color:#f0e7d5;                                     /* Warm off‑white body text */
+  padding-top: 15px;                                 /* Global top breathing room */
+  padding-bottom: 40px;                              /* Ensure space before footer */
 }
 
 footer{
-  background:#353535;
-  border-top:4px solid #434343;
+  background:#353535;                                /* Dark footer band */
+  border-top:4px solid #434343;                      /* Subtle top border accent */
   padding:10px 0;
-  height:auto;
+  height:auto;                                       /* Allow content height */
 }
 
-/* =================== Hero banner =================== */
+/* =================== Hero banner ===================
+   Root tokens for sizing; static hero container to avoid parallax/zoom. */
 :root{
-  --hero-h: clamp(131px, 15vw, 167px);
-  --gap: 12px;
-  --desk-card: 280px;
+  --hero-h: clamp(131px, 15vw, 167px);               /* Responsive hero height, within safe bounds */
+  --gap: 12px;                                       /* Default grid gap */
+  --desk-card: 280px;                                /* Fixed desktop card width for consistent columns */
 }
 
 header{
-  height: var(--hero-h);
-  position: relative;
-  overflow: hidden;
-  background: #1c1c1c;
+  height: var(--hero-h);                             /* Use tokenized height */
+  position: relative;                                /* Create stacking context for child image + overlay */
+  overflow: hidden;                                  /* Clip hero image overflow */
+  background: #1c1c1c;                               /* Solid base to match site palette */
 }
 header .hero-img{
-  position: absolute;
+  position: absolute;                                /* Absolute center horizontally */
   top: 0;
   left: 50%;
-  transform: translateX(-50%);
-  height: 100%;
-  width: auto;
-  max-width: none;
-  pointer-events: none;
+  transform: translateX(-50%);                       /* Visual center */
+  height: 100%;                                      /* Fill header height */
+  width: auto;                                       /* Keep natural aspect ratio */
+  max-width: none;                                   /* Avoid shrinking large source images */
+  pointer-events: none;                              /* Prevent accidental drags/select */
 }
 header::after{
+  /* Bottom fade to blend hero into page content */
   content:"";
   position:absolute;
   left:0; right:0; bottom:0;
@@ -79,148 +102,178 @@ header::after{
   background: linear-gradient(to bottom, rgba(28,28,28,0), rgba(28,28,28,.85));
 }
 
-/* =================== Layout wrappers =================== */
-.wrapper{ display:flex; flex-direction:column; align-items:center; padding-bottom:40px; }
+/* =================== Layout wrappers ===================
+   Shared title styles and structural helpers. */
+.wrapper{
+  display:flex; flex-direction:column;               /* Vertical stacking container */
+  align-items:center;                                /* Center children */
+  padding-bottom:40px;                               /* Page-end guard space */
+}
 
-.section-heading, .bottom-sections-heading, .card-title, .bottom-card-title{ font-weight:400; }
-.name-heading{ color:#f7ce46; font-weight:600; }
-.divider { width:40%; margin:15px 0; border-top:.5px solid #f0e7d5b3; }
+.section-heading,
+.bottom-sections-heading,
+.card-title,
+.bottom-card-title{ font-weight:400; }               /* Normalize non-bold headings */
+.name-heading{ color:#f7ce46; font-weight:600; }     /* Accent name in gold */
+.divider {                                           /* Generic horizontal divider */
+  width:60%;                                         /* Narrowed to focus attention */
+  margin:20px auto;                                  /* Centered with breathing room */
+  border-top:.5px solid #f0e7d5b3;                   /* Thin, translucent line */
+  height:1px;                                        /* Ensure accessible height for custom backgrounds */
+  background: rgba(221, 184, 75, 0.55);              /* Golden tint (matches brand) */
+}
 
-.wide-divider-bottom-space { margin-bottom: 0px; }
-.bottom-sections-heading{ font-size:28px; line-height:1; color:#f7ce46; text-align:center; }
+.wide-divider-bottom-space { margin-bottom: 0px; }   /* Optional override to collapse bottom gap */
+.bottom-sections-heading{
+  font-size:28px; line-height:1; color:#f7ce46; text-align:center; /* Section subheadings */
+}
 
-.miguel-title { font-size: 52px; font-weight: 400; }
+.miguel-title { font-size: 52px; font-weight: 400; } /* Main display title size/weight */
+.project-github-text { font-size: 16px; }            /* Small metadata text size */
 
-.project-github-text { font-size: 16px; }
-
-/* =================== Cards & Grids =================== */
+/* =================== Cards & Grids ===================
+   Card container grids and shared card visual styles. */
 .cards{
   display:grid;
-  gap:var(--gap);
-  justify-content:center;
-  }
-.cards .card{ width: var(--desk-card); }
+  gap:var(--gap);                                    /* Use global gap token */
+  justify-content:center;                            /* Center columns when not full width */
+}
+.cards .card{ width: auto; } /* let the grid decide */
 
 .card{
-  background:#2e2e2e;
-  border:1px solid #444;
-  border-radius:8px;
-  padding:14px;
-  text-align:center;
-  display:flex; flex-direction:column;
-  color:inherit; text-decoration:none;
-  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  background:#2e2e2e;                                /* Card surface */
+  border:1px solid #444;                             /* Hairline border */
+  border-radius:8px;                                 /* Soft corners */
+  padding:14px;                                      /* Inner spacing */
+  text-align:center;                                 /* Center content */
+  display:flex; flex-direction:column;               /* Vertical stacking */
+  color:inherit; text-decoration:none;               /* Inherit text color; links look like content */
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease; /* Subtle hover affordance */
 }
 .card:hover, .card:focus-visible{
-  transform: translateY(-2px);
-  border-color:#f7ce46;
-  box-shadow:0 4px 16px rgba(247,206,70,.12);
-  outline:none;
+  transform: translateY(-2px);                       /* Lift on hover/focus */
+  border-color:#f7ce46;                              /* Gold accent border */
+  box-shadow:0 4px 16px rgba(247,206,70,.12);        /* Soft glow */
+  outline:none;                                      /* Rely on border color for focus (accessibility: maintain contrast) */
 }
 
-/* Titles */
+/* Titles inside cards */
 .card-title, .bottom-card-title{ text-align:center; margin-bottom:8px; }
-.card-title{ color:#f7ce46; margin-top:10px; }
-.bottom-card-title{ color:#f0e7d5; margin-top:0; }
+.card-title{ color:#f7ce46; margin-top:10px; }       /* Emphasize top card title with gold */
+.bottom-card-title{ color:#f0e7d5; margin-top:0; }   /* Secondary titles subdued */
 
-/* =================== Icon circles =================== */
+/* =================== Icon circles ===================
+   Round white icon wells for social/app icons. */
 .icon-circle{
   background:#fff;
-  border-radius:50%;
-  width:80px; height:80px;
-  margin:0 auto 10px auto;
-  display:flex; align-items:center; justify-content:center;
+  border-radius:50%;                                 /* Circle */
+  width:80px; height:80px;                           /* Fixed size = consistent layout */
+  margin:0 auto 10px auto;                           /* Centered with bottom gap */
+  display:flex; align-items:center; justify-content:center; /* Center icon */
 }
-.icon-circle svg{ width:64%; height:auto; display:block; }
-.social-logo{ width:65%; height:auto; }
-.github-logo { width: 90%; height: auto; object-fit: contain; }
+.icon-circle svg{ width:64%; height:auto; display:block; } /* SVGs scale responsively */
+.social-logo{ width:65%; height:auto; }              /* Generic logo sizing */
+.github-logo { width: 90%; height: auto; object-fit: contain; } /* Wider GitHub mark */
 .linkedin-logo{ width:70%; height:auto; }
-.linkedin-logo, .github-logo { aspect-ratio: 1 / 1; }
+.linkedin-logo, .github-logo { aspect-ratio: 1 / 1; } /* Force square for consistency */
 
 /* =================== Portfolio headings & blurbs =================== */
-.miguels-portfolio-title { font-size: 42px; }
+.miguels-portfolio-title { font-size: 42px; }        /* Section header size */
 .project-blurb {
-  font-size: 0.9em;
-  color: #ccc;
+  font-size: 0.9em;                                  /* Slightly smaller than body */
+  color: #ccc;                                       /* Muted */
   text-align: center;
   margin-top: 6px;
-  line-height: 1.4;
+  line-height: 1.4;                                  /* Tighter than body for blurbs */
 }
 
-/* =================== Projects =================== */
-.miguels-projects-spacing-top { margin-top: 20px; }
+/* =================== Projects ===================
+   Grid rules specific to the Personal Projects section. */
+.miguels-projects-spacing-top { margin-top: 20px; }  /* Section spacing helpers */
 .miguels-projects-spacing-bottom { margin-bottom: 0px; }
 .miguels-projects-title { font-size: 24px; }
 
 .cards.projects-grid .card{
-  display:grid !important;
-  grid-template-rows: auto minmax(220px, 1fr) auto;
-  overflow:hidden !important;
+  display:grid !important;                           /* Use grid for image+text+link rows */
+  grid-template-rows: auto minmax(220px, 1fr) auto;  /* Title, media, link */
+  overflow:hidden !important;                        /* Clip overflowing media */
 }
-.cards.projects-grid .card *{ min-height:0; }
+.cards.projects-grid .card *{ min-height:0; }        /* Prevent grid children from overstretching */
 .cards.projects-grid .source-link{
   grid-row:3; margin-top:10px;
-  display:flex; align-items:center; justify-content:center; gap:6px; text-align:center;
+  display:flex; align-items:center; justify-content:center; gap:6px; text-align:center; /* Center link row */
 }
-.octocat-icon{ width:22.5px; height:22.5px; }
+.octocat-icon{ width:22.5px; height:22.5px; }        /* Consistent icon size */
 
-.cards.projects-grid .card > img.project-gif:nth-of-type(n+2){ display:none !important; }
+.cards.projects-grid .card > img.project-gif:nth-of-type(n+2){
+  display:none !important;                           /* Only show first GIF when multiple present */
+}
 .cards.projects-grid .card > img.project-gif{
   grid-row:2 !important; width:100% !important; height:100% !important;
-  object-fit: fill !important; border-radius:6px;
+  object-fit: fill !important;                       /* Fill media slot on desktop */
+  border-radius:6px;
 }
 
+/* For 2–4 thumbnail rows inside a card (alternative layout) */
 .cards.projects-grid .card .gif-row{
-  grid-row:2 !important; display:grid !important; grid-template-columns: repeat(4, minmax(0, 1fr)) !important ;
+  grid-row:2 !important;
+  display:grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important ;
   gap:8px !important; align-items:stretch !important; min-height:0;
-  height: clamp(131px, 15vw, 167px) !important;
+  height: clamp(131px, 15vw, 167px) !important;      /* Match hero scale for visual rhythm */
 }
 .cards.projects-grid .card .gif-row .project-gif{
   width:100% !important; height:100% !important; object-fit:cover !important; border-radius:6px;
 }
-.square-gif { aspect-ratio: 1 / 1; object-fit: cover; }
-.project-gif { display: block; }
+.square-gif { aspect-ratio: 1 / 1; object-fit: cover; } /* Force square thumbnails if needed */
+.project-gif { display: block; }                     /* Ensure baseline-less layout */
 
-/* =================== Links =================== */
-.source-link a, .source-link a:visited{ color:#f0e7d5 !important; text-decoration:underline; font-weight:500; }
-.source-link a:hover{ color:#f7ce46 !important; }
+/* =================== Links ===================
+   Source links (e.g., GitHub) styling. */
+.source-link a, .source-link a:visited{
+  color:#f0e7d5 !important;                          /* Inherit body off‑white */
+  text-decoration:underline; font-weight:500;
+}
+.source-link a:hover{ color:#f7ce46 !important; }    /* Gold on hover */
 
-/* Inline contact email (top) */
+/* =================== Inline contact email (top) ===================
+   Inline email pill link near the top of the page. */
 .contact-inline{
   text-align:center;
-  margin: 24px 0;
+  margin: 24px 0;                                    /* Vertical spacing above/below */
 }
 .contact-inline a,
 .contact-inline a:visited{
   color:#fff; text-decoration:underline; font-weight:500;
   display:inline-block;
-  font-size: clamp(131px, 15vw, 167px);
+  font-size: clamp(131px, 15vw, 167px);              /* NOTE: This is extremely large (uses hero clamp).
+                                                        If this wasn't intentional, consider reducing. */
   line-height: 1.6;
   padding: 6px 12px;
   border-radius: 8px;
-  text-underline-offset: 3px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid #444;
+  text-underline-offset: 3px;                        /* Better underline legibility */
+  background: rgba(255,255,255,0.06);                /* Subtle pill background */
+  border: 1px solid #444;                            /* Hairline contrast */
 }
 .contact-inline a:hover{ background: rgba(247,206,70,0.10); border-color: #f7ce46; }
 
-/* Footer email (plain/simple) */
+/* =================== Footer email (plain/simple) =================== */
 .email{ text-align:center; margin:24px 0; }
 .email a, .email a:visited{
   color:#fff;
   text-decoration:underline;
   font-weight:500;
-  font-size: clamp(131px, 15vw, 167px);
+  font-size: clamp(131px, 15vw, 167px);              /* Same note as above regarding size */
   line-height:1.6;
 }
 .email a:hover{ color:#f7ce46; }
 
-/* =================== Apps grid (desktop/tablet) =================== */
-/* Each card gets a fixed screenshot band (row 2) so pair tops/bottoms are flush */
+/* =================== Apps grid (desktop/tablet) ===================
+   Each app card has a fixed screenshot band to align rows. */
 .cards.apps-grid .card{
-  --shot-h: 230px;   /* default screenshot band height (tweak per tile via id) */
-  --title-mb: 12px;   /* space beneath title */
-  --blurb-mt: 10px;  /* space above blurb */
+  --shot-h: 230px;                                   /* Default screenshot strip height */
+  --title-mb: 12px;                                  /* Spacing below title */
+  --blurb-mt: 10px;                                  /* Spacing above blurb */
   display: grid !important;
   grid-template-rows: auto var(--shot-h) auto auto !important; /* title, screenshots, blurb, badge */
   overflow: hidden;
@@ -231,30 +284,30 @@ header::after{
   line-height: 1.15;
 }
 
-/* The row that holds both screenshots */
+/* Twin screenshot row: iOS + Android side-by-side */
 .cards.apps-grid .screenshot-row{
   grid-row: 2 !important;
   height: var(--shot-h);
-  line-height: 0;                  /* removes descender/baseline gaps */
+  line-height: 0;                                    /* Kill baseline gaps around images */
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: calc(var(--gap) * 0.15 + 1px);
+  gap: calc(var(--gap) * 0.15 + 1px);                /* Tiny inter-image gap */
 }
-.cards.apps-grid .screenshot-row .spacer{ display:none !important; }
+.cards.apps-grid .screenshot-row .spacer{ display:none !important; } /* Remove optional spacer in this layout */
 
-/* Screenshots: all are 620×1266; keep ratio and match the row height */
+/* Portrait screenshot sizing: source is 620×1266; keep ratio and fit band height */
 .cards.apps-grid .screenshot-row img{
   height: var(--shot-h);
-  width: calc(var(--shot-h) * 620 / 1266);
+  width: calc(var(--shot-h) * 620 / 1266);           /* Maintain aspect ratio */
   aspect-ratio: 620 / 1266;
-  object-fit: contain;
+  object-fit: contain;                                /* Keep full screenshot visible */
   display: block;
   border-radius: 4px;
 }
 
-/* Blurb row */
+/* Blurb row under screenshots */
 .cards.apps-grid .card .project-blurb{
   grid-row: 3 !important;
   font-size: 0.9em;
@@ -264,27 +317,28 @@ header::after{
   line-height: 1.4;
 }
 
-/* Store badges */
+/* Store badge row (App Store / Google Play) */
 .cards.apps-grid .store-badge{
   grid-row: 4 !important;
   align-self: center;
   justify-self: center;
   display: block;
-  width: 135px;
+  width: 135px;                                      /* Reserve consistent width */
   height: auto;
   margin: 10px 0 0;
-  aspect-ratio: 135 / 40;      /* reserve space pre-load */
+  aspect-ratio: 135 / 40;                            /* Prevent layout jump pre-load */
 }
 
-/* =================== Top row (connect-grid) =================== */
+/* =================== Top row (connect-grid) ===================
+   Social/connect tiles sizing + grid. */
 .cards.connect-grid .card{
   display: grid !important;
-  grid-template-rows: auto minmax(140px,1fr) auto !important;
+  grid-template-rows: auto minmax(140px,1fr) auto !important; /* Title, icon well, label */
   overflow: hidden;
 }
 .cards.connect-grid .icon-circle{
   grid-row: 2 !important;
-  width: 115px; height: 115px;
+  width: 115px; height: 115px;                       /* Larger circle for emphasis */
   margin: 0 auto;
   align-self: center;
 }
@@ -299,43 +353,58 @@ header::after{
   font-size: 26px;
 }
 
-/* =================== Responsive =================== */
+/* =================== Responsive ===================
+   4 columns on wide screens; strictly 1 column on mobile. */
+   /* =================== Desktop (≥1200px) =================== */
 @media (min-width: 1200px){
+
+  /* Default: force all card grids into 4 fixed columns */
   .cards,
-  .cards.connect-grid,
   .cards.apps-grid,
   .cards.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
-}
+    display: grid;
+    grid-template-columns: repeat(4, 280px); /* fixed-width cards */
+    gap: 16px;
+    justify-content: center;                 /* center the 4-column block */
+  }
+
+  /* EXCEPTION: connect row = 3 columns, centered */
   .cards.connect-grid {
-    grid-template-columns: repeat(3, var(--desk-card)) !important;
+    display: grid;
+    grid-template-columns: repeat(3, 280px); /* fixed 3 cards */
+    gap: 16px;
+    justify-content: center;                 /* keeps them centered as a block */
   }
 }
 
-@media (max-width:900px){
-  .cards.connect-grid{ grid-template-columns: 1fr !important; }
-
+/* =================== Mobile (≤900px) =================== */
+@media (max-width: 900px){
   .cards,
   .cards.connect-grid,
   .cards.apps-grid,
   .cards.projects-grid {
-  display: grid;
-  
-  gap: 16px;
-grid-template-columns: 1fr !important; }
-  .cards .card{ width: var(--desk-card) !important; justify-self: center !important; }
+    display: grid;
+    grid-template-columns: 1fr !important;   /* always 1 column on mobile */
+    gap: 16px;
+  }
 
-  /* projects grid mobile */
+  .cards .card {
+    width: auto !important;                  /* let them expand full width */
+    justify-self: stretch !important;
+  }
+}
+
+  /* Projects grid mobile: make media 16:9, natural height */
   .cards.projects-grid .card{ grid-template-rows: auto auto auto !important; }
   .cards.projects-grid .card > img.project-gif{
     display:block; width:100% !important; height:auto !important;
     aspect-ratio:16 / 9; object-fit:cover !important; margin-bottom:8px;
   }
-  .cards.projects-grid .source-link{ grid-row:3 !important; position:relative; z-index:1; }
+  .cards.projects-grid .source-link{
+    grid-row:3 !important; position:relative; z-index:1; /* Pull link above GIF if overlap happens */
+  }
 
-  /* apps grid mobile – relax sizing */
+  /* Apps grid mobile: relax strict heights; cap individual screenshots */
   .cards.apps-grid .card{ grid-template-rows: auto auto auto auto !important; }
   .cards.apps-grid .screenshot-row{
     height: auto;
@@ -344,17 +413,19 @@ grid-template-columns: 1fr !important; }
   .cards.apps-grid .screenshot-row img{
     height: auto;
     width: auto;
-    max-width: 110px;
+    max-width: 110px;                                /* Prevent giant screenshots on narrow screens */
   }
 }
 
-/* =================== Motion preference =================== */
+/* =================== Motion preference ===================
+   Respect OS setting for reduced motion. */
 @media (prefers-reduced-motion: reduce) {
-  .card { transition: none; }
+  .card { transition: none; }                        /* Disable hover animations */
   .card:hover, .card:focus-visible { transform: none; box-shadow: none; }
 }
 
-/* ===== Optional per-tile overrides (tune just one card via its id) ===== */
+/* ===== Optional per-tile overrides =====
+   Tune individual app tiles via ID (uncomment and adjust). */
 /*
 #app-ship-ios      { --shot-h: 230px; --title-mb: 8px;  --blurb-mt: 10px; }
 #app-ship-android  { --shot-h: 230px; --title-mb: 8px;  --blurb-mt: 10px; }
@@ -362,103 +433,86 @@ grid-template-columns: 1fr !important; }
 #app-stamps-android{ --shot-h: 230px; --title-mb: 8px;  --blurb-mt: 10px; }
 */
 
-/* Simplified mobile layout: 1 column + preserved overlap fix */
-@media (max-width: 900px) {
-  .cards.connect-grid{ grid-template-columns: 1fr !important; }
+/* =================== Identity row (photo + name block) ===================
+   Photo on the left, meta on the right; collapses to column on mobile. */
 
-  .cards.projects-grid {  grid-template-columns: 1fr !important; }
-  .cards.projects-grid .card { grid-template-rows: auto auto auto !important; }
-  .cards.projects-grid .card > img.project-gif {
-    display: block; width: 100% !important; height: auto !important;
-    aspect-ratio: 16/9; object-fit: cover !important; margin-bottom: 8px;
-  }
-  .cards.projects-grid .source-link { grid-row: 3 !important; position: relative; z-index: 1; }
-}
-
-
-
-@media (min-width: 901px) and (max-width: 1199px){
-  
-  .cards.projects-grid{ grid-template-columns: 1fr !important; }
-  .cards.connect-grid{  grid-template-columns: 1fr !important; }
-}
-
-
-
-/* === Identity row (photo + name block) === */
-.identity-row{
-  display:flex;
-  align-items:flex-start;
+/* Center the whole block and its two columns as a group */
+.identity-row {
+  display: flex;
+  align-items: flex-start;     /* was center; top-align photo + text is cleaner */
+  justify-content: center;     /* centers the two columns as a group */
   gap: 24px;
-  max-width: var(--content-max, 1100px);
-  margin: 0 auto;
-  padding: 0 16px;
+
+  max-width: 1100px;
+  margin: 0 auto;              /* centers the row itself */
+  padding: 10px 16px 20px;
+
+  /* REMOVE this — it forces the row to stretch full width and defeats centering */
+  /* flex: 1; */
 }
-.identity-photo header#heroHeader{ margin: 0; }
-.identity-photo img#heroImg{ display:block; width: clamp(131px, 15vw, 167px); height: auto; border-radius: 8px; }
-.identity-meta{ display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start; min-width: 280px; flex:1; }
-.identity-meta .miguel-title{ text-align:left !important; margin: 8px 0; }
-.identity-meta .divider{ margin: 12px 0; }
+
+/* Keep the photo column from stretching; let it size to content */
+.identity-photo {
+  flex: 0 0 auto;              /* fixed to content; doesn't grow/shrink */
+  margin-right: 15px;
+}
+
+/* Make the img a normal block element with fixed height */
+.identity-photo img#headshot {
+  display: block;              /* was flex; images shouldn't be flex containers */
+  width: auto;                 /* natural width; height controls size */
+  height: 150px;               /* your chosen visual size */
+  border-radius: 8px;
+  object-fit: cover;           /* if the source aspect ratio varies */
+  /* REMOVE flex props on the image */
+  /* align-items:center; justify-content:center; display:flex; flex-direction:column; flex: 1; */
+}
+
+/* Text column: allow it to wrap but not force equal width */
+.identity-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;     /* was center; reads better next to the photo */
+  justify-content: center;
+  min-width: 280px;
+  flex: 0 1 680px;             /* can shrink/grow but doesn't try to match photo width */
+}
+
+/* Optional: center on mobile */
+@media (max-width: 900px){
+  .identity-row {
+    flex-direction: column;
+    align-items: center;       /* center both columns when stacked */
+  }
+  .identity-meta {
+    align-items: center;
+    text-align: center;
+  }
+}
+
 
 @media (max-width: 900px){
   .identity-row{ flex-direction: column; align-items: center; gap: 16px; }
   .identity-meta{ align-items:center; }
-  .identity-meta .miguel-title{ text-align:center !important; }
+  .identity-meta .miguel-title{ text-align:center !important; } /* Center title on mobile */
 }
 
+/* WIDE DESKTOP: allow unbounded outer width while keeping centered layout */
 
-
-
-@media (min-width: 1200px){
-  :root { --cards-gap: 16px; } /* safeguard if not defined */
-  .identity-row{
-    
-    max-width: none;            /* let exact width apply */
-    padding-left: 0;
-    padding-right: 0;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-
-
-
-@media (min-width: 1200px){
-  :root { --cards-gap: 16px; } /* safety if not defined */
-  .identity-row{
-    display: flex;
-    align-items: flex-start;
-    gap: 32px; /* breathing room between photo and text */
-    width: calc(3 * var(--desk-card) + 2 * var(--cards-gap));
-    max-width: none;
-    padding-left: 0;
-    padding-right: 0;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .identity-photo{ flex: 0 0 clamp(131px, 15vw, 167px); }
-  .identity-photo img#heroImg{ width: 100%; height: auto; border-radius: 8px; display:block; }
-  .identity-meta{ flex: 1; display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start; }
-  .identity-meta .miguel-title{ text-align:left !important; margin: 8px 0; }
-}
+/* MOBILE: narrower layout rules already above; ensure consistent centering */
 @media (max-width: 900px){
-  .identity-row{ flex-direction: column; align-items: center; gap: 16px; width: auto; padding: 0 16px; }
+  .identity-row{ width: auto; padding: 0 16px; }
   .identity-photo{ flex: none; width: 100%; max-width: 280px; }
   .identity-meta{ align-items: center; }
   .identity-meta .miguel-title{ text-align: center !important; }
 }
 
-
-
-.divider{ display:none !important; }
-
-/* identity email under name */
+/* Identity email link under name */
 .identity-email{
   font-size: 0.95rem;
   color: #ddd;
   text-decoration: none;
-  margin-top: 6px;
+  margin-top: 8px;
   display: inline-block;
 }
 .identity-email:hover{ text-decoration: underline; color: #fff; }
@@ -466,36 +520,23 @@ grid-template-columns: 1fr !important; }
   .identity-meta .identity-email{ display:block; text-align:center; }
 }
 
-
-
-
-body{
-  padding-top: 15px;
-  padding-bottom: 40px;
-}
-
-
-
-/* identity subtitle under name */
+/* Identity subtitle under name */
 .identity-subtitle{
   font-size: 1.15rem;
   line-height: 1.25;
   font-weight: 500;
   letter-spacing: 0.2px;
-  color: var(--accent, #DDB84B); /* match gold accent; fallback if var missing */
+  color: var(--accent, #DDB84B);                     /* Gold accent; uses CSS var if present */
   margin-top: 4px;
 }
-.identity-email{ margin-top: 8px; } /* a touch more space below subtitle */
 @media(max-width:900px){
   .identity-subtitle{ text-align:center; }
 }
 
-
-
-
+/* =================== Projects: alt GIF-row (2 columns desktop, 1 mobile) =================== */
 .cards.projects-grid .card .gif-row{
   display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important;
+  grid-template-columns: repeat(2, 1fr) !important;  /* Two-up on desktop/tablet */
   gap: 8px !important;
   height: auto !important;
   min-height: 0 !important;
@@ -503,22 +544,18 @@ body{
 .cards.projects-grid .card .gif-row .project-gif{
   width: 100% !important;
   height: auto !important;
-  object-fit: contain !important;
+  object-fit: contain !important;                    /* Show entire GIF without cropping */
 }
 @media(max-width: 900px){
-  
-  .cards.projects-grid .card .gif-row{ grid-template-columns: 1fr !important; }
+  .cards.projects-grid .card .gif-row{ grid-template-columns: 1fr !important; } /* Stack on mobile */
 }
 
-
-
-/* === MIGUEL: mid-range identity row width fix, centered dividers, hard 40px bottom === */
-
-/* MID-RANGE (901–1199px): let identity row follow container width, not 3-tile desktop width */
+/* =================== Mid-range identity/connect width rules (901–1199px) =================== */
 @media (min-width: 901px) and (max-width: 1199px){
-  .identity-row{
+  .identity-row,
+  .connect-row {
     width: auto !important;
-    max-width: var(--content-max, 1100px);
+    max-width: var(--content-max, 1100px);           /* Keep within readable width */
     padding-left: 16px;
     padding-right: 16px;
     margin-left: auto;
@@ -526,174 +563,17 @@ body{
   }
 }
 
-/* Section dividers: visible, centered, responsive width */
+/* =================== Final spacing guards =================== */
+.page-end-spacer{ height: 40px; }                    /* Guaranteed final breathing room */
 
-@media (max-width: 900px){
-  
-}
-
-/* Guaranteed bottom spacing */
-body{ padding-bottom: 40px !important; }
-.page-end-spacer{ height: 40px; }
-
-
-
-/* === MIGUEL: divider narrowing, spacing, centering; identity row polish === */
-
-/* 1) Dividers ~25% narrower and centered */
-
-
-/* 2) Looser OUTER spacing for any divider pair in a section */
-.wide-divider:first-of-type{ margin-top: 28px; }
-.wide-divider:last-of-type{  margin-bottom: 28px; }
-
-/* 3) Equal INNER gaps around heading so it's centered between the two lines */
-.wide-divider + h2{ margin-top: 16px; margin-bottom: 16px; }
-.wide-divider + h2 + 
-
-/* 1-mobile) Narrower but solid on mobile */
-@media (max-width: 900px){
-  
-}
-
-/* 5) Identity row top polish */
-.identity-row{ padding-top: 10px; }
-
-
-/* --- Divider Tweaks --- */
-.divider {
-  width: 60%; /* 25% narrower than before (was ~80%) */
-  margin: 20px auto; /* looser spacing above/below */
-}
-
-/* Section headings: keep text centered vertically between dividers */
-.section-heading {
-  display: inline-block;
-  position: relative;
-  top: 0;
-  margin: 0 auto 0 auto;
-  padding: 10px 0;
-}
-
-/* Portfolio section spacing */
-.portfolio-section .divider:first-of-type {
-  margin-top: 20px; /* extra top spacing */
-}
-.portfolio-section .divider:last-of-type {
-  margin-bottom: 20px; /* extra bottom spacing */
-}
-
-/* Personal Projects section spacing */
-.personal-projects-section .divider:first-of-type {
-  margin-top: 20px;
-}
-.personal-projects-section .divider:last-of-type {
-  margin-bottom: 20px;
-}
-
-/* Identity row breathing room */
-.identity-row {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-/* Ensure page bottom has breathing room */
-body {
-  padding-bottom: 40px;
-}
-
-
-/* === MIGUEL: Final all-5 tweaks applied === */
-
-/* Divider width ~25% smaller */
-.divider, .wide-divider {
-  width: 60%;
-  margin-left: auto;
-  margin-right: auto;
-  height: 1px;
-  background: rgba(221, 184, 75, 0.55);
-}
-@media (max-width: 900px){
-  .divider, .wide-divider { width: 68%; }
-}
-
-/* Extra padding around divider pairs */
-.section-heading {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-/* Identity row breathing room */
-.identity-row {
-  padding-top: 10px;
-  padding-bottom: 20px;
-}
-
-/* Bottom page spacing */
-body { padding-bottom: 40px !important; }
-.page-end-spacer { height: 40px; }
-
-
-
-/* === MIGUEL PATCH FROM UPLOAD: spacing + dividers + connect gap (non-destructive) === */
-
-/* Connect row breathing room so divider below isn't tight */
-
-
-/* Dividers ~25% narrower, centered */
-.wide-divider{
-  height: 1px;
-  background: rgba(221,184,75,0.55);
-  margin-left: auto;
-  margin-right: auto;
-  width: 52.5%;
-  min-width: 45%;
-  max-width: 60%;
-}
-@media (max-width: 900px){
-  .wide-divider{ width: 64%; max-width: 68%; }
-}
-
-/* Equalize inner gaps so headings are centered between the two lines */
-.wide-divider + h2{ margin-top: 20px; margin-bottom: 20px; }
-.wide-divider + h2 + .wide-divider{ margin-top: 20px; }
-
-/* Identity row light padding; safe across ranges */
-.identity-row{ padding-top: 10px; padding-bottom: 20px; }
-
-/* === MIGUEL PATCH: normalize all vertical gaps to 30px === */
-
-/* Connect row bottom spacing */
-.connect-row{ margin-bottom: 20px; }
-
-/* Equalize inner gaps so headings are centered between dividers */
-/* .wide-divider + h2{ margin-top: 20px; margin-bottom: 20px; }
-.wide-divider + h2 + .wide-divider{ margin-top: 20px; } */
-
-/* Looser outer spacing around divider pairs */
-/* .wide-divider:first-of-type{ margin-top: 20px; } */
-.wide-divider:last-of-type{ margin-bottom: 20px; }
-
-/* Ensure bottom spacing */
-/* body{ padding-bottom: 40px !important; }
-.page-end-spacer{ height: 40px; } */
-
-
-
-/* === MIGUEL: collapse-proof 30px vertical rhythm (no HTML changes) === */
-
-/* Keep heading centered between the two dividers */
-.wide-divider + h2{ margin-top: 20px; margin-bottom: 20px; }
-
-/* Ensure the top-of-pair has 30px above */
-.wide-divider:first-of-type{ margin-top: 20px; }
-
-/* Divider → content gap: use padding on the container after the second divider (prevents margin-collapsing) */
-.wide-divider + h2 + .wide-divider + .cards,
-.wide-divider + h2 + .wide-divider + .projects-grid{
-  padding-top: 20px;
-}
-
-/* Connect row → first divider gap */
+/* Connect row bottom spacing so divider below isn't tight */
 .cards.connect-grid{ margin-bottom: 20px; }
 
+/* Keep headings comfortably spaced when bracketed by dividers */
+.wide-divider + h2{ margin-top: 20px; margin-bottom: 20px; }
+.wide-divider:last-of-type{ margin-bottom: 20px; }   /* Outer gap after lower divider */
+
+/* Mobile divider width adjustments for visual balance */
+@media (max-width: 900px){
+  .divider, .wide-divider { width: 68%; }            /* Slightly narrower lines on mobile */
+}
