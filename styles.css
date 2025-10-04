@@ -1,3 +1,8 @@
+/* Smooth scroll for in-page anchors */
+html {
+  scroll-behavior: smooth;
+}
+
 /* ===== Base ===== */
 :root{
   --card-w: 280px;
@@ -133,4 +138,4 @@ body{ font-family: 'OpenSans', Helvetica, Arial, sans-serif; color: var(--text);
 @media(max-width:900px){
   .cards{ grid-template-columns:1fr; justify-items: center;}
 }
-.page-end-spacer{ height:40px; }
+.page-end-spacer{ height:10px; }
