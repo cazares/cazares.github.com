@@ -50,12 +50,19 @@ body{ font-family: 'OpenSans', Helvetica, Arial, sans-serif; color: var(--text);
 /* ===== Connect ===== */
 .connect-grid .card{ align-items:center; justify-content:center; text-align:center; padding:20px; }
 .icon-circle{ background:#fff; border-radius:50%; width:115px; height:115px; display:flex; align-items:center; justify-content:center; overflow:hidden; margin-bottom:10px; }
-.icon-circle img{ width:64%; height:64%; object-fit:contain; display:block; }
-.card-title{ color:var(--gold); font-weight:500; margin-top:0; text-align:center; }
+.icon-circle img{ width:67%; height:67%; object-fit:contain; display:block; }
+
+.pdf-circle{ background:#fff; border-radius:50%; width:115px; height:115px; display:flex; align-items:center; justify-content:center; overflow:hidden; margin-bottom:10px; }
+.pdf-circle img{ width:75%; height:75%; object-fit:contain; display:block; }
+
+.github-circle{ background:#fff; border-radius:50%; width:115px; height:115px; display:flex; align-items:center; justify-content:center; overflow:hidden; margin-bottom:10px; }
+.github-circle img{ width:92%; height:92%; object-fit:contain; display:block; }
+.card-title{ color:var(--gold); font-weight:500; margin-top:10px; text-align:center; font-size: 22px;}
 
 /* ===== Apps (Portfolio) ===== */
 .apps-grid .card{ display:grid; grid-template-rows:auto var(--app-h) auto auto; grid-auto-rows:min-content; overflow:visible; }
-.app-card-title{ font-size:26px; margin:0 0 12px; line-height:1.15; text-align:center; }
+.app-card-title{ font-size:22px; margin:0 0 12px; line-height:1.15; text-align:center; }
+.project-font{ font-size: 18px; }
 .screenshot-row{ grid-row:2; display:flex; justify-content:center; align-items:center; gap:8px; line-height:0; overflow:hidden; }
 .screenshot-row img{ height:var(--app-h); width:auto; display:block; border-radius:4px; }
 .project-blurb{ grid-row:3; margin:10px 10px 0; line-height:1.4; text-align:center; }
