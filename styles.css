@@ -16,7 +16,7 @@ html{ background: linear-gradient(#2a2a29, var(--bg1)) no-repeat fixed; }
 body{ font-family: 'OpenSans', Helvetica, Arial, sans-serif; color: var(--text); padding:15px 0 40px; }
 
 /* ===== Identity ===== */
-.identity-row{ display:flex; align-items:center; justify-content:flex-start; gap:24px; width: calc(3 * var(--card-w) + 2 * var(--gap)); max-width:none; margin:0 auto; padding:10px 0 20px; }
+.identity-row{ display:flex; align-items:center; justify-content:flex-start; gap:24px; width: calc(3 * var(--card-w) + 2 * var(--gap)); max-width:none; margin:0 auto; padding:10px 0 0px; }
 .identity-photo img#headshot{ height:160px; width:auto; border-radius:8px; object-fit:cover; display:block; }
 .identity-meta{ display:flex; flex-direction:column; row-gap:6px; }
 .miguel-title{ font-size:52px; font-weight:400; color:var(--name-color); line-height:1.05; }
@@ -35,6 +35,7 @@ body{ font-family: 'OpenSans', Helvetica, Arial, sans-serif; color: var(--text);
 /* ===== Dividers + headings ===== */
 .divider{ height:1px; background:rgba(221,184,75,.55); margin:20px 0; }
 .section-heading{ font-size:28px; line-height:1; color:var(--gold); text-align:center; font-weight:400; margin: 0 0 0; }
+.project-heading{ font-size:20px; line-height:1; color:var(--gold); text-align:center; font-weight:400; margin: 0 0 0; }
 
 /* ===== Grids ===== */
 .cards{ display:grid; grid-template-columns:1fr; gap:var(--gap); }
@@ -69,9 +70,10 @@ body{ font-family: 'OpenSans', Helvetica, Arial, sans-serif; color: var(--text);
 .store-badge{ grid-row:4; align-self:end; justify-self:center; width:135px; height:auto; margin-top:12px; }
 
 /* ===== Projects ===== */
-.projects-grid .card{ display:flex; flex-direction:column; justify-content:space-between; align-items:stretch; padding:12px; }
+/* .projects-grid .card{ display:flex; flex-direction:column; justify-content:space-between; align-items:stretch; padding:12px; } */
+.projects-grid .card{ display:grid; grid-template-rows:auto auto auto auto; grid-auto-rows:min-content; overflow:auto; }
 .bottom-card-title{ color:var(--text); text-align:left; margin-bottom:8px; font-weight:400; }
-.project-gif{ width:100%; height:auto; object-fit:cover; border-radius:6px; display:block; margin-bottom:12px; }
+.project-gif{ width:100%; max-height: 150px; height:auto; object-fit:cover; border-radius:6px; display:block; margin-bottom:12px; }
 .source-link{ margin-top:auto; align-self:center; display:flex; align-items:center; justify-content:center; gap:8px; text-align:center; }
 .octocat-icon{ width:22px; height:22px; display:block; }
 .source-link span{ color:var(--text); }
