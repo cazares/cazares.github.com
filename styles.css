@@ -24,7 +24,7 @@ body{ font-family: 'OpenSans', Helvetica, Arial, sans-serif; color: var(--text);
 .identity-row{ display:flex; align-items:center; justify-content:flex-start; gap:20px; width: calc(3 * var(--card-w) + 2 * var(--gap)); max-width:none; margin:0 auto; padding:10px 0 0px; }
 .identity-photo img#headshot{ height:160px; width:auto; border-radius:8px; object-fit:cover; display:block; }
 .identity-meta{ display:flex; flex-direction:column; row-gap:6px; }
-.miguel-title{ font-size:52px; font-weight:500; color:var(--name-color); line-height:1.05; }
+/* (removed duplicate .miguel-title) */
 .identity-subtitle{ color: var(--gold); font-weight:400; font-size: 24px; }
 .identity-subtitle-2{ color: var(--text); font-weight:300; font-size: 16px; opacity: 99%; }
 .identity-email{ color:#ddd; text-decoration:none; font-size: 16px; opacity: 97%; }
@@ -37,6 +37,7 @@ body{ font-family: 'OpenSans', Helvetica, Arial, sans-serif; color: var(--text);
   letter-spacing: .2px;
   line-height: 1.08;
   margin-bottom: 2px;
+  color: var(--name-color);
 }
 
 .meta-line{ font-size: 17px; line-height: 1.25; }
